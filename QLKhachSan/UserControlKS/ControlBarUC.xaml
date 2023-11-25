@@ -9,47 +9,41 @@
              Name="ucControlBar"
              >
     <Grid>
-        <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="146*"/>
-                <ColumnDefinition Width="263*"/>
-            </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <TextBlock FontSize="25" Text="Management System" Background="White"/>
-        </Grid>
-        <Grid Grid.Column="1">
-            <materialDesign:ColorZone
+
+        <materialDesign:ColorZone
                 Mode="Inverted"
                 Padding="16">
-                <DockPanel>
-                    <StackPanel HorizontalAlignment="Right" Background="Transparent" Orientation="Horizontal">
-
-                        <Button                              
+            <DockPanel>
+                <StackPanel HorizontalAlignment="Right" Background="Transparent" Orientation="Horizontal">            
+                    <Button                       
+                        Background="Transparent"
+                        BorderBrush="Transparent"
                             ToolTip="Thu nhỏ" ToolBar.OverflowMode="AsNeeded">
-                            <materialDesign:PackIcon Kind="WindowMinimize" />
-                        </Button>
+                        <materialDesign:PackIcon Kind="WindowMinimize" />
+                    </Button>
 
-                        <Button                              
+                    <Button       
+                        Background="Transparent"
+                        BorderBrush="Transparent"
                             ToolTip="Phóng to" ToolBar.OverflowMode="AsNeeded">
-                            <materialDesign:PackIcon Kind="WindowMaximize" />
-                        </Button>
+                        <materialDesign:PackIcon Kind="WindowMaximize" />
+                    </Button>
 
-                        <Button 
-                            Click="Button_Click"
+                    <Button 
+                            Background="Transparent"
+                        BorderBrush="Transparent"
                             Command="{Binding CloseWindowCommand}"
                             CommandParameter="{Binding ucControlBar}"
                             ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded">
-                            <materialDesign:PackIcon Kind="WindowClose" 
+                        <materialDesign:PackIcon Kind="WindowClose" 
                              />
-                            
-                        </Button>
 
-                    </StackPanel>
-                    
-                </DockPanel>
-            </materialDesign:ColorZone>
-        </Grid>
-           
+                    </Button>
 
-        </Grid>     
-    
+                </StackPanel>
+
+            </DockPanel>
+        </materialDesign:ColorZone>
+    </Grid>
+
 </UserControl>
