@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:QLKhachSan"
         xmlns:uc="clr-namespace:QLKhachSan.UserControlKS"
         mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -17,8 +18,22 @@
         DataContext="{StaticResource MainVM}"
         ResizeMode="NoResize"
         WindowStyle="None"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        
+    Title="MainWindow" Height="450" Width="800">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
-        <uc:ControlBarUC></uc:ControlBarUC>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC ></uc:ControlBarUC>
+        </Grid>
     </Grid>
 </Window>

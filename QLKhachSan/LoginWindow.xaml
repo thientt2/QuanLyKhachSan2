@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLKhachSan"
         xmlns:uc="clr-namespace:QLKhachSan.UserControlKS"
+        
         Name="loginWindow"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -17,7 +18,9 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
         WindowStyle="None"
+        WindowStartupLocation="CenterScreen"   
         Height="745" Width="1218">
+    
     <Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -89,11 +92,11 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <uc:ControlBarUC Tag="{Binding Title, ElementName=loginWindow}"></uc:ControlBarUC>
+                    <uc:ControlBarUC ></uc:ControlBarUC>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Image Source="/Images/LoginImage.jpg"  Stretch="Fill"/>
-                    <Image Source="/Images/Picture01.png" Margin="71,60,56,486"/>
+                    <Image Source="/Images/LoginImage.jpg" Stretch="Fill"/>
+                    
                 </Grid>
                 
             </Grid>

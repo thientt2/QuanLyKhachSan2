@@ -15,6 +15,7 @@ namespace QLKhachSan.ViewModel
         public ICommand CloseWindowCommand { get; set; }
         public ICommand MaximizeWindowCommand { get; set; }
         public ICommand MinimizeWindowCommand { get; set; }
+        public ICommand MouseMoveWindowCommand { get; set; }
         #endregion
 
         public ControlBarViewModel()
@@ -49,6 +50,15 @@ namespace QLKhachSan.ViewModel
                         w.WindowState = WindowState.Minimized;
                     else
                         w.WindowState = WindowState.Maximized;
+                }
+            }
+            );
+            MouseMoveWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) => {
+                FrameworkElement window = GetWindowParent(p);
+                var w = window as Window;
+                if (w != null)
+                {
+                    w.DragMove(); 
                 }
             }
             );

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLKhachSan.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace QLKhachSan
     /// </summary>
     public partial class LoginWindow : Window
     {
+        public ControlBarViewModel viewmodel { get; set; }
         public LoginWindow()
         {
             InitializeComponent();
+            this.DataContext = viewmodel = new ControlBarViewModel();
         }
     }
 }
