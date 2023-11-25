@@ -14,14 +14,14 @@
                 Mode="Inverted"
                 Padding="16">
             <DockPanel>
-                <StackPanel HorizontalAlignment="Right" Background="Transparent" Orientation="Horizontal">            
+                <StackPanel HorizontalAlignment="Right" Background="Transparent" Orientation="Horizontal">
                     <Button                       
                         Background="Transparent"
                         BorderBrush="Transparent"
                             ToolTip="Thu nhỏ" ToolBar.OverflowMode="AsNeeded">
                         <materialDesign:PackIcon Kind="WindowMinimize" />
                     </Button>
-
+                    <Button></Button>
                     <Button       
                         Background="Transparent"
                         BorderBrush="Transparent"
