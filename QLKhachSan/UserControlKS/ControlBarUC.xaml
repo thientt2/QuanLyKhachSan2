@@ -32,10 +32,10 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Command="{Binding CloseWindowCommand}"
-                        CommandParameter="{Binding ucControlBar}"
+                        CommandParameter="{Binding ElementName=ucControlBar}"
                         ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded">
-                        <materialDesign:PackIcon Kind="WindowClose" 
-                             />
+                        <materialDesign:PackIcon Kind="WindowClose" />
+
 
                     </Button>
 

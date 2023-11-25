@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLKhachSan.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
@@ -21,9 +22,11 @@ namespace QLKhachSan.UserControlKS
     /// </summary>
     public partial class ControlBarUC : UserControl
     {
+        public ControlBarViewModel Viewmodel { get; set; }
         public ControlBarUC()
         {
             InitializeComponent();
+            this.DataContext = Viewmodel = new ControlBarViewModel();
         }
 
 

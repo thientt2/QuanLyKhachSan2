@@ -14,14 +14,30 @@ namespace QLKhachSan.ViewModel
         #region commands
         public ICommand CloseWindowCommand { get; set; }
         #endregion
+        //public ICommand CloseCommand
+        //{
+        //    get { return new RelayCommand<object>((o) => ((Window)o).Close(), (o) => true); }
+        //}
         public ControlBarViewModel()
         {
-            CloseWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) => { GetWindowParent(p); });
+            CloseWindowCommand = new RelayCommand<UserControl>((p) => { return p == null? false : true; }, (p) => {
+                FrameworkElement window=GetWindowParent(p);
+                var w = window as Window;
+                if(w != null)
+                {
+                    w.Close();
+                }
+            }
+            );
         }
-        void GetWindowParent(UserControl p)
+        FrameworkElement GetWindowParent(UserControl p)
         {
-            FrameworkElement t = p.Parent as FrameworkElement;
-            
+            FrameworkElement parent = p;
+            while (parent.Parent != null)
+            {
+                parent = parent.Parent as FrameworkElement;
+            }
+            return parent;
         }
     }
 }
