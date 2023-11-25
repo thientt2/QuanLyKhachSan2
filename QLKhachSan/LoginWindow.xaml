@@ -53,9 +53,8 @@
                         <TextBox
                         materialDesign:HintAssist.Hint="Username"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                        FontSize="28"
-                        
-                        Background="#FFEED0D0"
+                        FontSize="20"
+                        Background="#FFEED0D0" Margin="0,20,0,20"
                         />
                     </Grid>
 
@@ -67,8 +66,8 @@
                         materialDesign:TextFieldAssist.UnderlineBrush="Purple"
                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
                         MaxLength="10"
-                        FontSize="27"
-                        Background="#FFEED0D0"/>
+                        FontSize="20"
+                        Background="#FFEED0D0" Margin="0,0,0,40"/>
                     </Grid>
                     <Grid Grid.Row="3" VerticalAlignment="Top">
 

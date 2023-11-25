@@ -30,3 +30,34 @@ D:\UIT\Năm II\Lập Trình Trực Quan\Đồ Án QL Khách Sạn\QuanLyKhachSan
 D:\UIT\Năm II\Lập Trình Trực Quan\Đồ Án QL Khách Sạn\QuanLyKhachSan\QLKhachSan\obj\Debug\QLKhachSan.pdb
 D:\UIT\Năm II\Lập Trình Trực Quan\Đồ Án QL Khách Sạn\QuanLyKhachSan\QLKhachSan\obj\Debug\UserControlKS\ControlBarUC.g.cs
 D:\UIT\Năm II\Lập Trình Trực Quan\Đồ Án QL Khách Sạn\QuanLyKhachSan\QLKhachSan\obj\Debug\UserControlKS\ControlBarUC.baml
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\QLKhachSan.exe.config
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\QLKhachSan.exe
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\QLKhachSan.pdb
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\MaterialDesignColors.dll
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\MaterialDesignColors.pdb
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\Microsoft.Xaml.Behaviors.xml
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.csproj.AssemblyReference.cache
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\LoginWindow.g.cs
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\MainWindow.g.cs
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\UserControlKS\ControlBarUC.g.cs
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\App.g.cs
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan_MarkupCompile.cache
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan_MarkupCompile.lref
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\App.baml
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\LoginWindow.baml
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\MainWindow.baml
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\ResourceXAML\MainResource.baml
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\UserControlKS\ControlBarUC.baml
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.g.resources
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.Properties.Resources.resources
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.csproj.GenerateResource.cache
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.csproj.CoreCompileInputs.cache
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.csproj.CopyComplete
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.exe
+C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.pdb

@@ -14,27 +14,26 @@
                 Mode="Inverted"
                 Padding="16">
             <DockPanel>
-                <StackPanel HorizontalAlignment="Right" Background="Transparent" Orientation="Horizontal">
+                <StackPanel HorizontalAlignment="Right"  Background="Transparent" Orientation="Horizontal">
                     <Button                       
                         Background="Transparent"
                         BorderBrush="Transparent"
-                            ToolTip="Thu nhỏ" ToolBar.OverflowMode="AsNeeded">
+                        ToolTip="Thu nhỏ" ToolBar.OverflowMode="AsNeeded">
                         <materialDesign:PackIcon Kind="WindowMinimize" />
                     </Button>
-                    <Button></Button>
                     <Button       
                         Background="Transparent"
                         BorderBrush="Transparent"
-                            ToolTip="Phóng to" ToolBar.OverflowMode="AsNeeded">
+                        ToolTip="Phóng to" ToolBar.OverflowMode="AsNeeded">
                         <materialDesign:PackIcon Kind="WindowMaximize" />
                     </Button>
 
                     <Button 
-                            Background="Transparent"
+                        Background="Transparent"
                         BorderBrush="Transparent"
-                            Command="{Binding CloseWindowCommand}"
-                            CommandParameter="{Binding ucControlBar}"
-                            ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded">
+                        Command="{Binding CloseWindowCommand}"
+                        CommandParameter="{Binding ucControlBar}"
+                        ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded">
                         <materialDesign:PackIcon Kind="WindowClose" 
                              />
 
