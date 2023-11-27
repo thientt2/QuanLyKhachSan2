@@ -97,3 +97,7 @@ C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhac
 C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.csproj.CopyComplete
 C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.exe
 C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.pdb
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\System.Windows.Interactivity.xml

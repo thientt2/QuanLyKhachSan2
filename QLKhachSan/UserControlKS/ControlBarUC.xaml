@@ -47,8 +47,6 @@
                         CommandParameter="{Binding ElementName=ucControlBar}"
                         ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded">
                         <materialDesign:PackIcon Kind="WindowClose" />
-
-
                     </Button>
 
                 </StackPanel>

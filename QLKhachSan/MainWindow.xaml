@@ -18,9 +18,10 @@
         DataContext="{StaticResource MainVM}"
         ResizeMode="NoResize"
         WindowStyle="None"
+        WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         
-    Title="MainWindow" Height="450" Width="800">
+    Title="MainWindow" Height="600" Width="1000" >
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -30,10 +31,136 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <uc:ControlBarUC ></uc:ControlBarUC>
         </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width ="Auto"></ColumnDefinition>
+                <ColumnDefinition Width ="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <materialDesign:PackIcon Foreground="White" Kind="AccountCircle" Height="130" Width="140" />
+            </Grid>
+
+            <Grid Grid.Column="1" Background="Black" Width ="160">
+                <TextBlock Text="Tên chức vụ" Foreground="White" FontSize="25"  Width="140" VerticalAlignment="Center" ></TextBlock>
+            </Grid>
+        </Grid>
+        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width ="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Black" Orientation="Vertical">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"></Setter>
+                            <Setter Property="Width" Value="300"></Setter>
+                            <Setter Property="Height" Value="80"></Setter>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Button Margin="0,6,0,0" BorderBrush="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Transparent">
+                                <materialDesign:PackIcon Kind="House" Foreground="White" Margin="0,0,30,0" Height="40" Width="50" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1" Background="Transparent">
+                                <TextBlock Text="Trang chủ" Foreground="White"  FontSize="25"  Width="130" VerticalAlignment="Center" ></TextBlock>
+                            </Grid>
+                        </Grid>
+                    </Button>
+
+                    <Button BorderBrush="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Transparent">
+                                <materialDesign:PackIcon Kind="Account" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1" Background="Transparent">
+                                <TextBlock Text="Khách hàng" Foreground="White"  FontSize="25"  Width="130" VerticalAlignment="Center" ></TextBlock>
+                            </Grid>
+                        </Grid>
+                    </Button>
+
+                    <Button BorderBrush="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Transparent">
+                                <materialDesign:PackIcon Kind="AccountBox" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1" Background="Transparent">
+                                <TextBlock Text="Nhân viên" Foreground="White"  FontSize="25"  Width="130" VerticalAlignment="Center" ></TextBlock>
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    
+                    <Button BorderBrush="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Transparent">
+                                <materialDesign:PackIcon Kind="UserBoxMultiple" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1" Background="Transparent">
+                                <TextBlock Text="Phòng" Foreground="White"  FontSize="25"  Width="130" VerticalAlignment="Center" ></TextBlock>
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    
+                    <Button BorderBrush="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="Transparent">
+                                <materialDesign:PackIcon Kind="RoomService" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1" Background="Transparent">
+                                <TextBlock Text="Dịch vụ" Foreground="White"  FontSize="25"  Width="130" VerticalAlignment="Center" ></TextBlock>
+                            </Grid>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+            </Grid>
+        </Grid>
+
+
     </Grid>
 </Window>
