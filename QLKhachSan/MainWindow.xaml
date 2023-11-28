@@ -93,12 +93,18 @@
                         </Grid.RowDefinitions>
 
                         <materialDesign:Card Grid.Row="0" Margin="30">
-                            
+                            <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                                <ListView.View>
+                                    <GridView>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
                         </materialDesign:Card>
 
                         <Grid Grid.Row="1" Margin="0,0,0,30">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Button
+                                    Command="{Binding AddCommand}"
                                     Background="Green"
                                     Foreground="Black"
                                     Margin="30"
@@ -110,6 +116,7 @@
                                 </Button>
 
                                 <Button
+                                    Command="{Binding EditCommand}"
                                     Background="Yellow"
                                     Foreground="Black"
                                     Margin="30"
@@ -119,7 +126,9 @@
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
                                     _Chỉnh sửa
                                 </Button>
+                                
                                 <Button
+                                    Command="{Binding DeleteCommand}"
                                     Background="Red"
                                     Foreground="Black"
                                     Margin="30"
