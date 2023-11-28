@@ -21,7 +21,7 @@
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         
-    Title="MainWindow" Height="600" Width="1000" >
+    Title="MainWindow" Height="734" Width="1155" >
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -53,26 +53,15 @@
                     <materialDesign:PackIcon Foreground="White" Kind="AccountCircle" Height="90" Width="100" />
                 </Grid>
                 <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <TextBlock Text="Tên" Foreground="White" FontSize="25"  Width="140" VerticalAlignment="Center" ></TextBlock>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <TextBlock Text="Chức vụ" Foreground="White" FontSize="25"  Width="140" VerticalAlignment="Center"></TextBlock>
-                    </Grid>
+                    <TextBlock Text="Tên chức vụ" Foreground="White" FontSize="25"  Width="140" VerticalAlignment="Center" ></TextBlock>
                 </Grid>
-
-
             </Grid>
 
 
         </Grid>
 
         <Grid Grid.Row="2">
-            
+
             <TabControl
                     materialDesign:ColorZoneAssist.Background="Black"
                     materialDesign:ColorZoneAssist.Foreground="White"
@@ -80,53 +69,98 @@
                     Style="{StaticResource MaterialDesignFilledTabControl}"  
                     TabStripPlacement="Left">
                 <!--TrangChu-->
-                <TabItem  Width="240" Height="65">
+                <TabItem  Width="240" Height="80" Margin="0,10,0,0">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="House" Foreground="White" VerticalAlignment="Center" Margin="0,0,30,0" Height="40" Width="50" />
                             <TextBlock Margin="5,10,30,10" Text="Trang Chủ" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock Margin="8" Text="Left placement" />
+                    <TextBlock Margin="8" Text="Trang chủ" />
                 </TabItem>
                 <!--KhachHang-->
-                <TabItem Height="65">
+                <TabItem Height="80">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="Account" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
                             <TextBlock Margin="5,10,30,10" Text="Khách Hàng" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock Margin="8" Text="Left placement" />               
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <materialDesign:Card Grid.Row="0" Margin="30">
+                            
+                        </materialDesign:Card>
+
+                        <Grid Grid.Row="1" Margin="0,0,0,30">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button
+                                    Background="Green"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                                    _Thêm
+                                </Button>
+
+                                <Button
+                                    Background="Yellow"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                                    _Chỉnh sửa
+                                </Button>
+                                <Button
+                                    Background="Red"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                                    _Xóa
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
                 </TabItem>
                 <!--NhanVien-->
-                <TabItem Height="65">
+                <TabItem Height="80">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="AccountBox" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
                             <TextBlock Margin="5,10,30,10" Text="Nhân Viên" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock Margin="8" Text="Left placement" />
+                    <TextBlock Margin="8" Text="Nhân viên" />
                 </TabItem>
                 <!--Phong-->
-                <TabItem Height="65">
+                <TabItem Height="80">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="UserBoxMultiple" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
                             <TextBlock Margin="5,10,30,10" Text="Phòng" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock Margin="8" Text="Left placement" />
+                    <TextBlock Margin="8" Text="Phòng" />
                 </TabItem>
-                <TabItem Height="65">
+                <TabItem Height="80">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="RoomService" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
                             <TextBlock Margin="5,10,30,10" Text="Dịch Vụ" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock Margin="8" Text="Left placement" />
+                    <TextBlock Margin="8" Text="Dịch vụ" />
                 </TabItem>
             </TabControl>
 
