@@ -76,11 +76,10 @@
                             <TextBlock Margin="5,10,30,10" Text="Trang Chủ" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
-<<<<<<< HEAD
+
                     <TextBlock Margin="8" Text="Xin Chào" />
-=======
-                    <TextBlock Margin="8" Text="Trang chủ" />
->>>>>>> db1efb9951d27c62f5448db4e9af04468f820473
+                    
+
                 </TabItem>
                 <!--KhachHang-->
                 <TabItem Height="80">
