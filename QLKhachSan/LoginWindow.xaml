@@ -18,6 +18,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
         WindowStyle="None"
+        WindowState="Maximized"
         WindowStartupLocation="CenterScreen"   
         Height="745" Width="1218">
     
