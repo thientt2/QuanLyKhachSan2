@@ -20,12 +20,17 @@
         WindowStyle="None"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
+<<<<<<< HEAD
         
     Title="MainWindow" Height="830" Width="1540" >
+=======
+        Name="mainWindow"
+        Height="734" Width="1155" >
+>>>>>>> f6763f07ed3116ea6b4503cb7ad94823f490eb20
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>

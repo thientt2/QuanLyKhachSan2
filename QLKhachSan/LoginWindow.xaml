@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:QLKhachSan"
         xmlns:uc="clr-namespace:QLKhachSan.UserControlKS"
         
-        Name="loginWindow"
+        
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -19,7 +20,9 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowState="Maximized"
-        WindowStartupLocation="CenterScreen"   
+        WindowStartupLocation="CenterScreen" 
+        DataContext="{StaticResource LoginVM}"
+        Name="loginWindow"
         Height="745" Width="1218">
     
     <Grid>
@@ -59,20 +62,28 @@
                                 materialDesign:HintAssist.Hint="Username"    
                                 AcceptsReturn="True"    
                                 FontSize="20"
+                                Text="{Binding UserName}"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"    
                                 TextWrapping="Wrap"    
                                 VerticalScrollBarVisibility="Auto" />
                     </Grid>
 
                     <Grid Grid.Row="2" Height="60" Margin="10">
-                        
-                            <PasswordBox    
-                                 
+
+                        <PasswordBox    
+                                x:Name="FloatingPasswordBox"
                                 materialDesign:HintAssist.Hint="Password"    
                                 materialDesign:TextFieldAssist.HasClearButton="True"
-                                Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                                Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"                                
                                 MaxLength="10"
-                                FontSize="20"/>           
+                                FontSize="20">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PasswordChanged">
+                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" 
+                                                           CommandParameter="{Binding ElementName=FloatingPasswordBox}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
                     </Grid>
                     <Grid Grid.Row="3" VerticalAlignment="Top">
 
@@ -80,10 +91,12 @@
                         Style="{StaticResource MaterialDesignRaisedLightButton}"    
                         Width="150"
                         Height="60"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=loginWindow}"
                         ToolTip="Resource name: MaterialDesignRaisedLightButton"
                         Content="_Login"
                         FontSize="30"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Center" 
                         />
                     </Grid>
                 </Grid>

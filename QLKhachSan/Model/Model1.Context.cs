@@ -37,6 +37,5 @@ namespace QLKhachSan.Model
         public virtual DbSet<PHIEUDATPHONG> PHIEUDATPHONGs { get; set; }
         public virtual DbSet<PHIEUDICHVU> PHIEUDICHVUs { get; set; }
         public virtual DbSet<PHONG> PHONGs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

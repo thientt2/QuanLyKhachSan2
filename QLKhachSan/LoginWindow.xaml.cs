@@ -20,11 +20,11 @@ namespace QLKhachSan
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public ControlBarViewModel viewmodel { get; set; }
+       
         public LoginWindow()
         {
             InitializeComponent();
-            this.DataContext = viewmodel = new ControlBarViewModel();
+            
         }
     }
 }

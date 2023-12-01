@@ -142,3 +142,8 @@ C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\Entity
 C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\EntityFramework.xml
 C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\truon\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan_Content.g.cs
+C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\EntityFramework.dll
+C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\EntityFramework.xml
+C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan_Content.g.cs

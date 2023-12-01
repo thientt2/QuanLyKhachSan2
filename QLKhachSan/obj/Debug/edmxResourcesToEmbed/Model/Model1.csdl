@@ -26,10 +26,10 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
     <Property Name="TEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="TAIKHOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="MATKHAU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TAIKHOAN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MATKHAU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="IDPHANQUYEN" Type="Int32" />
     <NavigationProperty Name="PHANQUYEN" Relationship="Self.FK01_DN" FromRole="DANGNHAP" ToRole="PHANQUYEN" />
   </EntityType>
@@ -103,7 +103,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
     <Property Name="TEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DANGNHAPs" Relationship="Self.FK01_DN" FromRole="PHANQUYEN" ToRole="DANGNHAP" />
   </EntityType>
@@ -144,16 +144,6 @@
     <Property Name="MACTPDP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CTPDP" Relationship="Self.FK02_PHONG" FromRole="PHONG" ToRole="CTPDP" />
     <NavigationProperty Name="LOAIPHONG" Relationship="Self.FK01_PHONG" FromRole="PHONG" ToRole="LOAIPHONG" />
-  </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK01_CTPDP">
     <End Role="PHIEUDATPHONG" Type="Self.PHIEUDATPHONG" Multiplicity="0..1" />
@@ -300,7 +290,6 @@
     <EntitySet Name="PHIEUDATPHONGs" EntityType="Self.PHIEUDATPHONG" />
     <EntitySet Name="PHIEUDICHVUs" EntityType="Self.PHIEUDICHVU" />
     <EntitySet Name="PHONGs" EntityType="Self.PHONG" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <AssociationSet Name="FK01_CTPDP" Association="Self.FK01_CTPDP">
       <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONGs" />
       <End Role="CTPDP" EntitySet="CTPDPs" />
