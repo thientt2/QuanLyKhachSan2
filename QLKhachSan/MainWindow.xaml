@@ -95,7 +95,7 @@
                         </StackPanel>
                     </TabItem.Header>
 
-                    <TextBlock Margin="8" Text="Xin Chào UIT KTPM2022.3" />
+                    <TextBlock Margin="8" Text="Xin Chào" />
                     
 
                 </TabItem>
