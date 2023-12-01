@@ -155,7 +155,7 @@
                             <TextBlock Margin="5,10,30,10" Text="Nhân Viên" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock Margin="8" Text="Duoc chua" />
+                    <TextBlock Margin="8" Text="Chua duoc" />
                 </TabItem>
                 <!--Phong-->
                 <TabItem Height="80">
