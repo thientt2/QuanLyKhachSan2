@@ -38,7 +38,7 @@
             <uc:ControlBarUC ></uc:ControlBarUC>
         </Grid>
         <!--Account-->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="0,1,0,1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width ="Auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -50,14 +50,32 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <materialDesign:PackIcon Foreground="White" Kind="AccountCircle" Height="90" Width="100" />
+                    <materialDesign:PackIcon Foreground="White" Kind="AccountCircle" Height="85" Width="100" />
                 </Grid>
                 <Grid Grid.Column="1">
-                    <TextBlock Text="Tên chức vụ" Foreground="White" FontSize="25"  Width="140" VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock Text="Tên chức vụ" Foreground="White" FontSize="23"  Width="140" VerticalAlignment="Center" ></TextBlock>
                 </Grid>
             </Grid>
 
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
 
+                <Grid Grid.Row="0">
+                    <TextBlock Text="Quản lý khách sạn"
+                               VerticalAlignment="Center"
+                               FontFamily="Arial"
+                               FontSize="30"
+                               Margin="40,0,40,0">
+                    </TextBlock>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Separator Margin="30,0,30,0" ></Separator>
+                </Grid>
+            </Grid>
         </Grid>
 
         <Grid Grid.Row="2">
@@ -69,7 +87,7 @@
                     Style="{StaticResource MaterialDesignFilledTabControl}"  
                     TabStripPlacement="Left">
                 <!--TrangChu-->
-                <TabItem  Width="240" Height="80" Margin="0,10,0,0">
+                <TabItem  Width="240" Height="80">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="House" Foreground="White" VerticalAlignment="Center" Margin="0,0,30,0" Height="40" Width="50" />
@@ -164,9 +182,143 @@
                             <TextBlock Margin="5,10,30,10" Text="Nhân Viên" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock Margin="8" Text="Chua duoc" />
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <materialDesign:Card Grid.Row="0" Margin="30">
+                            <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Mã nhân viên" Width="Auto" DisplayMemberBinding="{Binding MANV}"></GridViewColumn>
+                                        <GridViewColumn Header="Tên nhân viên" Width="Auto" DisplayMemberBinding="{Binding TENNV    }"></GridViewColumn>
+                                        <GridViewColumn Header="Giới tính" Width="Auto" DisplayMemberBinding="{Binding GIOITINH}"></GridViewColumn>
+                                        <GridViewColumn Header="Ngày sinh" Width="Auto" DisplayMemberBinding="{Binding NGSINH}"></GridViewColumn>
+                                        <GridViewColumn Header="Địa chỉ" Width="Auto" DisplayMemberBinding="{Binding DIACHI}"></GridViewColumn>
+                                        <GridViewColumn Header="SDT" Width="Auto" DisplayMemberBinding="{Binding SDT}"></GridViewColumn>
+                                        <GridViewColumn Header="Email" Width="Auto" DisplayMemberBinding="{Binding EMAIL}"></GridViewColumn>
+                                        <GridViewColumn Header="Vị trí làm việc" Width="Auto" DisplayMemberBinding="{Binding VITRILAMVIEC}"></GridViewColumn>
+                                        <GridViewColumn Header="Lương" DisplayMemberBinding="{Binding LUONG}"></GridViewColumn>
+                                        <GridViewColumn Header="Ngày vào làm" DisplayMemberBinding="{Binding NGVL}"></GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </materialDesign:Card>
+
+                        <Grid Grid.Row="1" Margin="0,0,0,30">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button
+                                    Command="{Binding AddCommand}"
+                                    Background="Green"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Thêm">
+                                </Button>
+
+                                <Button
+                                    Command="{Binding EditCommand}"
+                                    Background="Yellow"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Chỉnh sửa">
+
+                                </Button>
+
+                                <Button
+                                    Command="{Binding DeleteCommand}"
+                                    Background="Red"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Xóa">
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
                 </TabItem>
                 <!--Phong-->
+                <TabItem Height="80">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal" Width="190">
+                            <materialDesign:PackIcon Kind="RoomService" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,10,30,10" Text="Dịch vụ" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
+                        </StackPanel>
+                    </TabItem.Header>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <materialDesign:Card Grid.Row="0" Margin="30">
+                            <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Mã dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MADV}"></GridViewColumn>
+                                        <GridViewColumn Header="Tên dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
+                                        <GridViewColumn Header="Đơn giá" Width="Auto" DisplayMemberBinding="{Binding DONGIA}"></GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </materialDesign:Card>
+
+                        <Grid Grid.Row="1" Margin="0,0,0,30">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button
+                                    Command="{Binding AddCommand}"
+                                    Background="Green"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Thêm">
+                                </Button>
+
+                                <Button
+                                    Command="{Binding EditCommand}"
+                                    Background="Yellow"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Chỉnh sửa">
+
+                                </Button>
+
+                                <Button
+                                    Command="{Binding DeleteCommand}"
+                                    Background="Red"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Xóa">
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </TabItem>
                 <TabItem Height="80">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
@@ -174,16 +326,28 @@
                             <TextBlock Margin="5,10,30,10" Text="Phòng" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock Margin="8" Text="Phòng" />
+
+                    <materialDesign:Card Grid.Row="0" Margin="30">
+                        <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Số phòng" Width="Auto" DisplayMemberBinding="{Binding SOPHONG}"></GridViewColumn>
+                                    <GridViewColumn Header="Mã loại" Width="Auto" DisplayMemberBinding="{Binding MALOAI}"></GridViewColumn>
+                                    <GridViewColumn Header="Tầng" Width="Auto" DisplayMemberBinding="{Binding TANG}"></GridViewColumn>
+                                    <GridViewColumn Header="Tình trạng" Width="Auto" DisplayMemberBinding="{Binding TINHTRANG}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </materialDesign:Card>
                 </TabItem>
+                <!--DatPhong-->
                 <TabItem Height="80">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
-                            <materialDesign:PackIcon Kind="RoomService" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
-                            <TextBlock Margin="5,10,30,10" Text="Dịch Vụ" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
+                            <materialDesign:PackIcon Kind="CalendarPlusOutline" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,10,30,10" Text="Đặt phòng" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock Margin="8" Text="Dịch vụ" />
                 </TabItem>
             </TabControl>
 
