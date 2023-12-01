@@ -99,6 +99,15 @@
                             <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                                 <ListView.View>
                                     <GridView>
+                                        <GridViewColumn Header="Mã khách hàng" Width="Auto" DisplayMemberBinding="{Binding MAKH}"></GridViewColumn>
+                                        <GridViewColumn Header="Tên khách hàng" Width="Auto" DisplayMemberBinding="{Binding TENKH}"></GridViewColumn>
+                                        <GridViewColumn Header="Giới tính" Width="Auto" DisplayMemberBinding="{Binding GIOITINH}"></GridViewColumn>
+                                        <GridViewColumn Header="Ngày sinh" Width="Auto" DisplayMemberBinding="{Binding NGSINH}"></GridViewColumn>
+                                        <GridViewColumn Header="Địa chỉ" Width="Auto" DisplayMemberBinding="{Binding DIACHI}"></GridViewColumn>
+                                        <GridViewColumn Header="SDT" Width="Auto" DisplayMemberBinding="{Binding SDT}"></GridViewColumn>
+                                        <GridViewColumn Header="Email" Width="Auto" DisplayMemberBinding="{Binding EMAIL}"></GridViewColumn>
+                                        <GridViewColumn Header="CCCD" Width="Auto" DisplayMemberBinding="{Binding SOCCCD}"></GridViewColumn>
+                                        <GridViewColumn Header="Quốc tịch" DisplayMemberBinding="{Binding QUOCTICH}"></GridViewColumn>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
