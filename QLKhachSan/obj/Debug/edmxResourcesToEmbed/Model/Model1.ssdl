@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LAOPERA_HOTELModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CTPDP">
+    <Key>
+      <PropertyRef Name="MACTPDP" />
+    </Key>
+    <Property Name="MACTPDP" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="MAPDP" Type="varchar" MaxLength="5" />
+    <Property Name="NGTRA" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="CTPDV">
+    <Key>
+      <PropertyRef Name="MAPDV" />
+      <PropertyRef Name="MADV" />
+    </Key>
+    <Property Name="MAPDV" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="MADV" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="GIA" Type="money" />
+    <Property Name="SLDV" Type="int" />
+  </EntityType>
+  <EntityType Name="DANGNHAP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="TEN" Type="nvarchar(max)" />
+    <Property Name="TAIKHOAN" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MATKHAU" Type="varchar(max)" Nullable="false" />
+    <Property Name="IDPHANQUYEN" Type="int" />
+  </EntityType>
+  <EntityType Name="DICHVU">
+    <Key>
+      <PropertyRef Name="MADV" />
+    </Key>
+    <Property Name="MADV" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="TENDV" Type="nvarchar" MaxLength="30" />
+    <Property Name="DONGIA" Type="money" />
+  </EntityType>
+  <EntityType Name="HOADON">
+    <Key>
+      <PropertyRef Name="MAHD" />
+    </Key>
+    <Property Name="MAHD" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="MANV" Type="varchar" MaxLength="5" />
+    <Property Name="MAPDP" Type="varchar" MaxLength="5" />
+    <Property Name="NGLAPHD" Type="smalldatetime" />
+    <Property Name="TONGTIEN" Type="money" />
+    <Property Name="MADT" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MAKH" />
+    </Key>
+    <Property Name="MAKH" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="TENKH" Type="nvarchar" MaxLength="40" />
+    <Property Name="GIOITINH" Type="nvarchar" MaxLength="3" />
+    <Property Name="NGSINH" Type="smalldatetime" />
+    <Property Name="DIACHI" Type="nvarchar" MaxLength="50" />
+    <Property Name="SDT" Type="varchar" MaxLength="20" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="30" />
+    <Property Name="SOCCCD" Type="varchar" MaxLength="20" />
+    <Property Name="QUOCTICH" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="LOAIPHONG">
+    <Key>
+      <PropertyRef Name="MALOAI" />
+    </Key>
+    <Property Name="MALOAI" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SLGIUONG" Type="int" />
+    <Property Name="LOAIGIUONG" Type="nvarchar" MaxLength="50" />
+    <Property Name="GIA" Type="money" />
+    <Property Name="NGUOITOIDA" Type="int" />
+    <Property Name="DIENTICH" Type="float" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MANV" />
+    </Key>
+    <Property Name="MANV" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="TENNV" Type="nvarchar" MaxLength="40" />
+    <Property Name="GIOITINH" Type="nvarchar" MaxLength="3" />
+    <Property Name="NGSINH" Type="smalldatetime" />
+    <Property Name="SDT" Type="varchar" MaxLength="20" />
+    <Property Name="DIACHI" Type="nvarchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="30" />
+    <Property Name="VITRILAMVIEC" Type="nvarchar" MaxLength="30" />
+    <Property Name="LUONG" Type="money" />
+    <Property Name="NGVL" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="PHANQUYEN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="TEN" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="PHIEUDATPHONG">
+    <Key>
+      <PropertyRef Name="MAPDP" />
+    </Key>
+    <Property Name="MAPDP" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="MAKH" Type="varchar" MaxLength="5" />
+    <Property Name="MANV" Type="varchar" MaxLength="5" />
+    <Property Name="NGDAT" Type="smalldatetime" />
+    <Property Name="NGNHAN" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="PHIEUDICHVU">
+    <Key>
+      <PropertyRef Name="MAPDV" />
+    </Key>
+    <Property Name="MAPDV" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="MAPDP" Type="varchar" MaxLength="5" />
+    <Property Name="NGLAP" Type="smalldatetime" />
+    <Property Name="TONGTIEN" Type="money" />
+  </EntityType>
+  <EntityType Name="PHONG">
+    <Key>
+      <PropertyRef Name="SOPHONG" />
+    </Key>
+    <Property Name="SOPHONG" Type="int" Nullable="false" />
+    <Property Name="MALOAI" Type="varchar" MaxLength="50" />
+    <Property Name="TANG" Type="int" />
+    <Property Name="TINHTRANG" Type="nvarchar" MaxLength="50" />
+    <Property Name="MACTPDP" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <Association Name="FK01_CTPDP">
+    <End Role="PHIEUDATPHONG" Type="Self.PHIEUDATPHONG" Multiplicity="0..1" />
+    <End Role="CTPDP" Type="Self.CTPDP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUDATPHONG">
+        <PropertyRef Name="MAPDP" />
+      </Principal>
+      <Dependent Role="CTPDP">
+        <PropertyRef Name="MAPDP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK01_CTPDV">
+    <End Role="PHIEUDICHVU" Type="Self.PHIEUDICHVU" Multiplicity="1" />
+    <End Role="CTPDV" Type="Self.CTPDV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUDICHVU">
+        <PropertyRef Name="MAPDV" />
+      </Principal>
+      <Dependent Role="CTPDV">
+        <PropertyRef Name="MAPDV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK01_DN">
+    <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="0..1" />
+    <End Role="DANGNHAP" Type="Self.DANGNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHANQUYEN">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DANGNHAP">
+        <PropertyRef Name="IDPHANQUYEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK01_HD">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MANV" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MANV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK01_PDP">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+    <End Role="PHIEUDATPHONG" Type="Self.PHIEUDATPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MAKH" />
+      </Principal>
+      <Dependent Role="PHIEUDATPHONG">
+        <PropertyRef Name="MAKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK01_PDV">
+    <End Role="PHIEUDATPHONG" Type="Self.PHIEUDATPHONG" Multiplicity="0..1" />
+    <End Role="PHIEUDICHVU" Type="Self.PHIEUDICHVU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUDATPHONG">
+        <PropertyRef Name="MAPDP" />
+      </Principal>
+      <Dependent Role="PHIEUDICHVU">
+        <PropertyRef Name="MAPDP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK01_PHONG">
+    <End Role="LOAIPHONG" Type="Self.LOAIPHONG" Multiplicity="0..1" />
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIPHONG">
+        <PropertyRef Name="MALOAI" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="MALOAI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK02_CTPDV">
+    <End Role="DICHVU" Type="Self.DICHVU" Multiplicity="1" />
+    <End Role="CTPDV" Type="Self.CTPDV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DICHVU">
+        <PropertyRef Name="MADV" />
+      </Principal>
+      <Dependent Role="CTPDV">
+        <PropertyRef Name="MADV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK02_HD">
+    <End Role="PHIEUDATPHONG" Type="Self.PHIEUDATPHONG" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUDATPHONG">
+        <PropertyRef Name="MAPDP" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MAPDP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK02_PDP">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+    <End Role="PHIEUDATPHONG" Type="Self.PHIEUDATPHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MANV" />
+      </Principal>
+      <Dependent Role="PHIEUDATPHONG">
+        <PropertyRef Name="MANV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK02_PHONG">
+    <End Role="CTPDP" Type="Self.CTPDP" Multiplicity="0..1" />
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CTPDP">
+        <PropertyRef Name="MACTPDP" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="MACTPDP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LAOPERA_HOTELModelStoreContainer">
+    <EntitySet Name="CTPDP" EntityType="Self.CTPDP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CTPDV" EntityType="Self.CTPDV" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DANGNHAP" EntityType="Self.DANGNHAP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DICHVU" EntityType="Self.DICHVU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOAIPHONG" EntityType="Self.LOAIPHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHANQUYEN" EntityType="Self.PHANQUYEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHIEUDATPHONG" EntityType="Self.PHIEUDATPHONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHIEUDICHVU" EntityType="Self.PHIEUDICHVU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK01_CTPDP" Association="Self.FK01_CTPDP">
+      <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONG" />
+      <End Role="CTPDP" EntitySet="CTPDP" />
+    </AssociationSet>
+    <AssociationSet Name="FK01_CTPDV" Association="Self.FK01_CTPDV">
+      <End Role="PHIEUDICHVU" EntitySet="PHIEUDICHVU" />
+      <End Role="CTPDV" EntitySet="CTPDV" />
+    </AssociationSet>
+    <AssociationSet Name="FK01_DN" Association="Self.FK01_DN">
+      <End Role="PHANQUYEN" EntitySet="PHANQUYEN" />
+      <End Role="DANGNHAP" EntitySet="DANGNHAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK01_HD" Association="Self.FK01_HD">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="HOADON" EntitySet="HOADON" />
+    </AssociationSet>
+    <AssociationSet Name="FK01_PDP" Association="Self.FK01_PDP">
+      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+      <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK01_PDV" Association="Self.FK01_PDV">
+      <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONG" />
+      <End Role="PHIEUDICHVU" EntitySet="PHIEUDICHVU" />
+    </AssociationSet>
+    <AssociationSet Name="FK01_PHONG" Association="Self.FK01_PHONG">
+      <End Role="LOAIPHONG" EntitySet="LOAIPHONG" />
+      <End Role="PHONG" EntitySet="PHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK02_CTPDV" Association="Self.FK02_CTPDV">
+      <End Role="DICHVU" EntitySet="DICHVU" />
+      <End Role="CTPDV" EntitySet="CTPDV" />
+    </AssociationSet>
+    <AssociationSet Name="FK02_HD" Association="Self.FK02_HD">
+      <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONG" />
+      <End Role="HOADON" EntitySet="HOADON" />
+    </AssociationSet>
+    <AssociationSet Name="FK02_PDP" Association="Self.FK02_PDP">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK02_PHONG" Association="Self.FK02_PHONG">
+      <End Role="CTPDP" EntitySet="CTPDP" />
+      <End Role="PHONG" EntitySet="PHONG" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
