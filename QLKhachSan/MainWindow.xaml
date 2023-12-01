@@ -114,8 +114,8 @@
                                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                     Width="100"
                                     Height="40"
-                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
-                                    _Thêm
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Thêm">
                                 </Button>
 
                                 <Button
@@ -126,8 +126,9 @@
                                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                     Width="100"
                                     Height="40"
-                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
-                                    _Chỉnh sửa
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Chỉnh sửa">
+                                    
                                 </Button>
                                 
                                 <Button
@@ -138,8 +139,9 @@
                                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                     Width="100"
                                     Height="40"
-                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
-                                    _Xóa
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Xóa">
+                                    
                                 </Button>
                             </StackPanel>
                         </Grid>
@@ -153,7 +155,7 @@
                             <TextBlock Margin="5,10,30,10" Text="Nhân Viên" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock Margin="8" Text="Con cac Thien Tank" />
+                    <TextBlock Margin="8" Text="Duoc chua" />
                 </TabItem>
                 <!--Phong-->
                 <TabItem Height="80">
