@@ -24,6 +24,7 @@ namespace QLKhachSan
         public MainWindow()
         {
             InitializeComponent();
+            datePicker.SelectedDate = DateTime.Now;
         }
     }
 }
