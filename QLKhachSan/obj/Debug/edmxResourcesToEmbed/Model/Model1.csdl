@@ -26,10 +26,10 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="TAIKHOAN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="MATKHAU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TAIKHOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MATKHAU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="IDPHANQUYEN" Type="Int32" />
     <NavigationProperty Name="PHANQUYEN" Relationship="Self.FK01_DN" FromRole="DANGNHAP" ToRole="PHANQUYEN" />
   </EntityType>
@@ -103,7 +103,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DANGNHAPs" Relationship="Self.FK01_DN" FromRole="PHANQUYEN" ToRole="DANGNHAP" />
   </EntityType>

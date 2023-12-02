@@ -4,28 +4,16 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD
 C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Release\
-=======
-C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Release\
->>>>>>> f6763f07ed3116ea6b4503cb7ad94823f490eb20
 QLKhachSan
 none
 false
 TRACE
-<<<<<<< HEAD
 C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\App.xaml
 42143673
 2739969757
-26-1971183442
+27-681004998
 23-446128744
-=======
-C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\App.xaml
-42143673
-
-101137945967
-19-1670069367
->>>>>>> f6763f07ed3116ea6b4503cb7ad94823f490eb20
 LoginWindow.xaml;MainWindow.xaml;ResourceXAML\MainResource.xaml;UserControlKS\ControlBarUC.xaml;
 
 True

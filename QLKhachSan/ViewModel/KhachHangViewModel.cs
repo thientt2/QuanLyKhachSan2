@@ -93,8 +93,7 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                var khachhang = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MAKH == SelectedItem.MAKH).SingleOrDefault();
-                khachhang.MAKH = MAKH;
+                var khachhang = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MAKH == SelectedItem.MAKH).SingleOrDefault();                
                 khachhang.TENKH = TENKH;
                 khachhang.GIOITINH = GIOITINH;
                 khachhang.SDT = SDT;
