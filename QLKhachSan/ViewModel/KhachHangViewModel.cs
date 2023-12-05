@@ -12,8 +12,8 @@ namespace QLKhachSan.ViewModel
 {
     public  class KhachHangViewModel: BasicViewModel
     {
-        private ObservableCollection<KHACHHANG> _List;
-        public ObservableCollection<KHACHHANG> List { get { return _List; } set { _List = value; OnPropertyChanged(); } }
+        private ObservableCollection<KHACHHANG> _ListKH;
+        public ObservableCollection<KHACHHANG> ListKH { get { return _ListKH; } set { _ListKH = value; OnPropertyChanged(); } }
         private KHACHHANG _SelectedItem;
         public KHACHHANG SelectedItem
         {
@@ -39,10 +39,10 @@ namespace QLKhachSan.ViewModel
                 }
             }
         }
-        private string _TENKH;
-        public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); } }
         private string _MAKH;
         public string MAKH { get { return _MAKH; } set { _MAKH = value; OnPropertyChanged(); } }
+        private string _TENKH;
+        public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); } }
         private string _GIOITINH;
         public string GIOITINH { get { return _GIOITINH; } set { _GIOITINH = value; OnPropertyChanged(); } }
         private string _DIACHI;
@@ -63,10 +63,11 @@ namespace QLKhachSan.ViewModel
         public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
+        public ICommand CancelCommand { get; set; }
 
         public KhachHangViewModel()
         {
-            List = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
+            ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             AddCommand = new RelayCommand<object>((p) => 
             {
                 if (string.IsNullOrEmpty(MAKH))
@@ -81,11 +82,11 @@ namespace QLKhachSan.ViewModel
                 DataProvider.Ins.DB.KHACHHANGs.Add(khachhang);
                 DataProvider.Ins.DB.SaveChanges();
 
-                List.Add(khachhang);
+                ListKH.Add(khachhang);
             });
             EditCommand = new RelayCommand<object>((p) =>
             {
-                if (SelectedItem==null)
+                if (string.IsNullOrEmpty(MAKH) || SelectedItem==null)
                     return false;
                 var MaKHlist = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MAKH == SelectedItem.MAKH);
                 if (MaKHlist == null || MaKHlist.Count() == 0)

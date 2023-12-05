@@ -10,5 +10,9 @@
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/model1.context.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/model1.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/model2.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/model2.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_ht.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_ht.tt")]
 
 

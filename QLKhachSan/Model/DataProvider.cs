@@ -24,11 +24,11 @@ namespace QLKhachSan.Model
             }
         }
 
-        public LAOPERA_HOTELEntities DB { get; set; }
+        public QLKSEntities DB { get; set; }
 
         private DataProvider()
         {
-            DB = new LAOPERA_HOTELEntities();
+            DB = new QLKSEntities();
         }
     }
 }

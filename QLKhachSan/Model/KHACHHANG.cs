@@ -13,21 +13,18 @@ namespace QLKhachSan.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class KHACHHANG: BasicViewModel
+    public partial class KHACHHANG : BasicViewModel
     {
-
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KHACHHANG()
         {
             this.PHIEUDATPHONGs = new HashSet<PHIEUDATPHONG>();
         }
 
-
-        private string _TENKH;
-        public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); } }
         private string _MAKH;
         public string MAKH { get { return _MAKH; } set { _MAKH = value; OnPropertyChanged(); } }
+        private string _TENKH;
+        public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); } }
         private string _GIOITINH;
         public string GIOITINH { get { return _GIOITINH; } set { _GIOITINH = value; OnPropertyChanged(); } }
         private string _DIACHI;
@@ -43,8 +40,9 @@ namespace QLKhachSan.Model
 
         private string _QUOCTICH;
         public string QUOCTICH { get { return _QUOCTICH; } set { _QUOCTICH = value; OnPropertyChanged(); } }
-        Nullable<System.DateTime> _NGSINH;
-        public Nullable<System.DateTime> NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
+
+        private DateTime? _NGSINH;
+        public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHIEUDATPHONG> PHIEUDATPHONGs { get; set; }
