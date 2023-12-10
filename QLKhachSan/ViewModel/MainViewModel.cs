@@ -39,7 +39,6 @@ namespace QLKhachSan.ViewModel
                 else p.Close();
             }
             );
-            
         }
         
     }

@@ -21,6 +21,7 @@ namespace QLKhachSan.Model
             this.CTPDVs = new HashSet<CTPDV>();
         }
 
+
         private string _MADV;
         public string MADV { get { return _MADV; } set { _MADV = value; OnPropertyChanged(); } }
         private string _TENDV;

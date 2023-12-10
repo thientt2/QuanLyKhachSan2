@@ -7,4 +7,6 @@
     <viewmodel:NhanVienViewModel x:Key="NhanVienVM"></viewmodel:NhanVienViewModel>
     <viewmodel:DichVuViewModel x:Key="DichVuVM"></viewmodel:DichVuViewModel>
     <viewmodel:PhongViewModel x:Key="PhongVM"></viewmodel:PhongViewModel>
+    <viewmodel:DatPhongViewModel x:Key="DatPhongVM"></viewmodel:DatPhongViewModel>
+    <viewmodel:PhieuDatPhongViewModel x:Key="PhieuDatPhongVM"></viewmodel:PhieuDatPhongViewModel>
 </ResourceDictionary>

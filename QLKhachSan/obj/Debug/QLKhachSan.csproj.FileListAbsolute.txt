@@ -147,3 +147,5 @@ C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhac
 C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.csproj.CopyComplete
 C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.exe
 C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.pdb
+C:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatPhongWindow.g.cs
+C:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatPhongWindow.baml
