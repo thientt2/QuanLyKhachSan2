@@ -117,15 +117,15 @@
 
                         <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
                             <WrapPanel>
-                                <TextBox Text="{Binding MAKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding TENKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Giới tính" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="SĐT" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding SOCCCD,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="CCCD" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding QUOCTICH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Quốc tịch" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <DatePicker Name="datePicker"  SelectedDate="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, StringFormat='dd/MM/yyyy' }" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Ngày sinh" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                <TextBox x:Name="txtMAKH"  Text="{Binding MAKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtTENKH" Text="{Binding TENKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtGIOITINHKH" Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Giới tính" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtDIACHIKH" Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtSDTKH" Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="SĐT" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtEMAILKH" Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtSOCCCD" Text="{Binding SOCCCD,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="CCCD" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtQUOCTICH" Text="{Binding QUOCTICH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Quốc tịch" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <DatePicker x:Name="txtNGSINHKH"  SelectedDate="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, StringFormat='dd/MM/yyyy' }" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Ngày sinh" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                             </WrapPanel>
                         </materialDesign:Card>
 
@@ -142,7 +142,7 @@
                                             <GridViewColumn Header="SDT" Width="Auto" DisplayMemberBinding="{Binding SDT}"></GridViewColumn>
                                             <GridViewColumn Header="Email" Width="Auto" DisplayMemberBinding="{Binding EMAIL}"></GridViewColumn>
                                             <GridViewColumn Header="CCCD" Width="Auto" DisplayMemberBinding="{Binding SOCCCD}"></GridViewColumn>
-                                            <GridViewColumn  Header="Quốc tịch" DisplayMemberBinding="{Binding QUOCTICH}"></GridViewColumn>
+                                            <GridViewColumn Header="Quốc tịch" DisplayMemberBinding="{Binding QUOCTICH}"></GridViewColumn>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
@@ -177,6 +177,17 @@
                                 </Button>
 
                                 <Button
+                                    Background="LightCoral"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Hủy" Click="CancelButton_Client">
+                                </Button>
+
+                                <Button
                                     Command="{Binding DeleteCommand}"
                                     Background="Red"
                                     Foreground="Black"
@@ -188,6 +199,8 @@
                                     Content="_Xóa">
 
                                 </Button>
+                                
+                                
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -210,16 +223,16 @@
 
                         <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
                             <WrapPanel>
-                                <TextBox Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding TENNV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Giới tính" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="SĐT" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding VITRILAMVIEC,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Vị trí làm việc" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding LUONG,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Lương" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <DatePicker SelectedDate="{Binding NGVL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Ngày vào làm" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                                <DatePicker SelectedDate="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Ngày sinh" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                <TextBox x:Name="txtMANV" Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtTENNV" Text="{Binding TENNV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtGIOITINHNV" Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Giới tính" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtDIACHINV" Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtSDTNV" Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="SĐT" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtEMAILNV" Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtVITRILAMVIECNV" Text="{Binding VITRILAMVIEC,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Vị trí làm việc" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtLUONGNV" Text="{Binding LUONG,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Lương" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <DatePicker x:Name="txtNGVLNV" SelectedDate="{Binding NGVL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Ngày vào làm" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                <DatePicker x:Name="txtNGSINHNV" SelectedDate="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Ngày sinh" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                             </WrapPanel>
                         </materialDesign:Card>
 
@@ -272,6 +285,17 @@
                                 </Button>
 
                                 <Button
+                                    Background="LightCoral"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Hủy" Click="CancelButton_Staff">
+                                </Button>
+
+                                <Button
                                     Command="{Binding DeleteCommand}"
                                     Background="Red"
                                     Foreground="Black"
@@ -304,9 +328,9 @@
 
                         <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
                             <WrapPanel>
-                                <TextBox Text="{Binding MADV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã dịch vụ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding TENDV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên dịch vụ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                <TextBox Text="{Binding DONGIA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Đơn giá" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtMADV" Text="{Binding MADV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã dịch vụ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtTENDV" Text="{Binding TENDV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên dịch vụ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox x:Name="txtDONGIA" Text="{Binding DONGIA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Đơn giá" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                             </WrapPanel>
                         </materialDesign:Card>
 
@@ -349,6 +373,17 @@
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                     Content="_Chỉnh sửa">
 
+                                </Button>
+
+                                <Button
+                                    Background="LightCoral"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="100"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Hủy" Click="CancelButton_Service">
                                 </Button>
 
                                 <Button
