@@ -5,14 +5,19 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace QLKhachSan.ViewModel
 {
     public class PhieuDatPhongViewModel : BasicViewModel
     {
-        private string _MAKH;
-        public string MAKH { get { return _MAKH; } set { _MAKH = value; OnPropertyChanged(); } }
+        private ObservableCollection<KHACHHANG> _ListKH;
+        public ObservableCollection<KHACHHANG> ListKH { get { return _ListKH; } set { _ListKH = value; OnPropertyChanged(); } }
+
+        private List<string> _TTENKH;
+        public List<string> TTENKH { get { return _TTENKH; } set { _TTENKH = value; OnPropertyChanged(); } }
         private string _TENKH;
         public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); } }
         private string _GIOITINH;
@@ -35,12 +40,29 @@ namespace QLKhachSan.ViewModel
         public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
         public ICommand AddCommand { get; set; }
 
-        public ICommand FindCommand { get; set; }
+        public ICommand ShowCommand { get; set; }
         public ICommand CancelleCommand { get; set; }
 
         public PhieuDatPhongViewModel()
         {
-            
+
+            ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
+            ShowCommand = new RelayCommand<ComboBox>((p) => { return true; }, (p) => 
+            { 
+                foreach(var kh in ListKH)
+                {
+                    if(kh.TENKH == TENKH)
+                    {
+                        GIOITINH = kh.GIOITINH.ToString();
+                        SOCCCD = kh.SOCCCD.ToString();
+                        QUOCTICH = kh.QUOCTICH.ToString();
+                        DIACHI = kh.DIACHI.ToString();
+                        EMAIL = kh.EMAIL.ToString();
+                        SDT = kh.SDT.ToString();
+                        NGSINH = kh.NGSINH;
+                    }    
+                }    
+            });
         }
     }
 }

@@ -5,12 +5,22 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace QLKhachSan.ViewModel
 {
     public class DatPhongViewModel : BasicViewModel
     {
+        private List<string> _TTENKH;
+        public List<string> TTENKH { get { return _TTENKH; } set { _TTENKH = value; OnPropertyChanged(); } }
+        private List<string> _TenKH;
+        public List<string> TenKH { get { return _TenKH; } set { _TenKH = value; OnPropertyChanged(); } }
+        private ObservableCollection<KHACHHANG> _ListKH;
+        public ObservableCollection<KHACHHANG> ListKH { get { return _ListKH; } set { _ListKH = value; OnPropertyChanged(); } }
+        private KHACHHANG _SelectedItemKH;
+        public KHACHHANG SelectedItemKH { get { return _SelectedItemKH; } set { _SelectedItemKH = value; OnPropertyChanged(); } }
+
         private ObservableCollection<PHIEUDATPHONG> _ListPDP;
         public ObservableCollection<PHIEUDATPHONG> ListPDP { get { return _ListPDP; } set { _ListPDP = value; OnPropertyChanged(); } }
         private PHIEUDATPHONG _SelectedItem;
@@ -50,9 +60,15 @@ namespace QLKhachSan.ViewModel
         public DatPhongViewModel()
         {
             ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
+            TenKH = new List<string>();
+            ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
+            foreach (var kh in ListKH)
+                TenKH.Add(kh.TENKH);
             DatPhongCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 DatPhongWindow wd = new DatPhongWindow();
+                var addVM = wd.DataContext as PhieuDatPhongViewModel;
+                addVM.TTENKH = TenKH;
                 wd.ShowDialog();
             }
             );

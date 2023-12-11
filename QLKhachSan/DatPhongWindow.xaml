@@ -59,14 +59,27 @@
                                 <Grid Grid.Column="0">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Họ và tên:" FontSize="15"></TextBlock>
-                                        <TextBox x:Name="txtTENKH" Text="{Binding TENKH,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <ComboBox
+                                            x:Name="TenKhachHang"
+                                            Margin="30,10,30,10"
+                                            HorizontalAlignment="Left" 
+                                            Width="245" Height="60" FontSize="10"
+                                            SelectedValue="{Binding TENKH}"
+                                            ItemsSource="{Binding TTENKH}"
+                                            Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SelectionChanged">
+                                                    <i:InvokeCommandAction Command="{Binding ShowCommand}" CommandParameter="{Binding ElementName=TenKhachHang}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ComboBox>
                                     </StackPanel>
                                 </Grid>
 
                                 <Grid Grid.Column="1">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="CCCD:" FontSize="15"></TextBlock>
-                                        <TextBox x:Name="txtSOCCCD" Text="{Binding SOCCCD,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox x:Name="SOCCCD" Text="{Binding SOCCCD,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -80,14 +93,14 @@
                                 <Grid Grid.Column="0">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Giới tính:" FontSize="15"></TextBlock>
-                                        <TextBox x:Name="txtGIOITINH" Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
 
                                 <Grid Grid.Column="1">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Ngày sinh:" FontSize="15"></TextBlock>
-                                        <DatePicker x:Name="txtNGSINH" SelectedDate="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="30,10,30,5" Width="245" FontSize="15" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                        <DatePicker SelectedDate="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsEnabled="False" Margin="30,10,30,5" Width="245" FontSize="15" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -101,14 +114,14 @@
                                 <Grid Grid.Column="0">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Số điện thoại:" FontSize="15"></TextBlock>
-                                        <TextBox x:Name="txtSDT" Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
 
                                 <Grid Grid.Column="1">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Email:" FontSize="15"></TextBlock>
-                                        <TextBox x:Name="txtEMAIL" Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -122,14 +135,14 @@
                                 <Grid Grid.Column="0">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Quốc tịch" FontSize="15"></TextBlock>
-                                        <TextBox x:Name="txtQUOCTICH" Text="{Binding QUOCTICH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox Text="{Binding QUOCTICH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
 
                                 <Grid Grid.Column="1">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Địa chỉ:" FontSize="15"></TextBlock>
-                                        <TextBox x:Name="txtDIACHI" Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -142,34 +155,66 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <materialDesign:Card Grid.Row="0" Margin="5,20,10,10">
-                        <WrapPanel>
-                            <TextBox Text="{Binding MAKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                            <Button Command="{Binding FindCommand}" 
-                                    Background="Aqua" 
-                                    Foreground="Black" 
-                                    Margin="40,20,30,10" 
-                                    Style="{StaticResource MaterialDesignRaisedDarkButton}" 
-                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" 
-                                    Content="_Tìm">
-                            </Button>
-                        </WrapPanel>
-                    </materialDesign:Card>
-
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <GroupBox Height="auto" Margin="5,20,10,10" FontSize="20" materialDesign:ColorZoneAssist.Background="Black" materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"  Header="Thông tin đăng kí" Style="{StaticResource MaterialDesignCardGroupBox}">
                             <Grid Margin="0,30,0,60">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
                                     <RowDefinition></RowDefinition>
-
                                 </Grid.RowDefinitions>
 
                                 <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0">
+                                        <StackPanel>
+                                            <TextBlock Margin="30,10,30,0" Text="Mã khách hàng:" FontSize="15"></TextBlock>
+                                            <ComboBox
+                                                x:Name="MAKHACHHANG"
+                                                Margin="30,10,30,10"
+                                                HorizontalAlignment="Left" 
+                                                Width="245" Height="60" FontSize="10"
+                                                SelectedValue="{Binding TENKH}"
+                                                ItemsSource="{Binding TTENKH}"
+                                                Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding ShowCommand}" CommandParameter="{Binding ElementName=TenKhachHang}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ComboBox>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1">
+                                        <StackPanel>
+                                            <TextBlock Margin="30,10,30,0" Text="Mã nhân viên:" FontSize="15"></TextBlock>
+                                            <ComboBox
+                                                x:Name="MANHANVIEN"
+                                                Margin="30,10,30,10"
+                                                HorizontalAlignment="Left" 
+                                                Width="245" Height="60" FontSize="10"
+                                                SelectedValue="{Binding TENKH}"
+                                                ItemsSource="{Binding TTENKH}"
+                                                Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding ShowCommand}" CommandParameter="{Binding ElementName=TenKhachHang}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ComboBox>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"></ColumnDefinition>
                                         <ColumnDefinition></ColumnDefinition>
@@ -190,7 +235,7 @@
                                     </Grid>
                                 </Grid>
 
-                                <Grid Grid.Row="1">
+                                <Grid Grid.Row="2">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"></ColumnDefinition>
                                         <ColumnDefinition></ColumnDefinition>
@@ -214,7 +259,7 @@
                         </GroupBox>
                     </Grid>
 
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="1">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button
                                 Command="{Binding AddCommand}"
