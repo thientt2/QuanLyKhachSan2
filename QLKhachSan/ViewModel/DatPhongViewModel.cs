@@ -12,12 +12,14 @@ namespace QLKhachSan.ViewModel
 {
     public class DatPhongViewModel : BasicViewModel
     {
+        //Khách hàng
         private List<string> _TTENKH;
         public List<string> TTENKH { get { return _TTENKH; } set { _TTENKH = value; OnPropertyChanged(); } }
         private List<string> _TenKH;
         public List<string> TenKH { get { return _TenKH; } set { _TenKH = value; OnPropertyChanged(); } }
         private ObservableCollection<KHACHHANG> _ListKH;
         public ObservableCollection<KHACHHANG> ListKH { get { return _ListKH; } set { _ListKH = value; OnPropertyChanged(); } }
+        //
         private KHACHHANG _SelectedItemKH;
         public KHACHHANG SelectedItemKH { get { return _SelectedItemKH; } set { _SelectedItemKH = value; OnPropertyChanged(); } }
 

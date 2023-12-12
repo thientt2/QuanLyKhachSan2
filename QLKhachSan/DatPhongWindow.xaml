@@ -63,7 +63,7 @@
                                             x:Name="TenKhachHang"
                                             Margin="30,10,30,10"
                                             HorizontalAlignment="Left" 
-                                            Width="245" Height="60" FontSize="10"
+                                            Width="245" Height="60" FontSize="20"
                                             SelectedValue="{Binding TENKH}"
                                             ItemsSource="{Binding TTENKH}"
                                             Style="{StaticResource MaterialDesignOutlinedComboBox}">
@@ -79,7 +79,7 @@
                                 <Grid Grid.Column="1">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="CCCD:" FontSize="15"></TextBlock>
-                                        <TextBox x:Name="SOCCCD" Text="{Binding SOCCCD,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox x:Name="SOCCCD" Text="{Binding SOCCCD,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -93,14 +93,14 @@
                                 <Grid Grid.Column="0">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Giới tính:" FontSize="15"></TextBlock>
-                                        <TextBox Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
 
                                 <Grid Grid.Column="1">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Ngày sinh:" FontSize="15"></TextBlock>
-                                        <DatePicker SelectedDate="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsEnabled="False" Margin="30,10,30,5" Width="245" FontSize="15" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                        <DatePicker SelectedDate="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsEnabled="False" Margin="30,10,30,5" Width="245" FontSize="20" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -114,14 +114,14 @@
                                 <Grid Grid.Column="0">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Số điện thoại:" FontSize="15"></TextBlock>
-                                        <TextBox Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
 
                                 <Grid Grid.Column="1">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Email:" FontSize="15"></TextBlock>
-                                        <TextBox Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -135,14 +135,14 @@
                                 <Grid Grid.Column="0">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Quốc tịch" FontSize="15"></TextBlock>
-                                        <TextBox Text="{Binding QUOCTICH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox Text="{Binding QUOCTICH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
 
                                 <Grid Grid.Column="1">
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Địa chỉ:" FontSize="15"></TextBlock>
-                                        <TextBox Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="10" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        <TextBox Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -174,42 +174,18 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Grid Grid.Column="0">
-                                        <StackPanel>
-                                            <TextBlock Margin="30,10,30,0" Text="Mã khách hàng:" FontSize="15"></TextBlock>
-                                            <ComboBox
-                                                x:Name="MAKHACHHANG"
-                                                Margin="30,10,30,10"
-                                                HorizontalAlignment="Left" 
-                                                Width="245" Height="60" FontSize="10"
-                                                SelectedValue="{Binding TENKH}"
-                                                ItemsSource="{Binding TTENKH}"
-                                                Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="SelectionChanged">
-                                                        <i:InvokeCommandAction Command="{Binding ShowCommand}" CommandParameter="{Binding ElementName=TenKhachHang}"/>
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </ComboBox>
-                                        </StackPanel>
+                                        <Grid Grid.Column="1">
+                                            <StackPanel>
+                                                <TextBlock Margin="30,10,30,0" Text="Mã khách hàng" FontSize="15"></TextBlock>
+                                                <TextBox Text="{Binding MAKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                            </StackPanel>
+                                        </Grid>
                                     </Grid>
 
                                     <Grid Grid.Column="1">
                                         <StackPanel>
                                             <TextBlock Margin="30,10,30,0" Text="Mã nhân viên:" FontSize="15"></TextBlock>
-                                            <ComboBox
-                                                x:Name="MANHANVIEN"
-                                                Margin="30,10,30,10"
-                                                HorizontalAlignment="Left" 
-                                                Width="245" Height="60" FontSize="10"
-                                                SelectedValue="{Binding TENKH}"
-                                                ItemsSource="{Binding TTENKH}"
-                                                Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="SelectionChanged">
-                                                        <i:InvokeCommandAction Command="{Binding ShowCommand}" CommandParameter="{Binding ElementName=TenKhachHang}"/>
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </ComboBox>
+                                            <TextBox Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                         </StackPanel>
                                     </Grid>
                                 </Grid>
@@ -265,7 +241,8 @@
                                 Command="{Binding AddCommand}"
                                 Background="Green"
                                 Foreground="Black"
-                                Margin="30"
+                                Margin="20"
+                                FontSize="20"
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                 Width="120"
                                 Height="60"
@@ -277,7 +254,8 @@
                                 Command="{Binding CancelleCommand}"
                                 Background="Red"
                                 Foreground="Black"
-                                Margin="30"
+                                Margin="20"
+                                FontSize="20"
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                 Width="120"
                                 Height="60"
