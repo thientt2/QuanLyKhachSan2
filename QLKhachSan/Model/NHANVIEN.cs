@@ -9,11 +9,10 @@
 
 namespace QLKhachSan.Model
 {
-    using QLKhachSan.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class NHANVIEN : BasicViewModel
+    public partial class NHANVIEN
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NHANVIEN()
@@ -21,33 +20,18 @@ namespace QLKhachSan.Model
             this.HOADONs = new HashSet<HOADON>();
             this.PHIEUDATPHONGs = new HashSet<PHIEUDATPHONG>();
         }
-
-        private string _MANV;
-        public string MANV { get { return _MANV; } set { _MANV = value; OnPropertyChanged(); } }
-        private string _TENNV;
-        public string TENNV { get { return _TENNV; } set { _TENNV = value; OnPropertyChanged(); } }
-        private string _GIOITINH;
-        public string GIOITINH { get { return _GIOITINH; } set { _GIOITINH = value; OnPropertyChanged(); } }
-        private string _DIACHI;
-        public string DIACHI { get { return _DIACHI; } set { _DIACHI = value; OnPropertyChanged(); } }
-        private string _SDT;
-        public string SDT { get { return _SDT; } set { _SDT = value; OnPropertyChanged(); } }
-
-        private string _EMAIL;
-        public string EMAIL { get { return _EMAIL; } set { _EMAIL = value; OnPropertyChanged(); } }
-
-        private string _VITRILAMVIEC;
-        public string VITRILAMVIEC { get { return _VITRILAMVIEC; } set { _VITRILAMVIEC = value; OnPropertyChanged(); } }
-
-        private decimal? _LUONG;
-        public decimal? LUONG { get { return _LUONG; } set { _LUONG = value; OnPropertyChanged(); } }
-
-        private DateTime? _NGVL;
-        public DateTime? NGVL { get { return _NGVL; } set { _NGVL = value; OnPropertyChanged(); } }
-
-        private DateTime? _NGSINH;
-        public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
-
+    
+        public string MANV { get; set; }
+        public string TENNV { get; set; }
+        public string GIOITINH { get; set; }
+        public Nullable<System.DateTime> NGSINH { get; set; }
+        public string SDT { get; set; }
+        public string DIACHI { get; set; }
+        public string EMAIL { get; set; }
+        public string VITRILAMVIEC { get; set; }
+        public Nullable<decimal> LUONG { get; set; }
+        public Nullable<System.DateTime> NGVL { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOADON> HOADONs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

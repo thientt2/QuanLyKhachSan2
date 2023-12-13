@@ -149,3 +149,10 @@ C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhac
 C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.pdb
 C:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatPhongWindow.g.cs
 C:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatPhongWindow.baml
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\EntityFramework.dll
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\EntityFramework.xml
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatPhongWindow.g.cs
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan_Content.g.cs
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatPhongWindow.baml

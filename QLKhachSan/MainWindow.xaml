@@ -87,7 +87,7 @@
                     Style="{StaticResource MaterialDesignFilledTabControl}"  
                     TabStripPlacement="Left">
                 <!--TrangChu-->
-                <TabItem  Width="240" Height="80" Margin="0,20,0,10">
+                <TabItem  Width="240" Height="70" Margin="0,15,0,10">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="House" Foreground="White" VerticalAlignment="Center" Margin="0,0,30,0" Height="40" Width="50" />
@@ -100,7 +100,7 @@
 
                 </TabItem>
                 <!--KhachHang-->
-                <TabItem Height="80" DataContext="{StaticResource KhachHangVM}">
+                <TabItem Height="70" DataContext="{StaticResource KhachHangVM}">
 
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
@@ -206,7 +206,7 @@
                     </Grid>
                 </TabItem>
                 <!--NhanVien-->
-                <TabItem Height="80" DataContext="{StaticResource NhanVienVM}">
+                <TabItem Height="70" DataContext="{StaticResource NhanVienVM}">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="AccountBox" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
@@ -310,12 +310,13 @@
                         </Grid>
                     </Grid>
                 </TabItem>
+                               
                 <!--Phong-->
-                <TabItem Height="80" DataContext="{StaticResource DichVuVM}">
+                <TabItem Height="70" DataContext="{StaticResource DichVuVM}">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="RoomService" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
-                            <TextBlock Margin="5,10,30,10" Text="Dịch vụ" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
+                            <TextBlock Margin="5,10,30,10" Text="Dịch Vụ" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
 
@@ -401,7 +402,9 @@
                         </Grid>
                     </Grid>
                 </TabItem>
-                <TabItem Height="80" DataContext="{StaticResource PhongVM}">
+              
+                <!--DatPhong-->
+                <TabItem Height="70" DataContext="{StaticResource PhongVM}">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="UserBoxMultiple" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
@@ -440,8 +443,9 @@
                         </materialDesign:Card>
                     </Grid>
                 </TabItem>
+                
                 <!--DatPhong-->
-                <TabItem Height="80" DataContext="{StaticResource DatPhongVM}">
+                <TabItem Height="70" DataContext="{StaticResource DatPhongVM}">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="CalendarPlusOutline" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
@@ -511,6 +515,26 @@
                             </StackPanel>
                         </Grid>
                     </Grid>
+                </TabItem>
+                
+                <!--ThongKe-->
+                <TabItem Height="70">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal" Width="190">
+                            <materialDesign:PackIcon Kind="RoomService" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,10,30,10" Text="Thống Kê" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
+                        </StackPanel>
+                    </TabItem.Header>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+
+                    </Grid>
+
                 </TabItem>
             </TabControl>
         </Grid>
