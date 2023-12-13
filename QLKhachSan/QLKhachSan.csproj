@@ -81,6 +81,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DatDichVuWindow.xaml.cs">
+      <DependentUpon>DatDichVuWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DatPhongWindow.xaml.cs">
       <DependentUpon>DatPhongWindow.xaml</DependentUpon>
     </Compile>
@@ -195,8 +198,13 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NhanVienViewModel.cs" />
+    <Compile Include="ViewModel\PhieuDatDichVuViewModel.cs" />
     <Compile Include="ViewModel\PhieuDatPhongViewModel.cs" />
     <Compile Include="ViewModel\PhongViewModel.cs" />
+    <Page Include="DatDichVuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DatPhongWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,0 +1,167 @@
+﻿<Window x:Class="QLKhachSan.DatDichVuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLKhachSan"
+        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        
+        xmlns:uc="clr-namespace:QLKhachSan.UserControlKS"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        BorderThickness="2"
+        BorderBrush="Aqua"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource PhieuDatDichVuVM}"
+        Height="550" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC></uc:ControlBarUC>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="1">
+                    <StackPanel>
+                        <TextBlock Margin="30,10,30,0" Text="Tên dịch vụ:" FontSize="15"></TextBlock>
+                        <ComboBox
+                        x:Name="TenDichVu"
+                        Margin="30,10,30,10"
+                        HorizontalAlignment="Left" 
+                        Width="245" Height="60" FontSize="20"
+                        SelectedValue="{Binding TENDV}"
+                        ItemsSource="{Binding TTENDV}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ShowCommand}" CommandParameter="{Binding ElementName=TenDichVu}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="0">
+                    <StackPanel>
+                        <TextBlock Margin="30,10,30,0" Text="Số phòng:" FontSize="15"></TextBlock>
+                        <ComboBox
+                        x:Name="SoPhong"
+                        Margin="30,10,30,10"
+                        HorizontalAlignment="Left" 
+                        Width="245" Height="60" FontSize="20"
+                        SelectedValue="{Binding SOPHONG}"
+                        ItemsSource="{Binding SSOPHONG}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ShowCommand}" CommandParameter="{Binding ElementName=SoPhong}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <StackPanel>
+                        <TextBlock Margin="30,10,30,0" Text="Số lượng:" FontSize="15"></TextBlock>
+                        <TextBox Text="{Binding SLDV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button
+                                Command="{Binding AddCommand}"
+                                Background="Green"
+                                Foreground="Black"
+                                Margin="20"
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                Width="120"
+                                Height="50"
+                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                Content="_Đặt">
+                        </Button>
+
+                        <Button
+                                Command="{Binding CancelleCommand}"
+                                Background="LightCoral"
+                                Foreground="Black"
+                                Margin="20"
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                Width="120"
+                                Height="50"
+                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                Content="_Hủy">
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <materialDesign:Card Grid.Row="0" Margin="30">
+                    <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
+                        <ListView ItemsSource="{Binding ListPhieuDichVu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Tên dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
+                                    <GridViewColumn Header="Số lượng" Width="Auto" DisplayMemberBinding="{Binding SLDV}"></GridViewColumn>
+                                    <GridViewColumn Header="Tổng tiền" Width="Auto" DisplayMemberBinding="{Binding DONGIA}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                </materialDesign:Card>
+
+                <Grid Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button
+                                Command="{Binding CancelleCommand}"
+                                Background="Red"
+                                Foreground="Black"
+                                Margin="30"
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                Width="120"
+                                Height="50"
+                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                Content="_Xóa">
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

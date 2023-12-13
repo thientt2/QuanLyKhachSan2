@@ -156,3 +156,5 @@ C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\
 C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatPhongWindow.g.cs
 C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan_Content.g.cs
 C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatPhongWindow.baml
+C:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatDichVuWindow.g.cs
+C:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatDichVuWindow.baml
