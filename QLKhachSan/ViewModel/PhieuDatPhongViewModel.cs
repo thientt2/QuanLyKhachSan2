@@ -18,6 +18,10 @@ namespace QLKhachSan.ViewModel
 
         private List<string> _TTENKH;
         public List<string> TTENKH { get { return _TTENKH; } set { _TTENKH = value; OnPropertyChanged(); } }
+
+        private string _MAKH;
+        public string MAKH { get { return _MAKH; } set { _MAKH = value; OnPropertyChanged(); } }
+
         private string _TENKH;
         public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); } }
         private string _GIOITINH;
@@ -53,6 +57,7 @@ namespace QLKhachSan.ViewModel
                 {
                     if(kh.TENKH == TENKH)
                     {
+                        MAKH = kh.MAKH.ToString();
                         GIOITINH = kh.GIOITINH.ToString();
                         SOCCCD = kh.SOCCCD.ToString();
                         QUOCTICH = kh.QUOCTICH.ToString();
