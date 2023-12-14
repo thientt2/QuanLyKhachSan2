@@ -19,6 +19,17 @@ namespace QLKhachSan.ViewModel
         public List<string> TenKH { get { return _TenKH; } set { _TenKH = value; OnPropertyChanged(); } }
         private ObservableCollection<KHACHHANG> _ListKH;
         public ObservableCollection<KHACHHANG> ListKH { get { return _ListKH; } set { _ListKH = value; OnPropertyChanged(); } }
+        //Phòng
+        private List<string> _MMALOAI;
+        public List<string> MMALOAI { get { return _MMALOAI; } set { _MMALOAI = value; OnPropertyChanged(); } }
+        private List<string> _MaLoai;
+        public List<string> MaLoai { get { return _MaLoai; } set { _MaLoai = value; OnPropertyChanged(); } }
+        private List<string> _SSOPHONG;
+        public List<string> SSOPHONG { get { return _SSOPHONG; } set { _SSOPHONG = value; OnPropertyChanged(); } }
+        private List<string> _SoPhong;
+        public List<string> SoPhong { get { return _SoPhong; } set { _SoPhong = value; OnPropertyChanged(); } }
+        private ObservableCollection<PHONG> _ListPhong;
+        public ObservableCollection<PHONG> ListPhong { get { return _ListPhong; } set { _ListPhong = value; OnPropertyChanged(); } }
         //
         private KHACHHANG _SelectedItemKH;
         public KHACHHANG SelectedItemKH { get { return _SelectedItemKH; } set { _SelectedItemKH = value; OnPropertyChanged(); } }
@@ -62,15 +73,24 @@ namespace QLKhachSan.ViewModel
         public DatPhongViewModel()
         {
             ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
-            TenKH = new List<string>();
+            //Khách hàng
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
+            TenKH = new List<string>();
             foreach (var kh in ListKH)
                 TenKH.Add(kh.TENKH);
+            //Phòng
+            ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
+            MaLoai = new List<string>();
+            MaLoai.Add("Standard");
+            MaLoai.Add("Premium");
+            MaLoai.Add("Deluxe");
+            MaLoai.Add("La Opera");
             DatPhongCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 DatPhongWindow wd = new DatPhongWindow();
                 var addVM = wd.DataContext as PhieuDatPhongViewModel;
                 addVM.TTENKH = TenKH;
+                addVM.MMALOAI = MaLoai;
                 wd.ShowDialog();
             }
             );

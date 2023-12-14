@@ -13,6 +13,23 @@ namespace QLKhachSan.ViewModel
 {
     public class PhieuDatPhongViewModel : BasicViewModel
     {
+        //Phòng
+        private List<string> _MMALOAI;
+        public List<string> MMALOAI { get { return _MMALOAI; } set { _MMALOAI = value; OnPropertyChanged(); } }
+        private string _MALOAI;
+        public string MALOAI { get { return _MALOAI; } set { _MALOAI = value; OnPropertyChanged(); } }
+        private string _SOPHONG;
+        public string SOPHONG { get { return _SOPHONG; } set { _SOPHONG = value; OnPropertyChanged(); } }
+        private List<string> _MaLoai;
+        public List<string> MaLoai { get { return _MaLoai; } set { _MaLoai = value; OnPropertyChanged(); } }
+
+        private List<string> _SSOPHONG;
+        public List<string> SSOPHONG { get { return _SSOPHONG; } set { _SSOPHONG = value; OnPropertyChanged(); } }
+        private List<string> _SoPhong;
+        public List<string> SoPhong { get { return _SoPhong; } set { _SoPhong = value; OnPropertyChanged(); } }
+        private ObservableCollection<PHONG> _ListPhong;
+        public ObservableCollection<PHONG> ListPhong { get { return _ListPhong; } set { _ListPhong = value; OnPropertyChanged(); } }
+        //Khách hàng
         private ObservableCollection<KHACHHANG> _ListKH;
         public ObservableCollection<KHACHHANG> ListKH { get { return _ListKH; } set { _ListKH = value; OnPropertyChanged(); } }
 
@@ -45,12 +62,15 @@ namespace QLKhachSan.ViewModel
         public ICommand AddCommand { get; set; }
 
         public ICommand ShowCommand { get; set; }
+        public ICommand ShowCommand1 { get; set; }
         public ICommand CancelleCommand { get; set; }
 
         public PhieuDatPhongViewModel()
         {
 
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
+            ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
+            SSOPHONG = new List<string>();
             ShowCommand = new RelayCommand<ComboBox>((p) => { return true; }, (p) => 
             { 
                 foreach(var kh in ListKH)
@@ -66,7 +86,21 @@ namespace QLKhachSan.ViewModel
                         SDT = kh.SDT.ToString();
                         NGSINH = kh.NGSINH;
                     }    
-                }    
+                }
+            });
+
+            ShowCommand1 = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
+            {
+                SoPhong = new List<string>();
+
+                foreach (var phong in ListPhong)
+                {
+                    if (phong.MALOAI == MALOAI)
+                    {
+                        SoPhong.Add(phong.SOPHONG);
+                    }
+                }
+                SSOPHONG = SoPhong;
             });
         }
     }

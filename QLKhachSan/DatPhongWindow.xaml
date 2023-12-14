@@ -198,15 +198,41 @@
 
                                     <Grid Grid.Column="0">
                                         <StackPanel>
-                                            <TextBlock Margin="30,10,30,0" Text="Loại phòng:" FontSize="15"></TextBlock>
-                                            <ComboBox  ItemsSource="{Binding MALOAI}" SelectedItem="{Binding SelectedMaLoai, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,10,30,0" Width="245" FontSize="15" Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
+                                            <TextBlock Margin="30,10,30,0" Text="Loại phòng" FontSize="15"></TextBlock>
+                                            <ComboBox
+                                                x:Name="LoaiPhong"
+                                                Margin="30,10,30,10"
+                                                HorizontalAlignment="Left" 
+                                                Width="245" Height="60" FontSize="20"
+                                                SelectedValue="{Binding MALOAI}"
+                                                ItemsSource="{Binding MMALOAI}"
+                                                Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding ShowCommand1}" CommandParameter="{Binding ElementName=LoaiPhong}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ComboBox>
                                         </StackPanel>
                                     </Grid>
 
                                     <Grid Grid.Column="1">
                                         <StackPanel>
-                                            <TextBlock Margin="30,10,30,0" Text="Số phòng:" FontSize="15"></TextBlock>
-                                            <ComboBox ItemsSource="{Binding SOPHONG}" SelectedItem="{Binding SelectedSoPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,10,30,0" Width="245" FontSize="15" Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
+                                            <TextBlock Margin="30,10,30,0" Text="Số phòng" FontSize="15"></TextBlock>
+                                            <ComboBox
+                                                x:Name="SoPhong"
+                                                Margin="30,10,30,10"
+                                                HorizontalAlignment="Left" 
+                                                Width="245" Height="60" FontSize="20"
+                                                SelectedValue="{Binding SOPHONG}"
+                                                ItemsSource="{Binding SSOPHONG}"
+                                                Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding ShowCommand}" CommandParameter="{Binding ElementName=SoPhong}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ComboBox>
                                         </StackPanel>
                                     </Grid>
                                 </Grid>
