@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static QLKhachSan.ViewModel.BasicViewModel;
 using System.Windows.Input;
+using System.Windows.Documents;
 
 namespace QLKhachSan.ViewModel
 {
@@ -42,21 +43,24 @@ namespace QLKhachSan.ViewModel
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand CancelCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         public DichVuViewModel()
         {
             ListDV = new ObservableCollection<DICHVU>(DataProvider.Ins.DB.DICHVUs);
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MADV))
-                    return false;
+                //if (string.IsNullOrEmpty(MADV))
+                //    return false;
                 var TenDVlist = DataProvider.Ins.DB.DICHVUs.Where(x => x.MADV == MADV);
                 if (TenDVlist == null || TenDVlist.Count() != 0)
                     return false;
                 return true;
             }, (p) =>
             {
-                var dichvu = new DICHVU() { MADV = MADV, TENDV = TENDV, DONGIA = DONGIA, };
+                int maxCode = ListDV.Max(nv => int.Parse(nv.MADV.Substring(2)));
+                string nextCode = $"DV{maxCode + 1:000}";
+                var dichvu = new DICHVU() { MADV = nextCode, TENDV = TENDV, DONGIA = DONGIA, };
                 DataProvider.Ins.DB.DICHVUs.Add(dichvu);
                 DataProvider.Ins.DB.SaveChanges();
 
@@ -78,6 +82,15 @@ namespace QLKhachSan.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
                 SelectedItem.MADV = MADV;
+            });
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                return SelectedItem != null;
+            }, (p) =>
+            {
+                DataProvider.Ins.DB.DICHVUs.Remove(SelectedItem);
+                DataProvider.Ins.DB.SaveChanges();
+                ListDV.Remove(SelectedItem);
             });
         }
     }

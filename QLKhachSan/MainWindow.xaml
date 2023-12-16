@@ -117,7 +117,7 @@
 
                         <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
                             <WrapPanel>
-                                <TextBox x:Name="txtMAKH"  Text="{Binding MAKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <!--<TextBox x:Name="txtMAKH"  Text="{Binding MAKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />-->
                                 <TextBox x:Name="txtTENKH" Text="{Binding TENKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                 <TextBox x:Name="txtGIOITINHKH" Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Giới tính" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                 <TextBox x:Name="txtDIACHIKH" Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
@@ -145,6 +145,11 @@
                                             <GridViewColumn Header="Quốc tịch" DisplayMemberBinding="{Binding QUOCTICH}"></GridViewColumn>
                                         </GridView>
                                     </ListView.View>
+                                    <!--<ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="Margin" Value="0,0,0,10" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>-->
                                 </ListView>
                             </ScrollViewer>
                         </materialDesign:Card>
@@ -223,7 +228,7 @@
 
                         <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
                             <WrapPanel>
-                                <TextBox x:Name="txtMANV" Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <!--<TextBox x:Name="txtMANV" Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />-->
                                 <TextBox x:Name="txtTENNV" Text="{Binding TENNV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                 <TextBox x:Name="txtGIOITINHNV" Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Giới tính" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                 <TextBox x:Name="txtDIACHINV" Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
@@ -329,7 +334,7 @@
 
                         <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
                             <WrapPanel>
-                                <TextBox x:Name="txtMADV" Text="{Binding MADV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã dịch vụ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <!--<TextBox x:Name="txtMADV" Text="{Binding MADV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã dịch vụ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />-->
                                 <TextBox x:Name="txtTENDV" Text="{Binding TENDV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên dịch vụ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                 <TextBox x:Name="txtDONGIA" Text="{Binding DONGIA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Đơn giá" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                             </WrapPanel>

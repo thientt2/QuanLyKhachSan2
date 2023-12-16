@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace QLKhachSan.ViewModel
@@ -64,21 +65,24 @@ namespace QLKhachSan.ViewModel
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand CancelCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         public KhachHangViewModel()
         {
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             AddCommand = new RelayCommand<object>((p) => 
             {
-                if (string.IsNullOrEmpty(MAKH))
-                    return false;
+                //if (string.IsNullOrEmpty(MAKH))
+                //    return false;
                 var TenKHlist=DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MAKH == MAKH);
                 if (TenKHlist == null || TenKHlist.Count() != 0)
                     return false;
                 return true;
             }, (p) =>
             {
-                var khachhang = new KHACHHANG() { MAKH = MAKH, TENKH = TENKH, GIOITINH = GIOITINH, SDT = SDT, EMAIL = EMAIL, SOCCCD = SOCCCD, QUOCTICH = QUOCTICH, NGSINH = NGSINH, DIACHI = DIACHI };
+                int maxCode = ListKH.Max(nv => int.Parse(nv.MAKH.Substring(2)));
+                string nextCode = $"KH{maxCode + 1:000}";
+                var khachhang = new KHACHHANG() { MAKH = nextCode, TENKH = TENKH, GIOITINH = GIOITINH, SDT = SDT, EMAIL = EMAIL, SOCCCD = SOCCCD, QUOCTICH = QUOCTICH, NGSINH = NGSINH, DIACHI = DIACHI };
                 DataProvider.Ins.DB.KHACHHANGs.Add(khachhang);
                 DataProvider.Ins.DB.SaveChanges();
 
@@ -106,6 +110,15 @@ namespace QLKhachSan.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
                 SelectedItem.MAKH = MAKH;
+            });
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                return SelectedItem != null;
+            }, (p) =>
+            {
+                DataProvider.Ins.DB.KHACHHANGs.Remove(SelectedItem);
+                DataProvider.Ins.DB.SaveChanges();
+                ListKH.Remove(SelectedItem);
             });
         }
         

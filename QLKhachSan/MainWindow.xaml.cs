@@ -28,7 +28,7 @@ namespace QLKhachSan
 
         private void CancelButton_Client(object sender, RoutedEventArgs e)
         {
-            txtMAKH.Text = "";
+            //txtMAKH.Text = "";
             txtTENKH.Text = "";
             txtGIOITINHKH.Text = "";
             txtSDTKH.Text = "";
@@ -41,7 +41,7 @@ namespace QLKhachSan
 
         private void CancelButton_Staff(object sender, RoutedEventArgs e)
         {
-            txtMANV.Text = "";
+            //txtMANV.Text = "";
             txtTENNV.Text = "";
             txtGIOITINHNV.Text = "";
             txtSDTNV.Text = "";
@@ -55,7 +55,7 @@ namespace QLKhachSan
 
         private void CancelButton_Service(object sender, RoutedEventArgs e)
         {
-            txtMADV.Text = "";
+            //txtMADV.Text = "";
             txtTENDV.Text = "";
             txtDONGIA.Text = "";
         }

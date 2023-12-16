@@ -68,21 +68,24 @@ namespace QLKhachSan.ViewModel
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand CancelCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         public NhanVienViewModel()
         {
             ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MANV))
-                    return false;
+                //if (string.IsNullOrEmpty(MANV))
+                //    return false;
                 var TenNVlist = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV);
                 if (TenNVlist == null || TenNVlist.Count() != 0)
                     return false;
                 return true;
             }, (p) =>
             {
-                var nhanvien = new NHANVIEN() { MANV = MANV, TENNV = TENNV, GIOITINH = GIOITINH, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRILAMVIEC = VITRILAMVIEC, NGSINH = NGSINH, NGVL = NGVL, DIACHI = DIACHI };
+                int maxCode = ListNV.Max(nv => int.Parse(nv.MANV.Substring(2)));
+                string nextCode = $"NV{maxCode + 1:000}";
+                var nhanvien = new NHANVIEN() { MANV = nextCode, TENNV = TENNV, GIOITINH = GIOITINH, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRILAMVIEC = VITRILAMVIEC, NGSINH = NGSINH, NGVL = NGVL, DIACHI = DIACHI };
                 DataProvider.Ins.DB.NHANVIENs.Add(nhanvien);
                 DataProvider.Ins.DB.SaveChanges();
 
@@ -111,6 +114,15 @@ namespace QLKhachSan.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
                 SelectedItem.MANV = MANV;
+            });
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                return SelectedItem != null;
+            }, (p) =>
+            {
+                DataProvider.Ins.DB.NHANVIENs.Remove(SelectedItem);
+                DataProvider.Ins.DB.SaveChanges();
+                ListNV.Remove(SelectedItem);
             });
         }
     }
