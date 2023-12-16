@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 
@@ -92,8 +93,10 @@ namespace QLKhachSan.ViewModel
                 addVM.TTENKH = TenKH;
                 addVM.MMALOAI = MaLoai;
                 wd.ShowDialog();
+                ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
             }
             );
+
         }
     }
 }

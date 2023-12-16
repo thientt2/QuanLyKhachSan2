@@ -14,5 +14,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/model3.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_ht.context.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_ht.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_tt.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_tt.tt")]
 
 
