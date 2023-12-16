@@ -9,10 +9,12 @@
 
 namespace QLKhachSan.Model
 {
+    using QLKhachSan.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class PHIEUDATPHONG
+    using System.Data.Entity.Core.Common.CommandTrees;
+
+    public partial class PHIEUDATPHONG : BasicViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PHIEUDATPHONG()
@@ -21,13 +23,19 @@ namespace QLKhachSan.Model
             this.HOADONs = new HashSet<HOADON>();
             this.PHIEUDICHVUs = new HashSet<PHIEUDICHVU>();
         }
-    
-        public string MAPDP { get; set; }
-        public string MAKH { get; set; }
-        public string MANV { get; set; }
-        public Nullable<System.DateTime> NGDAT { get; set; }
-        public Nullable<System.DateTime> NGNHAN { get; set; }
-    
+
+        private string _MAPDP;
+        public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
+        private string _MAKH;
+        public string MAKH { get { return _MAKH; } set { _MAKH = value; OnPropertyChanged(); } }
+        private string _MANV;
+        public string MANV { get { return _MANV; } set { _MANV = value; OnPropertyChanged(); } }
+
+        private DateTime? _NGDAT;
+        public DateTime? NGDAT { get { return _NGDAT; } set { _NGDAT = value; OnPropertyChanged(); } }
+        private DateTime? _NGNHAN;
+        public DateTime? NGNHAN { get { return _NGNHAN; } set { _NGNHAN = value; OnPropertyChanged(); } }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTPDP> CTPDPs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

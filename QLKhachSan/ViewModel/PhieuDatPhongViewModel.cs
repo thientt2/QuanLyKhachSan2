@@ -18,6 +18,8 @@ namespace QLKhachSan.ViewModel
         public List<string> MMALOAI { get { return _MMALOAI; } set { _MMALOAI = value; OnPropertyChanged(); } }
         private string _MALOAI;
         public string MALOAI { get { return _MALOAI; } set { _MALOAI = value; OnPropertyChanged(); } }
+        private string _TINHTRANG;
+        public string TINHTRANG { get { return _TINHTRANG; } set { _TINHTRANG = value; OnPropertyChanged(); } }
         private string _SOPHONG;
         public string SOPHONG { get { return _SOPHONG; } set { _SOPHONG = value; OnPropertyChanged(); } }
         private List<string> _MaLoai;
@@ -59,6 +61,19 @@ namespace QLKhachSan.ViewModel
 
         private DateTime? _NGSINH;
         public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
+        //Phiếu đặt phòng
+        private string _MAPDP;
+        public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
+        private string _MANV;
+        public string MANV { get { return _MANV; } set { _MANV = value; OnPropertyChanged(); } }
+
+        private DateTime? _NGDAT;
+        public DateTime? NGDAT { get { return _NGDAT; } set { _NGDAT = value; OnPropertyChanged(); } }
+        private DateTime? _NGNHAN;
+        public DateTime? NGNHAN { get { return _NGNHAN; } set { _NGNHAN = value; OnPropertyChanged(); } }
+        private ObservableCollection<PHIEUDATPHONG> _ListPDP;
+        public ObservableCollection<PHIEUDATPHONG> ListPDP { get { return _ListPDP; } set { _ListPDP = value; OnPropertyChanged(); } }
+        //
         public ICommand AddCommand { get; set; }
 
         public ICommand ShowCommand { get; set; }
@@ -95,12 +110,38 @@ namespace QLKhachSan.ViewModel
 
                 foreach (var phong in ListPhong)
                 {
-                    if (phong.MALOAI == MALOAI)
+                    if (phong.MALOAI == MALOAI && phong.TINHTRANG == "Trống")
                     {
                         SoPhong.Add(phong.SOPHONG);
                     }
                 }
                 SSOPHONG = SoPhong;
+            });
+
+            ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
+
+            AddCommand = new RelayCommand<object>((p) =>
+            {
+                if (string.IsNullOrEmpty(MAPDP))
+                    return false;
+                var TenPDPlist = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == MAPDP);
+                if (TenPDPlist == null || TenPDPlist.Count() != 0)
+                    return false;
+                return true;
+            }, (p) =>
+            {
+                var pdp = new PHIEUDATPHONG() { MAPDP = MAPDP, MAKH = MAKH, MANV = MANV, NGDAT = NGDAT, NGNHAN = NGNHAN };
+                DataProvider.Ins.DB.PHIEUDATPHONGs.Add(pdp);
+                foreach (var phong in ListPhong)
+                {
+                    if (phong.SOPHONG == SOPHONG && phong.TINHTRANG == "Trống")
+                    {
+                        phong.TINHTRANG = "Đang được sử dụng";
+                    }
+                }
+                DataProvider.Ins.DB.SaveChanges();
+                
+                ListPDP.Add(pdp);
             });
         }
     }

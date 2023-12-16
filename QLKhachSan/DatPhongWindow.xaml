@@ -22,7 +22,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource PhieuDatPhongVM}"
-        Height="650" Width="1300" >
+        Height="700" Width="1300" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -160,14 +160,15 @@
 
                     <Grid Grid.Row="0">
                         <GroupBox Height="auto" Margin="5,20,10,10" FontSize="20" materialDesign:ColorZoneAssist.Background="Black" materialDesign:ColorZoneAssist.Foreground="White" materialDesign:ColorZoneAssist.Mode="Custom"  Header="Thông tin đăng kí" Style="{StaticResource MaterialDesignCardGroupBox}">
-                            <Grid Margin="0,30,0,60">
+                            <Grid Margin="0,5,0,5">
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
                                     <RowDefinition Height="auto"></RowDefinition>
                                     <RowDefinition Height="auto"></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <Grid Grid.Row="0">
+                                <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"></ColumnDefinition>
                                         <ColumnDefinition></ColumnDefinition>
@@ -190,7 +191,7 @@
                                     </Grid>
                                 </Grid>
 
-                                <Grid Grid.Row="1">
+                                <Grid Grid.Row="2">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"></ColumnDefinition>
                                         <ColumnDefinition></ColumnDefinition>
@@ -204,7 +205,7 @@
                                                 Margin="30,10,30,10"
                                                 HorizontalAlignment="Left" 
                                                 Width="245" Height="60" FontSize="20"
-                                                SelectedValue="{Binding MALOAI}"
+                                                SelectedValue="{Binding MALOAI, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                 ItemsSource="{Binding MMALOAI}"
                                                 Style="{StaticResource MaterialDesignOutlinedComboBox}">
                                                 <i:Interaction.Triggers>
@@ -229,7 +230,9 @@
                                                 Style="{StaticResource MaterialDesignOutlinedComboBox}">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="SelectionChanged">
-                                                        <i:InvokeCommandAction Command="{Binding ShowCommand}" CommandParameter="{Binding ElementName=SoPhong}"/>
+                                                        <i:InvokeCommandAction 
+                                                            Command="{Binding ShowCommand}"
+                                                            CommandParameter="{Binding ElementName=SoPhong}"/>
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
                                             </ComboBox>
@@ -237,7 +240,7 @@
                                     </Grid>
                                 </Grid>
 
-                                <Grid Grid.Row="2">
+                                <Grid Grid.Row="3">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"></ColumnDefinition>
                                         <ColumnDefinition></ColumnDefinition>
@@ -245,17 +248,32 @@
 
                                     <Grid Grid.Column="0">
                                         <StackPanel>
-                                            <TextBlock Margin="30,10,30,0" Text="Ngày nhận:" FontSize="15"></TextBlock>
-                                            <DatePicker SelectedDate="{Binding NGNHAN,UpdateSourceTrigger=PropertyChanged}" Margin="30,10,30,5" Width="245" FontSize="15" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                            <TextBlock Margin="30,10,30,0" Text="Ngày đặt:" FontSize="15"></TextBlock>
+                                            <DatePicker SelectedDate="{Binding NGDAT,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,5" Width="245" FontSize="20" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                         </StackPanel>
                                     </Grid>
 
                                     <Grid Grid.Column="1">
                                         <StackPanel>
-                                            <TextBlock Margin="30,10,30,0" Text="Ngày trả:" FontSize="15"></TextBlock>
-                                            <DatePicker SelectedDate="{Binding NGTRA,UpdateSourceTrigger=PropertyChanged}" Margin="30,10,30,5" Width="245" FontSize="15" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                            <TextBlock Margin="30,10,30,0" Text="Ngày nhận:" FontSize="15"></TextBlock>
+                                            <DatePicker SelectedDate="{Binding NGNHAN,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,5" Width="245" FontSize="20" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                         </StackPanel>
                                     </Grid>
+                                </Grid>
+
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0">
+                                        <StackPanel>
+                                            <TextBlock Margin="30,10,30,0" Text="Mã phiếu đặt phòng:" FontSize="15"></TextBlock>
+                                            <TextBox Text="{Binding MAPDP,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        </StackPanel>
+                                    </Grid>
+
                                 </Grid>
                             </Grid>
                         </GroupBox>
@@ -271,7 +289,7 @@
                                 FontSize="20"
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                 Width="120"
-                                Height="60"
+                                Height="50"
                                 ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                 Content="_Đặt">
                             </Button>
@@ -284,7 +302,7 @@
                                 FontSize="20"
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                 Width="120"
-                                Height="60"
+                                Height="50"
                                 ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                 Content="_Hủy">
                             </Button>

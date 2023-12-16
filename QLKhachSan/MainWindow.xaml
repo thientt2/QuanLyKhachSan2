@@ -87,7 +87,7 @@
                     Style="{StaticResource MaterialDesignFilledTabControl}"  
                     TabStripPlacement="Left">
                 <!--TrangChu-->
-                <TabItem  Width="240" Height="70" Margin="0,15,0,10">
+                <TabItem  Width="240" Height="70" Margin="0,20,0,10">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
                             <materialDesign:PackIcon Kind="House" Foreground="White" VerticalAlignment="Center" Margin="0,0,30,0" Height="40" Width="50" />
@@ -456,6 +456,18 @@
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                     Content="_Đặt dịch vụ">
                                 </Button>
+
+                                <Button
+                                    Command="{Binding TraPhongCommand}"
+                                    Background="Red"
+                                    Foreground="Black"
+                                    Margin="30"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="120"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Trả phòng">
+                                </Button>
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -538,7 +550,7 @@
                 <TabItem Height="70">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal" Width="190">
-                            <materialDesign:PackIcon Kind="RoomService" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
+                            <materialDesign:PackIcon Kind="Finance" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
                             <TextBlock Margin="5,10,30,10" Text="Thống Kê" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                         </StackPanel>
                     </TabItem.Header>
@@ -548,8 +560,6 @@
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
-
-
                     </Grid>
 
                 </TabItem>
