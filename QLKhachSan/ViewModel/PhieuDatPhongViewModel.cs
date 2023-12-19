@@ -16,7 +16,7 @@ namespace QLKhachSan.ViewModel
         //Phòng
         private ObservableCollection<PHONG> _ListPhong;
         public ObservableCollection<PHONG> ListPhong { get { return _ListPhong; } set { _ListPhong = value; OnPropertyChanged(); } }
-        //Khách hàng
+        
         private List<string> _MMALOAI;
         public List<string> MMALOAI { get { return _MMALOAI; } set { _MMALOAI = value; OnPropertyChanged(); } }
         private string _MALOAI;
@@ -36,6 +36,7 @@ namespace QLKhachSan.ViewModel
         private ObservableCollection<KHACHHANG> _ListKH;
         public ObservableCollection<KHACHHANG> ListKH { get { return _ListKH; } set { _ListKH = value; OnPropertyChanged(); } }
 
+        //Khách hàng
         private List<string> _TTENKH;
         public List<string> TTENKH { get { return _TTENKH; } set { _TTENKH = value; OnPropertyChanged(); } }
 
@@ -62,13 +63,18 @@ namespace QLKhachSan.ViewModel
 
         private DateTime? _NGSINH;
         public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
+
+        //Nhân viên
+        private string _MANV;
+        public string MANV { get { return _MANV; } set { _MANV = value; OnPropertyChanged(); } }
+
+
         //Phiếu đặt phòng
         private ObservableCollection<PHIEUDATPHONG> _ListPDP;
         public ObservableCollection<PHIEUDATPHONG> ListPDP { get { return _ListPDP; } set { _ListPDP = value; OnPropertyChanged(); } }
         private string _MAPDP;
-        public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
-        private string _MANV;
-        public string MANV { get { return _MANV; } set { _MANV = value; OnPropertyChanged(); } }
+        public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(nameof(MAPDP)); } }
+
 
         private DateTime? _NGDAT;
         public DateTime? NGDAT { get { return _NGDAT; } set { _NGDAT = value; OnPropertyChanged(); } }
@@ -77,10 +83,9 @@ namespace QLKhachSan.ViewModel
         
         //
         public ICommand AddCommand { get; set; }
-
         public ICommand ShowCommand { get; set; }
         public ICommand ShowCommand1 { get; set; }
-        public ICommand CancelleCommand { get; set; }
+        public ICommand CancelCommand { get; set; }
 
         public PhieuDatPhongViewModel()
         {
@@ -120,12 +125,15 @@ namespace QLKhachSan.ViewModel
                 SSOPHONG = SoPhong;
             });
 
+
             ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
 
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MAPDP))
-                    return false;
+                //if (string.IsNullOrEmpty(MAPDP))
+                //    return false;
+                int maxCode = ListPDP.Max(dp => int.Parse(dp.MAPDP.Substring(2)));
+                MAPDP = $"DP{maxCode + 1:000}";
                 var TenPDPlist = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == MAPDP);
                 if (TenPDPlist == null || TenPDPlist.Count() != 0)
                     return false;
@@ -149,8 +157,22 @@ namespace QLKhachSan.ViewModel
                 {
                     w.Close();
                 }
+
+                TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = MANV = SDT = "";
+                NGSINH = null;
+                SOPHONG = null;
+                NGDAT = NGNHAN = null;
             });
-            
+            CancelCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = MANV = SDT = "";
+                NGSINH = null;
+                SOPHONG = null;
+                NGDAT = NGNHAN = null;
+            });
         }
     }
 }

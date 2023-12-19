@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using static QLKhachSan.ViewModel.BasicViewModel;
 using System.Windows.Input;
 using System.Windows.Documents;
+using System.Windows;
 
 namespace QLKhachSan.ViewModel
 {
@@ -58,13 +59,14 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                int maxCode = ListDV.Max(nv => int.Parse(nv.MADV.Substring(2)));
+                int maxCode = ListDV.Max(dv => int.Parse(dv.MADV.Substring(2)));
                 string nextCode = $"DV{maxCode + 1:000}";
                 var dichvu = new DICHVU() { MADV = nextCode, TENDV = TENDV, DONGIA = DONGIA, };
                 DataProvider.Ins.DB.DICHVUs.Add(dichvu);
                 DataProvider.Ins.DB.SaveChanges();
 
                 ListDV.Add(dichvu);
+                MessageBox.Show("Thêm dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             });
             EditCommand = new RelayCommand<object>((p) =>
             {
@@ -82,15 +84,30 @@ namespace QLKhachSan.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
                 SelectedItem.MADV = MADV;
+                MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
+            CancelCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                TENDV = string.Empty;
+                DONGIA = null;
+                SelectedItem = null;
             });
             DeleteCommand = new RelayCommand<object>((p) =>
             {
                 return SelectedItem != null;
             }, (p) =>
             {
-                DataProvider.Ins.DB.DICHVUs.Remove(SelectedItem);
-                DataProvider.Ins.DB.SaveChanges();
-                ListDV.Remove(SelectedItem);
+                MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                if(result == MessageBoxResult.OK)
+                {
+                    DataProvider.Ins.DB.DICHVUs.Remove(SelectedItem);
+                    DataProvider.Ins.DB.SaveChanges();
+                    ListDV.Remove(SelectedItem);
+                    MessageBox.Show("Xóa dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             });
         }
     }

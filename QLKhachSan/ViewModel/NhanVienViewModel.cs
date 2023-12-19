@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static QLKhachSan.ViewModel.BasicViewModel;
 using System.Windows.Input;
+using System.Security.Cryptography;
+using System.Windows;
+using System.Windows.Documents;
 
 namespace QLKhachSan.ViewModel
 {
@@ -65,6 +68,7 @@ namespace QLKhachSan.ViewModel
 
         private DateTime? _NGSINH;
         public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
+
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand CancelCommand { get; set; }
@@ -77,9 +81,9 @@ namespace QLKhachSan.ViewModel
             {
                 //if (string.IsNullOrEmpty(MANV))
                 //    return false;
-                var TenNVlist = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV);
-                if (TenNVlist == null || TenNVlist.Count() != 0)
-                    return false;
+                //var TenNVlist = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV);
+                //if (TenNVlist == null || TenNVlist.Count() != 0)
+                //    return false;
                 return true;
             }, (p) =>
             {
@@ -90,6 +94,7 @@ namespace QLKhachSan.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
                 ListNV.Add(nhanvien);
+                MessageBox.Show("Thêm nhân viên thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             });
             EditCommand = new RelayCommand<object>((p) =>
             {
@@ -114,15 +119,31 @@ namespace QLKhachSan.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
                 SelectedItem.MANV = MANV;
+                MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
+            CancelCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
+                LUONG = null;
+                NGVL = NGSINH = null;
+                SelectedItem = null;
             });
             DeleteCommand = new RelayCommand<object>((p) =>
             {
                 return SelectedItem != null;
             }, (p) =>
             {
-                DataProvider.Ins.DB.NHANVIENs.Remove(SelectedItem);
-                DataProvider.Ins.DB.SaveChanges();
-                ListNV.Remove(SelectedItem);
+                MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                if (result == MessageBoxResult.OK)
+                {
+                    DataProvider.Ins.DB.NHANVIENs.Remove(SelectedItem);
+                    DataProvider.Ins.DB.SaveChanges();
+                    ListNV.Remove(SelectedItem);
+                    MessageBox.Show("Xóa nhân viên thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             });
         }
     }

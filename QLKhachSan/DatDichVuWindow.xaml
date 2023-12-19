@@ -110,7 +110,7 @@
                         </Button>
 
                         <Button
-                                Command="{Binding CancelleCommand}"
+                                Command="{Binding CancelCommand}"
                                 Background="LightCoral"
                                 Foreground="Black"
                                 Margin="20"
@@ -133,9 +133,14 @@
 
                 <materialDesign:Card Grid.Row="0" Margin="30">
                     <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
-                        <ListView ItemsSource="{Binding ListPhieuDichVu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                        <ListView ItemsSource="{Binding ListPhieuDichVu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" RenderTransformOrigin="0.5,0.49">
                             <ListView.View>
                                 <GridView>
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style>
+                                            <Setter Property="Control.Padding" Value="10" />
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
                                     <GridViewColumn Header="Tên dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
                                     <GridViewColumn Header="Số lượng" Width="Auto" DisplayMemberBinding="{Binding SLDV}"></GridViewColumn>
                                     <GridViewColumn Header="Tổng tiền" Width="Auto" DisplayMemberBinding="{Binding DONGIA}"></GridViewColumn>

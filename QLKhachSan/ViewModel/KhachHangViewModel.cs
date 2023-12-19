@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,7 +62,8 @@ namespace QLKhachSan.ViewModel
         public string QUOCTICH { get { return _QUOCTICH; } set { _QUOCTICH = value; OnPropertyChanged(); } }
 
         private DateTime? _NGSINH;
-        public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
+        public DateTime? NGSINH { get { return _NGSINH; } set {  _NGSINH = value;  OnPropertyChanged(); } }
+
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand CancelCommand { get; set; }
@@ -74,19 +76,21 @@ namespace QLKhachSan.ViewModel
             {
                 //if (string.IsNullOrEmpty(MAKH))
                 //    return false;
-                var TenKHlist=DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MAKH == MAKH);
+                // điều kiện không được để trống 
+                var TenKHlist = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MAKH == MAKH);
                 if (TenKHlist == null || TenKHlist.Count() != 0)
                     return false;
                 return true;
             }, (p) =>
             {
-                int maxCode = ListKH.Max(nv => int.Parse(nv.MAKH.Substring(2)));
+                int maxCode = ListKH.Max(kh => int.Parse(kh.MAKH.Substring(2)));
                 string nextCode = $"KH{maxCode + 1:000}";
                 var khachhang = new KHACHHANG() { MAKH = nextCode, TENKH = TENKH, GIOITINH = GIOITINH, SDT = SDT, EMAIL = EMAIL, SOCCCD = SOCCCD, QUOCTICH = QUOCTICH, NGSINH = NGSINH, DIACHI = DIACHI };
                 DataProvider.Ins.DB.KHACHHANGs.Add(khachhang);
                 DataProvider.Ins.DB.SaveChanges();
 
                 ListKH.Add(khachhang);
+                MessageBox.Show("Thêm khách hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             });
             EditCommand = new RelayCommand<object>((p) =>
             {
@@ -110,15 +114,30 @@ namespace QLKhachSan.ViewModel
                 DataProvider.Ins.DB.SaveChanges();
 
                 SelectedItem.MAKH = MAKH;
+                MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
+            CancelCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                TENKH = GIOITINH = SDT = EMAIL = SOCCCD = QUOCTICH = DIACHI = string.Empty;
+                NGSINH = null;
+                SelectedItem = null;
             });
             DeleteCommand = new RelayCommand<object>((p) =>
             {
                 return SelectedItem != null;
             }, (p) =>
-            {
-                DataProvider.Ins.DB.KHACHHANGs.Remove(SelectedItem);
-                DataProvider.Ins.DB.SaveChanges();
-                ListKH.Remove(SelectedItem);
+            {       
+                MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                if (result == MessageBoxResult.OK)
+                {
+                    DataProvider.Ins.DB.KHACHHANGs.Remove(SelectedItem);
+                    DataProvider.Ins.DB.SaveChanges();
+                    ListKH.Remove(SelectedItem);
+                    MessageBox.Show("Xóa khách hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             });
         }
         

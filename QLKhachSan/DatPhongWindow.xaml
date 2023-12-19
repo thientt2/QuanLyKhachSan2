@@ -19,6 +19,7 @@
         BorderThickness="2"
         BorderBrush="Aqua"
         ResizeMode="NoResize"
+        Name="DatPhongW"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource PhieuDatPhongVM}"
@@ -270,7 +271,7 @@
                                     <Grid Grid.Column="0">
                                         <StackPanel>
                                             <TextBlock Margin="30,10,30,0" Text="Mã phiếu đặt phòng:" FontSize="15"></TextBlock>
-                                            <TextBox Text="{Binding MAPDP,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                            <TextBox Text="{Binding MAPDP,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" Name="mapdp"/>
                                         </StackPanel>
                                     </Grid>
 
@@ -283,6 +284,7 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button
                                 Command="{Binding AddCommand}"
+                                CommandParameter="{Binding ElementName=DatPhongW}"
                                 Background="Green"
                                 Foreground="Black"
                                 Margin="20"
@@ -295,7 +297,7 @@
                             </Button>
 
                             <Button
-                                Command="{Binding CancelleCommand}"
+                                Command="{Binding CancelCommand}"
                                 Background="Red"
                                 Foreground="Black"
                                 Margin="20"

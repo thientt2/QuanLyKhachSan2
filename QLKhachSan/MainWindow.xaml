@@ -134,10 +134,15 @@
                                 <ListView ItemsSource="{Binding ListKH, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                     <ListView.View>
                                         <GridView>
+                                            <GridView.ColumnHeaderContainerStyle>
+                                                <Style>
+                                                    <Setter Property="Control.Padding" Value="10"  />
+                                                </Style>
+                                            </GridView.ColumnHeaderContainerStyle>
                                             <GridViewColumn Header="Mã khách hàng" Width="Auto" DisplayMemberBinding="{Binding MAKH}"></GridViewColumn>
                                             <GridViewColumn Header="Tên khách hàng" Width="Auto" DisplayMemberBinding="{Binding TENKH}"></GridViewColumn>
                                             <GridViewColumn Header="Giới tính" Width="Auto" DisplayMemberBinding="{Binding GIOITINH}"></GridViewColumn>
-                                            <GridViewColumn Header="Ngày sinh" Width="Auto" DisplayMemberBinding="{Binding NGSINH}"></GridViewColumn>
+                                            <GridViewColumn Header="Ngày sinh" Width="Auto" DisplayMemberBinding="{Binding NGSINH, StringFormat=dd/MM/yyyy}"></GridViewColumn>
                                             <GridViewColumn Header="Địa chỉ" Width="Auto" DisplayMemberBinding="{Binding DIACHI}"></GridViewColumn>
                                             <GridViewColumn Header="SDT" Width="Auto" DisplayMemberBinding="{Binding SDT}"></GridViewColumn>
                                             <GridViewColumn Header="Email" Width="Auto" DisplayMemberBinding="{Binding EMAIL}"></GridViewColumn>
@@ -145,11 +150,6 @@
                                             <GridViewColumn Header="Quốc tịch" DisplayMemberBinding="{Binding QUOCTICH}"></GridViewColumn>
                                         </GridView>
                                     </ListView.View>
-                                    <!--<ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="Margin" Value="0,0,0,10" />
-                                        </Style>
-                                    </ListView.ItemContainerStyle>-->
                                 </ListView>
                             </ScrollViewer>
                         </materialDesign:Card>
@@ -182,6 +182,7 @@
                                 </Button>
 
                                 <Button
+                                    Command="{Binding CancelCommand}"
                                     Background="LightCoral"
                                     Foreground="Black"
                                     Margin="30"
@@ -246,16 +247,21 @@
                                 <ListView ItemsSource="{Binding ListNV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                     <ListView.View>
                                         <GridView>
+                                            <GridView.ColumnHeaderContainerStyle>
+                                                <Style>
+                                                    <Setter Property="Control.Padding" Value="10" />
+                                                </Style>
+                                            </GridView.ColumnHeaderContainerStyle>
                                             <GridViewColumn Header="Mã nhân viên" Width="Auto" DisplayMemberBinding="{Binding MANV}"></GridViewColumn>
                                             <GridViewColumn Header="Tên nhân viên" Width="Auto" DisplayMemberBinding="{Binding TENNV}"></GridViewColumn>
                                             <GridViewColumn Header="Giới tính" Width="Auto" DisplayMemberBinding="{Binding GIOITINH}"></GridViewColumn>
-                                            <GridViewColumn Header="Ngày sinh" Width="Auto" DisplayMemberBinding="{Binding NGSINH}"></GridViewColumn>
+                                            <GridViewColumn Header="Ngày sinh" Width="Auto" DisplayMemberBinding="{Binding NGSINH, StringFormat=dd/MM/yyyy}"></GridViewColumn>
                                             <GridViewColumn Header="Địa chỉ" Width="Auto" DisplayMemberBinding="{Binding DIACHI}"></GridViewColumn>
                                             <GridViewColumn Header="SDT" Width="Auto" DisplayMemberBinding="{Binding SDT}"></GridViewColumn>
                                             <GridViewColumn Header="Email" Width="Auto" DisplayMemberBinding="{Binding EMAIL}"></GridViewColumn>
                                             <GridViewColumn Header="Vị trí làm việc" Width="Auto" DisplayMemberBinding="{Binding VITRILAMVIEC}"></GridViewColumn>
-                                            <GridViewColumn Header="Lương" DisplayMemberBinding="{Binding LUONG}"></GridViewColumn>
-                                            <GridViewColumn Header="Ngày vào làm" DisplayMemberBinding="{Binding NGVL}"></GridViewColumn>
+                                            <GridViewColumn Header="Lương" DisplayMemberBinding="{Binding LUONG, StringFormat={}{0:N0} VND}"></GridViewColumn>
+                                            <GridViewColumn Header="Ngày vào làm" DisplayMemberBinding="{Binding NGVL, StringFormat=dd/MM/yyyy}"></GridViewColumn>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
@@ -290,6 +296,7 @@
                                 </Button>
 
                                 <Button
+                                    Command="{Binding CancelCommand}"
                                     Background="LightCoral"
                                     Foreground="Black"
                                     Margin="30"
@@ -297,7 +304,7 @@
                                     Width="100"
                                     Height="40"
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                    Content="_Hủy" Click="CancelButton_Staff">
+                                    Content="_Hủy" >
                                 </Button>
 
                                 <Button
@@ -345,9 +352,14 @@
                                 <ListView ItemsSource="{Binding ListDV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                     <ListView.View>
                                         <GridView>
+                                            <GridView.ColumnHeaderContainerStyle>
+                                                <Style>
+                                                    <Setter Property="Control.Padding" Value="10" />
+                                                </Style>
+                                            </GridView.ColumnHeaderContainerStyle>
                                             <GridViewColumn Header="Mã dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MADV}"></GridViewColumn>
                                             <GridViewColumn Header="Tên dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
-                                            <GridViewColumn Header="Đơn giá" Width="Auto" DisplayMemberBinding="{Binding DONGIA}"></GridViewColumn>
+                                            <GridViewColumn Header="Đơn giá" Width="Auto" DisplayMemberBinding="{Binding DONGIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
@@ -382,6 +394,7 @@
                                 </Button>
 
                                 <Button
+                                    Command="{Binding CancelCommand}"
                                     Background="LightCoral"
                                     Foreground="Black"
                                     Margin="30"
@@ -438,6 +451,11 @@
                                 <ListView ItemsSource="{Binding ListPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                     <ListView.View>
                                         <GridView>
+                                            <GridView.ColumnHeaderContainerStyle>
+                                                <Style>
+                                                    <Setter Property="Control.Padding" Value="10" />
+                                                </Style>
+                                            </GridView.ColumnHeaderContainerStyle>
                                             <GridViewColumn Header="Số phòng" Width="Auto" DisplayMemberBinding="{Binding SOPHONG}"></GridViewColumn>
                                             <GridViewColumn Header="Mã loại" Width="Auto" DisplayMemberBinding="{Binding MALOAI}"></GridViewColumn>
                                             <GridViewColumn Header="Tầng" Width="Auto" DisplayMemberBinding="{Binding TANG}"></GridViewColumn>
@@ -498,6 +516,11 @@
                                 <ListView ItemsSource="{Binding ListPDP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                     <ListView.View>
                                         <GridView>
+                                            <GridView.ColumnHeaderContainerStyle>
+                                                <Style>
+                                                    <Setter Property="Control.Padding" Value="10" />
+                                                </Style>
+                                            </GridView.ColumnHeaderContainerStyle>
                                             <GridViewColumn Header="Mã phiếu đặt phòng" Width="Auto" DisplayMemberBinding="{Binding MAPDP}"></GridViewColumn>
                                             <GridViewColumn Header="Mã khách hàng" Width="Auto" DisplayMemberBinding="{Binding MAKH}"></GridViewColumn>
                                             <GridViewColumn Header="Mã nhân viên" Width="Auto" DisplayMemberBinding="{Binding MANV}"></GridViewColumn>
