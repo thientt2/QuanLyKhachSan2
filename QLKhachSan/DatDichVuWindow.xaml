@@ -90,7 +90,7 @@
 
                 <Grid Grid.Row="2">
                     <StackPanel>
-                        <TextBlock Margin="30,10,30,0" Text="Mã dịch  vụ:" FontSize="15"></TextBlock>
+                        <TextBlock Margin="30,10,30,0" Text="Mã dịch vụ:" FontSize="15"></TextBlock>
                         <TextBox Text="{Binding MADV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                     </StackPanel>
                 </Grid>
@@ -106,7 +106,7 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button
                                 Command="{Binding AddCommand}"
-                                Background="Green"
+                                Background="LawnGreen"
                                 Foreground="Black"
                                 Margin="20"
                                 FontSize="20"
@@ -114,7 +114,7 @@
                                 Width="120"
                                 Height="50"
                                 ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                Content="_Đặt">
+                                Content="_Thêm">
                         </Button>
 
                         <Button
@@ -135,8 +135,8 @@
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <materialDesign:Card Grid.Row="0" Margin="30">
@@ -161,8 +161,8 @@
                 <Grid Grid.Row="1">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button
-                                Command="{Binding CancelleCommand}"
-                                Background="Red"
+                                Command="{Binding DatDichVuCommand}"
+                                Background="Green"
                                 Foreground="Black"
                                 Margin="30"
                                 FontSize="20"
@@ -170,7 +170,20 @@
                                 Width="120"
                                 Height="50"
                                 ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                Content="_Xóa">
+                                Content="_Đặt">
+                        </Button>
+
+                        <Button
+                            Command="{Binding DeleteCommand}"
+                            Background="Red"
+                            Foreground="Black"
+                            Margin="30"
+                            FontSize="20"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Width="120"
+                            Height="50"
+                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                            Content="_Xóa">
                         </Button>
                     </StackPanel>
                 </Grid>
