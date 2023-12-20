@@ -190,7 +190,7 @@
                                     Width="100"
                                     Height="40"
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                    Content="_Hủy" Click="CancelButton_Client">
+                                    Content="_Hủy">
                                 </Button>
 
                                 <Button
@@ -433,7 +433,7 @@
                                     Width="100"
                                     Height="40"
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                    Content="_Hủy" Click="CancelButton_Service">
+                                    Content="_Hủy">
                                 </Button>
 
                                 <Button

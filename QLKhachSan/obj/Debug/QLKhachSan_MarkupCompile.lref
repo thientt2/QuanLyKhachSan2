@@ -1,4 +1,5 @@
 ﻿
+<<<<<<< HEAD
 FC:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\App.xaml;;
 FC:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\DatDichVuWindow.xaml;;
 FC:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\DatPhongWindow.xaml;;
@@ -6,4 +7,13 @@ FC:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\LoginWind
 FC:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\MainWindow.xaml;;
 FC:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\ResourceXAML\MainResource.xaml;;
 FC:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\UserControlKS\ControlBarUC.xaml;;
+=======
+FC:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\App.xaml;;
+FC:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\DatDichVuWindow.xaml;;
+FC:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\DatPhongWindow.xaml;;
+FC:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\LoginWindow.xaml;;
+FC:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\MainWindow.xaml;;
+FC:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\ResourceXAML\MainResource.xaml;;
+FC:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\UserControlKS\ControlBarUC.xaml;;
+>>>>>>> ced346e732c03c3b0c26172bb5d118f885d439bf
 

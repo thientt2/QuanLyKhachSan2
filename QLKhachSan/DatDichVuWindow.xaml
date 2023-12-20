@@ -89,8 +89,13 @@
 
                 <Grid Grid.Row="1">
                     <StackPanel>
+<<<<<<< HEAD
                         <TextBlock Margin="30,10,30,0" Text="Mã phiếu dịch vụ:" FontSize="15"></TextBlock>
                         <TextBox Text="{Binding MAPDV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+=======
+                        <TextBlock Margin="30,10,30,0" Text="Mã dịch vụ:" FontSize="15"></TextBlock>
+                        <TextBox Text="{Binding MADV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+>>>>>>> ced346e732c03c3b0c26172bb5d118f885d439bf
                     </StackPanel>
                 </Grid>
 
@@ -138,7 +143,11 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button
                                 Command="{Binding AddCommand}"
+<<<<<<< HEAD
                                 Background="LightGreen"
+=======
+                                Background="LawnGreen"
+>>>>>>> ced346e732c03c3b0c26172bb5d118f885d439bf
                                 Foreground="Black"
                                 Margin="20"
                                 FontSize="20"
@@ -146,7 +155,7 @@
                                 Width="120"
                                 Height="50"
                                 ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                Content="_Đặt">
+                                Content="_Thêm">
                         </Button>
 
                         <Button
@@ -161,10 +170,47 @@
                                 ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                 Content="_Hủy">
                         </Button>
+<<<<<<< HEAD
                         
                         <Button
                                 Command="{Binding DeleteCommand}"
                                 Background="Red"
+=======
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <materialDesign:Card Grid.Row="0" Margin="30">
+                    <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
+                        <ListView ItemsSource="{Binding ListPhieuDichVu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" RenderTransformOrigin="0.5,0.49">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style>
+                                            <Setter Property="Control.Padding" Value="10" />
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
+                                    <GridViewColumn Header="Tên dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
+                                    <GridViewColumn Header="Số lượng" Width="Auto" DisplayMemberBinding="{Binding SLDV}"></GridViewColumn>
+                                    <GridViewColumn Header="Tổng tiền" Width="Auto" DisplayMemberBinding="{Binding DONGIA}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+                </materialDesign:Card>
+
+                <Grid Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button
+                                Command="{Binding DatDichVuCommand}"
+                                Background="Green"
+>>>>>>> ced346e732c03c3b0c26172bb5d118f885d439bf
                                 Foreground="Black"
                                 Margin="30"
                                 FontSize="20"
@@ -172,7 +218,20 @@
                                 Width="120"
                                 Height="50"
                                 ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                Content="_Xóa">
+                                Content="_Đặt">
+                        </Button>
+
+                        <Button
+                            Command="{Binding DeleteCommand}"
+                            Background="Red"
+                            Foreground="Black"
+                            Margin="30"
+                            FontSize="20"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Width="120"
+                            Height="50"
+                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                            Content="_Xóa">
                         </Button>
                     </StackPanel>
                 </Grid>
