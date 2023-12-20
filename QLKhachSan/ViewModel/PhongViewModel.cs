@@ -67,18 +67,14 @@ namespace QLKhachSan.ViewModel
         {
             ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
             TenDV = new List<string>();
-            SoPhong = new List<string>();
             ListDV = new ObservableCollection<DICHVU>(DataProvider.Ins.DB.DICHVUs);
             foreach (var dv in ListDV)
                 TenDV.Add(dv.TENDV);
-            foreach (var p in ListPhong)
-                SoPhong.Add(p.SOPHONG);
             DatDichVuCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 DatDichVuWindow wd = new DatDichVuWindow();
                 var addVM = wd.DataContext as PhieuDatDichVuViewModel;
                 addVM.TTENDV = TenDV;
-                addVM.SSOPHONG = SoPhong;
                 wd.ShowDialog();
             }
             );

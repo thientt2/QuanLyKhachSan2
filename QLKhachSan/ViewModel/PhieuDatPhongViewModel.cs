@@ -151,6 +151,10 @@ namespace QLKhachSan.ViewModel
                 }
                 DataProvider.Ins.DB.SaveChanges();
                 ListPDP.Add(pdp);
+                TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = MANV = SDT = "";
+                NGSINH = null;
+                SOPHONG = null;
+                NGDAT = NGNHAN = null;
                 FrameworkElement window = p as FrameworkElement;
                 var w = window as Window;
                 if (w != null)
@@ -158,10 +162,7 @@ namespace QLKhachSan.ViewModel
                     w.Close();
                 }
 
-                TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = MANV = SDT = "";
-                NGSINH = null;
-                SOPHONG = null;
-                NGDAT = NGNHAN = null;
+
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {

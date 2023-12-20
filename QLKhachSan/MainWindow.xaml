@@ -347,24 +347,55 @@
                             </WrapPanel>
                         </materialDesign:Card>
 
-                        <materialDesign:Card Grid.Row="1" Margin="30">
-                            <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
-                                <ListView ItemsSource="{Binding ListDV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.ColumnHeaderContainerStyle>
-                                                <Style>
-                                                    <Setter Property="Control.Padding" Value="10" />
-                                                </Style>
-                                            </GridView.ColumnHeaderContainerStyle>
-                                            <GridViewColumn Header="Mã dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MADV}"></GridViewColumn>
-                                            <GridViewColumn Header="Tên dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
-                                            <GridViewColumn Header="Đơn giá" Width="Auto" DisplayMemberBinding="{Binding DONGIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </ScrollViewer>
-                        </materialDesign:Card>
+                        <Grid Grid.Row="1" Margin="30">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <materialDesign:Card Grid.Column="1" Margin="0,0,20,0">
+                                    <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
+                                        <ListView ItemsSource="{Binding ListDV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridView.ColumnHeaderContainerStyle>
+                                                        <Style>
+                                                            <Setter Property="Control.Padding" Value="10" />
+                                                        </Style>
+                                                    </GridView.ColumnHeaderContainerStyle>
+                                                    <GridViewColumn Header="Mã dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MADV}"></GridViewColumn>
+                                                    <GridViewColumn Header="Tên dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
+                                                    <GridViewColumn Header="Đơn giá" Width="Auto" DisplayMemberBinding="{Binding DONGIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                    </ScrollViewer>
+                                </materialDesign:Card>
+
+                                <materialDesign:Card Grid.Column="0" Margin="0,0,20,0">
+                                    <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
+                                        <ListView ItemsSource="{Binding ListCTPDV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridView.ColumnHeaderContainerStyle>
+                                                        <Style>
+                                                            <Setter Property="Control.Padding" Value="10" />
+                                                        </Style>
+                                                    </GridView.ColumnHeaderContainerStyle>
+                                                    <GridViewColumn Header="Mã PDV" Width="Auto" DisplayMemberBinding="{Binding MAPDV}"></GridViewColumn>
+                                                    <GridViewColumn Header="Mã CTPDV" Width="Auto" DisplayMemberBinding="{Binding MACTPDV}"></GridViewColumn>
+                                                    <GridViewColumn Header="SLDV" Width="Auto" DisplayMemberBinding="{Binding SLDV, StringFormat={}{0:N0} VND}"></GridViewColumn>
+                                                    <GridViewColumn Header="Giá" Width="Auto" DisplayMemberBinding="{Binding GIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                    </ScrollViewer>
+                                </materialDesign:Card>
+
+                            </Grid>
+                            
+                        </Grid>
 
                         <Grid Grid.Row="2" Margin="0,0,0,30">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -443,6 +474,8 @@
                                 <TextBox Text="{Binding MALOAI,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã loại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                 <TextBox Text="{Binding TANG,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tầng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                 <TextBox Text="{Binding TINHTRANG,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tình trạng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox Text="{Binding MAPDV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tình trạng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                <TextBox Text="{Binding NGAYLAP,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tình trạng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                             </WrapPanel>
                         </materialDesign:Card>
 
@@ -460,6 +493,9 @@
                                             <GridViewColumn Header="Mã loại" Width="Auto" DisplayMemberBinding="{Binding MALOAI}"></GridViewColumn>
                                             <GridViewColumn Header="Tầng" Width="Auto" DisplayMemberBinding="{Binding TANG}"></GridViewColumn>
                                             <GridViewColumn Header="Tình trạng" Width="Auto" DisplayMemberBinding="{Binding TINHTRANG}"></GridViewColumn>
+                                            <GridViewColumn Header="Mã Phiếu DV" Width="Auto" DisplayMemberBinding="{Binding MAPDV}"></GridViewColumn>
+                                            <GridViewColumn Header="Ngày lập phiếu" Width="Auto" DisplayMemberBinding="{Binding NGLAP}"></GridViewColumn>
+                                            <GridViewColumn Header="Tổng tiền" Width="Auto" DisplayMemberBinding="{Binding TONGTIEN}"></GridViewColumn>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
