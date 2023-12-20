@@ -4,28 +4,16 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD
-C:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\
-=======
-C:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\
->>>>>>> ced346e732c03c3b0c26172bb5d118f885d439bf
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\
 QLKhachSan
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
-C:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\App.xaml
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\App.xaml
 61196173836
 8-476851406
 45-1050416582
-235087272
-=======
-C:\Users\truon\source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\App.xaml
-61196173836
-8-476851406
-45-1050416582
-23-173430280
->>>>>>> ced346e732c03c3b0c26172bb5d118f885d439bf
+23-446128744
 DatDichVuWindow.xaml;DatPhongWindow.xaml;LoginWindow.xaml;MainWindow.xaml;ResourceXAML\MainResource.xaml;UserControlKS\ControlBarUC.xaml;
 
 False
