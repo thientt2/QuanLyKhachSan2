@@ -190,6 +190,9 @@
     <Compile Include="UserControlKS\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlKS\RoomUC.xaml.cs">
+      <DependentUpon>RoomUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BasicViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\DatPhongViewModel.cs" />
@@ -201,6 +204,7 @@
     <Compile Include="ViewModel\PhieuDatDichVuViewModel.cs" />
     <Compile Include="ViewModel\PhieuDatPhongViewModel.cs" />
     <Compile Include="ViewModel\PhongViewModel.cs" />
+    <Compile Include="ViewModel\TrangChuViewModel.cs" />
     <Page Include="DatDichVuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlKS\ControlBarUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlKS\RoomUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -296,6 +304,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\LightGreen.png" />
+    <Resource Include="Images\Red.png" />
     <Content Include="Model\Model2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model2.edmx</DependentUpon>

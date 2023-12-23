@@ -10,4 +10,5 @@
     <viewmodel:DatPhongViewModel x:Key="DatPhongVM"></viewmodel:DatPhongViewModel>
     <viewmodel:PhieuDatPhongViewModel x:Key="PhieuDatPhongVM"></viewmodel:PhieuDatPhongViewModel>
     <viewmodel:PhieuDatDichVuViewModel x:Key="PhieuDatDichVuVM"></viewmodel:PhieuDatDichVuViewModel>
+    <viewmodel:TrangChuViewModel x:Key="TrangChuVM"></viewmodel:TrangChuViewModel>
 </ResourceDictionary>

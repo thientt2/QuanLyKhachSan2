@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="QLKhachSan.UserControlKS.RoomUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:QLKhachSan.UserControlKS"
+             mc:Ignorable="d">
+
+
+    <Grid Margin="50">
+        <materialDesign:Card Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+            <materialDesign:Card.Style>
+                <Style TargetType="materialDesign:Card">
+                    <Setter Property="Background" Value="LightGreen"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TINHTRANG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Value="Đang được sử dụng">
+                            <Setter Property="Background" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </materialDesign:Card.Style>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" FontSize="20" Text="{Binding SOPHONG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="16 16 16 4"/>
+                <Separator Grid.Row="1" Style="{StaticResource MaterialDesignDarkSeparator}" />
+                <TextBlock Grid.Row="2" FontSize="20" Text="{Binding MALOAI, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

@@ -22,6 +22,9 @@
         WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource PhieuDatDichVuVM}"
         Height="650" Width="900">
+        <!--<Window.Resources>
+            <:TENDVConverter x:Key="TENDVConverter" />
+        </Window.Resources>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -90,21 +93,48 @@
                 <Grid Grid.Row="3">
                     <StackPanel>
                         <TextBlock Margin="30,10,30,0" Text="Mã phiếu dịch vụ:" FontSize="15"></TextBlock>
-                        <TextBox Text="{Binding MAPDV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                        <TextBox Text="{Binding MAPDV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                     </StackPanel>
                 </Grid>
 
                 <Grid Grid.Row="2">
                     <StackPanel>
                         <TextBlock Margin="30,10,30,0" Text="Mã dịch vụ:" FontSize="15"></TextBlock>
-                        <TextBox Text="{Binding MADV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                        <TextBox Text="{Binding MADV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                     </StackPanel>
                 </Grid>
 
                 <Grid Grid.Row="4">
                     <StackPanel>
                         <TextBlock Margin="30,10,30,0" Text="Số lượng:" FontSize="15"></TextBlock>
-                        <TextBox Text="{Binding SLDV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                        <!--<TextBox Text="{Binding SLDV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />-->
+                        <ComboBox
+                        x:Name="SoLuong"
+                        Margin="30,10,30,10"
+                        HorizontalAlignment="Left" 
+                        Width="245" Height="60" FontSize="20"
+                        SelectedValue="{Binding SLDV}"
+                        ItemsSource="{Binding LISTNUMBER}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        </ComboBox>
+                        <!--</Grid>
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="250"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                               
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Button Width="Auto" Content="+" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Style="{StaticResource MaterialDesignRaisedLightButton}"/>
+                                </Grid>                
+                            </Grid>
+                        </Grid>-->
                     </StackPanel>
                 </Grid>
             </Grid>
@@ -117,7 +147,7 @@
 
                 <materialDesign:Card Grid.Row="0" Margin="30">
                     <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
-                        <ListView ItemsSource="{Binding ListPhieuDichVu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" RenderTransformOrigin="0.5,0.49">
+                        <ListView ItemsSource="{Binding ListCTPDV1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" RenderTransformOrigin="0.5,0.49">
                             <ListView.View>
                                 <GridView>
                                     <GridView.ColumnHeaderContainerStyle>
@@ -125,9 +155,17 @@
                                             <Setter Property="Control.Padding" Value="10" />
                                         </Style>
                                     </GridView.ColumnHeaderContainerStyle>
-                                    <GridViewColumn Header="Tên dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
+                                    <!--<GridViewColumn Header="Tên dịch vụ" Width="Auto">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                --><!-- Sử dụng TextBlock để hiển thị TENDV từ ListDV --><!--
+                                                <TextBlock Text="{Binding TENDV, Converter={StaticResource TENDVConverter}}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>-->
+                                    <GridViewColumn Header="Tên dịch vụ" Width="200" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
                                     <GridViewColumn Header="Số lượng" Width="Auto" DisplayMemberBinding="{Binding SLDV}"></GridViewColumn>
-                                    <GridViewColumn Header="Tổng tiền" Width="Auto" DisplayMemberBinding="{Binding GIA}"></GridViewColumn>
+                                    <GridViewColumn Header="Tổng tiền" Width="150" DisplayMemberBinding="{Binding GIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -174,6 +212,8 @@
                             ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                             Content="_Xóa">
                         </Button>
+                        
+
                     </StackPanel>
                 </Grid>
             </Grid>

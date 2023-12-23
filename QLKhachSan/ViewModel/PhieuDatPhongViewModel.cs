@@ -85,7 +85,7 @@ namespace QLKhachSan.ViewModel
         public ICommand AddCommand { get; set; }
         public ICommand ShowCommand { get; set; }
         public ICommand ShowCommand1 { get; set; }
-        public ICommand CancelCommand { get; set; }
+        public ICommand CancelCommand { get; set; } 
 
         public PhieuDatPhongViewModel()
         {
@@ -169,9 +169,9 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = MANV = SDT = "";
+                TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MANV = "";
+                MAKH = SDT = SOPHONG = null;
                 NGSINH = null;
-                SOPHONG = null;
                 NGDAT = NGNHAN = null;
             });
         }
