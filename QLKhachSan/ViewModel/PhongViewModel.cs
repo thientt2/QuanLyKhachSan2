@@ -163,7 +163,7 @@ namespace QLKhachSan.ViewModel
                     DataProvider.Ins.DB.LOAIPHONGs.Remove(SelectedItem);
                     DataProvider.Ins.DB.SaveChanges();
                     LoaiPhong.Remove(SelectedItem);
-                    MessageBox.Show("Xóa dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Xóa loại phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             });
         }

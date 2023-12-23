@@ -1,4 +1,5 @@
 ﻿using QLKhachSan.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -115,9 +116,6 @@ namespace QLKhachSan.ViewModel
         private decimal? _DONGIA;
         public decimal? DONGIA { get { return _DONGIA; } set { _DONGIA = value; OnPropertyChanged(); } }
 
-        //Phiếu dịch vụ
-        private ObservableCollection<PHIEUDICHVU> _ListPDV;
-        public ObservableCollection<PHIEUDICHVU> ListPDV { get { return _ListPDV; } set { _ListPDV = value; OnPropertyChanged(); } }
 
         //Phòng
         private ObservableCollection<PHONG> _ListPhong;
@@ -141,11 +139,14 @@ namespace QLKhachSan.ViewModel
         private decimal? _GIA;
         public decimal? GIA { get { return _GIA; } set { _GIA = value; OnPropertyChanged(); } }
 
+
         //Phiếu dịch vụ
-        private ObservableCollection<PHIEUDICHVU> _ListPHIEUDICHVU;
-        public ObservableCollection<PHIEUDICHVU> ListPHIEUDICHVU { get { return _ListPHIEUDICHVU; } set { _ListPHIEUDICHVU = value; OnPropertyChanged(); } }
+        private ObservableCollection<PHIEUDICHVU> _ListPDV;
+        public ObservableCollection<PHIEUDICHVU> ListPDV { get { return _ListPDV; } set { _ListPDV = value; OnPropertyChanged(); } }
         private string _MAPDV;
         public string MAPDV { get { return _MAPDV; } set { _MAPDV = value; OnPropertyChanged(); } }
+        private DateTime? _NGLAP;
+        public DateTime? NGLAP { get { return _NGLAP; } set { _NGLAP = value; OnPropertyChanged(); } }
 
         //Chi tiết phiếu đặt phòng
         private ObservableCollection<CTPDP> _ListCTPDP;
@@ -186,12 +187,13 @@ namespace QLKhachSan.ViewModel
             ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
             ListCTPDV = new ObservableCollection<CTPDV>(DataProvider.Ins.DB.CTPDVs);
             ListCTPDP = new ObservableCollection<CTPDP>(DataProvider.Ins.DB.CTPDPs);
-            ListPHIEUDICHVU = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
             SSOPHONG = new List<string>();
             ListNumber = new List<int?>();
             SLDV = 1;
             int same = 0;
             int count = 0;
+            int New = 0;
+            decimal? tongtien = 0;
 
             ShowCommand = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
             {
@@ -212,12 +214,13 @@ namespace QLKhachSan.ViewModel
                     var ctpdp = ListPhong.FirstOrDefault(phong => phong.SOPHONG == selectedRoom)?.CTPDP;
                     MACTPDP = ctpdp.MACTPDP; //?????????
                     MAPDP = ctpdp.MAPDP;
-                    var phieuDichVu = ListPHIEUDICHVU.FirstOrDefault(pdv => pdv.MAPDP == MAPDP);
+                    var phieuDichVu = ListPDV.FirstOrDefault(pdv => pdv.MAPDP == MAPDP);
                     if (phieuDichVu == null)
                     {
                         int maxCode = ListPDV.Max(dv => int.Parse(dv.MAPDV.Substring(2)));
                         string nextCode = $"PH{maxCode + 1:000}";
                         MAPDV = nextCode;
+                        New = 1;
                     }
                     else
                         MAPDV = phieuDichVu.MAPDV.ToString();
@@ -254,7 +257,7 @@ namespace QLKhachSan.ViewModel
                 }
 
                 foreach (var ctpdv in ListCTPDV)
-                {
+                {                 
                     if (ctpdv.MAPDV == MAPDV && ctpdv.MADV == MADV)
                     {
                         var ctpdv3 = DataProvider.Ins.DB.CTPDVs.Where(x => x.MAPDV == MAPDV && x.MADV == MADV).SingleOrDefault();
@@ -264,33 +267,40 @@ namespace QLKhachSan.ViewModel
                         ctpdv3.GIA += sum;
                         DataProvider.Ins.DB.SaveChanges();
                         same = 1;
-                    }             
+                    }
                 }
+                if (New == 1)
+                {
+                    var pdv = new PHIEUDICHVU() { MAPDV = MAPDV, MAPDP = MAPDP, NGLAP = DateTime.Now, TONGTIEN = null };
+                    DataProvider.Ins.DB.PHIEUDICHVUs.Add(pdv);
+                    DataProvider.Ins.DB.SaveChanges();
+                    New = 0;
+                }
+                ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
                 if (same == 0)
                 {
                     var ctpdv4 = new CTPDV() { MAPDV = MAPDV, MADV = MADV, SLDV = SLDV, GIA = sum };
                     DataProvider.Ins.DB.CTPDVs.Add(ctpdv4);
                     DataProvider.Ins.DB.SaveChanges();
-
                 }
-                //ListCTPDV = new ObservableCollection<CTPDV>(DataProvider.Ins.DB.CTPDVs);
-                //ListCTPDV1 = new ObservableCollection<CTPDV1>();
-                //foreach (var ctpdv2 in ListCTPDV)
-                //{
-                //    if (ctpdv2.MAPDV == MAPDV)
-                //        ListCTPDV1.Add(new CTPDV1 { MAPDV = ctpdv2.MAPDV, MADV = ctpdv2.MADV, SLDV = ctpdv2.SLDV, GIA = ctpdv2.GIA, TENDV = null });
-                //}
-                //foreach (var ctpdv1 in ListCTPDV1)
-                //{
-                //    foreach (var dv in ListDV)
-                //    {
-                //        if (dv.MADV == ctpdv1.MADV)
-                //        {
-                //            ctpdv1.TENDV = dv.TENDV;
-                //            break;
-                //        }
-                //    }
-                //}
+                ListCTPDV = new ObservableCollection<CTPDV>(DataProvider.Ins.DB.CTPDVs);
+                foreach (var ctpdv in ListCTPDV)
+                {
+                    if (ctpdv.MAPDV == MAPDV)
+                    {
+                        tongtien += ctpdv.GIA;
+                    }
+                }
+                foreach (var pdv in ListPDV)
+                {
+                    if (pdv.MAPDV == MAPDV)
+                    {
+                        pdv.TONGTIEN = tongtien;
+                        DataProvider.Ins.DB.SaveChanges();
+                    }
+                }
+                tongtien = 0;
+
                 ListCTPDV1.Add(new CTPDV1 { MAPDV = MAPDV, MADV = MADV, SLDV = SLDV, GIA = sum, TENDV = TENDV });
                 MessageBox.Show("Thêm đơn mua dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -330,11 +340,6 @@ namespace QLKhachSan.ViewModel
                     //    }
                     //}
 
-                    foreach (var ctpdv in ListCTPDV1)
-                    {
-                        if (ctpdv.MADV == MADV)
-                            count++;
-                    }
                     if (count == 2)
                     {
                         var ctpdv3 = DataProvider.Ins.DB.CTPDVs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();
@@ -352,6 +357,21 @@ namespace QLKhachSan.ViewModel
                     }
                     ListCTPDV = new ObservableCollection<CTPDV>(DataProvider.Ins.DB.CTPDVs);
                     ListCTPDV1.Remove(SelectedItem);
+                    foreach (var ctpdv in ListCTPDV1)
+                    {
+                        tongtien += ctpdv.GIA;
+                        if (ctpdv.MADV == MADV)
+                            count++;
+                    }
+                    foreach (var pdv in ListPDV)
+                    {
+                        if (pdv.MAPDV == MAPDV)
+                        {
+                            pdv.TONGTIEN = tongtien;
+                            DataProvider.Ins.DB.SaveChanges();
+                        }
+                    }
+                    tongtien = 0;
                     count = 0;
                     MessageBox.Show("Xóa đơn mua dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }

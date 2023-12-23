@@ -11,29 +11,32 @@ using System.Windows.Input;
 
 namespace QLKhachSan.ViewModel
 {
+    public class PDP1 : BasicViewModel
+    {
+        private string _MAPDP;
+        public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
+        private string _MAKH;
+        public string MAKH { get { return _MAKH; } set { _MAKH = value; OnPropertyChanged(); } }
+        private string _MANV;
+        public string MANV { get { return _MANV; } set { _MANV = value; OnPropertyChanged(); } }
+        private DateTime? _NGDAT;
+        public DateTime? NGDAT { get { return _NGDAT; } set { _NGDAT = value; OnPropertyChanged(); } }
+        private DateTime? _NGNHAN;
+        public DateTime? NGNHAN { get { return _NGNHAN; } set { _NGNHAN = value; OnPropertyChanged(); } }
+        private string _TRANGTHAI;
+        public string TRANGTHAI { get { return _TRANGTHAI; } set { _TRANGTHAI = value; OnPropertyChanged(); } }
+        private string _MAPDV;
+        public string MAPDV { get { return _MAPDV; } set { _MAPDV = value; OnPropertyChanged(); } }
+        private DateTime? _NGLAP;
+        public DateTime? NGLAP { get { return _NGLAP; } set { _NGLAP = value; OnPropertyChanged(); } }
+        private decimal? _TONGTIEN;
+        public decimal? TONGTIEN { get { return _TONGTIEN; } set { _TONGTIEN = value; OnPropertyChanged(); } }
+    }
+
     public class DatPhongViewModel : BasicViewModel
     {
-        public class PDP1 : BasicViewModel
-        {
-            private string _MAPDP;
-            public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
-            private string _MAKH;
-            public string MAKH { get { return _MAKH; } set { _MAKH = value; OnPropertyChanged(); } }
-            private string _MANV;
-            public string MANV { get { return _MANV; } set { _MANV = value; OnPropertyChanged(); } }
-            private DateTime? _NGDAT;
-            public DateTime? NGDAT { get { return _NGDAT; } set { _NGDAT = value; OnPropertyChanged(); } }
-            private DateTime? _NGNHAN;
-            public DateTime? NGNHAN { get { return _NGNHAN; } set { _NGNHAN = value; OnPropertyChanged(); } }
-            private string _TRANGTHAI;
-            public string TRANGTHAI { get { return _TRANGTHAI; } set { _TRANGTHAI = value; OnPropertyChanged(); } }
-            private string _MAPDV;
-            public string MAPDV { get { return _MAPDV; } set { _MAPDV = value; OnPropertyChanged(); } }
-            private DateTime? _NGLAP;
-            public DateTime? NGLAP { get { return _NGLAP; } set { _NGLAP = value; OnPropertyChanged(); } }
-            private decimal? _TONGTIEN;
-            public decimal? TONGTIEN { get { return _TONGTIEN; } set { _TONGTIEN = value; OnPropertyChanged(); } }
-        }
+        private ObservableCollection<PDP1> _PDP1;
+        public ObservableCollection<PDP1> PDP1 { get { return _PDP1; } set { _PDP1 = value; OnPropertyChanged(); } }
         //Khách hàng
         private List<string> _TTENKH;
         public List<string> TTENKH { get { return _TTENKH; } set { _TTENKH = value; OnPropertyChanged(); } }
@@ -64,6 +67,7 @@ namespace QLKhachSan.ViewModel
         public DateTime? NGLAP { get { return _NGLAP; } set { _NGLAP = value; OnPropertyChanged(); } }
         private decimal? _TONGTIEN;
         public decimal? TONGTIEN { get { return _TONGTIEN; } set { _TONGTIEN = value; OnPropertyChanged(); } }
+
         //Chi tiết phiếu dịch vụ
         private ObservableCollection<CTPDV> _ListCTPDV;
         public ObservableCollection<CTPDV> ListCTPDV { get { return _ListCTPDV; } set { _ListCTPDV = value; OnPropertyChanged(); } }
@@ -72,8 +76,11 @@ namespace QLKhachSan.ViewModel
         private decimal? _GIA;
         public decimal? GIA { get { return _GIA; } set { _GIA = value; OnPropertyChanged(); } }
 
-        private PHIEUDATPHONG _SelectedItem;
-        public PHIEUDATPHONG SelectedItem
+        private string _TRANGTHAI;
+        public string TRANGTHAI { get { return _TRANGTHAI; } set { _TRANGTHAI = value; OnPropertyChanged(); } }
+
+        private PDP1 _SelectedItem;
+        public PDP1 SelectedItem
         {
             get
             {
@@ -90,6 +97,11 @@ namespace QLKhachSan.ViewModel
                     MANV = SelectedItem.MANV;
                     NGDAT = SelectedItem.NGDAT;
                     NGNHAN = SelectedItem.NGNHAN;
+                    TRANGTHAI = SelectedItem.TRANGTHAI;
+                    MAPDV = SelectedItem.MAPDV;
+                    NGLAP = SelectedItem.NGLAP;
+                    TONGTIEN = SelectedItem.TONGTIEN;
+
                 }
             }
         }
@@ -108,9 +120,16 @@ namespace QLKhachSan.ViewModel
         public DateTime? NGNHAN { get { return _NGNHAN; } set { _NGNHAN = value; OnPropertyChanged(); } }
 
         public ICommand DatPhongCommand { get; set; }
+        public ICommand NhanPhongCommand { get; set; }
+        public ICommand EditCommand { get; set; }
+        public ICommand TraPhongCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
+
 
         public DatPhongViewModel()
         {
+            PDP1 = new ObservableCollection<PDP1>();
+            ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
             ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
             //Khách hàng
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
@@ -124,6 +143,31 @@ namespace QLKhachSan.ViewModel
             MaLoai.Add("Premium");
             MaLoai.Add("Deluxe");
             MaLoai.Add("La Opera");
+            //Màn hình chính
+            foreach (var pdp in ListPDP)
+            {
+                PDP1.Add(new PDP1 { MAPDP = pdp.MAPDP, MAKH = pdp.MAKH, MANV = pdp.MANV, NGDAT = pdp.NGDAT, NGNHAN = pdp.NGNHAN, TRANGTHAI = "Đợi nhận phòng", MAPDV = null, NGLAP = null, TONGTIEN = null });
+            }
+            foreach (var pdp1 in PDP1)
+            {
+                foreach (var pdv in ListPDV)
+                {
+                    if (pdv.MAPDP == pdp1.MAPDP)
+                    {
+                        pdp1.MAPDV = pdv.MAPDV;
+                        pdp1.NGLAP = pdv.NGLAP;
+                        pdp1.TONGTIEN = pdv.TONGTIEN;
+                        break;
+                    }
+                }
+            }
+            foreach (var pdp1 in PDP1)
+            {
+                if (pdp1.NGNHAN < DateTime.Now)
+                {
+                    pdp1.TRANGTHAI = "Quá hạn nhận phòng";
+                }
+            }
             DatPhongCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 DatPhongWindow wd = new DatPhongWindow();
@@ -134,7 +178,89 @@ namespace QLKhachSan.ViewModel
                 ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
             }
             );
+            NhanPhongCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                foreach (var pdp1 in PDP1)
+                {
+                    if (pdp1.MAPDP == SelectedItem.MAPDP)
+                    {
+                        if (SelectedItem.TRANGTHAI == "Đợi nhận phòng")
+                            pdp1.TRANGTHAI = "Đã nhận phòng";
+                    }
+                }                   
+            }
+            );
+            TraPhongCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                foreach (var pdp1 in PDP1)
+                {
+                    if (pdp1.MAPDP == SelectedItem.MAPDP)
+                    {
+                        if (SelectedItem.TRANGTHAI == "Đã nhận phòng")
+                            pdp1.TRANGTHAI = "Không còn sử dụng";
+                    }
+                }
+            }
+            );
+            EditCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                //var dichvu = DataProvider.Ins.DB.DICHVUs.Where(x => x.MADV == SelectedItem.MADV).SingleOrDefault();
+                //dichvu.TENDV = TENDV;
+                //dichvu.DONGIA = DONGIA;
+                //DataProvider.Ins.DB.SaveChanges();
 
+                //SelectedItem.MADV = MADV;
+                MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                return SelectedItem != null;
+            }, (p) =>
+            {
+                MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                if (result == MessageBoxResult.OK)
+                {
+
+
+                    //if (count == 2)
+                    //{
+                    //    var ctpdv3 = DataProvider.Ins.DB.CTPDVs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();
+                    //    ctpdv3.MAPDV = SelectedItem.MAPDV;
+                    //    ctpdv3.MADV = SelectedItem.MADV;
+                    //    ctpdv3.SLDV -= SelectedItem.SLDV;
+                    //    ctpdv3.GIA -= SelectedItem.GIA;
+                    //    DataProvider.Ins.DB.SaveChanges();
+                    //}
+                    //else
+                    //{
+                    //    var ctpdv4 = DataProvider.Ins.DB.CTPDVs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();
+                    //    DataProvider.Ins.DB.CTPDVs.Remove(ctpdv4);
+                    //    DataProvider.Ins.DB.SaveChanges();
+                    //}
+                    //ListCTPDV = new ObservableCollection<CTPDV>(DataProvider.Ins.DB.CTPDVs);
+                    //ListCTPDV1.Remove(SelectedItem);
+                    //foreach (var ctpdv in ListCTPDV1)
+                    //{
+                    //    tongtien += ctpdv.GIA;
+                    //    if (ctpdv.MADV == MADV)
+                    //        count++;
+                    //}
+                    //foreach (var pdv in ListPDV)
+                    //{
+                    //    if (pdv.MAPDV == MAPDV)
+                    //    {
+                    //        pdv.TONGTIEN = tongtien;
+                    //        DataProvider.Ins.DB.SaveChanges();
+                    //    }
+                    //}
+                    //tongtien = 0;
+                    //count = 0;
+                    MessageBox.Show("Xóa phiếu đặt phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            });
         }
     }
 }

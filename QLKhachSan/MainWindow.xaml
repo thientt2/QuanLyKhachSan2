@@ -556,9 +556,9 @@
                                                             <Setter Property="Control.Padding" Value="10" />
                                                         </Style>
                                                     </GridView.ColumnHeaderContainerStyle>
-                                                    <GridViewColumn Header="Mã PDV" Width="Auto" DisplayMemberBinding="{Binding MAPDV}"></GridViewColumn>
-                                                    <GridViewColumn Header="Mã CTPDV" Width="Auto" DisplayMemberBinding="{Binding MACTPDV}"></GridViewColumn>
-                                                    <GridViewColumn Header="SLDV" Width="Auto" DisplayMemberBinding="{Binding SLDV, StringFormat={}{0:N0} VND}"></GridViewColumn>
+                                                    <GridViewColumn Header="Mã phiếu dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MAPDV}"></GridViewColumn>
+                                                    <GridViewColumn Header="Mã dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MADV}"></GridViewColumn>
+                                                    <GridViewColumn Header="Số lượng dịch vụ" Width="Auto" DisplayMemberBinding="{Binding SLDV}"></GridViewColumn>
                                                     <GridViewColumn Header="Giá" Width="Auto" DisplayMemberBinding="{Binding GIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
                                                 </GridView>
                                             </ListView.View>
@@ -814,7 +814,7 @@
 
                         <materialDesign:Card Grid.Row="0" Margin="30">
                             <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
-                                <ListView ItemsSource="{Binding ListPDP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                                <ListView ItemsSource="{Binding PDP1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.ColumnHeaderContainerStyle>
