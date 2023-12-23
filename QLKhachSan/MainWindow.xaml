@@ -742,45 +742,46 @@
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button
                                     Command="{Binding DatDichVuCommand}"
-                                    Background="Green"
+                                    Background="Orange"
                                     Foreground="Black"
                                     Margin="30"
                                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                    Width="120"
+                                    Width="110"
                                     Height="40"
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                     Content="_Đặt dịch vụ">
                                     </Button>
-
+                                    
                                     <Button
                                     Command="{Binding TraPhongCommand}"
-                                    Background="Red"
+                                    Background="LightBlue"
                                     Foreground="Black"
                                     Margin="30"
                                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                    Width="120"
+                                    Width="110"
                                     Height="40"
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                    Content="_Trả phòng">
+                                    Content="_In hóa đơn">
                                     </Button>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <Grid Grid.Row="2" Margin="0,0,0,30">
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button
-                                    Command="{Binding AddCommand}"
+                                    
+                                    <Button
+                                    Command="{Binding TraPhongCommand}"
                                     Background="Green"
                                     Foreground="Black"
                                     Margin="30"
                                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                    Width="100"
+                                    Width="110"
                                     Height="40"
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                    Content="_Thêm">
-                                        </Button>
+                                    Content="_Thanh toán">
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    
 
-                                        <Button
+                                    <Button
                                     Command="{Binding EditCommand}"
                                     Background="Yellow"
                                     Foreground="Black"
@@ -791,33 +792,22 @@
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                     Content="_Chỉnh sửa">
 
-                                        </Button>
+                                    </Button>
 
-                                        <Button
+                                    <Button
                                     Command="{Binding CancelCommand}"
                                     Background="LightCoral"
                                     Foreground="Black"
-                                    Margin="30"
+                                    Margin="30, 30, 50, 30"
                                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                     Width="100"
                                     Height="40"
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                     Content="_Hủy">
-                                        </Button>
+                                    </Button>
 
-                                        <Button
-                                    Command="{Binding DeleteCommand}"
-                                    Background="Red"
-                                    Foreground="Black"
-                                    Margin="30"
-                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                    Width="100"
-                                    Height="40"
-                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                    Content="_Xóa">
-                                        </Button>
-                                    </StackPanel>
-                                </Grid>
+                                   
+                                </StackPanel>
                             </Grid>
                             
                         </Grid>

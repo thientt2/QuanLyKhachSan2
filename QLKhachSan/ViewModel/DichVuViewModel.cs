@@ -111,6 +111,8 @@ namespace QLKhachSan.ViewModel
                 return SelectedItem != null;
             }, (p) =>
             {
+                TENDV = string.Empty;
+                DONGIA = null;
                 MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
                 if(result == MessageBoxResult.OK)
                 {
@@ -119,6 +121,7 @@ namespace QLKhachSan.ViewModel
                     ListDV.Remove(SelectedItem);
                     MessageBox.Show("Xóa dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+                SelectedItem = null;
             });
         }
     }

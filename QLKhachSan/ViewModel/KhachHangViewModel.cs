@@ -129,7 +129,9 @@ namespace QLKhachSan.ViewModel
             {
                 return SelectedItem != null;
             }, (p) =>
-            {       
+            {
+                TENKH = GIOITINH = SDT = EMAIL = SOCCCD = QUOCTICH = DIACHI = string.Empty;
+                NGSINH = null;
                 MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
                 if (result == MessageBoxResult.OK)
                 {
@@ -138,6 +140,7 @@ namespace QLKhachSan.ViewModel
                     ListKH.Remove(SelectedItem);
                     MessageBox.Show("Xóa khách hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+                SelectedItem = null;
             });
         }
         

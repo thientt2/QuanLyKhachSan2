@@ -81,10 +81,8 @@ namespace QLKhachSan.ViewModel
         public string MACTPDP { get { return _MACTPDP; } set { _MACTPDP = value; OnPropertyChanged(); } }
 
         public ICommand DatDichVuCommand { get; set; }
-        public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand CancelCommand { get; set; }
-        public ICommand DeleteCommand { get; set; }
 
         public PhongViewModel()
         {
@@ -113,18 +111,6 @@ namespace QLKhachSan.ViewModel
                 wd.ShowDialog();
             }
             );
-            AddCommand = new RelayCommand<object>((p) =>
-            {
-                return true;
-            }, (p) =>
-            {
-                var loaiphong = new LOAIPHONG() { MALOAI = MALOAI, SLGIUONG = SLGIUONG, LOAIGIUONG = LOAIGIUONG, GIA = GIA, NGUOITOIDA = NGUOITOIDA, DIENTICH = DIENTICH};
-                DataProvider.Ins.DB.LOAIPHONGs.Add(loaiphong);
-                DataProvider.Ins.DB.SaveChanges();
-
-                LoaiPhong.Add(loaiphong);
-                MessageBox.Show("Thêm loại phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            });
             EditCommand = new RelayCommand<object>((p) =>
             {
                 return true;
@@ -151,20 +137,6 @@ namespace QLKhachSan.ViewModel
                 GIA = null;
                 DIENTICH = null;
                 SelectedItem = null;
-            });
-            DeleteCommand = new RelayCommand<object>((p) =>
-            {
-                return SelectedItem != null;
-            }, (p) =>
-            {
-                MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-                if (result == MessageBoxResult.OK)
-                {
-                    DataProvider.Ins.DB.LOAIPHONGs.Remove(SelectedItem);
-                    DataProvider.Ins.DB.SaveChanges();
-                    LoaiPhong.Remove(SelectedItem);
-                    MessageBox.Show("Xóa loại phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
             });
         }
     }

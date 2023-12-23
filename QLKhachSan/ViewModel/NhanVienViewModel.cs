@@ -79,11 +79,6 @@ namespace QLKhachSan.ViewModel
             ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
             AddCommand = new RelayCommand<object>((p) =>
             {
-                //if (string.IsNullOrEmpty(MANV))
-                //    return false;
-                //var TenNVlist = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV);
-                //if (TenNVlist == null || TenNVlist.Count() != 0)
-                //    return false;
                 return true;
             }, (p) =>
             {
@@ -136,6 +131,9 @@ namespace QLKhachSan.ViewModel
                 return SelectedItem != null;
             }, (p) =>
             {
+                MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
+                LUONG = null;
+                NGVL = NGSINH = null;
                 MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
                 if (result == MessageBoxResult.OK)
                 {
@@ -144,6 +142,7 @@ namespace QLKhachSan.ViewModel
                     ListNV.Remove(SelectedItem);
                     MessageBox.Show("Xóa nhân viên thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+                SelectedItem = null;
             });
         }
     }
