@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\QLKhachSan",
+    "\\QLKhachSan\\ViewModel"
   ],
-  "SelectedNode": "\\QuanLyKhachSan.sln",
+  "SelectedNode": "\\QLKhachSan\\ViewModel\\NhanVienViewModel.cs",
   "PreviewInSolutionExplorer": false
 }

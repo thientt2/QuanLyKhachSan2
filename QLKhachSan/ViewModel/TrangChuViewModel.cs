@@ -35,7 +35,7 @@ namespace QLKhachSan.ViewModel
         public ICommand SortAllCommand { get; set; }
         public ICommand SortUsingCommand { get; set; }
         public ICommand SortEmptyCommand { get; set; }
-        public ICommand SortBooked { get; set; }
+        public ICommand SortBookedCommand { get; set; }
 
         public TrangChuViewModel()
         {
@@ -225,7 +225,7 @@ namespace QLKhachSan.ViewModel
                 }
             });
 
-            SortEmptyCommand = new RelayCommand<Button>((p) => { return true; }, (p) =>
+            SortBookedCommand = new RelayCommand<Button>((p) => { return true; }, (p) =>
             {
                 MyStackPanel1.Clear();
                 MyStackPanel2.Clear();
