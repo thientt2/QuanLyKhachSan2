@@ -306,6 +306,7 @@
   <ItemGroup>
     <Resource Include="Images\LightGreen.png" />
     <Resource Include="Images\Red.png" />
+    <Resource Include="Images\Yellow.jpg" />
     <Content Include="Model\Model2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model2.edmx</DependentUpon>

@@ -166,3 +166,5 @@ C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatDic
 C:\Users\Thien\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\DatPhongWindow.baml
 C:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\UserControlKS\RoomUC.g.cs
 C:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\UserControlKS\RoomUC.baml
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\UserControlKS\RoomUC.g.cs
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\UserControlKS\RoomUC.baml

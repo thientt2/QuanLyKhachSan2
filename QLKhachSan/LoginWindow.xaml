@@ -113,9 +113,7 @@
                 </Grid>
                 <Grid Grid.Row="1">
                     <Image Source="/Images/LoginImage.jpg" Stretch="Fill"/>
-                    
                 </Grid>
-                
             </Grid>
         </Grid>
     </Grid>

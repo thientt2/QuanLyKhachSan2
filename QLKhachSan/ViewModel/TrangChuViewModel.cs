@@ -35,6 +35,7 @@ namespace QLKhachSan.ViewModel
         public ICommand SortAllCommand { get; set; }
         public ICommand SortUsingCommand { get; set; }
         public ICommand SortEmptyCommand { get; set; }
+        public ICommand SortBooked { get; set; }
 
         public TrangChuViewModel()
         {
@@ -190,6 +191,52 @@ namespace QLKhachSan.ViewModel
                 foreach (var phong in ListPhong)
                 {
                     if (phong.TINHTRANG == "Trống")
+                    {
+                        int? floorNumber = phong.TANG;
+                        RoomUC room = new RoomUC { DataContext = phong };
+
+                        switch (floorNumber)
+                        {
+                            case 1:
+                                MyStackPanel1.Add(room);
+                                break;
+                            case 2:
+                                MyStackPanel2.Add(room);
+                                break;
+                            case 3:
+                                MyStackPanel3.Add(room);
+                                break;
+                            case 4:
+                                MyStackPanel4.Add(room);
+                                break;
+                            case 5:
+                                MyStackPanel5.Add(room);
+                                break;
+                            case 6:
+                                MyStackPanel6.Add(room);
+                                break;
+                            case 7:
+                                MyStackPanel7.Add(room);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            });
+
+            SortEmptyCommand = new RelayCommand<Button>((p) => { return true; }, (p) =>
+            {
+                MyStackPanel1.Clear();
+                MyStackPanel2.Clear();
+                MyStackPanel3.Clear();
+                MyStackPanel4.Clear();
+                MyStackPanel5.Clear();
+                MyStackPanel6.Clear();
+                MyStackPanel7.Clear();
+                foreach (var phong in ListPhong)
+                {
+                    if (phong.TINHTRANG == "Đã đặt")
                     {
                         int? floorNumber = phong.TANG;
                         RoomUC room = new RoomUC { DataContext = phong };
