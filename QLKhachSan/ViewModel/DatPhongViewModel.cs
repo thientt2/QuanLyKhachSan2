@@ -191,10 +191,14 @@ namespace QLKhachSan.ViewModel
             foreach (var pdp1 in PDP1)
             {
                 if (pdp1.NGNHAN < DateTime.Now)
-                {
                     pdp1.TRANGTHAI = "Quá hạn nhận phòng";
-                }
+                if (pdp1.NGTRA != null)
+                {
+                    pdp1.TRANGTHAI = "Không còn sử dụng";
+
+                }    
             }
+
             //có ngày trả => Không còn sử dụng
             DatPhongCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {

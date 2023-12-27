@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace QLKhachSan.ViewModel
 {
@@ -19,6 +20,8 @@ namespace QLKhachSan.ViewModel
         public string UserName { get { return _username; } set { _username = value; OnPropertyChanged(); } }
         private string _password;
         public string Password { get { return _password; } set { _password = value; OnPropertyChanged(); } }
+        private string _TEN;
+        public string TEN { get { return _TEN; } set { _TEN = value; OnPropertyChanged(); } }
 
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
@@ -36,11 +39,12 @@ namespace QLKhachSan.ViewModel
                 return;
             
             var accCount = DataProvider.Ins.DB.DANGNHAPs.Where(x => x.TAIKHOAN == UserName && x.MATKHAU == Password).Count();
+            var loggedInUser = DataProvider.Ins.DB.DANGNHAPs.FirstOrDefault(x => x.TAIKHOAN == UserName && x.MATKHAU == Password);
 
             if (accCount > 0)
             {
                 IsLogin = true;
-
+                TEN = loggedInUser.TEN;
                 p.Close();
             }
             else

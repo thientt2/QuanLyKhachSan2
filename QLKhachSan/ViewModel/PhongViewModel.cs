@@ -225,54 +225,27 @@ namespace QLKhachSan.ViewModel
                 addVM.MAPDP1 = MAPDP;
                 addVM.Init();
                 wd.ShowDialog();
-
-
-                //Kiểm tra xem đã tồn tại trong bảng hóa đơn chưa
-                //foreach (var hd1 in HoaDon)
-                //{
-                //    if (hd1.MAPDP == MAPDP)
-                //        tontaihoadon = 1;
-                //}
-                //if(tontaihoadon == 0)
-                //{
-                //    int maxCode = HoaDon.Max(hd => int.Parse(hd.MAHD.Substring(2)));
-                //    string nextCode = $"HD{maxCode + 1:000}";
-                //    MAHD = nextCode;
-                //    foreach (var pdp in ListPDP)
-                //    {
-                //        if (pdp.MAPDP == MAPDP)
-                //        {
-                //            MANV = pdp.MANV;
-                //            NGNHAN = pdp.NGNHAN;
-                //        }
-                //    }
-                //    TimeSpan? KhoangCach = DateTime.Now - NGNHAN;
-                //    if (KhoangCach.HasValue)
-                //        SoNgay = KhoangCach.Value.Days;
-                //    foreach (var loai in LoaiPhong)
-                //    {
-                //        if (loai.MALOAI == SelectedItem1.MALOAI)
-                //            GIA = loai.GIA;
-                //    }
-                //    foreach (var pdv in ListPDV)
-                //    {
-                //        if (pdv.MAPDP == MAPDP)
-                //            TONGTIEN = pdv.TONGTIEN + GIA * SoNgay;
-                //    }
-                //    HoaDon.Add(new HOADON { MAHD = MAHD, MANV = MANV, MAPDP = MAPDP, NGLAPHD = DateTime.Now, TONGTIEN = TONGTIEN });
-
-                //}
             }
             );
             ThanhToanCommand = new RelayCommand<object>((p) => 
-            { 
+            {
+                if (SelectedItem1 == null)
+                    return false;
+                if (SelectedItem1.TINHTRANG != "Đang được sử dụng")
+                    return false;
                 return true; 
             }, (p) =>
             {
                 var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.SOPHONG == SelectedItem1.SOPHONG).SingleOrDefault();
                 phong.TINHTRANG = "Trống";
-                //ctpdp: pdp + ngày trả không còn dùng nữa
-
+                foreach (var ctpdp in ListCTPDP)
+                {
+                    if (ctpdp.MACTPDP == SelectedItem1.MACTPDP && ctpdp.NGTRA == null)
+                    {
+                        NGTRA = DateTime.Now;
+                        break;
+                    }
+                }
                 MessageBox.Show($"Thanh toán phòng {SelectedItem1.SOPHONG} thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             );

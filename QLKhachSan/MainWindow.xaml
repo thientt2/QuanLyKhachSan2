@@ -840,15 +840,24 @@
                                                 <GridViewColumn Header="Mã phiếu đặt phòng" Width="Auto" DisplayMemberBinding="{Binding MAPDP}"></GridViewColumn>
                                                 <GridViewColumn Header="Mã khách hàng" Width="Auto" DisplayMemberBinding="{Binding MAKH}"></GridViewColumn>
                                                 <GridViewColumn Header="Mã nhân viên" Width="Auto" DisplayMemberBinding="{Binding MANV}"></GridViewColumn>
-                                                <GridViewColumn Header="Ngày đặt phòng" Width="Auto" DisplayMemberBinding="{Binding NGDAT}"></GridViewColumn>
-                                                <GridViewColumn Header="Ngày nhận phòng" Width="Auto" DisplayMemberBinding="{Binding NGNHAN}"></GridViewColumn>
+                                                <GridViewColumn Header="Ngày đặt phòng" Width="Auto" DisplayMemberBinding="{Binding NGDAT,StringFormat=dd/MM/yyyy HH:mm:ss}"></GridViewColumn>
+                                                <GridViewColumn Header="Ngày nhận phòng" Width="Auto" DisplayMemberBinding="{Binding NGNHAN,StringFormat=dd/MM/yyyy HH:mm:ss}"></GridViewColumn>
                                                 <GridViewColumn Header="Trạng thái" Width="Auto" DisplayMemberBinding="{Binding TRANGTHAI}"></GridViewColumn>
                                                 <GridViewColumn Header="Mã phiếu dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MAPDV}"></GridViewColumn>
                                                 <GridViewColumn Header="Mã chi tiết đặt phòng" Width="Auto" DisplayMemberBinding="{Binding MACTPDP}"></GridViewColumn>
-                                                <GridViewColumn Header="Ngày trả phòng" Width="Auto" DisplayMemberBinding="{Binding NGTRA}"></GridViewColumn>
-                                                <GridViewColumn Header="Tổng tiền dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TONGTIEN}"></GridViewColumn>
+                                                <GridViewColumn Header="Ngày trả phòng" Width="Auto" DisplayMemberBinding="{Binding NGTRA, StringFormat=dd/MM/yyyy HH:mm:ss}"></GridViewColumn>
                                             </GridView>
                                         </ListView.View>
+                                        <!--<ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem">
+                                                <Style.Triggers>
+                                                     --><!--Sử dụng DataTrigger để kiểm tra giá trị TRANGTHAI và đặt IsEnabled thành false--><!-- 
+                                                    <DataTrigger Binding="{Binding TRANGTHAI}" Value="Không còn sử dụng">
+                                                        <Setter Property="IsEnabled" Value="False"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>-->
                                     </ListView>
                                 </ScrollViewer>
                             </materialDesign:Card>
@@ -928,7 +937,7 @@
             </Grid>
 
             <materialDesign:DrawerHost
-               x:Name="DrawerHost"
+                x:Name="DrawerHost"
                 Panel.ZIndex="1"
                 Grid.Row="0"
                 Grid.RowSpan="2"
@@ -976,11 +985,11 @@
                         </Grid>
 
                         <Grid Grid.Row="1">
-                            <TextBlock Text="Mã nhân viên" Margin="0,0,0,10" HorizontalAlignment="Center" FontSize="30"></TextBlock>
+                            <TextBlock Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="0,0,0,10" HorizontalAlignment="Center" FontSize="30"></TextBlock>
                         </Grid>
 
                         <Grid Grid.Row="2">
-                            <TextBlock Text="Chức vụ" Margin="0,0,0,20" HorizontalAlignment="Center" FontSize="30"></TextBlock>
+                            <TextBlock Text="{Binding VITRILAMVIEC,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="0,0,0,20" HorizontalAlignment="Center" FontSize="20"></TextBlock>
                         </Grid>
 
                         <Grid Grid.Row="3">
@@ -990,39 +999,54 @@
                         <Grid Grid.Row="4">
                             <StackPanel Margin="80,30,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Account" Height="20"/>
-                                <TextBlock Text="Họ và tên" Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                                <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
+                        <Run  Text="Họ và tên:  "></Run>
+                        <Run  Text="{Binding TENNV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Run>
+                                </TextBlock>
                             </StackPanel>
                         </Grid>
 
                         <Grid Grid.Row="5">
                             <StackPanel Margin="80,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="HumanMaleFemale" Height="20"/>
-                                <TextBlock Text="Giới tính" Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                                <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
+                        <Run Text="Giới tính:    " ></Run>
+                        <Run Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></Run>
+                                </TextBlock>
                             </StackPanel>
                         </Grid>
 
                         <Grid Grid.Row="6">
                             <StackPanel Margin="80,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Phone" Height="20"/>
-                                <TextBlock Text="SĐT" Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                                <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
+                        <Run Text="SĐT:           " ></Run>
+                        <Run Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></Run>
+                                </TextBlock>
                             </StackPanel>
                         </Grid>
 
                         <Grid Grid.Row="7">
                             <StackPanel Margin="80,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Email" Height="20"/>
-                                <TextBlock Text="Email" Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                                <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
+                        <Run Text="Email:         "></Run>
+                        <Run Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Run>
+                                </TextBlock>
                             </StackPanel>
                         </Grid>
 
-                        <Grid Grid.Row="8">
+                        <Grid Grid.Row="9">
                             <Separator Margin="40,20,40,0"></Separator>
                         </Grid>
 
-                        <Grid Grid.Row="9">
+                        <Grid Grid.Row="8">
                             <StackPanel Margin="80,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="CalendarToday" Height="20"/>
-                                <TextBlock Text="Ngày sinh" Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                                <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
+                        <Run Text="Ngày sinh: "></Run>
+                        <Run Text="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Run>
+                                </TextBlock>
                             </StackPanel>
                         </Grid>
 
@@ -1034,13 +1058,13 @@
                         </Grid>
 
                         <Button
-                            Panel.ZIndex="2"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Right"
-                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                            CommandParameter="{x:Static Dock.Left}"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                             Style="{StaticResource MaterialDesignIconForegroundButton}">
+                Panel.ZIndex="2"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                CommandParameter="{x:Static Dock.Left}"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                 Style="{StaticResource MaterialDesignIconForegroundButton}">
                             <materialDesign:PackIcon Kind="WindowClose" />
                         </Button>
                     </Grid>
@@ -1049,19 +1073,19 @@
                 </materialDesign:DrawerHost.LeftDrawerContent>
 
                 <Button Content="Open Drawer"
-                    Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                    CommandParameter="{x:Static Dock.Left}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    BorderBrush="Black"
-                    Height="103" Width="238"
-                    Background="Black"
-                    Panel.ZIndex="2">
+        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+        CommandParameter="{x:Static Dock.Left}"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        BorderBrush="Black"
+        Height="103" Width="238"
+        Background="Black"
+        Panel.ZIndex="2">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="AccountCircle" Height="50" Width="60"/>
-                                <TextBlock Text="  Tên chức vụ"  Foreground="White" FontSize="23"  Width="140" VerticalAlignment="Center" ></TextBlock>
+                                <TextBlock Text="{Binding TEN,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Foreground="White" FontSize="23"  Width="140" VerticalAlignment="Center" ></TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </Button.ContentTemplate>
