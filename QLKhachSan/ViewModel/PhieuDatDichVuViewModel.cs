@@ -22,36 +22,6 @@ namespace QLKhachSan.ViewModel
         private decimal? _GIA;
         public decimal? GIA { get { return _GIA; } set { _GIA = value; OnPropertyChanged(); } }
     }
-    //public class CTPDV2
-    //{
-    //    public string MAPDV { get; set; }
-    //    public string TENDV { get; set; }
-    //    public int? SLDV { get; set; }
-    //    public decimal? GIA { get; set; }
-    //}
-    //public class TENDVConverter : IValueConverter
-    //{
-    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        if (value != null)
-    //        {
-    //            // Lấy giá trị MAPDV từ ListCTPDV
-    //            string mapdv = value.ToString();
-
-    //            // Lấy TENDV từ ListDV dựa trên MAPDV
-    //            var tendv = ListDV.FirstOrDefault(dv => dv.MAPDV == mapdv)?.TENDV;
-
-    //            return tendv;
-    //        }
-
-    //        return string.Empty;
-    //    }
-
-    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
 
     public class PhieuDatDichVuViewModel : BasicViewModel
     {
@@ -82,20 +52,6 @@ namespace QLKhachSan.ViewModel
         public List<int?> ListNumber { get { return _ListNumber; } set { _ListNumber = value; OnPropertyChanged(); } }
         private ObservableCollection<CTPDV1> _ListCTPDV1;
         public ObservableCollection<CTPDV1> ListCTPDV1 { get { return _ListCTPDV1; } set { _ListCTPDV1 = value; OnPropertyChanged(); } }
-        //private ObservableCollection<CTPDV2> _ListCTPDV2;
-        //public ObservableCollection<CTPDV2> ListCTPDV2 { get { return _ListCTPDV2; } set { _ListCTPDV2 = value; OnPropertyChanged(); } }
-        //private TENDVConverter _tendvConverter;
-        //public TENDVConverter TENDVConverter
-        //{
-        //    get
-        //    {
-        //        if (_tendvConverter == null)
-        //            _tendvConverter = new TENDVConverter();
-        //        return _tendvConverter;
-        //    }
-        //    set { _tendvConverter = value; }
-        //}
-
         private string _TENDICHVU;
         public string TENDICHVU { get { return _TENDICHVU; } set { _TENDICHVU = value; OnPropertyChanged(); } }
         private int _SOLUONG;
@@ -162,23 +118,6 @@ namespace QLKhachSan.ViewModel
         public ICommand CancelCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
-        //public void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    var tempList = new List<CTPDV1>();
-        //    foreach (var ctpdv1 in ListCTPDV1)
-        //    {
-        //        tempList.Add(new CTPDV1
-        //        {
-        //            MAPDV = ctpdv1.MAPDV,
-        //            MADV = ctpdv1.MADV,
-        //            SLDV = ctpdv1.SLDV,
-        //            GIA = ctpdv1.GIA,
-        //            TENDV = ctpdv1.TENDV
-        //        });
-        //    }
-        //    ListCTPDV1 = new ObservableCollection<CTPDV1>(tempList);
-        //}
-
         public PhieuDatDichVuViewModel()
         {
             string selectedRoom = null;
@@ -206,13 +145,12 @@ namespace QLKhachSan.ViewModel
 
             ShowCommand1 = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
             {
-                //ListCTPDV2 = new ObservableCollection<CTPDV2>();
                 ListCTPDV1 = new ObservableCollection<CTPDV1>();
                 if(SOPHONG != null)
                 {
                     selectedRoom = SOPHONG;
                     var ctpdp = ListPhong.FirstOrDefault(phong => phong.SOPHONG == selectedRoom)?.CTPDP;
-                    MACTPDP = ctpdp.MACTPDP; //?????????
+                    MACTPDP = ctpdp.MACTPDP; 
                     MAPDP = ctpdp.MAPDP;
                     var phieuDichVu = ListPDV.FirstOrDefault(pdv => pdv.MAPDP == MAPDP);
                     if (phieuDichVu == null)
@@ -322,24 +260,6 @@ namespace QLKhachSan.ViewModel
                 MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
                 if (result == MessageBoxResult.OK)
                 {                   
-                    //ListCTPDV1 = new ObservableCollection<CTPDV1>();
-                    //foreach (var ctpdv2 in ListCTPDV)
-                    //{
-                    //    if (ctpdv2.MAPDV == MAPDV)
-                    //        ListCTPDV1.Add(new CTPDV1 { MAPDV = ctpdv2.MAPDV, MADV = ctpdv2.MADV, SLDV = ctpdv2.SLDV, GIA = ctpdv2.GIA, TENDV = null });
-                    //}
-                    //foreach (var ctpdv1 in ListCTPDV1)
-                    //{
-                    //    foreach (var dv in ListDV)
-                    //    {
-                    //        if (dv.MADV == ctpdv1.MADV)
-                    //        {
-                    //            ctpdv1.TENDV = dv.TENDV;
-                    //            break;
-                    //        }
-                    //    }
-                    //}
-
                     if (count == 2)
                     {
                         var ctpdv3 = DataProvider.Ins.DB.CTPDVs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();

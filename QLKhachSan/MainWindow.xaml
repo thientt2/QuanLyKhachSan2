@@ -689,7 +689,7 @@
 
                                     <materialDesign:Card Grid.Column="0" Margin="0,0,20,0">
                                         <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
-                                            <ListView ItemsSource="{Binding ListPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                                            <ListView ItemsSource="{Binding ListPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem1, Mode=TwoWay}">
                                                 <ListView.View>
                                                     <GridView>
                                                         <GridView.ColumnHeaderContainerStyle>
@@ -754,7 +754,7 @@
                                         </Button>
 
                                         <Button
-                                            Command="{Binding TraPhongCommand}"
+                                            Command="{Binding InHoaDonCommand}"
                                             Background="LightBlue"
                                             Foreground="Black"
                                             Margin="30"
@@ -766,7 +766,7 @@
                                         </Button>
 
                                         <Button
-                                            Command="{Binding TraPhongCommand}"
+                                            Command="{Binding ThanhToanCommand}"
                                             Background="Green"
                                             Foreground="Black"
                                             Margin="30"
@@ -840,11 +840,12 @@
                                                 <GridViewColumn Header="Mã phiếu đặt phòng" Width="Auto" DisplayMemberBinding="{Binding MAPDP}"></GridViewColumn>
                                                 <GridViewColumn Header="Mã khách hàng" Width="Auto" DisplayMemberBinding="{Binding MAKH}"></GridViewColumn>
                                                 <GridViewColumn Header="Mã nhân viên" Width="Auto" DisplayMemberBinding="{Binding MANV}"></GridViewColumn>
-                                                <GridViewColumn Header="Ngày đặt" Width="Auto" DisplayMemberBinding="{Binding NGDAT}"></GridViewColumn>
-                                                <GridViewColumn Header="Ngày nhận" Width="Auto" DisplayMemberBinding="{Binding NGNHAN}"></GridViewColumn>
+                                                <GridViewColumn Header="Ngày đặt phòng" Width="Auto" DisplayMemberBinding="{Binding NGDAT}"></GridViewColumn>
+                                                <GridViewColumn Header="Ngày nhận phòng" Width="Auto" DisplayMemberBinding="{Binding NGNHAN}"></GridViewColumn>
                                                 <GridViewColumn Header="Trạng thái" Width="Auto" DisplayMemberBinding="{Binding TRANGTHAI}"></GridViewColumn>
                                                 <GridViewColumn Header="Mã phiếu dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MAPDV}"></GridViewColumn>
-                                                <GridViewColumn Header="Ngày lập phiếu" Width="Auto" DisplayMemberBinding="{Binding NGLAP}"></GridViewColumn>
+                                                <GridViewColumn Header="Mã chi tiết đặt phòng" Width="Auto" DisplayMemberBinding="{Binding MACTPDP}"></GridViewColumn>
+                                                <GridViewColumn Header="Ngày trả phòng" Width="Auto" DisplayMemberBinding="{Binding NGTRA}"></GridViewColumn>
                                                 <GridViewColumn Header="Tổng tiền dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TONGTIEN}"></GridViewColumn>
                                             </GridView>
                                         </ListView.View>
@@ -949,110 +950,89 @@
                 </materialDesign:DrawerHost.Style>
 
                 <materialDesign:DrawerHost.LeftDrawerContent>
-                    <Grid Width="610">
+                    <Grid Width="510">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="0" Height="100">
-                            
+                        <Grid Grid.Row="0">
+                            <Border Margin="0,40,0,20" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <Image Source="Images/Red.png" Stretch="Fill">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="100,100" RadiusX="100" RadiusY="100"/>
+                                    </Image.Clip>
+                                </Image>
+                            </Border>
                         </Grid>
 
                         <Grid Grid.Row="1">
-                            <StackPanel>
-                                <TextBlock Margin="30,30,30,0" Text="Mã nhân viên:" FontSize="15"></TextBlock>
-                                <TextBox x:Name="MANV" Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                            </StackPanel>
+                            <TextBlock Text="Mã nhân viên" Margin="0,0,0,10" HorizontalAlignment="Center" FontSize="30"></TextBlock>
                         </Grid>
 
                         <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-
-                            <Grid Grid.Column="0">
-                                <StackPanel>
-                                    <TextBlock Margin="30,10,30,0" Text="Họ và tên:" FontSize="15"></TextBlock>
-                                    <TextBox x:Name="TENNV" Text="{Binding TENNV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                </StackPanel>
-                            </Grid>
-
-                            <Grid Grid.Column="1">
-                                <StackPanel>
-                                    <TextBlock Margin="30,10,30,0" Text="Giới tính:" FontSize="15"></TextBlock>
-                                    <TextBox x:Name="GIOITINH" Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                </StackPanel>
-                            </Grid>
+                            <TextBlock Text="Chức vụ" Margin="0,0,0,20" HorizontalAlignment="Center" FontSize="30"></TextBlock>
                         </Grid>
 
                         <Grid Grid.Row="3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-
-                            <Grid Grid.Column="0">
-                                <StackPanel>
-                                    <TextBlock Margin="30,10,30,0" Text="Số điện thoại:" FontSize="15"></TextBlock>
-                                    <TextBox Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                </StackPanel>
-                            </Grid>
-
-                            <Grid Grid.Column="1">
-                                <StackPanel>
-                                    <TextBlock Margin="30,10,30,0" Text="Ngày sinh:" FontSize="15"></TextBlock>
-                                    <DatePicker SelectedDate="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsEnabled="False" Margin="30,10,30,5" Width="245" FontSize="20" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-                                </StackPanel>
-                            </Grid>
+                            <Separator Margin="40,0,40,0"></Separator>
                         </Grid>
 
                         <Grid Grid.Row="4">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-
-                            <Grid Grid.Column="0">
-                                <StackPanel>
-                                    <TextBlock Margin="30,10,30,0" Text="Địa chỉ:" FontSize="15"></TextBlock>
-                                    <TextBox Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                </StackPanel>
-                            </Grid>
-
-                            <Grid Grid.Column="1">
-                                <StackPanel>
-                                    <TextBlock Margin="30,10,30,0" Text="Email:" FontSize="15"></TextBlock>
-                                    <TextBox Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                </StackPanel>
-                            </Grid>
+                            <StackPanel Margin="80,30,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Account" Height="20"/>
+                                <TextBlock Text="Họ và tên" Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                            </StackPanel>
                         </Grid>
 
                         <Grid Grid.Row="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-
-                            <Grid Grid.Column="0">
-                                <StackPanel>
-                                    <TextBlock Margin="30,10,30,0" Text="Vị trí làm việc" FontSize="15"></TextBlock>
-                                    <TextBox Text="{Binding VITRILAMVIEC,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                </StackPanel>
-                            </Grid>
-
-                            <Grid Grid.Column="1">
-                                <StackPanel>
-                                    <TextBlock Margin="30,10,30,0" Text="Lương:" FontSize="15"></TextBlock>
-                                    <TextBox Text="{Binding LUONG,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                </StackPanel>
-                            </Grid>
+                            <StackPanel Margin="80,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="HumanMaleFemale" Height="20"/>
+                                <TextBlock Text="Giới tính" Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                            </StackPanel>
                         </Grid>
+
+                        <Grid Grid.Row="6">
+                            <StackPanel Margin="80,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Phone" Height="20"/>
+                                <TextBlock Text="SĐT" Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="7">
+                            <StackPanel Margin="80,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Email" Height="20"/>
+                                <TextBlock Text="Email" Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="8">
+                            <Separator Margin="40,20,40,0"></Separator>
+                        </Grid>
+
+                        <Grid Grid.Row="9">
+                            <StackPanel Margin="80,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="CalendarToday" Height="20"/>
+                                <TextBlock Text="Ngày sinh" Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="10">
+                            <StackPanel Margin="80,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Domain" Height="20"/>
+                                <TextBlock Text="Khách sạn La Opera Hotel" Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+
                         <Button
                             Panel.ZIndex="2"
                             VerticalAlignment="Top"
@@ -1060,7 +1040,7 @@
                             Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                             CommandParameter="{x:Static Dock.Left}"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            Style="{StaticResource MaterialDesignIconForegroundButton}">
+                             Style="{StaticResource MaterialDesignIconForegroundButton}">
                             <materialDesign:PackIcon Kind="WindowClose" />
                         </Button>
                     </Grid>

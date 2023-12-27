@@ -55,9 +55,11 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.77\lib\net462\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -81,6 +83,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bill.xaml.cs">
+      <DependentUpon>Bill.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DatDichVuWindow.xaml.cs">
       <DependentUpon>DatDichVuWindow.xaml</DependentUpon>
     </Compile>
@@ -194,6 +199,7 @@
       <DependentUpon>RoomUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BasicViewModel.cs" />
+    <Compile Include="ViewModel\BillViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\DatPhongViewModel.cs" />
     <Compile Include="ViewModel\DichVuViewModel.cs" />
@@ -205,6 +211,10 @@
     <Compile Include="ViewModel\PhieuDatPhongViewModel.cs" />
     <Compile Include="ViewModel\PhongViewModel.cs" />
     <Compile Include="ViewModel\TrangChuViewModel.cs" />
+    <Page Include="Bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DatDichVuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -308,6 +318,7 @@
     <Resource Include="Images\Red.png" />
     <Resource Include="Images\Yellow.jpg" />
     <Resource Include="Images\Decor %281%29.png" />
+    <Resource Include="Images\Bill.png" />
     <Content Include="Model\Model2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model2.edmx</DependentUpon>

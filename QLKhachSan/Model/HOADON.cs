@@ -9,16 +9,22 @@
 
 namespace QLKhachSan.Model
 {
+    using QLKhachSan.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class HOADON
+    public partial class HOADON : BasicViewModel
     {
-        public string MAHD { get; set; }
-        public string MANV { get; set; }
-        public string MAPDP { get; set; }
-        public Nullable<System.DateTime> NGLAPHD { get; set; }
-        public Nullable<decimal> TONGTIEN { get; set; }
+        private string _MAHD;
+        public string MAHD { get { return _MAHD; } set { _MAHD = value; OnPropertyChanged(); } }
+        private string _MANV;
+        public string MANV { get { return _MANV; } set { _MANV = value; OnPropertyChanged(); } }
+        private string _MAPDP;
+        public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
+        private DateTime? _NGLAPHD;
+        public DateTime? NGLAPHD { get { return _NGLAPHD; } set { _NGLAPHD = value; OnPropertyChanged(); } }
+        private decimal? _TONGTIEN;
+        public decimal? TONGTIEN { get { return _TONGTIEN; } set { _TONGTIEN = value; OnPropertyChanged(); } }
         public string MADT { get; set; }
     
         public virtual NHANVIEN NHANVIEN { get; set; }

@@ -9,13 +9,16 @@
 
 
     <Grid Margin="50">
-        <materialDesign:Card Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="0" Width="200">
+        <materialDesign:Card Foreground="Black" Padding="0" Width="200">
             <materialDesign:Card.Style>
                 <Style TargetType="materialDesign:Card">
                     <Setter Property="Background" Value="LightGreen"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding TINHTRANG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Value="Đang được sử dụng">
                             <Setter Property="Background" Value="Red"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding TINHTRANG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Value="Đã đặt">
+                            <Setter Property="Background" Value="Yellow"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -27,7 +30,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="20" Text="{Binding SOPHONG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="16 16 16 4"/>
+                <TextBlock Grid.Row="0" FontSize="20" Text="{Binding SOPHONG,StringFormat='P. {0}', UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="16 16 16 4"/>
                 <Separator Grid.Row="1" Style="{StaticResource MaterialDesignDarkSeparator}" />
                 <TextBlock Grid.Row="2" FontSize="20" Text="{Binding MALOAI, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
             </Grid>

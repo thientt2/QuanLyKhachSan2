@@ -32,7 +32,12 @@ namespace QLKhachSan.ViewModel
         public List<string> SSOPHONG { get { return _SSOPHONG; } set { _SSOPHONG = value; OnPropertyChanged(); } }
         private List<string> _SoPhong;
         public List<string> SoPhong { get { return _SoPhong; } set { _SoPhong = value; OnPropertyChanged(); } }
-        
+
+        private ObservableCollection<CTPDP> _ListCTPDP;
+        public ObservableCollection<CTPDP> ListCTPDP { get { return _ListCTPDP; } set { _ListCTPDP = value; OnPropertyChanged(); } }
+        private string _MACTPDP;
+        public string MACTPDP { get { return _MACTPDP; } set { _MACTPDP = value; OnPropertyChanged(); } }
+
         private ObservableCollection<KHACHHANG> _ListKH;
         public ObservableCollection<KHACHHANG> ListKH { get { return _ListKH; } set { _ListKH = value; OnPropertyChanged(); } }
 
@@ -73,7 +78,7 @@ namespace QLKhachSan.ViewModel
         private ObservableCollection<PHIEUDATPHONG> _ListPDP;
         public ObservableCollection<PHIEUDATPHONG> ListPDP { get { return _ListPDP; } set { _ListPDP = value; OnPropertyChanged(); } }
         private string _MAPDP;
-        public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(nameof(MAPDP)); } }
+        public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
 
 
         private DateTime? _NGDAT;
@@ -89,9 +94,9 @@ namespace QLKhachSan.ViewModel
 
         public PhieuDatPhongViewModel()
         {
-
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
+            ListCTPDP = new ObservableCollection<CTPDP>(DataProvider.Ins.DB.CTPDPs);
             SSOPHONG = new List<string>();
             ShowCommand = new RelayCommand<ComboBox>((p) => { return true; }, (p) => 
             { 
@@ -146,7 +151,21 @@ namespace QLKhachSan.ViewModel
                 {
                     if (phong.SOPHONG == SOPHONG && phong.TINHTRANG == "Trống")
                     {
-                        phong.TINHTRANG = "Đang được sử dụng";
+                        phong.TINHTRANG = "Đã đặt";
+                    }
+                }
+                foreach (var phong in ListPhong)
+                {
+                    if (phong.SOPHONG == SOPHONG)
+                    {
+                        MACTPDP = phong.MACTPDP;
+                    }
+                }
+                foreach (var ctpdp in ListCTPDP)
+                {
+                    if (ctpdp.MACTPDP == MACTPDP)
+                    {
+                        ctpdp.MAPDP = MAPDP;
                     }
                 }
                 DataProvider.Ins.DB.SaveChanges();
