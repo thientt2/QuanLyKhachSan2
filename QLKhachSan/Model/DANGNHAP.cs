@@ -15,11 +15,11 @@ namespace QLKhachSan.Model
     public partial class DANGNHAP
     {
         public int ID { get; set; }
-        public string TEN { get; set; }
+        public string MANV { get; set; }
         public string TAIKHOAN { get; set; }
         public string MATKHAU { get; set; }
         public Nullable<int> IDPHANQUYEN { get; set; }
     
-        public virtual PHANQUYEN PHANQUYEN { get; set; }
+        public virtual NHANVIEN NHANVIEN { get; set; }
     }
 }

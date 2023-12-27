@@ -162,6 +162,21 @@
     <Compile Include="Model\PHONG.cs">
       <DependentUpon>QLKS_TT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\QLKS_3T.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLKS_3T.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\QLKS_3T.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLKS_3T.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\QLKS_3T.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLKS_3T.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Model\QLKS_HT.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -288,6 +303,13 @@
     <None Include="Model\Model3.edmx.diagram">
       <DependentUpon>Model3.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="Model\QLKS_3T.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QLKS_3T.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\QLKS_3T.edmx.diagram">
+      <DependentUpon>QLKS_3T.edmx</DependentUpon>
+    </None>
     <None Include="Model\QLKS_HT.edmx.diagram">
       <DependentUpon>QLKS_HT.edmx</DependentUpon>
     </None>
@@ -338,6 +360,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model3.edmx</DependentUpon>
       <LastGenOutput>Model3.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\QLKS_3T.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLKS_3T.edmx</DependentUpon>
+      <LastGenOutput>QLKS_3T.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\QLKS_3T.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLKS_3T.edmx</DependentUpon>
+      <LastGenOutput>QLKS_3T.cs</LastGenOutput>
     </Content>
     <Content Include="Model\QLKS_HT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -17,9 +17,9 @@ namespace QLKhachSan.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PHIEUDATPHONG()
         {
-            this.CTPDPs = new HashSet<CTPDP>();
             this.HOADONs = new HashSet<HOADON>();
             this.PHIEUDICHVUs = new HashSet<PHIEUDICHVU>();
+            this.PHONGs = new HashSet<PHONG>();
         }
     
         public string MAPDP { get; set; }
@@ -27,14 +27,15 @@ namespace QLKhachSan.Model
         public string MANV { get; set; }
         public Nullable<System.DateTime> NGDAT { get; set; }
         public Nullable<System.DateTime> NGNHAN { get; set; }
+        public Nullable<System.DateTime> NGTRA { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CTPDP> CTPDPs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOADON> HOADONs { get; set; }
         public virtual KHACHHANG KHACHHANG { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHIEUDICHVU> PHIEUDICHVUs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PHONG> PHONGs { get; set; }
     }
 }

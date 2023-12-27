@@ -9,31 +9,23 @@
 
 namespace QLKhachSan.Model
 {
-    using QLKhachSan.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class LOAIPHONG : BasicViewModel
+    public partial class LOAIPHONG
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LOAIPHONG()
         {
             this.PHONGs = new HashSet<PHONG>();
         }
-
-        private string _MALOAI;
-        public string MALOAI { get { return _MALOAI; } set { _MALOAI = value; OnPropertyChanged(); } }
-        private int? _SLGIUONG;
-        public int? SLGIUONG { get { return _SLGIUONG; } set { _SLGIUONG = value; OnPropertyChanged(); } }
-        private int? _NGUOITOIDA;
-        public int? NGUOITOIDA { get { return _NGUOITOIDA; } set { _NGUOITOIDA = value; OnPropertyChanged(); } }
-        private double? _DIENTICH;
-        public double? DIENTICH { get { return _DIENTICH; } set { _DIENTICH = value; OnPropertyChanged(); } }
-        private string _LOAIGIUONG;
-        public string LOAIGIUONG { get { return _LOAIGIUONG; } set { _LOAIGIUONG = value; OnPropertyChanged(); } }
-        private decimal? _GIA;
-        public decimal? GIA { get { return _GIA; } set { _GIA = value; OnPropertyChanged(); } }
-
+    
+        public string MALOAI { get; set; }
+        public Nullable<int> SLGIUONG { get; set; }
+        public string LOAIGIUONG { get; set; }
+        public Nullable<decimal> GIA { get; set; }
+        public Nullable<int> NGUOITOIDA { get; set; }
+        public Nullable<double> DIENTICH { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHONG> PHONGs { get; set; }

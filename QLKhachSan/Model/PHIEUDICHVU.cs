@@ -9,34 +9,23 @@
 
 namespace QLKhachSan.Model
 {
-    using QLKhachSan.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class PHIEUDICHVU : BasicViewModel
+    public partial class PHIEUDICHVU
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PHIEUDICHVU()
         {
-            this.CTPDVs = new HashSet<CTPDV>();
+            this.CHITIETDICHVUs = new HashSet<CHITIETDICHVU>();
         }
-
-        private string _MAPDV;
-        public string MAPDV { get { return _MAPDV; } set { _MAPDV = value; OnPropertyChanged(); } }
-        private string _MAPDP;
-        public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
-        private DateTime? _NGLAP;
-        public DateTime? NGLAP { get { return _NGLAP; } set { _NGLAP = value; OnPropertyChanged(); } }
-        private decimal? _TONGTIEN;
-        public decimal? TONGTIEN { get { return _TONGTIEN; } set { _TONGTIEN = value; OnPropertyChanged(); } }
-
-        //public string MAPDV { get; set; }
-        //public string MAPDP { get; set; }
-        //public Nullable<System.DateTime> NGLAP { get; set; }
-        //public Nullable<decimal> TONGTIEN { get; set; }
+    
+        public string MAPDV { get; set; }
+        public string MAPDP { get; set; }
+        public Nullable<decimal> TONGTIEN { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CTPDV> CTPDVs { get; set; }
+        public virtual ICollection<CHITIETDICHVU> CHITIETDICHVUs { get; set; }
         public virtual PHIEUDATPHONG PHIEUDATPHONG { get; set; }
     }
 }
