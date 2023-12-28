@@ -9,16 +9,21 @@
 
 namespace QLKhachSan.Model
 {
+    using QLKhachSan.ViewModel;
     using System;
     using System.Collections.Generic;
-    
-    public partial class CHITIETDICHVU
+
+    public partial class CHITIETDICHVU : BasicViewModel
     {
-        public string MAPDV { get; set; }
-        public string MADV { get; set; }
-        public Nullable<int> SLDV { get; set; }
-        public Nullable<decimal> GIA { get; set; }
-    
+        private string _MAPDV;
+        public string MAPDV { get { return _MAPDV; } set { _MAPDV = value; OnPropertyChanged(); } }
+        private string _MADV;
+        public string MADV { get { return _MADV; } set { _MADV = value; OnPropertyChanged(); } }
+        private int? _SLDV;
+        public int? SLDV { get { return _SLDV; } set { _SLDV = value; OnPropertyChanged(); } }
+        private decimal? _GIA;
+        public decimal? GIA { get { return _GIA; } set { _GIA = value; OnPropertyChanged(); } }
+
         public virtual PHIEUDICHVU PHIEUDICHVU { get; set; }
         public virtual DICHVU DICHVU { get; set; }
     }

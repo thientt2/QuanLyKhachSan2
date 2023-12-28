@@ -9,21 +9,25 @@
 
 namespace QLKhachSan.Model
 {
+    using QLKhachSan.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class DICHVU
+    public partial class DICHVU : BasicViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DICHVU()
         {
             this.CHITIETDICHVUs = new HashSet<CHITIETDICHVU>();
         }
-    
-        public string MADV { get; set; }
-        public string TENDV { get; set; }
-        public Nullable<decimal> DONGIA { get; set; }
-    
+
+        private string _MADV;
+        public string MADV { get { return _MADV; } set { _MADV = value; OnPropertyChanged(); } }
+        private string _TENDV;
+        public string TENDV { get { return _TENDV; } set { _TENDV = value; OnPropertyChanged(); } }
+        private decimal? _DONGIA;
+        public decimal? DONGIA { get { return _DONGIA; } set { _DONGIA = value; OnPropertyChanged(); } }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETDICHVU> CHITIETDICHVUs { get; set; }
     }

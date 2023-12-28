@@ -9,17 +9,23 @@
 
 namespace QLKhachSan.Model
 {
+    using QLKhachSan.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class PHONG
+    public partial class PHONG : BasicViewModel
     {
-        public string SOPHONG { get; set; }
-        public string MALOAI { get; set; }
-        public Nullable<int> TANG { get; set; }
-        public string TINHTRANG { get; set; }
-        public string MAPDP { get; set; }
-    
+        private string _MALOAI;
+        public string MALOAI { get { return _MALOAI; } set { _MALOAI = value; OnPropertyChanged(); } }
+        private string _SOPHONG;
+        public string SOPHONG { get { return _SOPHONG; } set { _SOPHONG = value; OnPropertyChanged(); } }
+        private int? _TANG;
+        public int? TANG { get { return _TANG; } set { _TANG = value; OnPropertyChanged(); } }
+        private string _TINHTRANG;
+        public string TINHTRANG { get { return _TINHTRANG; } set { _TINHTRANG = value; OnPropertyChanged(); } }
+        private string _MAPDP;
+        public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
+
         public virtual LOAIPHONG LOAIPHONG { get; set; }
         public virtual PHIEUDATPHONG PHIEUDATPHONG { get; set; }
     }
