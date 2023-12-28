@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 
@@ -14,6 +16,7 @@ namespace QLKhachSan.ViewModel
 {
     public  class KhachHangViewModel: BasicViewModel
     {
+
         private ObservableCollection<KHACHHANG> _ListKH;
         public ObservableCollection<KHACHHANG> ListKH { get { return _ListKH; } set { _ListKH = value; OnPropertyChanged(); } }
         private KHACHHANG _SelectedItem;
@@ -60,15 +63,76 @@ namespace QLKhachSan.ViewModel
         private string _QUOCTICH;
         public string QUOCTICH { get { return _QUOCTICH; } set { _QUOCTICH = value; OnPropertyChanged(); } }
 
-
+        public ICommand ToggleSearchCommand { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand CancelCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged();
+                ApplySearchFilter();
+            }
+        }
+
+        private ICollectionView _collectionView;
+        public ICollectionView CollectionView
+        {
+            get { return _collectionView; }
+            set { _collectionView = value; OnPropertyChanged(); }
+        }
+
+
+        private void ApplySearchFilter()
+        {
+            IsSearching = true;
+            CollectionView.Refresh();
+            IsSearching = false;
+        }
+
+        private bool Filter(object item)
+        {
+            if (string.IsNullOrEmpty(SearchText))
+                return true;
+
+            var khachHang = (KHACHHANG)item;
+            string searchText = SearchText.ToLowerInvariant();
+
+            //return khachHang.MAKH.ToLowerInvariant().Contains(searchText)
+            //    || khachHang.TENKH.ToLowerInvariant().Contains(searchText)
+            //    || khachHang.GIOITINH.ToLowerInvariant().Contains(searchText)
+            //    || khachHang.NGSINH?.ToString("dd/MM/yyyy").Contains(searchText) == true
+            //    || khachHang.DIACHI.ToLowerInvariant().Contains(searchText)
+            //    || khachHang.SDT.ToLowerInvariant().Contains(searchText)
+            //    || khachHang.EMAIL.ToLowerInvariant().Contains(searchText)
+            //    || khachHang.SOCCCD.ToLowerInvariant().Contains(searchText)
+            //    || khachHang.QUOCTICH.ToLowerInvariant().Contains(searchText);
+            return khachHang.TENKH.ToLowerInvariant().Contains(searchText);
+        }
+
+        private bool _isSearching;
+        public bool IsSearching
+        {
+            get { return _isSearching; }
+            set
+            {
+                _isSearching = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public KhachHangViewModel()
         {
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
+            CollectionView = CollectionViewSource.GetDefaultView(ListKH);
+            CollectionView.Filter = Filter;
             AddCommand = new RelayCommand<object>((p) => 
             {
                 //if (string.IsNullOrEmpty(MAKH))
@@ -138,6 +202,18 @@ namespace QLKhachSan.ViewModel
                     MessageBox.Show("Xóa khách hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 SelectedItem = null;
+            });
+            ToggleSearchCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                IsSearching = !IsSearching;
+                if (!IsSearching)
+                {
+                    // Nếu đang tắt tìm kiếm, làm sạch văn bản tìm kiếm
+                    SearchText = string.Empty;
+                }
             });
         }
         

@@ -61,11 +61,11 @@
                                     <StackPanel>
                                         <TextBlock Margin="30,10,30,0" Text="Họ và tên:" FontSize="15"></TextBlock>
                                         <TextBox x:Name="TenKhachHang" Text="{Binding TENKH,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}">
-                                            <!--<i:Interaction.Triggers>
+                                            <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="TextChanged">
                                                     <i:InvokeCommandAction Command="{Binding ShowCommand}" CommandParameter="{Binding ElementName=TenKhachHang}"/>
                                                 </i:EventTrigger>
-                                            </i:Interaction.Triggers>-->
+                                            </i:Interaction.Triggers>
                                         </TextBox>
                                         <!--<ComboBox
                                             x:Name="TenKhachHang"

@@ -1,4 +1,5 @@
-﻿using QLKhachSan.Model;
+﻿using Microsoft.Win32;
+using QLKhachSan.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -41,42 +42,48 @@ namespace QLKhachSan.ViewModel
         private string _ImagePath;
         public string ImagePath { get { return _ImagePath; } set { _ImagePath = value; OnPropertyChanged(); } }
 
+        private string _NewImagePath;
+        public string NewImagePath { get { return _NewImagePath; } set { _NewImagePath = value; OnPropertyChanged(); } }
+
         public bool IsLoaded = false;
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand DatPhongCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
+        public ICommand ChangeImagePathCommand { get; set; }
+
+
         public MainViewModel()
         {
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-            IsLoaded = true;
-            if (p == null)
-                return;
-            p.Hide();
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.ShowDialog();
-            if (loginWindow.DataContext == null)
-                return;
-            var loginVM = loginWindow.DataContext as LoginViewModel;
-            if (loginVM.IsLogin)
-            {
-                ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
-                MANV = loginVM.MANV;
-                var info = DataProvider.Ins.DB.NHANVIENs.FirstOrDefault(x => x.MANV == MANV);
-                MMANV = MANV;
-                TENNV = info.TENNV;
-                GIOITINH = info.GIOITINH;
-                SDT = info.SDT;
-                DIACHI = info.DIACHI;
-                NGSINH = info.NGSINH;
-                EMAIL = info.EMAIL;
-                VITRILAMVIEC = info.VITRILAMVIEC;
-                if (TENNV == "Nguyễn Hữu Trường")
+                IsLoaded = true;
+                if (p == null)
+                    return;
+                p.Hide();
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.ShowDialog();
+                if (loginWindow.DataContext == null)
+                    return;
+                var loginVM = loginWindow.DataContext as LoginViewModel;
+                if (loginVM.IsLogin)
                 {
-                    ImagePath = "Images/HT.jpg";
-                }
-                if (TENNV == "Trần Trung Thông")
-                {
+                    ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
+                    MANV = loginVM.MANV;
+                    var info = DataProvider.Ins.DB.NHANVIENs.FirstOrDefault(x => x.MANV == MANV);
+                    MMANV = MANV;
+                    TENNV = info.TENNV;
+                    GIOITINH = info.GIOITINH;
+                    SDT = info.SDT;
+                    DIACHI = info.DIACHI;
+                    NGSINH = info.NGSINH;
+                    EMAIL = info.EMAIL;
+                    VITRILAMVIEC = info.VITRILAMVIEC;
+                    if (TENNV == "Nguyễn Hữu Trường")
+                    {
+                        ImagePath = "Images/HT.jpg";
+                    }
+                    if (TENNV == "Trần Trung Thông")
+                    {
                         ImagePath = "Images/3T.jpg";
                     }
                     if (TENNV == "Tăng Thanh Thiện")
@@ -89,6 +96,8 @@ namespace QLKhachSan.ViewModel
             }
         );
             LogOutCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LogOut(); });
+            ChangeImagePathCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ChangeImagePath(); });
+
         }
 
         void LogOut()
@@ -100,5 +109,21 @@ namespace QLKhachSan.ViewModel
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
+
+        private void ChangeImagePath()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (.png;.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (.)|*.*";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Lấy đường dẫn mới từ OpenFileDialog
+                NewImagePath = openFileDialog.FileName;
+
+                // Cập nhật đường dẫn hình ảnh trong ImagePath
+                ImagePath = NewImagePath;
+            }
+        }
+
     }
 }

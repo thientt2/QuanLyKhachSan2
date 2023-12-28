@@ -18,6 +18,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         DataContext="{StaticResource MainVM}"
+
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowState="Maximized"
@@ -317,6 +318,14 @@
 
                             <Grid Grid.Row="2" Margin="0,0,0,30">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <TextBlock Margin="30, 40, 0, 30" FontSize="25"><Run Text="Chế độ tìm kiếm: "/> 
+                                    </TextBlock>
+                                    <ToggleButton
+                                        Width ="100"
+                                        Margin="10, 30, 300, 30"                 
+                                        Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}"
+                                        ToolTip="MaterialDesignSwitchSecondaryToggleButton"
+                                        Command="{Binding ToggleSearchCommand}"/>
                                     <Button
                                         Command="{Binding AddCommand}"
                                         Background="Green"
@@ -979,6 +988,10 @@
                                     </Image.Clip>
                                 </Image>
                             </Border>
+
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="110,0,0,15" Command="{Binding ChangeImagePathCommand}">
+                                <materialDesign:PackIcon Kind="PlusThick"/>
+                            </Button>
                         </Grid>
 
                         <Grid Grid.Row="1">
