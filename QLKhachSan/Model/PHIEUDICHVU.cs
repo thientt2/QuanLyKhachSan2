@@ -12,7 +12,7 @@ namespace QLKhachSan.Model
     using QLKhachSan.ViewModel;
     using System;
     using System.Collections.Generic;
-    
+
     public partial class PHIEUDICHVU : BasicViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,7 +27,7 @@ namespace QLKhachSan.Model
         public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
         private decimal? _TONGTIEN;
         public decimal? TONGTIEN { get { return _TONGTIEN; } set { _TONGTIEN = value; OnPropertyChanged(); } }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETDICHVU> CHITIETDICHVUs { get; set; }
         public virtual PHIEUDATPHONG PHIEUDATPHONG { get; set; }

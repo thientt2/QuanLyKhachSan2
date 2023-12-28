@@ -904,7 +904,7 @@
                                     </i:Interaction.Triggers>
                                 </ComboBox>
                                 <Grid Grid.Column="1">
-                                    <ComboBox       x:Name="Thang"
+                                    <ComboBox       x:Name="txtThang"
                                             Margin="30,10,30,10"
                                             HorizontalAlignment="Left" 
                                             Width="245" Height="60" FontSize="20"
@@ -913,7 +913,7 @@
                                             Style="{StaticResource MaterialDesignOutlinedComboBox}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding ShowCommand1}" CommandParameter="{Binding ElementName=Thang}"/>
+                                                <i:InvokeCommandAction Command="{Binding ShowCommand2}" CommandParameter="{Binding ElementName=txtThang}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </ComboBox>
