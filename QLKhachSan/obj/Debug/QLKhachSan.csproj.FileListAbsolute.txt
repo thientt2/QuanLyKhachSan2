@@ -178,3 +178,9 @@ C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\
 C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.xml
 C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.dll
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.pdb
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.xml
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.Wpf.xml

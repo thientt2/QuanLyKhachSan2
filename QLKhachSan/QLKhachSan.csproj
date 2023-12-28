@@ -104,12 +104,6 @@
     <Compile Include="Model\CHITIETDICHVU.cs">
       <DependentUpon>QLKS_NHT.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\CTPDP.cs">
-      <DependentUpon>QLKS_TT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\CTPDV.cs">
-      <DependentUpon>QLKS_TT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\DANGNHAP.cs">
       <DependentUpon>QLKS_NHT.tt</DependentUpon>
     </Compile>
@@ -126,41 +120,8 @@
     <Compile Include="Model\LOAIPHONG.cs">
       <DependentUpon>QLKS_NHT.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Model2.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model2.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model2.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model2.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model3.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model3.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model3.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model3.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model3.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Model\NHANVIEN.cs">
       <DependentUpon>QLKS_NHT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\PHANQUYEN.cs">
-      <DependentUpon>QLKS_TT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PHIEUDATPHONG.cs">
       <DependentUpon>QLKS_NHT.tt</DependentUpon>
@@ -186,21 +147,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLKS_3T.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\QLKS_HT.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLKS_HT.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\QLKS_HT.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLKS_HT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\QLKS_HT.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLKS_HT.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Model\QLKS_NHT.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -215,21 +161,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QLKS_NHT.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\QLKS_TT.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLKS_TT.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\QLKS_TT.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLKS_TT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\QLKS_TT.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLKS_TT.edmx</DependentUpon>
     </Compile>
     <Compile Include="UserControlKS\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
@@ -310,24 +241,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Model2.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model\Model2.edmx.diagram">
-      <DependentUpon>Model2.edmx</DependentUpon>
-    </None>
-    <EntityDeploy Include="Model\QLKS_HT.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QLKS_HT.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <EntityDeploy Include="Model\Model3.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model3.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model\Model3.edmx.diagram">
-      <DependentUpon>Model3.edmx</DependentUpon>
-    </None>
     <EntityDeploy Include="Model\QLKS_3T.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>QLKS_3T.Designer.cs</LastGenOutput>
@@ -335,22 +248,12 @@
     <None Include="Model\QLKS_3T.edmx.diagram">
       <DependentUpon>QLKS_3T.edmx</DependentUpon>
     </None>
-    <None Include="Model\QLKS_HT.edmx.diagram">
-      <DependentUpon>QLKS_HT.edmx</DependentUpon>
-    </None>
-    <EntityDeploy Include="Model\QLKS_TT.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QLKS_TT.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <EntityDeploy Include="Model\QLKS_NHT.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>QLKS_NHT.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Model\QLKS_NHT.edmx.diagram">
       <DependentUpon>QLKS_NHT.edmx</DependentUpon>
-    </None>
-    <None Include="Model\QLKS_TT.edmx.diagram">
-      <DependentUpon>QLKS_TT.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -376,26 +279,6 @@
     <Resource Include="Images\3T.jpg" />
     <Resource Include="Images\HT.jpg" />
     <Resource Include="Images\TT.jpg" />
-    <Content Include="Model\Model2.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model2.edmx</DependentUpon>
-      <LastGenOutput>Model2.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\Model2.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model2.edmx</DependentUpon>
-      <LastGenOutput>Model2.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\Model3.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model3.edmx</DependentUpon>
-      <LastGenOutput>Model3.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\Model3.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model3.edmx</DependentUpon>
-      <LastGenOutput>Model3.cs</LastGenOutput>
-    </Content>
     <Content Include="Model\QLKS_3T.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QLKS_3T.edmx</DependentUpon>
@@ -406,16 +289,6 @@
       <DependentUpon>QLKS_3T.edmx</DependentUpon>
       <LastGenOutput>QLKS_3T.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\QLKS_HT.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLKS_HT.edmx</DependentUpon>
-      <LastGenOutput>QLKS_HT.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\QLKS_HT.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLKS_HT.edmx</DependentUpon>
-      <LastGenOutput>QLKS_HT.cs</LastGenOutput>
-    </Content>
     <Content Include="Model\QLKS_NHT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QLKS_NHT.edmx</DependentUpon>
@@ -425,16 +298,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QLKS_NHT.edmx</DependentUpon>
       <LastGenOutput>QLKS_NHT.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\QLKS_TT.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLKS_TT.edmx</DependentUpon>
-      <LastGenOutput>QLKS_TT.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\QLKS_TT.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLKS_TT.edmx</DependentUpon>
-      <LastGenOutput>QLKS_TT.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

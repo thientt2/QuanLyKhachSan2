@@ -44,6 +44,7 @@ namespace QLKhachSan.ViewModel
         public bool IsLoaded = false;
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand DatPhongCommand { get; set; }
+        public ICommand LogOutCommand { get; set; }
         public MainViewModel()
         {
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
@@ -87,7 +88,17 @@ namespace QLKhachSan.ViewModel
                 else p.Close();
             }
             );
+            LogOutCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LogOut(); });
         }
 
+        void LogOut()
+        {
+            IsLoaded = false;
+            ListNV.Clear();
+            MANV = MMANV = TENNV = GIOITINH = DIACHI = SDT = EMAIL = VITRILAMVIEC = ImagePath = null;
+            // Thực hiện các bước cần thiết để thoát và khởi động lại chương trình
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
     }
 }
