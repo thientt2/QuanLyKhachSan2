@@ -38,62 +38,16 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition ></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0" Margin="0,1,0,1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width ="Auto"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-
-                <Grid Grid.Column="0" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <materialDesign:PackIcon Margin="0,10,0,10" Foreground="White" Kind="AccountCircle" Height="85" Width="100" />
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <TextBlock Text=""  Foreground="White" FontSize="23"  Width="140" VerticalAlignment="Center" ></TextBlock>
-                    </Grid>
-                </Grid>
-
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-
-                    <Grid Grid.Row="0">
-                        <TextBlock Text="Quản lý khách sạn"
-                       VerticalAlignment="Center"
-                       FontFamily="Arial"
-                       FontSize="30"
-                       Margin="40,0,40,0">
-                        </TextBlock>
-                    </Grid>
-
-                    <Grid Grid.Row="1">
-                        <Separator Margin="30,0,30,0" ></Separator>
-                    </Grid>
-                </Grid>
-            </Grid>
-
-            <Grid Grid.Row="1">
-
+            <Grid>
                 <TabControl
                     materialDesign:ColorZoneAssist.Background="Black"
                     materialDesign:ColorZoneAssist.Foreground="White"
                     materialDesign:ColorZoneAssist.Mode="Custom"
-                    Style="{StaticResource MaterialDesignFilledTabControl}"  
+                    Style="{StaticResource MaterialDesignFilledTabControl}"
                     TabStripPlacement="Left">
+ 
                     <!--TrangChu-->
-                    <TabItem  Width="240" Height="70" Margin="0,20,0,10"  DataContext="{StaticResource TrangChuVM}">
+                    <TabItem  Width="240" Height="70" Margin="0,130,0,10"  DataContext="{StaticResource TrangChuVM}">
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
                                 <materialDesign:PackIcon Kind="House" Foreground="White" VerticalAlignment="Center" Margin="0,0,30,0" Height="40" Width="50" />
@@ -306,7 +260,7 @@
 
                     </TabItem>
                     <!--KhachHang-->
-                    <TabItem Height="70" DataContext="{StaticResource KhachHangVM}">
+                    <TabItem Height="70" Margin="0,-110,0,10" DataContext="{StaticResource KhachHangVM}">
 
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
@@ -321,7 +275,7 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
+                            <materialDesign:Card Grid.Row="0" Margin="30,30,30,0">
                                 <WrapPanel>
                                     <!--<TextBox x:Name="txtMAKH"  Text="{Binding MAKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />-->
                                     <TextBox x:Name="txtTENKH" Text="{Binding TENKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
@@ -415,7 +369,7 @@
                         </Grid>
                     </TabItem>
                     <!--NhanVien-->
-                    <TabItem Height="70" DataContext="{StaticResource NhanVienVM}">
+                    <TabItem Height="70" Margin="0,-340,0,10" DataContext="{StaticResource NhanVienVM}">
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
                                 <materialDesign:PackIcon Kind="AccountBox" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
@@ -526,7 +480,7 @@
                     </TabItem>
 
                     <!--Phong-->
-                    <TabItem Height="70" DataContext="{StaticResource DichVuVM}">
+                    <TabItem Height="70" Margin="0,-560,0,10" DataContext="{StaticResource DichVuVM}">
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
                                 <materialDesign:PackIcon Kind="RoomService" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
@@ -654,7 +608,7 @@
                     </TabItem>
 
                     <!--DatPhong-->
-                    <TabItem Height="70" DataContext="{StaticResource PhongVM}">
+                    <TabItem Height="70" Margin="0,-780,0,10" DataContext="{StaticResource PhongVM}">
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
                                 <materialDesign:PackIcon Kind="UserBoxMultiple" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
@@ -813,7 +767,7 @@
                     </TabItem>
 
                     <!--DatPhong-->
-                    <TabItem Height="70" DataContext="{StaticResource DatPhongVM}">
+                    <TabItem Height="70" Margin="0,-1000,0,10" DataContext="{StaticResource DatPhongVM}">
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
                                 <materialDesign:PackIcon Kind="CalendarPlusOutline" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
@@ -916,7 +870,7 @@
                     </TabItem>
 
                     <!--ThongKe-->
-                    <TabItem Height="70">
+                    <TabItem Height="70" Margin="0,-1230,0,10">
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
                                 <materialDesign:PackIcon Kind="Finance" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
@@ -1044,7 +998,7 @@
                                 <materialDesign:PackIcon Kind="CalendarToday" Height="20"/>
                                 <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
                         <Run Text="Ngày sinh: "></Run>
-                        <Run Text="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Run>
+                        <Run Text="{Binding NGSINH, StringFormat={}{0:dd/MM/yyyy}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
@@ -1057,13 +1011,13 @@
                         </Grid>
 
                         <Button
-                Panel.ZIndex="2"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Right"
-                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                CommandParameter="{x:Static Dock.Left}"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                 Style="{StaticResource MaterialDesignIconForegroundButton}">
+                    Panel.ZIndex="2"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                    CommandParameter="{x:Static Dock.Left}"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                     Style="{StaticResource MaterialDesignIconForegroundButton}">       
                             <materialDesign:PackIcon Kind="WindowClose" />
                         </Button>
                     </Grid>
@@ -1072,19 +1026,20 @@
                 </materialDesign:DrawerHost.LeftDrawerContent>
 
                 <Button Content="Open Drawer"
-        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-        CommandParameter="{x:Static Dock.Left}"
-        HorizontalAlignment="Left"
-        VerticalAlignment="Top"
-        BorderBrush="Black"
-        Height="103" Width="238"
-        Background="Black"
-        Panel.ZIndex="2">
+                    Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                    CommandParameter="{x:Static Dock.Left}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    BorderBrush="White"
+                    BorderThickness="0,2,0,2"
+                    Height="103" Width="239"
+                    Background="Black"
+                    Panel.ZIndex="2">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="AccountCircle" Height="50" Width="60"/>
-                                <TextBlock Text="{Binding TEN,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Foreground="White" FontSize="23"  Width="140" VerticalAlignment="Center" ></TextBlock>
+                                <TextBlock Text="Thông tin"   Foreground="White" FontSize="23"  Width="140" Margin="20,0,0,0" VerticalAlignment="Center" ></TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </Button.ContentTemplate>

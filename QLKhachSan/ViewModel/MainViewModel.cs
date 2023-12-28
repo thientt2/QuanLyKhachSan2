@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -21,6 +22,8 @@ namespace QLKhachSan.ViewModel
         public ObservableCollection<NHANVIEN> ListNV { get { return _ListNV; } set { _ListNV = value; OnPropertyChanged(); } }
         private string _MANV;
         public string MANV { get { return _MANV; } set { _MANV = value; OnPropertyChanged(); } }
+        private string _MMANV;
+        public string MMANV { get { return _MMANV; } set { _MMANV = value; OnPropertyChanged(); } }
         private string _TENNV;
         public string TENNV { get { return _TENNV; } set { _TENNV = value; OnPropertyChanged(); } }
         private string _GIOITINH;
@@ -57,6 +60,7 @@ namespace QLKhachSan.ViewModel
                     ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
                     MANV = loginVM.MANV;
                     var info = DataProvider.Ins.DB.NHANVIENs.FirstOrDefault(x => x.MANV == MANV);
+                    MMANV = MANV;
                     TENNV = info.TENNV;
                     GIOITINH = info.GIOITINH;
                     SDT = info.SDT;
