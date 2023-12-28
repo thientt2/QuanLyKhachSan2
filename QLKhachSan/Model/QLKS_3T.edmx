@@ -39,6 +39,7 @@
           </Key>
           <Property Name="MAHD" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="MAPDP" Type="varchar" MaxLength="5" />
+          <Property Name="LOAI" Type="varchar" MaxLength="20" />
           <Property Name="NGLAPHD" Type="smalldatetime" />
           <Property Name="THANHTIEN" Type="money" />
         </EntityType>
@@ -60,7 +61,7 @@
           <Key>
             <PropertyRef Name="MALOAI" />
           </Key>
-          <Property Name="MALOAI" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MALOAI" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="SLGIUONG" Type="int" />
           <Property Name="LOAIGIUONG" Type="nvarchar" MaxLength="50" />
           <Property Name="GIA" Type="money" />
@@ -106,7 +107,7 @@
             <PropertyRef Name="SOPHONG" />
           </Key>
           <Property Name="SOPHONG" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="MALOAI" Type="varchar" MaxLength="50" />
+          <Property Name="MALOAI" Type="varchar" MaxLength="20" />
           <Property Name="TANG" Type="int" />
           <Property Name="TINHTRANG" Type="nvarchar" MaxLength="50" />
           <Property Name="MAPDP" Type="varchar" MaxLength="5" />
@@ -310,6 +311,7 @@
           </Key>
           <Property Name="MAHD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MAPDP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="LOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="NGLAPHD" Type="DateTime" Precision="0" />
           <Property Name="THANHTIEN" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="PHIEUDATPHONG" Relationship="Self.FK01_HD" FromRole="HOADON" ToRole="PHIEUDATPHONG" />
@@ -333,7 +335,7 @@
           <Key>
             <PropertyRef Name="MALOAI" />
           </Key>
-          <Property Name="MALOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MALOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SLGIUONG" Type="Int32" />
           <Property Name="LOAIGIUONG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GIA" Type="Decimal" Precision="19" Scale="4" />
@@ -389,7 +391,7 @@
             <PropertyRef Name="SOPHONG" />
           </Key>
           <Property Name="SOPHONG" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MALOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MALOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="TANG" Type="Int32" />
           <Property Name="TINHTRANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MAPDP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
@@ -504,7 +506,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LA_OPERA_HOTELEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LA_OPERA_HOTELEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CHITIETDICHVUs" EntityType="Self.CHITIETDICHVU" />
           <EntitySet Name="DANGNHAPs" EntityType="Self.DANGNHAP" />
           <EntitySet Name="DICHVUs" EntityType="Self.DICHVU" />
@@ -557,7 +559,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LA_OPERA_HOTELModelStoreContainer" CdmEntityContainer="LA_OPERA_HOTELEntities">
+        <EntityContainerMapping StorageEntityContainer="LA_OPERA_HOTELModelStoreContainer" CdmEntityContainer="LA_OPERA_HOTELEntities1">
           <EntitySetMapping Name="CHITIETDICHVUs">
             <EntityTypeMapping TypeName="LA_OPERA_HOTELModel.CHITIETDICHVU">
               <MappingFragment StoreEntitySet="CHITIETDICHVU">
@@ -593,6 +595,7 @@
               <MappingFragment StoreEntitySet="HOADON">
                 <ScalarProperty Name="MAHD" ColumnName="MAHD" />
                 <ScalarProperty Name="MAPDP" ColumnName="MAPDP" />
+                <ScalarProperty Name="LOAI" ColumnName="LOAI" />
                 <ScalarProperty Name="NGLAPHD" ColumnName="NGLAPHD" />
                 <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
               </MappingFragment>

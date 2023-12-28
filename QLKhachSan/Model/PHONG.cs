@@ -12,7 +12,7 @@ namespace QLKhachSan.Model
     using QLKhachSan.ViewModel;
     using System;
     using System.Collections.Generic;
-
+    
     public partial class PHONG : BasicViewModel
     {
         private string _MALOAI;

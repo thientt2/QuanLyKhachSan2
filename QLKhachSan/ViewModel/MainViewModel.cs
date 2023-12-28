@@ -44,38 +44,39 @@ namespace QLKhachSan.ViewModel
         public bool IsLoaded = false;
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand DatPhongCommand { get; set; }
+        public ICommand LogOutCommand { get; set; }
         public MainViewModel()
         {
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-                IsLoaded = true;
-                if (p == null)
-                    return;
-                p.Hide();
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
-                if (loginWindow.DataContext == null)
-                    return;
-                var loginVM = loginWindow.DataContext as LoginViewModel;
-                if (loginVM.IsLogin)
+            IsLoaded = true;
+            if (p == null)
+                return;
+            p.Hide();
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.ShowDialog();
+            if (loginWindow.DataContext == null)
+                return;
+            var loginVM = loginWindow.DataContext as LoginViewModel;
+            if (loginVM.IsLogin)
+            {
+                ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
+                MANV = loginVM.MANV;
+                var info = DataProvider.Ins.DB.NHANVIENs.FirstOrDefault(x => x.MANV == MANV);
+                MMANV = MANV;
+                TENNV = info.TENNV;
+                GIOITINH = info.GIOITINH;
+                SDT = info.SDT;
+                DIACHI = info.DIACHI;
+                NGSINH = info.NGSINH;
+                EMAIL = info.EMAIL;
+                VITRILAMVIEC = info.VITRILAMVIEC;
+                if (TENNV == "Nguyễn Hữu Trường")
                 {
-                    ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
-                    MANV = loginVM.MANV;
-                    var info = DataProvider.Ins.DB.NHANVIENs.FirstOrDefault(x => x.MANV == MANV);
-                    MMANV = MANV;
-                    TENNV = info.TENNV;
-                    GIOITINH = info.GIOITINH;
-                    SDT = info.SDT;
-                    DIACHI = info.DIACHI;
-                    NGSINH = info.NGSINH;
-                    EMAIL = info.EMAIL;
-                    VITRILAMVIEC = info.VITRILAMVIEC;
-                    if (TENNV == "Nguyễn Hữu Trường")
-                    {
-                        ImagePath = "Images/HT.jpg";
-                    }
-                    if (TENNV == "Trần Trung Thông")
-                    {
+                    ImagePath = "Images/HT.jpg";
+                }
+                if (TENNV == "Trần Trung Thông")
+                {
                         ImagePath = "Images/3T.jpg";
                     }
                     if (TENNV == "Tăng Thanh Thiện")
@@ -86,8 +87,18 @@ namespace QLKhachSan.ViewModel
                 }
                 else p.Close();
             }
-            );
+        );
+            LogOutCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LogOut(); });
         }
 
+        void LogOut()
+        {
+            IsLoaded = false;
+            ListNV.Clear();
+            MANV = MMANV = TENNV = GIOITINH = DIACHI = SDT = EMAIL = VITRILAMVIEC = ImagePath = null;
+            // Thực hiện các bước cần thiết để thoát và khởi động lại chương trình
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
     }
 }

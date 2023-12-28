@@ -19,6 +19,8 @@ namespace QLKhachSan.Model
         public string MAHD { get { return _MAHD; } set { _MAHD = value; OnPropertyChanged(); } }
         private string _MAPDP;
         public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
+        private string _LOAI;
+        public string LOAI { get { return _LOAI; } set { _LOAI = value; OnPropertyChanged(); } }
         private DateTime? _NGLAPHD;
         public DateTime? NGLAPHD { get { return _NGLAPHD; } set { _NGLAPHD = value; OnPropertyChanged(); } }
         private decimal? _THANHTIEN;

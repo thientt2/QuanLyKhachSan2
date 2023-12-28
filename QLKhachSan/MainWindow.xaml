@@ -831,7 +831,7 @@
                                     </Button>
 
                                     <Button
-                                        Command="{Binding EditCommand}"
+                                        Command="{Binding NhanPhongCommand}"
                                         Background="Orange"
                                         Foreground="Black"
                                         Margin="30"

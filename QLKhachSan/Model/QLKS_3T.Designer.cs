@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\Model\QLKS_3T.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\Model\QLKS_3T.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

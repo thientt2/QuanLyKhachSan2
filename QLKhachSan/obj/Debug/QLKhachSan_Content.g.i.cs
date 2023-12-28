@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_tt.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_tt.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_3t.context.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_3t.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_tt.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_tt.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_nht.context.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/qlks_nht.tt")]
 

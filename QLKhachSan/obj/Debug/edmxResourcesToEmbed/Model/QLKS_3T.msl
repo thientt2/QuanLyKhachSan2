@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="LA_OPERA_HOTELModelStoreContainer" CdmEntityContainer="LA_OPERA_HOTELEntities">
+  <EntityContainerMapping StorageEntityContainer="LA_OPERA_HOTELModelStoreContainer" CdmEntityContainer="LA_OPERA_HOTELEntities1">
     <EntitySetMapping Name="CHITIETDICHVUs">
       <EntityTypeMapping TypeName="LA_OPERA_HOTELModel.CHITIETDICHVU">
         <MappingFragment StoreEntitySet="CHITIETDICHVU">
@@ -36,6 +36,7 @@
         <MappingFragment StoreEntitySet="HOADON">
           <ScalarProperty Name="MAHD" ColumnName="MAHD" />
           <ScalarProperty Name="MAPDP" ColumnName="MAPDP" />
+          <ScalarProperty Name="LOAI" ColumnName="LOAI" />
           <ScalarProperty Name="NGLAPHD" ColumnName="NGLAPHD" />
           <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
         </MappingFragment>

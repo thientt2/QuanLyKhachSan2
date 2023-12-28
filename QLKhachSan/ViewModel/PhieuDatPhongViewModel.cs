@@ -84,23 +84,37 @@ namespace QLKhachSan.ViewModel
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
             SSOPHONG = new List<string>();
-            ShowCommand = new RelayCommand<ComboBox>((p) => { return true; }, (p) => 
-            { 
-                foreach(var kh in ListKH)
+            //ShowCommand = new RelayCommand<TextBox>((p) => { return true; }, (p) =>
+            //{
+            //    foreach (var kh in ListKH)
+            //    {
+            //        if (kh.TENKH == TENKH)
+            //        {
+            //            MAKH = kh.MAKH.ToString();
+            //            GIOITINH = kh.GIOITINH.ToString();
+            //            SOCCCD = kh.SOCCCD.ToString();
+            //            QUOCTICH = kh.QUOCTICH.ToString();
+            //            DIACHI = kh.DIACHI.ToString();
+            //            EMAIL = kh.EMAIL.ToString();
+            //            SDT = kh.SDT.ToString();
+            //            NGSINH = kh.NGSINH;
+            //        }
+            //    }
+            //});
+            foreach (var kh in ListKH)
+            {
+                if (kh.TENKH == TENKH)
                 {
-                    if(kh.TENKH == TENKH)
-                    {
-                        MAKH = kh.MAKH.ToString();
-                        GIOITINH = kh.GIOITINH.ToString();
-                        SOCCCD = kh.SOCCCD.ToString();
-                        QUOCTICH = kh.QUOCTICH.ToString();
-                        DIACHI = kh.DIACHI.ToString();
-                        EMAIL = kh.EMAIL.ToString();
-                        SDT = kh.SDT.ToString();
-                        NGSINH = kh.NGSINH;
-                    }    
+                    MAKH = kh.MAKH.ToString();
+                    GIOITINH = kh.GIOITINH.ToString();
+                    SOCCCD = kh.SOCCCD.ToString();
+                    QUOCTICH = kh.QUOCTICH.ToString();
+                    DIACHI = kh.DIACHI.ToString();
+                    EMAIL = kh.EMAIL.ToString();
+                    SDT = kh.SDT.ToString();
+                    NGSINH = kh.NGSINH;
                 }
-            });
+            }
 
             ShowCommand1 = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
             {

@@ -34,6 +34,7 @@
     </Key>
     <Property Name="MAHD" Type="varchar" MaxLength="5" Nullable="false" />
     <Property Name="MAPDP" Type="varchar" MaxLength="5" />
+    <Property Name="LOAI" Type="varchar" MaxLength="20" />
     <Property Name="NGLAPHD" Type="smalldatetime" />
     <Property Name="THANHTIEN" Type="money" />
   </EntityType>
@@ -55,7 +56,7 @@
     <Key>
       <PropertyRef Name="MALOAI" />
     </Key>
-    <Property Name="MALOAI" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MALOAI" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="SLGIUONG" Type="int" />
     <Property Name="LOAIGIUONG" Type="nvarchar" MaxLength="50" />
     <Property Name="GIA" Type="money" />
@@ -101,7 +102,7 @@
       <PropertyRef Name="SOPHONG" />
     </Key>
     <Property Name="SOPHONG" Type="varchar" MaxLength="5" Nullable="false" />
-    <Property Name="MALOAI" Type="varchar" MaxLength="50" />
+    <Property Name="MALOAI" Type="varchar" MaxLength="20" />
     <Property Name="TANG" Type="int" />
     <Property Name="TINHTRANG" Type="nvarchar" MaxLength="50" />
     <Property Name="MAPDP" Type="varchar" MaxLength="5" />

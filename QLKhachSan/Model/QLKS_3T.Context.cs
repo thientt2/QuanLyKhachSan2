@@ -13,10 +13,10 @@ namespace QLKhachSan.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LA_OPERA_HOTELEntities : DbContext
+    public partial class LA_OPERA_HOTELEntities1 : DbContext
     {
-        public LA_OPERA_HOTELEntities()
-            : base("name=LA_OPERA_HOTELEntities")
+        public LA_OPERA_HOTELEntities1()
+            : base("name=LA_OPERA_HOTELEntities1")
         {
         }
     

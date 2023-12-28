@@ -95,6 +95,8 @@ namespace QLKhachSan.ViewModel
         public string TENNV { get { return _TENNV; } set { _TENNV = value; OnPropertyChanged(); } }
         private DateTime? _NGLAPHD;
         public DateTime? NGLAPHD { get { return _NGLAPHD; } set { _NGLAPHD = value; OnPropertyChanged(); } }
+        private string _LOAI;
+        public string LOAI { get { return _LOAI; } set { _LOAI = value; OnPropertyChanged(); } }
 
         private ObservableCollection<NHANVIEN> _NhanVien;
         public ObservableCollection<NHANVIEN> NhanVien { get { return _NhanVien; } set { _NhanVien = value; OnPropertyChanged(); } }
@@ -141,7 +143,7 @@ namespace QLKhachSan.ViewModel
                 //    // Thực hiện công việc in tại đây
                 //    PrintDocument(printDialog.PrintQueue);
                 //}
-                var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
+                var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = MALOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
                 DataProvider.Ins.DB.HOADONs.Add(hd);
                 DataProvider.Ins.DB.SaveChanges();
                 MessageBox.Show("Bill printed successfully!");

@@ -38,6 +38,7 @@
     </Key>
     <Property Name="MAHD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="MAPDP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="LOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="NGLAPHD" Type="DateTime" Precision="0" />
     <Property Name="THANHTIEN" Type="Decimal" Precision="19" Scale="4" />
     <NavigationProperty Name="PHIEUDATPHONG" Relationship="Self.FK01_HD" FromRole="HOADON" ToRole="PHIEUDATPHONG" />
@@ -61,7 +62,7 @@
     <Key>
       <PropertyRef Name="MALOAI" />
     </Key>
-    <Property Name="MALOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MALOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="SLGIUONG" Type="Int32" />
     <Property Name="LOAIGIUONG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="GIA" Type="Decimal" Precision="19" Scale="4" />
@@ -117,7 +118,7 @@
       <PropertyRef Name="SOPHONG" />
     </Key>
     <Property Name="SOPHONG" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="MALOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MALOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="TANG" Type="Int32" />
     <Property Name="TINHTRANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="MAPDP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
@@ -232,7 +233,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="LA_OPERA_HOTELEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="LA_OPERA_HOTELEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CHITIETDICHVUs" EntityType="Self.CHITIETDICHVU" />
     <EntitySet Name="DANGNHAPs" EntityType="Self.DANGNHAP" />
     <EntitySet Name="DICHVUs" EntityType="Self.DICHVU" />
