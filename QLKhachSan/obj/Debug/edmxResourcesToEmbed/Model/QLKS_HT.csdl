@@ -1,37 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="QLKSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="CTPDP">
-    <Key>
-      <PropertyRef Name="MACTPDP" />
-    </Key>
-    <Property Name="MACTPDP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="MAPDP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-    <Property Name="NGTRA" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="PHIEUDATPHONG" Relationship="Self.FK01_CTPDP" FromRole="CTPDP" ToRole="PHIEUDATPHONG" />
-    <NavigationProperty Name="PHONGs" Relationship="Self.FK02_PHONG" FromRole="CTPDP" ToRole="PHONG" />
-  </EntityType>
-  <EntityType Name="CTPDV">
+<Schema Namespace="LA_OPERA_HOTELModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHITIETDICHVU">
     <Key>
       <PropertyRef Name="MAPDV" />
       <PropertyRef Name="MADV" />
     </Key>
     <Property Name="MAPDV" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="MADV" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="GIA" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="SLDV" Type="Int32" />
-    <NavigationProperty Name="PHIEUDICHVU" Relationship="Self.FK01_CTPDV" FromRole="CTPDV" ToRole="PHIEUDICHVU" />
-    <NavigationProperty Name="DICHVU" Relationship="Self.FK02_CTPDV" FromRole="CTPDV" ToRole="DICHVU" />
+    <Property Name="GIA" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="PHIEUDICHVU" Relationship="Self.FK01_CTPDV" FromRole="CHITIETDICHVU" ToRole="PHIEUDICHVU" />
+    <NavigationProperty Name="DICHVU" Relationship="Self.FK02_CTPDV" FromRole="CHITIETDICHVU" ToRole="DICHVU" />
   </EntityType>
   <EntityType Name="DANGNHAP">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MANV" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="TAIKHOAN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="MATKHAU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="IDPHANQUYEN" Type="Int32" />
-    <NavigationProperty Name="PHANQUYEN" Relationship="Self.FK01_DN" FromRole="DANGNHAP" ToRole="PHANQUYEN" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK01_DN" FromRole="DANGNHAP" ToRole="NHANVIEN" />
   </EntityType>
   <EntityType Name="DICHVU">
     <Key>
@@ -40,20 +30,18 @@
     <Property Name="MADV" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TENDV" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
-    <NavigationProperty Name="CTPDVs" Relationship="Self.FK02_CTPDV" FromRole="DICHVU" ToRole="CTPDV" />
+    <NavigationProperty Name="CHITIETDICHVUs" Relationship="Self.FK02_CTPDV" FromRole="DICHVU" ToRole="CHITIETDICHVU" />
   </EntityType>
   <EntityType Name="HOADON">
     <Key>
       <PropertyRef Name="MAHD" />
     </Key>
     <Property Name="MAHD" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="MANV" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="MAPDP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="LOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="NGLAPHD" Type="DateTime" Precision="0" />
-    <Property Name="TONGTIEN" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="MADT" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK01_HD" FromRole="HOADON" ToRole="NHANVIEN" />
-    <NavigationProperty Name="PHIEUDATPHONG" Relationship="Self.FK02_HD" FromRole="HOADON" ToRole="PHIEUDATPHONG" />
+    <Property Name="THANHTIEN" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="PHIEUDATPHONG" Relationship="Self.FK01_HD" FromRole="HOADON" ToRole="PHIEUDATPHONG" />
   </EntityType>
   <EntityType Name="KHACHHANG">
     <Key>
@@ -74,7 +62,7 @@
     <Key>
       <PropertyRef Name="MALOAI" />
     </Key>
-    <Property Name="MALOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MALOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="SLGIUONG" Type="Int32" />
     <Property Name="LOAIGIUONG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="GIA" Type="Decimal" Precision="19" Scale="4" />
@@ -96,16 +84,8 @@
     <Property Name="VITRILAMVIEC" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="LUONG" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="NGVL" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="HOADONs" Relationship="Self.FK01_HD" FromRole="NHANVIEN" ToRole="HOADON" />
+    <NavigationProperty Name="DANGNHAPs" Relationship="Self.FK01_DN" FromRole="NHANVIEN" ToRole="DANGNHAP" />
     <NavigationProperty Name="PHIEUDATPHONGs" Relationship="Self.FK02_PDP" FromRole="NHANVIEN" ToRole="PHIEUDATPHONG" />
-  </EntityType>
-  <EntityType Name="PHANQUYEN">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="DANGNHAPs" Relationship="Self.FK01_DN" FromRole="PHANQUYEN" ToRole="DANGNHAP" />
   </EntityType>
   <EntityType Name="PHIEUDATPHONG">
     <Key>
@@ -116,11 +96,12 @@
     <Property Name="MANV" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="NGDAT" Type="DateTime" Precision="0" />
     <Property Name="NGNHAN" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="CTPDPs" Relationship="Self.FK01_CTPDP" FromRole="PHIEUDATPHONG" ToRole="CTPDP" />
-    <NavigationProperty Name="HOADONs" Relationship="Self.FK02_HD" FromRole="PHIEUDATPHONG" ToRole="HOADON" />
+    <Property Name="NGTRA" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="HOADONs" Relationship="Self.FK01_HD" FromRole="PHIEUDATPHONG" ToRole="HOADON" />
     <NavigationProperty Name="KHACHHANG" Relationship="Self.FK01_PDP" FromRole="PHIEUDATPHONG" ToRole="KHACHHANG" />
     <NavigationProperty Name="NHANVIEN" Relationship="Self.FK02_PDP" FromRole="PHIEUDATPHONG" ToRole="NHANVIEN" />
     <NavigationProperty Name="PHIEUDICHVUs" Relationship="Self.FK01_PDV" FromRole="PHIEUDATPHONG" ToRole="PHIEUDICHVU" />
+    <NavigationProperty Name="PHONGs" Relationship="Self.FK02_PHONG" FromRole="PHIEUDATPHONG" ToRole="PHONG" />
   </EntityType>
   <EntityType Name="PHIEUDICHVU">
     <Key>
@@ -128,96 +109,59 @@
     </Key>
     <Property Name="MAPDV" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="MAPDP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-    <Property Name="NGLAP" Type="DateTime" Precision="0" />
     <Property Name="TONGTIEN" Type="Decimal" Precision="19" Scale="4" />
-    <NavigationProperty Name="CTPDVs" Relationship="Self.FK01_CTPDV" FromRole="PHIEUDICHVU" ToRole="CTPDV" />
+    <NavigationProperty Name="CHITIETDICHVUs" Relationship="Self.FK01_CTPDV" FromRole="PHIEUDICHVU" ToRole="CHITIETDICHVU" />
     <NavigationProperty Name="PHIEUDATPHONG" Relationship="Self.FK01_PDV" FromRole="PHIEUDICHVU" ToRole="PHIEUDATPHONG" />
   </EntityType>
   <EntityType Name="PHONG">
     <Key>
       <PropertyRef Name="SOPHONG" />
     </Key>
-    <Property Name="SOPHONG" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="MALOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SOPHONG" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MALOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="TANG" Type="Int32" />
     <Property Name="TINHTRANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="MACTPDP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="CTPDP" Relationship="Self.FK02_PHONG" FromRole="PHONG" ToRole="CTPDP" />
+    <Property Name="MAPDP" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="LOAIPHONG" Relationship="Self.FK01_PHONG" FromRole="PHONG" ToRole="LOAIPHONG" />
+    <NavigationProperty Name="PHIEUDATPHONG" Relationship="Self.FK02_PHONG" FromRole="PHONG" ToRole="PHIEUDATPHONG" />
   </EntityType>
-  <Association Name="FK01_CTPDP">
-    <End Role="PHIEUDATPHONG" Type="Self.PHIEUDATPHONG" Multiplicity="0..1" />
-    <End Role="CTPDP" Type="Self.CTPDP" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PHIEUDATPHONG">
-        <PropertyRef Name="MAPDP" />
-      </Principal>
-      <Dependent Role="CTPDP">
-        <PropertyRef Name="MAPDP" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK02_PHONG">
-    <End Role="CTPDP" Type="Self.CTPDP" Multiplicity="0..1" />
-    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CTPDP">
-        <PropertyRef Name="MACTPDP" />
-      </Principal>
-      <Dependent Role="PHONG">
-        <PropertyRef Name="MACTPDP" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK01_CTPDV">
     <End Role="PHIEUDICHVU" Type="Self.PHIEUDICHVU" Multiplicity="1" />
-    <End Role="CTPDV" Type="Self.CTPDV" Multiplicity="*" />
+    <End Role="CHITIETDICHVU" Type="Self.CHITIETDICHVU" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PHIEUDICHVU">
         <PropertyRef Name="MAPDV" />
       </Principal>
-      <Dependent Role="CTPDV">
+      <Dependent Role="CHITIETDICHVU">
         <PropertyRef Name="MAPDV" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK02_CTPDV">
     <End Role="DICHVU" Type="Self.DICHVU" Multiplicity="1" />
-    <End Role="CTPDV" Type="Self.CTPDV" Multiplicity="*" />
+    <End Role="CHITIETDICHVU" Type="Self.CHITIETDICHVU" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DICHVU">
         <PropertyRef Name="MADV" />
       </Principal>
-      <Dependent Role="CTPDV">
+      <Dependent Role="CHITIETDICHVU">
         <PropertyRef Name="MADV" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK01_DN">
-    <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="0..1" />
-    <End Role="DANGNHAP" Type="Self.DANGNHAP" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PHANQUYEN">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="DANGNHAP">
-        <PropertyRef Name="IDPHANQUYEN" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK01_HD">
     <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
-    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <End Role="DANGNHAP" Type="Self.DANGNHAP" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="NHANVIEN">
         <PropertyRef Name="MANV" />
       </Principal>
-      <Dependent Role="HOADON">
+      <Dependent Role="DANGNHAP">
         <PropertyRef Name="MANV" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK02_HD">
+  <Association Name="FK01_HD">
     <End Role="PHIEUDATPHONG" Type="Self.PHIEUDATPHONG" Multiplicity="0..1" />
     <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
     <ReferentialConstraint>
@@ -277,44 +221,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="QLKSEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="CTPDPs" EntityType="Self.CTPDP" />
-    <EntitySet Name="CTPDVs" EntityType="Self.CTPDV" />
+  <Association Name="FK02_PHONG">
+    <End Role="PHIEUDATPHONG" Type="Self.PHIEUDATPHONG" Multiplicity="0..1" />
+    <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUDATPHONG">
+        <PropertyRef Name="MAPDP" />
+      </Principal>
+      <Dependent Role="PHONG">
+        <PropertyRef Name="MAPDP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLKS_HT" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHITIETDICHVUs" EntityType="Self.CHITIETDICHVU" />
     <EntitySet Name="DANGNHAPs" EntityType="Self.DANGNHAP" />
     <EntitySet Name="DICHVUs" EntityType="Self.DICHVU" />
     <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
     <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
     <EntitySet Name="LOAIPHONGs" EntityType="Self.LOAIPHONG" />
     <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
-    <EntitySet Name="PHANQUYENs" EntityType="Self.PHANQUYEN" />
     <EntitySet Name="PHIEUDATPHONGs" EntityType="Self.PHIEUDATPHONG" />
     <EntitySet Name="PHIEUDICHVUs" EntityType="Self.PHIEUDICHVU" />
     <EntitySet Name="PHONGs" EntityType="Self.PHONG" />
-    <AssociationSet Name="FK01_CTPDP" Association="Self.FK01_CTPDP">
-      <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONGs" />
-      <End Role="CTPDP" EntitySet="CTPDPs" />
-    </AssociationSet>
-    <AssociationSet Name="FK02_PHONG" Association="Self.FK02_PHONG">
-      <End Role="CTPDP" EntitySet="CTPDPs" />
-      <End Role="PHONG" EntitySet="PHONGs" />
-    </AssociationSet>
     <AssociationSet Name="FK01_CTPDV" Association="Self.FK01_CTPDV">
       <End Role="PHIEUDICHVU" EntitySet="PHIEUDICHVUs" />
-      <End Role="CTPDV" EntitySet="CTPDVs" />
+      <End Role="CHITIETDICHVU" EntitySet="CHITIETDICHVUs" />
     </AssociationSet>
     <AssociationSet Name="FK02_CTPDV" Association="Self.FK02_CTPDV">
       <End Role="DICHVU" EntitySet="DICHVUs" />
-      <End Role="CTPDV" EntitySet="CTPDVs" />
+      <End Role="CHITIETDICHVU" EntitySet="CHITIETDICHVUs" />
     </AssociationSet>
     <AssociationSet Name="FK01_DN" Association="Self.FK01_DN">
-      <End Role="PHANQUYEN" EntitySet="PHANQUYENs" />
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
       <End Role="DANGNHAP" EntitySet="DANGNHAPs" />
     </AssociationSet>
     <AssociationSet Name="FK01_HD" Association="Self.FK01_HD">
-      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
-      <End Role="HOADON" EntitySet="HOADONs" />
-    </AssociationSet>
-    <AssociationSet Name="FK02_HD" Association="Self.FK02_HD">
       <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONGs" />
       <End Role="HOADON" EntitySet="HOADONs" />
     </AssociationSet>
@@ -333,6 +275,10 @@
     <AssociationSet Name="FK01_PDV" Association="Self.FK01_PDV">
       <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONGs" />
       <End Role="PHIEUDICHVU" EntitySet="PHIEUDICHVUs" />
+    </AssociationSet>
+    <AssociationSet Name="FK02_PHONG" Association="Self.FK02_PHONG">
+      <End Role="PHIEUDATPHONG" EntitySet="PHIEUDATPHONGs" />
+      <End Role="PHONG" EntitySet="PHONGs" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

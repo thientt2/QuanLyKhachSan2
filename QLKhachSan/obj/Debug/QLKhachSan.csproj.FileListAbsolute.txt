@@ -233,3 +233,9 @@ C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.cspr
 C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.csproj.CopyComplete
 C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.exe
 C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\obj\Debug\QLKhachSan.pdb
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.dll
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.pdb
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.xml
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.Wpf.xml

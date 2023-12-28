@@ -102,35 +102,35 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\CHITIETDICHVU.cs">
-      <DependentUpon>QLKS_3T.tt</DependentUpon>
+      <DependentUpon>QLKS_HT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DANGNHAP.cs">
-      <DependentUpon>QLKS_3T.tt</DependentUpon>
+      <DependentUpon>QLKS_HT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\DICHVU.cs">
-      <DependentUpon>QLKS_3T.tt</DependentUpon>
+      <DependentUpon>QLKS_HT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\HOADON.cs">
-      <DependentUpon>QLKS_3T.tt</DependentUpon>
+      <DependentUpon>QLKS_HT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\KHACHHANG.cs">
-      <DependentUpon>QLKS_3T.tt</DependentUpon>
+      <DependentUpon>QLKS_HT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\LOAIPHONG.cs">
-      <DependentUpon>QLKS_3T.tt</DependentUpon>
+      <DependentUpon>QLKS_HT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\NHANVIEN.cs">
-      <DependentUpon>QLKS_3T.tt</DependentUpon>
+      <DependentUpon>QLKS_HT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PHIEUDATPHONG.cs">
-      <DependentUpon>QLKS_3T.tt</DependentUpon>
+      <DependentUpon>QLKS_HT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PHIEUDICHVU.cs">
-      <DependentUpon>QLKS_3T.tt</DependentUpon>
+      <DependentUpon>QLKS_HT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PHONG.cs">
-      <DependentUpon>QLKS_3T.tt</DependentUpon>
+      <DependentUpon>QLKS_HT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\QLKS_3T.Context.cs">
       <AutoGen>True</AutoGen>
@@ -146,6 +146,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QLKS_3T.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\QLKS_HT.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLKS_HT.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\QLKS_HT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLKS_HT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\QLKS_HT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLKS_HT.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\QLKS_NHT.Context.cs">
       <AutoGen>True</AutoGen>
@@ -267,6 +282,13 @@
     <None Include="Model\QLKS_3T.edmx.diagram">
       <DependentUpon>QLKS_3T.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="Model\QLKS_HT.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QLKS_HT.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\QLKS_HT.edmx.diagram">
+      <DependentUpon>QLKS_HT.edmx</DependentUpon>
+    </None>
     <None Include="Model\QLKS_NHT.edmx.diagram">
       <DependentUpon>QLKS_NHT.edmx</DependentUpon>
     </None>
@@ -302,6 +324,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QLKS_3T.edmx</DependentUpon>
       <LastGenOutput>QLKS_3T.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\QLKS_HT.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLKS_HT.edmx</DependentUpon>
+      <LastGenOutput>QLKS_HT.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\QLKS_HT.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLKS_HT.edmx</DependentUpon>
+      <LastGenOutput>QLKS_HT.cs</LastGenOutput>
     </Content>
     <Content Include="Model\QLKS_TT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

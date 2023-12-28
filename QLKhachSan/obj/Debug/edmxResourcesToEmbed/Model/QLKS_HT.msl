@@ -1,30 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="QLKSModelStoreContainer" CdmEntityContainer="QLKSEntities">
-    <EntitySetMapping Name="CTPDPs">
-      <EntityTypeMapping TypeName="QLKSModel.CTPDP">
-        <MappingFragment StoreEntitySet="CTPDP">
-          <ScalarProperty Name="MACTPDP" ColumnName="MACTPDP" />
-          <ScalarProperty Name="MAPDP" ColumnName="MAPDP" />
-          <ScalarProperty Name="NGTRA" ColumnName="NGTRA" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CTPDVs">
-      <EntityTypeMapping TypeName="QLKSModel.CTPDV">
-        <MappingFragment StoreEntitySet="CTPDV">
+  <EntityContainerMapping StorageEntityContainer="LA_OPERA_HOTELModel2StoreContainer" CdmEntityContainer="QLKS_HT">
+    <EntitySetMapping Name="CHITIETDICHVUs">
+      <EntityTypeMapping TypeName="LA_OPERA_HOTELModel2.CHITIETDICHVU">
+        <MappingFragment StoreEntitySet="CHITIETDICHVU">
           <ScalarProperty Name="MAPDV" ColumnName="MAPDV" />
           <ScalarProperty Name="MADV" ColumnName="MADV" />
-          <ScalarProperty Name="GIA" ColumnName="GIA" />
           <ScalarProperty Name="SLDV" ColumnName="SLDV" />
+          <ScalarProperty Name="GIA" ColumnName="GIA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DANGNHAPs">
-      <EntityTypeMapping TypeName="QLKSModel.DANGNHAP">
+      <EntityTypeMapping TypeName="LA_OPERA_HOTELModel2.DANGNHAP">
         <MappingFragment StoreEntitySet="DANGNHAP">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="TEN" ColumnName="TEN" />
+          <ScalarProperty Name="MANV" ColumnName="MANV" />
           <ScalarProperty Name="TAIKHOAN" ColumnName="TAIKHOAN" />
           <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
           <ScalarProperty Name="IDPHANQUYEN" ColumnName="IDPHANQUYEN" />
@@ -32,7 +23,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DICHVUs">
-      <EntityTypeMapping TypeName="QLKSModel.DICHVU">
+      <EntityTypeMapping TypeName="LA_OPERA_HOTELModel2.DICHVU">
         <MappingFragment StoreEntitySet="DICHVU">
           <ScalarProperty Name="MADV" ColumnName="MADV" />
           <ScalarProperty Name="TENDV" ColumnName="TENDV" />
@@ -41,19 +32,18 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HOADONs">
-      <EntityTypeMapping TypeName="QLKSModel.HOADON">
+      <EntityTypeMapping TypeName="LA_OPERA_HOTELModel2.HOADON">
         <MappingFragment StoreEntitySet="HOADON">
           <ScalarProperty Name="MAHD" ColumnName="MAHD" />
-          <ScalarProperty Name="MANV" ColumnName="MANV" />
           <ScalarProperty Name="MAPDP" ColumnName="MAPDP" />
+          <ScalarProperty Name="LOAI" ColumnName="LOAI" />
           <ScalarProperty Name="NGLAPHD" ColumnName="NGLAPHD" />
-          <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
-          <ScalarProperty Name="MADT" ColumnName="MADT" />
+          <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KHACHHANGs">
-      <EntityTypeMapping TypeName="QLKSModel.KHACHHANG">
+      <EntityTypeMapping TypeName="LA_OPERA_HOTELModel2.KHACHHANG">
         <MappingFragment StoreEntitySet="KHACHHANG">
           <ScalarProperty Name="MAKH" ColumnName="MAKH" />
           <ScalarProperty Name="TENKH" ColumnName="TENKH" />
@@ -68,7 +58,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LOAIPHONGs">
-      <EntityTypeMapping TypeName="QLKSModel.LOAIPHONG">
+      <EntityTypeMapping TypeName="LA_OPERA_HOTELModel2.LOAIPHONG">
         <MappingFragment StoreEntitySet="LOAIPHONG">
           <ScalarProperty Name="MALOAI" ColumnName="MALOAI" />
           <ScalarProperty Name="SLGIUONG" ColumnName="SLGIUONG" />
@@ -80,7 +70,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NHANVIENs">
-      <EntityTypeMapping TypeName="QLKSModel.NHANVIEN">
+      <EntityTypeMapping TypeName="LA_OPERA_HOTELModel2.NHANVIEN">
         <MappingFragment StoreEntitySet="NHANVIEN">
           <ScalarProperty Name="MANV" ColumnName="MANV" />
           <ScalarProperty Name="TENNV" ColumnName="TENNV" />
@@ -95,43 +85,35 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PHANQUYENs">
-      <EntityTypeMapping TypeName="QLKSModel.PHANQUYEN">
-        <MappingFragment StoreEntitySet="PHANQUYEN">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="TEN" ColumnName="TEN" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="PHIEUDATPHONGs">
-      <EntityTypeMapping TypeName="QLKSModel.PHIEUDATPHONG">
+      <EntityTypeMapping TypeName="LA_OPERA_HOTELModel2.PHIEUDATPHONG">
         <MappingFragment StoreEntitySet="PHIEUDATPHONG">
           <ScalarProperty Name="MAPDP" ColumnName="MAPDP" />
           <ScalarProperty Name="MAKH" ColumnName="MAKH" />
           <ScalarProperty Name="MANV" ColumnName="MANV" />
           <ScalarProperty Name="NGDAT" ColumnName="NGDAT" />
           <ScalarProperty Name="NGNHAN" ColumnName="NGNHAN" />
+          <ScalarProperty Name="NGTRA" ColumnName="NGTRA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PHIEUDICHVUs">
-      <EntityTypeMapping TypeName="QLKSModel.PHIEUDICHVU">
+      <EntityTypeMapping TypeName="LA_OPERA_HOTELModel2.PHIEUDICHVU">
         <MappingFragment StoreEntitySet="PHIEUDICHVU">
           <ScalarProperty Name="MAPDV" ColumnName="MAPDV" />
           <ScalarProperty Name="MAPDP" ColumnName="MAPDP" />
-          <ScalarProperty Name="NGLAP" ColumnName="NGLAP" />
           <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PHONGs">
-      <EntityTypeMapping TypeName="QLKSModel.PHONG">
+      <EntityTypeMapping TypeName="LA_OPERA_HOTELModel2.PHONG">
         <MappingFragment StoreEntitySet="PHONG">
           <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
           <ScalarProperty Name="MALOAI" ColumnName="MALOAI" />
           <ScalarProperty Name="TANG" ColumnName="TANG" />
           <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
-          <ScalarProperty Name="MACTPDP" ColumnName="MACTPDP" />
+          <ScalarProperty Name="MAPDP" ColumnName="MAPDP" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
