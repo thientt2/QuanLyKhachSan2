@@ -47,7 +47,7 @@ namespace QLKhachSan.ViewModel
         private string _MAKH;
         public string MAKH { get { return _MAKH; } set { _MAKH = value; OnPropertyChanged(); } }
         private string _TENKH;
-        public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); } }
+        public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); if(IsSearching) ApplySearchFilter(); } }
         private string _GIOITINH;
         public string GIOITINH { get { return _GIOITINH; } set { _GIOITINH = value; OnPropertyChanged(); } }
         private DateTime? _NGSINH;
@@ -91,18 +91,18 @@ namespace QLKhachSan.ViewModel
 
         private void ApplySearchFilter()
         {
-            IsSearching = true;
+            //IsSearching = true;
             CollectionView.Refresh();
-            IsSearching = false;
+            //IsSearching = false;
         }
 
         private bool Filter(object item)
         {
-            if (string.IsNullOrEmpty(SearchText))
+            if (string.IsNullOrEmpty(TENKH))
                 return true;
 
             var khachHang = (KHACHHANG)item;
-            string searchText = SearchText.ToLowerInvariant();
+            string searchText = TENKH.ToLowerInvariant();
 
             //return khachHang.MAKH.ToLowerInvariant().Contains(searchText)
             //    || khachHang.TENKH.ToLowerInvariant().Contains(searchText)
