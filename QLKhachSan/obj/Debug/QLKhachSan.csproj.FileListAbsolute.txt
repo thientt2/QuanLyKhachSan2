@@ -172,3 +172,9 @@ C:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\
 C:\Users\TRUNG THONG\source\repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\Bill.baml
 C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\Bill.g.cs
 C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\Bill.baml
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.dll
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.pdb
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.xml
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\LiveCharts.Wpf.xml

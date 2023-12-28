@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:QLKhachSan"
         mc:Ignorable="d"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:Chart="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         
         xmlns:uc="clr-namespace:QLKhachSan.UserControlKS"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -870,7 +871,7 @@
                     </TabItem>
 
                     <!--ThongKe-->
-                    <TabItem Height="70" Margin="0,-1230,0,10">
+                    <TabItem Height="70" Margin="0,-1230,0,10" DataContext="{StaticResource DoanhThuVM}">
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
                                 <materialDesign:PackIcon Kind="Finance" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
@@ -882,24 +883,66 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition ></RowDefinition>
                             </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <ComboBox       x:Name="txtNam"
+                                            Margin="30,10,30,10"
+                                            HorizontalAlignment="Left" 
+                                            Width="245" Height="60" FontSize="20"
+                                            SelectedValue="{Binding Nam}"
+                                            ItemsSource="{Binding LNam}"
+                                            Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding ShowCommand1}" CommandParameter="{Binding ElementName=txtNam}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                                <Grid Grid.Column="1">
+                                    <ComboBox       x:Name="Thang"
+                                            Margin="30,10,30,10"
+                                            HorizontalAlignment="Left" 
+                                            Width="245" Height="60" FontSize="20"
+                                            SelectedValue="{Binding Thang}"
+                                            ItemsSource="{Binding LThang}"
+                                            Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding ShowCommand1}" CommandParameter="{Binding ElementName=Thang}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Chart:CartesianChart>
+                                    
+                                </Chart:CartesianChart>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Label Content="Tổng doamnh thu:"></Label>
+                            </Grid>
                         </Grid>
-
                     </TabItem>
                 </TabControl>
             </Grid>
 
             <materialDesign:DrawerHost
-    x:Name="DrawerHost"
-    Panel.ZIndex="1"
-    Grid.Row="0"
-    Grid.RowSpan="2"
-    HorizontalAlignment="Stretch"
-    VerticalAlignment="Stretch"
-    BorderBrush="{DynamicResource MaterialDesignDivider}"
-    BorderThickness="1"
-    BottomDrawerBackground="{DynamicResource SecondaryHueLightBrush}"
-    BottomDrawerCornerRadius="20 20 0 0">
+                x:Name="DrawerHost"
+                Panel.ZIndex="1"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                BorderBrush="{DynamicResource MaterialDesignDivider}"
+                BorderThickness="1"
+                BottomDrawerBackground="{DynamicResource SecondaryHueLightBrush}"
+                BottomDrawerCornerRadius="20 20 0 0">
 
                 <materialDesign:DrawerHost.Style>
                     <Style TargetType="materialDesign:DrawerHost" BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
@@ -954,8 +997,8 @@
                             <StackPanel Margin="70,30,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Account" Height="20"/>
                                 <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
-            <Run  Text="Họ và tên:  "></Run>
-            <Run  Text="{Binding TENNV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Run>
+                                    <Run  Text="Họ và tên:  "></Run>
+                                    <Run  Text="{Binding TENNV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Run>
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
@@ -964,8 +1007,8 @@
                             <StackPanel Margin="70,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="HumanMaleFemale" Height="20"/>
                                 <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
-            <Run Text="Giới tính:    " ></Run>
-            <Run Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></Run>
+                                    <Run Text="Giới tính:    " ></Run>
+                                    <Run Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></Run>
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
@@ -974,8 +1017,8 @@
                             <StackPanel Margin="70,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Phone" Height="20"/>
                                 <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
-            <Run Text="SĐT:           " ></Run>
-            <Run Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></Run>
+                                    <Run Text="SĐT:           " ></Run>
+                                    <Run Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></Run>
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
@@ -984,8 +1027,8 @@
                             <StackPanel Margin="70,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Email" Height="20"/>
                                 <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
-            <Run Text="Email:         "></Run>
-            <Run Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Run>
+                                    <Run Text="Email:         "></Run>
+                                    <Run Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Run>
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
@@ -998,8 +1041,8 @@
                             <StackPanel Margin="70,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="CalendarToday" Height="20"/>
                                 <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
-            <Run Text="Ngày sinh: "></Run>
-            <Run Text="{Binding NGSINH, StringFormat={}{0:dd/MM/yyyy}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    <Run Text="Ngày sinh: "></Run>
+                                    <Run Text="{Binding NGSINH, StringFormat={}{0:dd/MM/yyyy}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
@@ -1013,28 +1056,28 @@
 
                         <Grid Grid.Row="11">
                             <Button
-                    x:Name="LogOut"
-                     Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=SortAll}"
-                     Background="LightGray"
-                     Foreground="Black"
-                     Margin="40"
-                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                     Width="120"
-                     Height="40"
-                    HorizontalAlignment="Right"
-                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                     Content="_Đăng xuất">
+                                x:Name="LogOut"
+                                Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=SortAll}"
+                                Background="LightGray"
+                                Foreground="Black"
+                                Margin="40"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                Width="120"
+                                Height="40"
+                                HorizontalAlignment="Right"
+                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                Content="_Đăng xuất">
                             </Button>
                         </Grid>
 
                         <Button
-                Panel.ZIndex="2"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Right"
-                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                CommandParameter="{x:Static Dock.Left}"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                 Style="{StaticResource MaterialDesignIconForegroundButton}">
+                            Panel.ZIndex="2"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                            CommandParameter="{x:Static Dock.Left}"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}">
                             <materialDesign:PackIcon Kind="WindowClose" />
                         </Button>
 
@@ -1045,15 +1088,15 @@
                 </materialDesign:DrawerHost.LeftDrawerContent>
 
                 <Button Content="Open Drawer"
-        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-        CommandParameter="{x:Static Dock.Left}"
-        HorizontalAlignment="Left"
-        VerticalAlignment="Top"
-        BorderBrush="White"
-        BorderThickness="0,2,0,2"
-        Height="103" Width="239"
-        Background="Black"
-        Panel.ZIndex="2">
+                    Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                    CommandParameter="{x:Static Dock.Left}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    BorderBrush="White"
+                    BorderThickness="0,2,0,2"
+                    Height="103" Width="239"
+                    Background="Black"
+                    Panel.ZIndex="2">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

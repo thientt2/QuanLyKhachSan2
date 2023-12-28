@@ -12,4 +12,5 @@
     <viewmodel:PhieuDatDichVuViewModel x:Key="PhieuDatDichVuVM"></viewmodel:PhieuDatDichVuViewModel>
     <viewmodel:TrangChuViewModel x:Key="TrangChuVM"></viewmodel:TrangChuViewModel>
     <viewmodel:BillViewModel x:Key="BillVM"></viewmodel:BillViewModel>
+    <viewmodel:DoanhThuViewModel x:Key="DoanhThuVM"></viewmodel:DoanhThuViewModel>
 </ResourceDictionary>
