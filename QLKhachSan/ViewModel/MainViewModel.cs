@@ -29,16 +29,13 @@ namespace QLKhachSan.ViewModel
         public string DIACHI { get { return _DIACHI; } set { _DIACHI = value; OnPropertyChanged(); } }
         private string _SDT;
         public string SDT { get { return _SDT; } set { _SDT = value; OnPropertyChanged(); } }
-
         private string _EMAIL;
         public string EMAIL { get { return _EMAIL; } set { _EMAIL = value; OnPropertyChanged(); } }
-
         private string _VITRILAMVIEC;
         public string VITRILAMVIEC { get { return _VITRILAMVIEC; } set { _VITRILAMVIEC = value; OnPropertyChanged(); } }
-
-
         private DateTime? _NGSINH;
         public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
+
         public bool IsLoaded = false;
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand DatPhongCommand { get; set; }
@@ -58,7 +55,7 @@ namespace QLKhachSan.ViewModel
                 if (loginVM.IsLogin)
                 {
                     ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
-                    MANV = loginVM.TEN;
+                    MANV = loginVM.MANV;
                     var info = DataProvider.Ins.DB.NHANVIENs.FirstOrDefault(x => x.MANV == MANV);
                     TENNV = info.TENNV;
                     GIOITINH = info.GIOITINH;

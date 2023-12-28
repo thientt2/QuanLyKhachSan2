@@ -58,13 +58,12 @@ namespace QLKhachSan.ViewModel
         public int SOLUONG { get { return _SOLUONG; } set { _SOLUONG = value; OnPropertyChanged(); } }
         private decimal? _TONGTIEN;
         public decimal? TONGTIEN { get { return _TONGTIEN; } set { _TONGTIEN = value; OnPropertyChanged(); } }
+
         //Dịch vụ
         private ObservableCollection<DICHVU> _ListDV;
         public ObservableCollection<DICHVU> ListDV { get { return _ListDV; } set { _ListDV = value; OnPropertyChanged(); } }
-
         private List<string> _TTENDV;
         public List<string> TTENDV { get { return _TTENDV; } set { _TTENDV = value; OnPropertyChanged(); } }
-
         private string _MADV;
         public string MADV { get { return _MADV; } set { _MADV = value; OnPropertyChanged(); } }
         private string _TENDV;
@@ -76,20 +75,16 @@ namespace QLKhachSan.ViewModel
         //Phòng
         private ObservableCollection<PHONG> _ListPhong;
         public ObservableCollection<PHONG> ListPhong { get { return _ListPhong; } set { _ListPhong = value; OnPropertyChanged(); } }
-
         private List<string> _SoPhong;
         public List<string> SoPhong { get { return _SoPhong; } set { _SoPhong = value; OnPropertyChanged(); } }
-
         private List<string> _SSOPHONG;
         public List<string> SSOPHONG { get { return _SSOPHONG; } set { _SSOPHONG = value; OnPropertyChanged(); } }
-
         private string _SOPHONG;
         public string SOPHONG { get { return _SOPHONG; } set { _SOPHONG = value; OnPropertyChanged(); } }
 
         //Chi tiết phiếu dịch vụ
-        private ObservableCollection<CTPDV> _ListCTPDV;
-        public ObservableCollection<CTPDV> ListCTPDV { get { return _ListCTPDV; } set { _ListCTPDV = value; OnPropertyChanged(); } }
-
+        private ObservableCollection<CHITIETDICHVU> _ListCTPDV;
+        public ObservableCollection<CHITIETDICHVU> ListCTPDV { get { return _ListCTPDV; } set { _ListCTPDV = value; OnPropertyChanged(); } }
         private int? _SLDV;
         public int? SLDV { get { return _SLDV; } set { _SLDV = value; OnPropertyChanged(); } }
         private decimal? _GIA;
@@ -103,12 +98,6 @@ namespace QLKhachSan.ViewModel
         public string MAPDV { get { return _MAPDV; } set { _MAPDV = value; OnPropertyChanged(); } }
         private DateTime? _NGLAP;
         public DateTime? NGLAP { get { return _NGLAP; } set { _NGLAP = value; OnPropertyChanged(); } }
-
-        //Chi tiết phiếu đặt phòng
-        private ObservableCollection<CTPDP> _ListCTPDP;
-        public ObservableCollection<CTPDP> ListCTPDP { get { return _ListCTPDP; } set { _ListCTPDP = value; OnPropertyChanged(); } }
-        private string _MACTPDP;
-        public string MACTPDP { get { return _MACTPDP; } set { _MACTPDP = value; OnPropertyChanged(); } }
         private string _MAPDP;
         public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
 
@@ -124,8 +113,7 @@ namespace QLKhachSan.ViewModel
             ListDV = new ObservableCollection<DICHVU>(DataProvider.Ins.DB.DICHVUs);
             ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
             ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
-            ListCTPDV = new ObservableCollection<CTPDV>(DataProvider.Ins.DB.CTPDVs);
-            ListCTPDP = new ObservableCollection<CTPDP>(DataProvider.Ins.DB.CTPDPs);
+            ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
             SSOPHONG = new List<string>();
             ListNumber = new List<int?>();
             SLDV = 1;
@@ -149,9 +137,8 @@ namespace QLKhachSan.ViewModel
                 if(SOPHONG != null)
                 {
                     selectedRoom = SOPHONG;
-                    var ctpdp = ListPhong.FirstOrDefault(phong => phong.SOPHONG == selectedRoom)?.CTPDP;
-                    MACTPDP = ctpdp.MACTPDP; 
-                    MAPDP = ctpdp.MAPDP;
+                    var pdp = ListPhong.FirstOrDefault(phong => phong.SOPHONG == selectedRoom);
+                    MAPDP = pdp.MAPDP;
                     var phieuDichVu = ListPDV.FirstOrDefault(pdv => pdv.MAPDP == MAPDP);
                     if (phieuDichVu == null)
                     {
@@ -163,7 +150,7 @@ namespace QLKhachSan.ViewModel
                     else
                         MAPDV = phieuDichVu.MAPDV.ToString();
                 }
-                ListCTPDV = new ObservableCollection<CTPDV>(DataProvider.Ins.DB.CTPDVs);
+                ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
                 foreach (var ctpdv in ListCTPDV)
                 {
                     if (ctpdv.MAPDV == MAPDV)
@@ -198,7 +185,7 @@ namespace QLKhachSan.ViewModel
                 {                 
                     if (ctpdv.MAPDV == MAPDV && ctpdv.MADV == MADV)
                     {
-                        var ctpdv3 = DataProvider.Ins.DB.CTPDVs.Where(x => x.MAPDV == MAPDV && x.MADV == MADV).SingleOrDefault();
+                        var ctpdv3 = DataProvider.Ins.DB.CHITIETDICHVUs.Where(x => x.MAPDV == MAPDV && x.MADV == MADV).SingleOrDefault();
                         ctpdv3.MAPDV = MAPDV;
                         ctpdv3.MADV = MADV;
                         ctpdv3.SLDV += SLDV;
@@ -209,7 +196,7 @@ namespace QLKhachSan.ViewModel
                 }
                 if (New == 1)
                 {
-                    var pdv = new PHIEUDICHVU() { MAPDV = MAPDV, MAPDP = MAPDP, NGLAP = DateTime.Now, TONGTIEN = null };
+                    var pdv = new PHIEUDICHVU() { MAPDV = MAPDV, MAPDP = MAPDP, TONGTIEN = null };
                     DataProvider.Ins.DB.PHIEUDICHVUs.Add(pdv);
                     DataProvider.Ins.DB.SaveChanges();
                     New = 0;
@@ -217,11 +204,11 @@ namespace QLKhachSan.ViewModel
                 ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
                 if (same == 0)
                 {
-                    var ctpdv4 = new CTPDV() { MAPDV = MAPDV, MADV = MADV, SLDV = SLDV, GIA = sum };
-                    DataProvider.Ins.DB.CTPDVs.Add(ctpdv4);
+                    var ctpdv4 = new CHITIETDICHVU() { MAPDV = MAPDV, MADV = MADV, SLDV = SLDV, GIA = sum };
+                    DataProvider.Ins.DB.CHITIETDICHVUs.Add(ctpdv4);
                     DataProvider.Ins.DB.SaveChanges();
                 }
-                ListCTPDV = new ObservableCollection<CTPDV>(DataProvider.Ins.DB.CTPDVs);
+                ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
                 foreach (var ctpdv in ListCTPDV)
                 {
                     if (ctpdv.MAPDV == MAPDV)
@@ -262,7 +249,7 @@ namespace QLKhachSan.ViewModel
                 {                   
                     if (count == 2)
                     {
-                        var ctpdv3 = DataProvider.Ins.DB.CTPDVs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();
+                        var ctpdv3 = DataProvider.Ins.DB.CHITIETDICHVUs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();
                         ctpdv3.MAPDV = SelectedItem.MAPDV;
                         ctpdv3.MADV = SelectedItem.MADV;
                         ctpdv3.SLDV -= SelectedItem.SLDV;
@@ -271,11 +258,11 @@ namespace QLKhachSan.ViewModel
                     }
                     else
                     {
-                        var ctpdv4 = DataProvider.Ins.DB.CTPDVs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();
-                        DataProvider.Ins.DB.CTPDVs.Remove(ctpdv4);
+                        var ctpdv4 = DataProvider.Ins.DB.CHITIETDICHVUs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();
+                        DataProvider.Ins.DB.CHITIETDICHVUs.Remove(ctpdv4);
                         DataProvider.Ins.DB.SaveChanges();
                     }
-                    ListCTPDV = new ObservableCollection<CTPDV>(DataProvider.Ins.DB.CTPDVs);
+                    ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
                     ListCTPDV1.Remove(SelectedItem);
                     foreach (var ctpdv in ListCTPDV1)
                     {

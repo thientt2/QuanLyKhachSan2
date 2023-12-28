@@ -20,8 +20,8 @@ namespace QLKhachSan.ViewModel
         public string UserName { get { return _username; } set { _username = value; OnPropertyChanged(); } }
         private string _password;
         public string Password { get { return _password; } set { _password = value; OnPropertyChanged(); } }
-        private string _TEN;
-        public string TEN { get { return _TEN; } set { _TEN = value; OnPropertyChanged(); } }
+        private string _MANV;
+        public string MANV { get { return _MANV; } set { _MANV = value; OnPropertyChanged(); } }
 
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
@@ -44,7 +44,7 @@ namespace QLKhachSan.ViewModel
             if (accCount > 0)
             {
                 IsLogin = true;
-                TEN = loggedInUser.TEN;
+                MANV = loggedInUser.MANV;
                 p.Close();
             }
             else

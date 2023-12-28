@@ -842,10 +842,9 @@
                                                 <GridViewColumn Header="Mã nhân viên" Width="Auto" DisplayMemberBinding="{Binding MANV}"></GridViewColumn>
                                                 <GridViewColumn Header="Ngày đặt phòng" Width="Auto" DisplayMemberBinding="{Binding NGDAT,StringFormat=dd/MM/yyyy HH:mm:ss}"></GridViewColumn>
                                                 <GridViewColumn Header="Ngày nhận phòng" Width="Auto" DisplayMemberBinding="{Binding NGNHAN,StringFormat=dd/MM/yyyy HH:mm:ss}"></GridViewColumn>
+                                                <GridViewColumn Header="Ngày trả phòng" Width="Auto" DisplayMemberBinding="{Binding NGTRA, StringFormat=dd/MM/yyyy HH:mm:ss}"></GridViewColumn>
                                                 <GridViewColumn Header="Trạng thái" Width="Auto" DisplayMemberBinding="{Binding TRANGTHAI}"></GridViewColumn>
                                                 <GridViewColumn Header="Mã phiếu dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MAPDV}"></GridViewColumn>
-                                                <GridViewColumn Header="Mã chi tiết đặt phòng" Width="Auto" DisplayMemberBinding="{Binding MACTPDP}"></GridViewColumn>
-                                                <GridViewColumn Header="Ngày trả phòng" Width="Auto" DisplayMemberBinding="{Binding NGTRA, StringFormat=dd/MM/yyyy HH:mm:ss}"></GridViewColumn>
                                             </GridView>
                                         </ListView.View>
                                         <!--<ListView.ItemContainerStyle>

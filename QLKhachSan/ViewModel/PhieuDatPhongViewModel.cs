@@ -27,27 +27,18 @@ namespace QLKhachSan.ViewModel
         public string SOPHONG { get { return _SOPHONG; } set { _SOPHONG = value; OnPropertyChanged(); } }
         private List<string> _MaLoai;
         public List<string> MaLoai { get { return _MaLoai; } set { _MaLoai = value; OnPropertyChanged(); } }
-
         private List<string> _SSOPHONG;
         public List<string> SSOPHONG { get { return _SSOPHONG; } set { _SSOPHONG = value; OnPropertyChanged(); } }
         private List<string> _SoPhong;
         public List<string> SoPhong { get { return _SoPhong; } set { _SoPhong = value; OnPropertyChanged(); } }
 
-        private ObservableCollection<CTPDP> _ListCTPDP;
-        public ObservableCollection<CTPDP> ListCTPDP { get { return _ListCTPDP; } set { _ListCTPDP = value; OnPropertyChanged(); } }
-        private string _MACTPDP;
-        public string MACTPDP { get { return _MACTPDP; } set { _MACTPDP = value; OnPropertyChanged(); } }
-
+        //Khách hàng
         private ObservableCollection<KHACHHANG> _ListKH;
         public ObservableCollection<KHACHHANG> ListKH { get { return _ListKH; } set { _ListKH = value; OnPropertyChanged(); } }
-
-        //Khách hàng
         private List<string> _TTENKH;
         public List<string> TTENKH { get { return _TTENKH; } set { _TTENKH = value; OnPropertyChanged(); } }
-
         private string _MAKH;
         public string MAKH { get { return _MAKH; } set { _MAKH = value; OnPropertyChanged(); } }
-
         private string _TENKH;
         public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); } }
         private string _GIOITINH;
@@ -56,16 +47,12 @@ namespace QLKhachSan.ViewModel
         public string DIACHI { get { return _DIACHI; } set { _DIACHI = value; OnPropertyChanged(); } }
         private string _SDT;
         public string SDT { get { return _SDT; } set { _SDT = value; OnPropertyChanged(); } }
-
         private string _EMAIL;
         public string EMAIL { get { return _EMAIL; } set { _EMAIL = value; OnPropertyChanged(); } }
-
         private string _SOCCCD;
         public string SOCCCD { get { return _SOCCCD; } set { _SOCCCD = value; OnPropertyChanged(); } }
-
         private string _QUOCTICH;
         public string QUOCTICH { get { return _QUOCTICH; } set { _QUOCTICH = value; OnPropertyChanged(); } }
-
         private DateTime? _NGSINH;
         public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
 
@@ -79,13 +66,13 @@ namespace QLKhachSan.ViewModel
         public ObservableCollection<PHIEUDATPHONG> ListPDP { get { return _ListPDP; } set { _ListPDP = value; OnPropertyChanged(); } }
         private string _MAPDP;
         public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
-
-
         private DateTime? _NGDAT;
         public DateTime? NGDAT { get { return _NGDAT; } set { _NGDAT = value; OnPropertyChanged(); } }
         private DateTime? _NGNHAN;
         public DateTime? NGNHAN { get { return _NGNHAN; } set { _NGNHAN = value; OnPropertyChanged(); } }
-        
+        private DateTime? _NGTRA;
+        public DateTime? NGTRA { get { return _NGTRA; } set { _NGTRA = value; OnPropertyChanged(); } }
+
         //
         public ICommand AddCommand { get; set; }
         public ICommand ShowCommand { get; set; }
@@ -96,7 +83,6 @@ namespace QLKhachSan.ViewModel
         {
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
-            ListCTPDP = new ObservableCollection<CTPDP>(DataProvider.Ins.DB.CTPDPs);
             SSOPHONG = new List<string>();
             ShowCommand = new RelayCommand<ComboBox>((p) => { return true; }, (p) => 
             { 
@@ -152,20 +138,15 @@ namespace QLKhachSan.ViewModel
                     if (phong.SOPHONG == SOPHONG && phong.TINHTRANG == "Trống")
                     {
                         phong.TINHTRANG = "Đã đặt";
+                        break;
                     }
                 }
                 foreach (var phong in ListPhong)
                 {
                     if (phong.SOPHONG == SOPHONG)
                     {
-                        MACTPDP = phong.MACTPDP;
-                    }
-                }
-                foreach (var ctpdp in ListCTPDP)
-                {
-                    if (ctpdp.MACTPDP == MACTPDP)
-                    {
-                        ctpdp.MAPDP = MAPDP;
+                        MAPDP = phong.MAPDP;
+                        break;
                     }
                 }
                 DataProvider.Ins.DB.SaveChanges();
@@ -173,15 +154,13 @@ namespace QLKhachSan.ViewModel
                 TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = MANV = SDT = "";
                 NGSINH = null;
                 SOPHONG = null;
-                NGDAT = NGNHAN = null;
+                NGDAT = NGNHAN = NGTRA = null;
                 FrameworkElement window = p as FrameworkElement;
                 var w = window as Window;
                 if (w != null)
                 {
                     w.Close();
                 }
-
-
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {
@@ -191,7 +170,7 @@ namespace QLKhachSan.ViewModel
                 TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MANV = "";
                 MAKH = SDT = SOPHONG = null;
                 NGSINH = null;
-                NGDAT = NGNHAN = null;
+                NGDAT = NGNHAN = NGTRA = null;
             });
         }
     }

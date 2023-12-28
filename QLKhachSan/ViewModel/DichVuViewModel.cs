@@ -15,8 +15,8 @@ namespace QLKhachSan.ViewModel
     public class DichVuViewModel : BasicViewModel
     {
         // Chi tiết phiếu dịch vụ
-        private ObservableCollection<CTPDV> _ListCTPDV;
-        public ObservableCollection<CTPDV> ListCTPDV { get { return _ListCTPDV; } set { _ListCTPDV = value; OnPropertyChanged(); } }
+        private ObservableCollection<CHITIETDICHVU> _ListCTPDV;
+        public ObservableCollection<CHITIETDICHVU> ListCTPDV { get { return _ListCTPDV; } set { _ListCTPDV = value; OnPropertyChanged(); } }
         private string _MAPDV;
         public string MAPDV { get { return _MAPDV; } set { _MAPDV = value; OnPropertyChanged(); } }
         private int? _SLDV;
@@ -58,7 +58,7 @@ namespace QLKhachSan.ViewModel
 
         public DichVuViewModel()
         {
-            ListCTPDV = new ObservableCollection<CTPDV>(DataProvider.Ins.DB.CTPDVs);
+            ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
             ListDV = new ObservableCollection<DICHVU>(DataProvider.Ins.DB.DICHVUs);
             AddCommand = new RelayCommand<object>((p) =>
             {

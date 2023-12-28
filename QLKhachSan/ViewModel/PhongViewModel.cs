@@ -34,9 +34,6 @@ namespace QLKhachSan.ViewModel
         public ObservableCollection<PHIEUDATPHONG> ListPDP { get { return _ListPDP; } set { _ListPDP = value; OnPropertyChanged(); } }
         private DateTime? _NGNHAN;
         public DateTime? NGNHAN { get { return _NGNHAN; } set { _NGNHAN = value; OnPropertyChanged(); } }
-        //CTPDP
-        private ObservableCollection<CTPDP> _ListCTPDP;
-        public ObservableCollection<CTPDP> ListCTPDP { get { return _ListCTPDP; } set { _ListCTPDP = value; OnPropertyChanged(); } }
         private string _MAPDP;
         public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
         private string _MAPDP1;
@@ -94,10 +91,6 @@ namespace QLKhachSan.ViewModel
         public int? TANG { get { return _TANG; } set { _TANG = value; OnPropertyChanged(); } }
         private string _TINHTRANG;
         public string TINHTRANG { get { return _TINHTRANG; } set { _TINHTRANG = value; OnPropertyChanged(); } }
-        private string _MACTPDP;
-        public string MACTPDP { get { return _MACTPDP; } set { _MACTPDP = value; OnPropertyChanged(); } }
-        private string _MACTPDP1;
-        public string MACTPDP1 { get { return _MACTPDP1; } set { _MACTPDP1 = value; OnPropertyChanged(); } }
         private PHONG _SelectedItem1;
         public PHONG SelectedItem1
         {
@@ -115,6 +108,7 @@ namespace QLKhachSan.ViewModel
                     SOPHONG = SelectedItem1.SOPHONG;
                     TANG = SelectedItem1.TANG;
                     TINHTRANG = SelectedItem1.TINHTRANG;
+                    MAPDP = SelectedItem1.MAPDP;
                 }
             }
         }
@@ -123,12 +117,10 @@ namespace QLKhachSan.ViewModel
         public ObservableCollection<HOADON> HoaDon { get { return _HoaDon; } set { _HoaDon = value; OnPropertyChanged(); } }
         private string _MAHD;
         public string MAHD { get { return _MAHD; } set { _MAHD = value; OnPropertyChanged(); } }
-        private string _MANV;
-        public string MANV { get { return _MANV; } set { _MANV = value; OnPropertyChanged(); } }
         private DateTime? _NGLAPHD;
         public DateTime? NGLAPHD { get { return _NGLAPHD; } set { _NGLAPHD = value; OnPropertyChanged(); } }
-        private decimal? _TONGTIEN;
-        public decimal? TONGTIEN { get { return _TONGTIEN; } set { _TONGTIEN = value; OnPropertyChanged(); } }
+        private decimal? _THANHTIEN;
+        public decimal? THANHTIEN { get { return _THANHTIEN; } set { _THANHTIEN = value; OnPropertyChanged(); } }
         //Phiếu dịch vụ
         private ObservableCollection<PHIEUDICHVU> _ListPDV;
         public ObservableCollection<PHIEUDICHVU> ListPDV { get { return _ListPDV; } set { _ListPDV = value; OnPropertyChanged(); } }
@@ -141,15 +133,12 @@ namespace QLKhachSan.ViewModel
 
         public PhongViewModel()
         {
-            int SoNgay = 0;
-            int tontaihoadon = 0;
             LoaiPhong = new ObservableCollection<LOAIPHONG>(DataProvider.Ins.DB.LOAIPHONGs);
             ListNumber = new List<int?>();
             ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
             TenDV = new List<string>();
             ListDV = new ObservableCollection<DICHVU>(DataProvider.Ins.DB.DICHVUs);
             ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
-            ListCTPDP = new ObservableCollection<CTPDP>(DataProvider.Ins.DB.CTPDPs);
             ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
             SoPhong = new List<string>();
             foreach (var dv in ListDV)
@@ -208,21 +197,11 @@ namespace QLKhachSan.ViewModel
             }, (p) =>
             {
                 HoaDon = new ObservableCollection<HOADON>(DataProvider.Ins.DB.HOADONs);
-                foreach (var ctpdp in ListCTPDP)
-                {
-                    if (ctpdp.MACTPDP == SelectedItem1.MACTPDP)
-                    {
-                        MAPDP = ctpdp.MAPDP;
-                        break;
-                    }
-                        
-                }
                 var wd = new Bill();
                 var addVM = wd.DataContext as BillViewModel;
                 addVM.SOPHONG1 = SelectedItem1.SOPHONG;
                 addVM.MALOAI1 = SelectedItem1.MALOAI;
-                addVM.MACTPDP1 = SelectedItem1.MACTPDP;
-                addVM.MAPDP1 = MAPDP;
+                addVM.MAPDP1 = SelectedItem1.MAPDP;
                 addVM.Init();
                 wd.ShowDialog();
             }
@@ -238,14 +217,7 @@ namespace QLKhachSan.ViewModel
             {
                 var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.SOPHONG == SelectedItem1.SOPHONG).SingleOrDefault();
                 phong.TINHTRANG = "Trống";
-                foreach (var ctpdp in ListCTPDP)
-                {
-                    if (ctpdp.MACTPDP == SelectedItem1.MACTPDP && ctpdp.NGTRA == null)
-                    {
-                        NGTRA = DateTime.Now;
-                        break;
-                    }
-                }
+                //Ngày trả
                 MessageBox.Show($"Thanh toán phòng {SelectedItem1.SOPHONG} thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             );

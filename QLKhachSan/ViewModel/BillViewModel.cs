@@ -32,10 +32,8 @@ namespace QLKhachSan.ViewModel
         //Dịch vụ
         private ObservableCollection<DICHVU> _ListDV;
         public ObservableCollection<DICHVU> ListDV { get { return _ListDV; } set { _ListDV = value; OnPropertyChanged(); } }
-
         private List<string> _TTENDV;
         public List<string> TTENDV { get { return _TTENDV; } set { _TTENDV = value; OnPropertyChanged(); } }
-
         private string _MADV;
         public string MADV { get { return _MADV; } set { _MADV = value; OnPropertyChanged(); } }
         private string _TENDV;
@@ -47,13 +45,10 @@ namespace QLKhachSan.ViewModel
         //Phòng
         private ObservableCollection<PHONG> _ListPhong;
         public ObservableCollection<PHONG> ListPhong { get { return _ListPhong; } set { _ListPhong = value; OnPropertyChanged(); } }
-
         private List<string> _SoPhong;
         public List<string> SoPhong { get { return _SoPhong; } set { _SoPhong = value; OnPropertyChanged(); } }
-
         private List<string> _SSOPHONG;
         public List<string> SSOPHONG { get { return _SSOPHONG; } set { _SSOPHONG = value; OnPropertyChanged(); } }
-
         private string _SOPHONG;
         public string SOPHONG { get { return _SOPHONG; } set { _SOPHONG = value; OnPropertyChanged(); } }
         private string _SOPHONG1;
@@ -62,9 +57,8 @@ namespace QLKhachSan.ViewModel
         public string MALOAI { get { return _MALOAI; } set { _MALOAI = value; OnPropertyChanged(); } }
 
         //Chi tiết phiếu dịch vụ
-        private ObservableCollection<CTPDV> _ListCTPDV;
-        public ObservableCollection<CTPDV> ListCTPDV { get { return _ListCTPDV; } set { _ListCTPDV = value; OnPropertyChanged(); } }
-
+        private ObservableCollection<CHITIETDICHVU> _ListCTPDV;
+        public ObservableCollection<CHITIETDICHVU> ListCTPDV { get { return _ListCTPDV; } set { _ListCTPDV = value; OnPropertyChanged(); } }
         private int? _SLDV;
         public int? SLDV { get { return _SLDV; } set { _SLDV = value; OnPropertyChanged(); } }
         private decimal? _GIA;
@@ -87,12 +81,6 @@ namespace QLKhachSan.ViewModel
         public string MAPDV { get { return _MAPDV; } set { _MAPDV = value; OnPropertyChanged(); } }
         private DateTime? _NGLAP;
         public DateTime? NGLAP { get { return _NGLAP; } set { _NGLAP = value; OnPropertyChanged(); } }
-
-        //Chi tiết phiếu đặt phòng
-        private ObservableCollection<CTPDP> _ListCTPDP;
-        public ObservableCollection<CTPDP> ListCTPDP { get { return _ListCTPDP; } set { _ListCTPDP = value; OnPropertyChanged(); } }
-        private string _MACTPDP;
-        public string MACTPDP { get { return _MACTPDP; } set { _MACTPDP = value; OnPropertyChanged(); } }
         private string _MAPDP;
         public string MAPDP { get { return _MAPDP; } set { _MAPDP = value; OnPropertyChanged(); } }
 
@@ -137,8 +125,7 @@ namespace QLKhachSan.ViewModel
             ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
             ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
             ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
-            ListCTPDV = new ObservableCollection<CTPDV>(DataProvider.Ins.DB.CTPDVs);
-            ListCTPDP = new ObservableCollection<CTPDP>(DataProvider.Ins.DB.CTPDPs);
+            ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
             HoaDon = new ObservableCollection<HOADON>(DataProvider.Ins.DB.HOADONs);
             Init();
 
@@ -154,7 +141,7 @@ namespace QLKhachSan.ViewModel
                 //    // Thực hiện công việc in tại đây
                 //    PrintDocument(printDialog.PrintQueue);
                 //}
-                var hd = new HOADON { MAHD = MAHD, MANV = MANV, MAPDP = MAPDP, NGLAPHD = NGLAPHD, TONGTIEN = THANHTIEN };
+                var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
                 DataProvider.Ins.DB.HOADONs.Add(hd);
                 DataProvider.Ins.DB.SaveChanges();
                 MessageBox.Show("Bill printed successfully!");
@@ -181,7 +168,7 @@ namespace QLKhachSan.ViewModel
         {
             int SoNgay = 0;
             var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == MAPDP1).SingleOrDefault();
-            var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.MACTPDP == MACTPDP1).SingleOrDefault();
+            var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == MAPDP1).SingleOrDefault();
             var pdv = DataProvider.Ins.DB.PHIEUDICHVUs.Where(x => x.MAPDP == MAPDP1).SingleOrDefault();
 
             int maxCode = HoaDon.Max(hd => int.Parse(hd.MAHD.Substring(2)));
@@ -191,7 +178,6 @@ namespace QLKhachSan.ViewModel
             if (pdp != null && phong != null && pdv != null)
             {
                 MAPDP = pdp.MAPDP;
-                MANV = pdp.MANV;
                 NGLAPHD = DateTime.Now;
                 TENNV = pdp.NHANVIEN.TENNV;
                 TENKH = pdp.KHACHHANG.TENKH;

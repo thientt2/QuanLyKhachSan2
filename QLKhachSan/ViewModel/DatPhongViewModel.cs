@@ -23,16 +23,12 @@ namespace QLKhachSan.ViewModel
         public DateTime? NGDAT { get { return _NGDAT; } set { _NGDAT = value; OnPropertyChanged(); } }
         private DateTime? _NGNHAN;
         public DateTime? NGNHAN { get { return _NGNHAN; } set { _NGNHAN = value; OnPropertyChanged(); } }
+        private DateTime? _NGTRA;
+        public DateTime? NGTRA { get { return _NGTRA; } set { _NGTRA = value; OnPropertyChanged(); } }
         private string _TRANGTHAI;
         public string TRANGTHAI { get { return _TRANGTHAI; } set { _TRANGTHAI = value; OnPropertyChanged(); } }
         private string _MAPDV;
         public string MAPDV { get { return _MAPDV; } set { _MAPDV = value; OnPropertyChanged(); } }
-        private string _MACTPDP;
-        public string MACTPDP { get { return _MACTPDP; } set { _MACTPDP = value; OnPropertyChanged(); } }
-        private DateTime? _NGTRA;
-        public DateTime? NGTRA { get { return _NGTRA; } set { _NGTRA = value; OnPropertyChanged(); } }
-        private decimal? _TONGTIEN;
-        public decimal? TONGTIEN { get { return _TONGTIEN; } set { _TONGTIEN = value; OnPropertyChanged(); } }
     }
 
     public class DatPhongViewModel : BasicViewModel
@@ -67,28 +63,21 @@ namespace QLKhachSan.ViewModel
         public int? TANG { get { return _TANG; } set { _TANG = value; OnPropertyChanged(); } }
         private string _TINHTRANG;
         public string TINHTRANG { get { return _TINHTRANG; } set { _TINHTRANG = value; OnPropertyChanged(); } }
-        private string _MACTPDP;
-        public string MACTPDP { get { return _MACTPDP; } set { _MACTPDP = value; OnPropertyChanged(); } }
 
-        // CTPDP
-        private ObservableCollection<CTPDP> _ListCTPDP;
-        public ObservableCollection<CTPDP> ListCTPDP { get { return _ListCTPDP; } set { _ListCTPDP = value; OnPropertyChanged(); } }
-        private DateTime? _NGTRA;
-        public DateTime? NGTRA { get { return _NGTRA; } set { _NGTRA = value; OnPropertyChanged(); } }
 
         //Phiếu dịch vụ
         private ObservableCollection<PHIEUDICHVU> _ListPDV;
         public ObservableCollection<PHIEUDICHVU> ListPDV { get { return _ListPDV; } set { _ListPDV = value; OnPropertyChanged(); } }
         private string _MAPDV;
         public string MAPDV { get { return _MAPDV; } set { _MAPDV = value; OnPropertyChanged(); } }
-        private DateTime? _NGLAP;
-        public DateTime? NGLAP { get { return _NGLAP; } set { _NGLAP = value; OnPropertyChanged(); } }
+        private string _MADV;
+        public string MADV { get { return _MADV; } set { _MADV = value; OnPropertyChanged(); } }
         private decimal? _TONGTIEN;
         public decimal? TONGTIEN { get { return _TONGTIEN; } set { _TONGTIEN = value; OnPropertyChanged(); } }
 
         //Chi tiết phiếu dịch vụ
-        private ObservableCollection<CTPDV> _ListCTPDV;
-        public ObservableCollection<CTPDV> ListCTPDV { get { return _ListCTPDV; } set { _ListCTPDV = value; OnPropertyChanged(); } }
+        private ObservableCollection<CHITIETDICHVU> _ListCTPDV;
+        public ObservableCollection<CHITIETDICHVU> ListCTPDV { get { return _ListCTPDV; } set { _ListCTPDV = value; OnPropertyChanged(); } }
         private int? _SLDV;
         public int? SLDV { get { return _SLDV; } set { _SLDV = value; OnPropertyChanged(); } }
         private decimal? _GIA;
@@ -117,10 +106,7 @@ namespace QLKhachSan.ViewModel
                     NGNHAN = SelectedItem.NGNHAN;
                     TRANGTHAI = SelectedItem.TRANGTHAI;
                     MAPDV = SelectedItem.MAPDV;
-                    MACTPDP = SelectedItem.MACTPDP; 
                     NGTRA = SelectedItem.NGTRA;
-                    TONGTIEN = SelectedItem.TONGTIEN;
-
                 }
             }
         }
@@ -137,6 +123,8 @@ namespace QLKhachSan.ViewModel
         public DateTime? NGDAT { get { return _NGDAT; } set { _NGDAT = value; OnPropertyChanged(); } }
         private DateTime? _NGNHAN;
         public DateTime? NGNHAN { get { return _NGNHAN; } set { _NGNHAN = value; OnPropertyChanged(); } }
+        private DateTime? _NGTRA;
+        public DateTime? NGTRA { get { return _NGTRA; } set { _NGTRA = value; OnPropertyChanged(); } }
 
         public ICommand DatPhongCommand { get; set; }
         public ICommand NhanPhongCommand { get; set; }
@@ -149,7 +137,6 @@ namespace QLKhachSan.ViewModel
             PDP1 = new ObservableCollection<PDP1>();
             ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
             ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
-            ListCTPDP = new ObservableCollection<CTPDP>(DataProvider.Ins.DB.CTPDPs);
             //Khách hàng
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             TenKH = new List<string>();
@@ -165,7 +152,7 @@ namespace QLKhachSan.ViewModel
             //Màn hình chính
             foreach (var pdp in ListPDP)
             {
-                PDP1.Add(new PDP1 { MAPDP = pdp.MAPDP, MAKH = pdp.MAKH, MANV = pdp.MANV, NGDAT = pdp.NGDAT, NGNHAN = pdp.NGNHAN, TRANGTHAI = "Đợi nhận phòng", MAPDV = null, MACTPDP = null, NGTRA = null, TONGTIEN = null });
+                PDP1.Add(new PDP1 { MAPDP = pdp.MAPDP, MAKH = pdp.MAKH, MANV = pdp.MANV, NGDAT = pdp.NGDAT, NGNHAN = pdp.NGNHAN, NGTRA = pdp.NGTRA, TRANGTHAI = "Đợi nhận phòng", MAPDV = null });
             }
             foreach (var pdp1 in PDP1)
             {
@@ -174,16 +161,6 @@ namespace QLKhachSan.ViewModel
                     if (pdv.MAPDP == pdp1.MAPDP)
                     {
                         pdp1.MAPDV = pdv.MAPDV;
-                        pdp1.TONGTIEN = pdv.TONGTIEN;
-                        break;
-                    }
-                }
-                foreach (var ctpdp in ListCTPDP)
-                {
-                    if (ctpdp.MAPDP == pdp1.MAPDP)
-                    {
-                        pdp1.MACTPDP = ctpdp.MACTPDP;
-                        pdp1.NGTRA = ctpdp.NGTRA;
                         break;
                     }
                 }
@@ -195,7 +172,6 @@ namespace QLKhachSan.ViewModel
                 if (pdp1.NGTRA != null)
                 {
                     pdp1.TRANGTHAI = "Không còn sử dụng";
-
                 }    
             }
 
@@ -220,7 +196,7 @@ namespace QLKhachSan.ViewModel
                             pdp1.TRANGTHAI = "Đã nhận phòng";
                     }
                 }
-                var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.MACTPDP == SelectedItem.MACTPDP).SingleOrDefault();
+                var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
                 phong.TINHTRANG = "Đang được sử dụng";
                 DataProvider.Ins.DB.SaveChanges();
             }

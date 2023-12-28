@@ -49,25 +49,21 @@ namespace QLKhachSan.ViewModel
         public string TENNV { get { return _TENNV; } set { _TENNV = value; OnPropertyChanged(); } }
         private string _GIOITINH;
         public string GIOITINH { get { return _GIOITINH; } set { _GIOITINH = value; OnPropertyChanged(); } }
+        private DateTime? _NGSINH;
+        public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
         private string _DIACHI;
         public string DIACHI { get { return _DIACHI; } set { _DIACHI = value; OnPropertyChanged(); } }
         private string _SDT;
         public string SDT { get { return _SDT; } set { _SDT = value; OnPropertyChanged(); } }
-
         private string _EMAIL;
         public string EMAIL { get { return _EMAIL; } set { _EMAIL = value; OnPropertyChanged(); } }
-
         private string _VITRILAMVIEC;
         public string VITRILAMVIEC { get { return _VITRILAMVIEC; } set { _VITRILAMVIEC = value; OnPropertyChanged(); } }
-
         private decimal? _LUONG;
         public decimal? LUONG { get { return _LUONG; } set { _LUONG = value; OnPropertyChanged(); } }
-
         private DateTime? _NGVL;
         public DateTime? NGVL { get { return _NGVL; } set { _NGVL = value; OnPropertyChanged(); } }
 
-        private DateTime? _NGSINH;
-        public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
 
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }

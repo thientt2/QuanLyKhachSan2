@@ -176,18 +176,16 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Grid Grid.Column="0">
-                                        <Grid Grid.Column="1">
-                                            <StackPanel>
-                                                <TextBlock Margin="30,10,30,0" Text="Mã khách hàng" FontSize="15"></TextBlock>
-                                                <TextBox Text="{Binding MAKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                            </StackPanel>
-                                        </Grid>
+                                        <StackPanel>
+                                            <TextBlock Margin="30,10,30,0" Text="Mã nhân viên:" FontSize="15"></TextBlock>
+                                            <TextBox Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        </StackPanel>
                                     </Grid>
 
                                     <Grid Grid.Column="1">
                                         <StackPanel>
-                                            <TextBlock Margin="30,10,30,0" Text="Mã nhân viên:" FontSize="15"></TextBlock>
-                                            <TextBox Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                            <TextBlock Margin="30,10,30,0" Text="Ngày đặt:" FontSize="15"></TextBlock>
+                                            <DatePicker SelectedDate="{Binding NGDAT,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,5" Width="245" FontSize="20" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                         </StackPanel>
                                     </Grid>
                                 </Grid>
@@ -220,6 +218,22 @@
 
                                     <Grid Grid.Column="1">
                                         <StackPanel>
+                                            <TextBlock Margin="30,10,30,0" Text="Ngày nhận:" FontSize="15"></TextBlock>
+                                            <DatePicker SelectedDate="{Binding NGNHAN,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,5" Width="245" FontSize="20" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                        </StackPanel>
+                                    </Grid>
+
+
+                                </Grid>
+
+                                <Grid Grid.Row="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0">
+                                        <StackPanel>
                                             <TextBlock Margin="30,10,30,0" Text="Số phòng" FontSize="15"></TextBlock>
                                             <ComboBox
                                                 x:Name="SoPhong"
@@ -239,25 +253,11 @@
                                             </ComboBox>
                                         </StackPanel>
                                     </Grid>
-                                </Grid>
-
-                                <Grid Grid.Row="3">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Grid Grid.Column="0">
-                                        <StackPanel>
-                                            <TextBlock Margin="30,10,30,0" Text="Ngày đặt:" FontSize="15"></TextBlock>
-                                            <DatePicker SelectedDate="{Binding NGDAT,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,5" Width="245" FontSize="20" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-                                        </StackPanel>
-                                    </Grid>
 
                                     <Grid Grid.Column="1">
                                         <StackPanel>
-                                            <TextBlock Margin="30,10,30,0" Text="Ngày nhận:" FontSize="15"></TextBlock>
-                                            <DatePicker SelectedDate="{Binding NGNHAN,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,5" Width="245" FontSize="20" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                            <TextBlock Margin="30,10,30,0" Text="Ngày trả:" FontSize="15"></TextBlock>
+                                            <DatePicker SelectedDate="{Binding NGTRA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,5" Width="245" FontSize="20" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                         </StackPanel>
                                     </Grid>
                                 </Grid>
@@ -265,13 +265,20 @@
                                 <Grid Grid.Row="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"></ColumnDefinition>
-                                        
+                                        <ColumnDefinition></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
 
                                     <Grid Grid.Column="0">
                                         <StackPanel>
                                             <TextBlock Margin="30,10,30,0" Text="Mã phiếu đặt phòng:" FontSize="15"></TextBlock>
                                             <TextBox Text="{Binding MAPDP,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" Name="mapdp"/>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1">
+                                        <StackPanel>
+                                            <TextBlock Margin="30,10,30,0" Text="Mã khách hàng" FontSize="15"></TextBlock>
+                                            <TextBox Text="{Binding MAKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,5" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                         </StackPanel>
                                     </Grid>
 
