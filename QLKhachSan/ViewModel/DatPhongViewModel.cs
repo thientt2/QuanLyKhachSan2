@@ -150,31 +150,7 @@ namespace QLKhachSan.ViewModel
             MaLoai.Add("Deluxe");
             MaLoai.Add("La Opera");
             //Màn hình chính
-            foreach (var pdp in ListPDP)
-            {
-                PDP1.Add(new PDP1 { MAPDP = pdp.MAPDP, MAKH = pdp.MAKH, MANV = pdp.MANV, NGDAT = pdp.NGDAT, NGNHAN = pdp.NGNHAN, NGTRA = pdp.NGTRA, TRANGTHAI = "Đợi nhận phòng", MAPDV = null });
-            }
-            foreach (var pdp1 in PDP1)
-            {
-                foreach (var pdv in ListPDV)
-                {
-                    if (pdv.MAPDP == pdp1.MAPDP)
-                    {
-                        pdp1.MAPDV = pdv.MAPDV;
-                        break;
-                    }
-                }
-            }
-            foreach (var pdp1 in PDP1)
-            {
-                if (pdp1.NGNHAN < DateTime.Now)
-                    pdp1.TRANGTHAI = "Quá hạn nhận phòng";
-                if (pdp1.NGTRA != null)
-                {
-                    pdp1.TRANGTHAI = "Không còn sử dụng";
-                }    
-            }
-
+            CapNhat();
             //có ngày trả => Không còn sử dụng
             DatPhongCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
@@ -184,6 +160,7 @@ namespace QLKhachSan.ViewModel
                 addVM.MMALOAI = MaLoai;
                 wd.ShowDialog();
                 ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
+                CapNhat();
             }
             );
             NhanPhongCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
@@ -260,6 +237,35 @@ namespace QLKhachSan.ViewModel
                     MessageBox.Show("Xóa phiếu đặt phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             });
+        }
+        public void CapNhat()
+        {
+            ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
+            ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
+            foreach (var pdp in ListPDP)
+            {
+                PDP1.Add(new PDP1 { MAPDP = pdp.MAPDP, MAKH = pdp.MAKH, MANV = pdp.MANV, NGDAT = pdp.NGDAT, NGNHAN = pdp.NGNHAN, NGTRA = pdp.NGTRA, TRANGTHAI = "Đợi nhận phòng", MAPDV = null });
+            }
+            foreach (var pdp1 in PDP1)
+            {
+                foreach (var pdv in ListPDV)
+                {
+                    if (pdv.MAPDP == pdp1.MAPDP)
+                    {
+                        pdp1.MAPDV = pdv.MAPDV;
+                        break;
+                    }
+                }
+            }
+            foreach (var pdp1 in PDP1)
+            {
+                if (pdp1.NGNHAN < DateTime.Now)
+                    pdp1.TRANGTHAI = "Quá hạn nhận phòng";
+                if (pdp1.NGTRA != null)
+                {
+                    pdp1.TRANGTHAI = "Không còn sử dụng";
+                }
+            }
         }
     }
 }

@@ -38,6 +38,8 @@ namespace QLKhachSan.ViewModel
         public string VITRILAMVIEC { get { return _VITRILAMVIEC; } set { _VITRILAMVIEC = value; OnPropertyChanged(); } }
         private DateTime? _NGSINH;
         public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
+        private string _ImagePath;
+        public string ImagePath { get { return _ImagePath; } set { _ImagePath = value; OnPropertyChanged(); } }
 
         public bool IsLoaded = false;
         public ICommand LoadedWindowCommand { get; set; }
@@ -68,6 +70,18 @@ namespace QLKhachSan.ViewModel
                     NGSINH = info.NGSINH;
                     EMAIL = info.EMAIL;
                     VITRILAMVIEC = info.VITRILAMVIEC;
+                    if (TENNV == "Nguyễn Hữu Trường")
+                    {
+                        ImagePath = "Images/HT.jpg";
+                    }
+                    if (TENNV == "Trần Trung Thông")
+                    {
+                        ImagePath = "Images/3T.jpg";
+                    }
+                    if (TENNV == "Tăng Thanh Thiện")
+                    {
+                        ImagePath = "Images/TT.jpg";
+                    }
                     p.Show();
                 }
                 else p.Close();
