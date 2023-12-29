@@ -253,7 +253,7 @@
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="SelectionChanged">
                                                         <i:InvokeCommandAction 
-                                                            Command="{Binding ShowCommand}"
+                                                            Command="{Binding ShowCommand1}"
                                                             CommandParameter="{Binding ElementName=SoPhong}"/>
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>

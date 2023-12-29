@@ -64,6 +64,8 @@ namespace QLKhachSan.ViewModel
         private string _TINHTRANG;
         public string TINHTRANG { get { return _TINHTRANG; } set { _TINHTRANG = value; OnPropertyChanged(); } }
 
+        private ObservableCollection<PDP1> _originalPDP1;
+        public ObservableCollection<PDP1> OriginalPDP1 { get { return _originalPDP1; } set { _originalPDP1 = value; OnPropertyChanged(); } }
 
         //Phiếu dịch vụ
         private ObservableCollection<PHIEUDICHVU> _ListPDV;
@@ -130,11 +132,17 @@ namespace QLKhachSan.ViewModel
         public ICommand NhanPhongCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand SortAllCommand { get; set; }
+        public ICommand SortCheckInCommand { get; set; }
+        public ICommand SortBookedCommand { get; set; }
+        public ICommand SortOutOfDateCommand { get; set; }
+        public ICommand SortOutOfOrderCommand { get; set; }
 
 
         public DatPhongViewModel()
         {
             PDP1 = new ObservableCollection<PDP1>();
+            OriginalPDP1 = new ObservableCollection<PDP1>();
             ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
             ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
             //Khách hàng
@@ -173,6 +181,7 @@ namespace QLKhachSan.ViewModel
                             pdp1.TRANGTHAI = "Đã nhận phòng";
                     }
                 }
+
                 var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
                 phong.TINHTRANG = "Đang được sử dụng";
                 DataProvider.Ins.DB.SaveChanges();
@@ -237,6 +246,50 @@ namespace QLKhachSan.ViewModel
                     MessageBox.Show("Xóa phiếu đặt phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             });
+            SortAllCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                PDP1.Clear();
+                foreach (var item in OriginalPDP1)
+                {
+                    PDP1.Add(item);
+                }
+
+            });
+            SortCheckInCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                PDP1.Clear();
+                foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Đã nhận phòng"))
+                {
+                    PDP1.Add(item);
+                }
+            });
+
+            SortBookedCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                PDP1.Clear();
+                foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Đợi nhận phòng"))
+                {
+                    PDP1.Add(item);
+                }
+            });
+
+            SortOutOfDateCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                PDP1.Clear();
+                foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Quá hạn nhận phòng"))
+                {
+                    PDP1.Add(item);
+                }
+            });
+
+            SortOutOfOrderCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                PDP1.Clear();
+                foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Không còn sử dụng"))
+                {
+                    PDP1.Add(item);
+                }
+            });
         }
         public void CapNhat()
         {
@@ -245,6 +298,7 @@ namespace QLKhachSan.ViewModel
             foreach (var pdp in ListPDP)
             {
                 PDP1.Add(new PDP1 { MAPDP = pdp.MAPDP, MAKH = pdp.MAKH, MANV = pdp.MANV, NGDAT = pdp.NGDAT, NGNHAN = pdp.NGNHAN, NGTRA = pdp.NGTRA, TRANGTHAI = "Đợi nhận phòng", MAPDV = null });
+                OriginalPDP1.Add(new PDP1 { MAPDP = pdp.MAPDP, MAKH = pdp.MAKH, MANV = pdp.MANV, NGDAT = pdp.NGDAT, NGNHAN = pdp.NGNHAN, NGTRA = pdp.NGTRA, TRANGTHAI = "Đợi nhận phòng", MAPDV = null });
             }
             foreach (var pdp1 in PDP1)
             {
@@ -257,6 +311,27 @@ namespace QLKhachSan.ViewModel
                     }
                 }
             }
+            foreach (var pdp1 in OriginalPDP1)
+            {
+                foreach (var pdv in ListPDV)
+                {
+                    if (pdv.MAPDP == pdp1.MAPDP)
+                    {
+                        pdp1.MAPDV = pdv.MAPDV;
+                        break;
+                    }
+                }
+            }
+            foreach (var pdp1 in OriginalPDP1)
+            {
+                if (pdp1.NGNHAN < DateTime.Now)
+                    pdp1.TRANGTHAI = "Quá hạn nhận phòng";
+                if (pdp1.NGTRA != null)
+                {
+                    pdp1.TRANGTHAI = "Không còn sử dụng";
+                }
+            }
+
             foreach (var pdp1 in PDP1)
             {
                 if (pdp1.NGNHAN < DateTime.Now)

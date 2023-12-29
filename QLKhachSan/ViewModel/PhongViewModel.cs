@@ -66,7 +66,7 @@ namespace QLKhachSan.ViewModel
                 OnPropertyChanged();
                 if (SelectedItem != null)
                 {
-                    MALOAI = SelectedItem.MALOAI;
+                    MALOAI = SelectedItem.MALOAI; //trùng với bảng kia
                     SLGIUONG = SelectedItem.SLGIUONG;
                     DIENTICH = SelectedItem.DIENTICH;
                     NGUOITOIDA = SelectedItem.NGUOITOIDA;  
@@ -150,7 +150,15 @@ namespace QLKhachSan.ViewModel
             }
             for (int i = 1; i <= 30; i++)
                 ListNumber.Add(i);
-            DatDichVuCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            DatDichVuCommand = new RelayCommand<object>((p) => 
+            {
+                //in hóa đơn rồi thì không hiện nữa
+                //if (SelectedItem1 == null)
+                //    return false;
+                //if (SelectedItem1.TINHTRANG != "Đang được sử dụng")
+                //    return false;
+                return true; 
+            }, (p) =>
             {
                 DatDichVuWindow wd = new DatDichVuWindow();
                 var addVM = wd.DataContext as PhieuDatDichVuViewModel;
@@ -186,6 +194,7 @@ namespace QLKhachSan.ViewModel
                 GIA = null;
                 DIENTICH = null;
                 SelectedItem = null;
+                SelectedItem1 = null;
             });
             InHoaDonCommand = new RelayCommand<object>((p) => 
             {
@@ -217,7 +226,6 @@ namespace QLKhachSan.ViewModel
             {
                 var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.SOPHONG == SelectedItem1.SOPHONG).SingleOrDefault();
                 phong.TINHTRANG = "Trống";
-                //Ngày trả
                 MessageBox.Show($"Thanh toán phòng {SelectedItem1.SOPHONG} thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             );

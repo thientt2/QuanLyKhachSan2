@@ -132,13 +132,14 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                var pdp = new PHIEUDATPHONG() { MAPDP = MAPDP, MAKH = MAKH, MANV = MANV, NGDAT = NGDAT, NGNHAN = NGNHAN };
+                var pdp = new PHIEUDATPHONG() { MAPDP = MAPDP, MAKH = MAKH, MANV = MANV, NGDAT = NGDAT, NGNHAN = NGNHAN, NGTRA = NGTRA };
                 DataProvider.Ins.DB.PHIEUDATPHONGs.Add(pdp);
                 foreach (var phong in ListPhong)
                 {
                     if (phong.SOPHONG == SOPHONG && phong.TINHTRANG == "Trống")
                     {
                         phong.TINHTRANG = "Đã đặt";
+                        phong.MAPDP = MAPDP;
                         break;
                     }
                 }

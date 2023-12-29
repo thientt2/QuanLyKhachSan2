@@ -18,6 +18,9 @@ namespace QLKhachSan.ViewModel
         public bool IsLogin { get; set; }
         private string _username;
         public string UserName { get { return _username; } set { _username = value; OnPropertyChanged(); } }
+
+        private int? _IDPHANQUYEN;
+        public int? IDPHANQUYEN { get { return _IDPHANQUYEN; } set { _IDPHANQUYEN = value; OnPropertyChanged(); } }
         private string _password;
         public string Password { get { return _password; } set { _password = value; OnPropertyChanged(); } }
         private string _MANV;
@@ -44,6 +47,7 @@ namespace QLKhachSan.ViewModel
             if (accCount > 0)
             {
                 IsLogin = true;
+                IDPHANQUYEN = loggedInUser.IDPHANQUYEN;
                 MANV = loggedInUser.MANV;
                 p.Close();
             }

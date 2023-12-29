@@ -168,19 +168,19 @@
                             </TextBlock>
 
                             <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="Ngày nhận phòng: "/>
+                                <Run Text="Số ngày ở: "/>
                             </TextBlock>
                         </StackPanel>
                     </Grid>
 
                     <Grid Grid.Column="3">
-                        <StackPanel Orientation="Vertical" Margin="-30,10,40,0">
+                        <StackPanel Orientation="Vertical" Margin="-80,10,40,0">
                             <TextBlock FontSize="20">
                                 <Run Text="{Binding SOPHONG,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
                             </TextBlock>
 
                             <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="{Binding MALOAI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                                <Run Text="{Binding LOAI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
                             </TextBlock>
 
                             <TextBlock FontSize="20" Margin="0,20,0,0">
@@ -188,7 +188,7 @@
                             </TextBlock>
 
                             <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="{Binding NGNHAN,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=dd/MM/yyyy HH:mm:ss}"/>
+                                <Run Text="{Binding SONGAY,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
                             </TextBlock>
                         </StackPanel>
                     </Grid>

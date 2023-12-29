@@ -73,6 +73,8 @@ namespace QLKhachSan.ViewModel
         public ObservableCollection<PHIEUDATPHONG> ListPDP { get { return _ListPDP; } set { _ListPDP = value; OnPropertyChanged(); } }
         private DateTime? _NGNHAN;
         public DateTime? NGNHAN { get { return _NGNHAN; } set { _NGNHAN = value; OnPropertyChanged(); } }
+        private DateTime? _NGTRA;
+        public DateTime? NGTRA { get { return _NGTRA; } set { _NGTRA = value; OnPropertyChanged(); } }
 
         //Phiếu dịch vụ
         private ObservableCollection<PHIEUDICHVU> _ListPDV;
@@ -118,6 +120,9 @@ namespace QLKhachSan.ViewModel
         private string _MACTPDP1;
         public string MACTPDP1 { get { return _MACTPDP1; } set { _MACTPDP1 = value; OnPropertyChanged(); } }
 
+        private int? _SONGAY;
+        public int? SONGAY { get { return _SONGAY; } set { _SONGAY = value; OnPropertyChanged(); } }
+
         public ICommand PrintCommand { get; set; }
         public ICommand CloseCommand { get; set; }
 
@@ -143,7 +148,7 @@ namespace QLKhachSan.ViewModel
                 //    // Thực hiện công việc in tại đây
                 //    PrintDocument(printDialog.PrintQueue);
                 //}
-                var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = MALOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
+                var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = LOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
                 DataProvider.Ins.DB.HOADONs.Add(hd);
                 DataProvider.Ins.DB.SaveChanges();
                 MessageBox.Show("Bill printed successfully!");
@@ -168,16 +173,15 @@ namespace QLKhachSan.ViewModel
 
         public void Init()
         {
-            int SoNgay = 0;
             var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == MAPDP1).SingleOrDefault();
-            var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == MAPDP1).SingleOrDefault();
+            var loaiphong = DataProvider.Ins.DB.LOAIPHONGs.Where(x => x.MALOAI == MALOAI1).SingleOrDefault();
             var pdv = DataProvider.Ins.DB.PHIEUDICHVUs.Where(x => x.MAPDP == MAPDP1).SingleOrDefault();
 
             int maxCode = HoaDon.Max(hd => int.Parse(hd.MAHD.Substring(2)));
             string nextCode = $"HD{maxCode + 1:000}";
             MAHD = nextCode;
 
-            if (pdp != null && phong != null && pdv != null)
+            if (pdp != null && loaiphong != null && pdv != null)
             {
                 MAPDP = pdp.MAPDP;
                 NGLAPHD = DateTime.Now;
@@ -187,15 +191,15 @@ namespace QLKhachSan.ViewModel
                 SDT = pdp.KHACHHANG.SDT;
                 DIACHI = pdp.KHACHHANG.DIACHI;
                 SOPHONG = SOPHONG1;
-                MALOAI = MALOAI1;
-                GIA = phong.LOAIPHONG.GIA;
+                LOAI = MALOAI1;
+                GIA = loaiphong.GIA;
                 NGNHAN = pdp.NGNHAN;
                 MAPDV = pdv.MAPDV;
 
-                TimeSpan? KhoangCach = DateTime.Now - NGNHAN;
+                TimeSpan? KhoangCach = NGTRA - NGNHAN;
                 if (KhoangCach.HasValue)
-                    SoNgay = KhoangCach.Value.Days;
-                TIENPHONG = GIA * SoNgay;
+                    SONGAY = KhoangCach.Value.Days;
+                TIENPHONG = GIA * SONGAY;
                 TONGTIEN = pdv.TONGTIEN;
                 THANHTIEN = TIENPHONG + TONGTIEN;
                 ListCTPDV1 = new ObservableCollection<CTPDV1>();

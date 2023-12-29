@@ -321,7 +321,7 @@
                                     <TextBlock Margin="30, 40, 0, 30" FontSize="25"><Run Text="Chế độ tìm kiếm: "/> 
                                     </TextBlock>
                                     <ToggleButton
-                                        Width ="100"
+                                        Width ="90"
                                         Margin="10, 30, 300, 30"                 
                                         Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}"
                                         ToolTip="MaterialDesignSwitchSecondaryToggleButton"
@@ -378,6 +378,7 @@
                             </Grid>
                         </Grid>
                     </TabItem>
+                    
                     <!--NhanVien-->
                     <TabItem Height="70" Margin="0,-340,0,10" DataContext="{StaticResource NhanVienVM}">
                         <TabItem.Header>
@@ -396,6 +397,15 @@
 
                             <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
                                 <WrapPanel>
+                                    <WrapPanel.Style>
+                                        <Style TargetType="WrapPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding DataContext.IDPHANQUYEN, ElementName=mainWindow}" Value="2">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </WrapPanel.Style> 
                                     <!--<TextBox x:Name="txtMANV" Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />-->
                                     <TextBox x:Name="txtTENNV" Text="{Binding TENNV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                     <TextBox x:Name="txtGIOITINHNV" Text="{Binding GIOITINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Giới tính" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
@@ -442,11 +452,19 @@
                                         Background="Green"
                                         Foreground="Black"
                                         Margin="30"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
                                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                         Content="_Thêm">
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding DataContext.IDPHANQUYEN, ElementName=mainWindow}" Value="2">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
                                     </Button>
 
                                     <Button
@@ -454,11 +472,19 @@
                                         Background="Yellow"
                                         Foreground="Black"
                                         Margin="30"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
                                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                         Content="_Chỉnh sửa">
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding DataContext.IDPHANQUYEN, ElementName=mainWindow}" Value="2">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
                                     </Button>
 
                                     <Button
@@ -466,11 +492,19 @@
                                         Background="LightCoral"
                                         Foreground="Black"
                                         Margin="30"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
                                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                         Content="_Hủy" >
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding DataContext.IDPHANQUYEN, ElementName=mainWindow}" Value="2">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
                                     </Button>
 
                                     <Button
@@ -478,18 +512,26 @@
                                         Background="Red"
                                         Foreground="Black"
                                         Margin="30"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
                                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="_Xóa"> 
+                                        Content="_Xóa">
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding DataContext.IDPHANQUYEN, ElementName=mainWindow}" Value="2">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
                                     </Button>
                                 </StackPanel>
                             </Grid>
                         </Grid>
                     </TabItem>
 
-                    <!--Phong-->
+                    <!--Dịch vụ-->
                     <TabItem Height="70" Margin="0,-560,0,10" DataContext="{StaticResource DichVuVM}">
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
@@ -499,125 +541,129 @@
                         </TabItem.Header>
 
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
 
-                            <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
-                                <WrapPanel>
-                                    <!--<TextBox x:Name="txtMADV" Text="{Binding MADV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã dịch vụ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />-->
-                                    <TextBox x:Name="txtTENDV" Text="{Binding TENDV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên dịch vụ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                    <TextBox x:Name="txtDONGIA" Text="{Binding DONGIA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Đơn giá" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                </WrapPanel>
-                            </materialDesign:Card>
-
-                            <Grid Grid.Row="1" Margin="30">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-
-                                    <materialDesign:Card Grid.Column="1" Margin="0,0,20,0">
-                                        <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
-                                            <ListView ItemsSource="{Binding ListDV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
-                                                <ListView.View>
-                                                    <GridView>
-                                                        <GridView.ColumnHeaderContainerStyle>
-                                                            <Style>
-                                                                <Setter Property="Control.Padding" Value="10" />
-                                                            </Style>
-                                                        </GridView.ColumnHeaderContainerStyle>
-                                                        <GridViewColumn Header="Mã dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MADV}"></GridViewColumn>
-                                                        <GridViewColumn Header="Tên dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
-                                                        <GridViewColumn Header="Đơn giá" Width="Auto" DisplayMemberBinding="{Binding DONGIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
-                                                    </GridView>
-                                                </ListView.View>
-                                            </ListView>
-                                        </ScrollViewer>
-                                    </materialDesign:Card>
-
-                                    <materialDesign:Card Grid.Column="0" Margin="0,0,20,0">
-                                        <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
-                                            <ListView ItemsSource="{Binding ListCTPDV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
-                                                <ListView.View>
-                                                    <GridView>
-                                                        <GridView.ColumnHeaderContainerStyle>
-                                                            <Style>
-                                                                <Setter Property="Control.Padding" Value="10" />
-                                                            </Style>
-                                                        </GridView.ColumnHeaderContainerStyle>
-                                                        <GridViewColumn Header="Mã phiếu dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MAPDV}"></GridViewColumn>
-                                                        <GridViewColumn Header="Mã dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MADV}"></GridViewColumn>
-                                                        <GridViewColumn Header="Số lượng dịch vụ" Width="Auto" DisplayMemberBinding="{Binding SLDV}"></GridViewColumn>
-                                                        <GridViewColumn Header="Giá" Width="Auto" DisplayMemberBinding="{Binding GIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
-                                                    </GridView>
-                                                </ListView.View>
-                                            </ListView>
-                                        </ScrollViewer>
-                                    </materialDesign:Card>
-
-                                </Grid>
-
+                            <Grid Grid.Column="0">
+                                <materialDesign:Card Margin="20">
+                                    <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
+                                        <ListView ItemsSource="{Binding ListCTPDV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridView.ColumnHeaderContainerStyle>
+                                                        <Style>
+                                                            <Setter Property="Control.Padding" Value="10" />
+                                                        </Style>
+                                                    </GridView.ColumnHeaderContainerStyle>
+                                                    <GridViewColumn Header="Mã phiếu dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MAPDV}"></GridViewColumn>
+                                                    <GridViewColumn Header="Mã dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MADV}"></GridViewColumn>
+                                                    <GridViewColumn Header="Số lượng dịch vụ" Width="Auto" DisplayMemberBinding="{Binding SLDV}"></GridViewColumn>
+                                                    <GridViewColumn Header="Giá" Width="Auto" DisplayMemberBinding="{Binding GIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                    </ScrollViewer>
+                                </materialDesign:Card>
                             </Grid>
 
-                            <Grid Grid.Row="2" Margin="0,0,0,30">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button
-                                        Command="{Binding AddCommand}"
-                                        Background="Green"
-                                        Foreground="Black"
-                                        Margin="30"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Width="100"
-                                        Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="_Thêm">
-                                    </Button>
+                            <Grid Grid.Column="1">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
 
-                                    <Button
-                                        Command="{Binding EditCommand}"
-                                        Background="Yellow"
-                                        Foreground="Black"
-                                        Margin="30"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Width="100"
-                                        Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="_Chỉnh sửa">
-                                    </Button>
+                                    <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
+                                        <WrapPanel>
+                                            <TextBox x:Name="txtTENDV" Text="{Binding TENDV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên dịch vụ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                            <TextBox x:Name="txtDONGIA" Text="{Binding DONGIA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Đơn giá" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                        </WrapPanel>
+                                    </materialDesign:Card>
 
-                                    <Button
-                                        Command="{Binding CancelCommand}"
-                                        Background="LightCoral"
-                                        Foreground="Black"
-                                        Margin="30"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Width="100"
-                                        Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="_Hủy">
-                                    </Button>
+                                    <Grid Grid.Row="1" Margin="30">
+                                        <Grid>
+                                            <materialDesign:Card Margin="0,0,20,0">
+                                                <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
+                                                    <ListView ItemsSource="{Binding ListDV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                                                        <ListView.View>
+                                                            <GridView>
+                                                                <GridView.ColumnHeaderContainerStyle>
+                                                                    <Style>
+                                                                        <Setter Property="Control.Padding" Value="10" />
+                                                                    </Style>
+                                                                </GridView.ColumnHeaderContainerStyle>
+                                                                <GridViewColumn Header="Mã dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MADV}"></GridViewColumn>
+                                                                <GridViewColumn Header="Tên dịch vụ" Width="Auto" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
+                                                                <GridViewColumn Header="Đơn giá" Width="Auto" DisplayMemberBinding="{Binding DONGIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
+                                                            </GridView>
+                                                        </ListView.View>
+                                                    </ListView>
+                                                </ScrollViewer>
+                                            </materialDesign:Card>
+                                        </Grid>
 
-                                    <Button
-                                        Command="{Binding DeleteCommand}"
-                                        Background="Red"
-                                        Foreground="Black"
-                                        Margin="30"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Width="100"
-                                        Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="_Xóa">
-                                    </Button>
-                                </StackPanel>
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" Margin="0,0,0,30">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <Button
+                                                Command="{Binding AddCommand}"
+                                                Background="Green"
+                                                Foreground="Black"
+                                                Margin="30"
+                                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                Width="100"
+                                                Height="40"
+                                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                                Content="_Thêm">
+                                            </Button>
+
+                                            <Button
+                                                Command="{Binding EditCommand}"
+                                                Background="Yellow"
+                                                Foreground="Black"
+                                                Margin="30"
+                                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                Width="100"
+                                                Height="40"
+                                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                                Content="_Chỉnh sửa">           
+                                            </Button>
+
+                                            <Button
+                                                Command="{Binding CancelCommand}"
+                                                Background="LightCoral"
+                                                Foreground="Black"
+                                                Margin="30"
+                                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                Width="100"
+                                                Height="40"
+                                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                                Content="_Hủy">         
+                                            </Button>
+
+                                            <Button
+                                                Command="{Binding DeleteCommand}"
+                                                Background="Red"
+                                                Foreground="Black"
+                                                Margin="30"
+                                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                Width="100"
+                                                Height="40"
+                                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                                Content="_Xóa">     
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </TabItem>
 
-                    <!--DatPhong-->
+                    <!--Phong-->
                     <TabItem Height="70" Margin="0,-780,0,10" DataContext="{StaticResource PhongVM}">
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
@@ -627,83 +673,38 @@
                         </TabItem.Header>
 
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition Height="auto"></RowDefinition>
-                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
 
-                            <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
-                                <WrapPanel>
-                                    <TextBox Text="{Binding MALOAI,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã loại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                    <TextBox Text="{Binding SLGIUONG,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Số lượng giường" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                    <TextBox Text="{Binding LOAIGIUONG,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Loại giường" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                    <TextBox Text="{Binding GIA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Giá" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                    <TextBox Text="{Binding NGUOITOIDA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Người tối đa" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                    <TextBox Text="{Binding DIENTICH,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Diện tích" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                </WrapPanel>
-                            </materialDesign:Card>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
 
-                            <Grid Grid.Row="1" Margin="30">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
+                                <materialDesign:Card Grid.Row="0" Margin="20">
+                                    <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
+                                        <ListView ItemsSource="{Binding ListPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem1, Mode=TwoWay}">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridView.ColumnHeaderContainerStyle>
+                                                        <Style>
+                                                            <Setter Property="Control.Padding" Value="10" />
+                                                        </Style>
+                                                    </GridView.ColumnHeaderContainerStyle>
+                                                    <GridViewColumn Header="Số phòng" Width="Auto" DisplayMemberBinding="{Binding SOPHONG}"></GridViewColumn>
+                                                    <GridViewColumn Header="Mã loại" Width="Auto" DisplayMemberBinding="{Binding MALOAI}"></GridViewColumn>
+                                                    <GridViewColumn Header="Tầng" Width="Auto" DisplayMemberBinding="{Binding TANG}"></GridViewColumn>
+                                                    <GridViewColumn Header="Tình trạng" Width="Auto" DisplayMemberBinding="{Binding TINHTRANG}"></GridViewColumn>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                    </ScrollViewer>
+                                </materialDesign:Card>
 
-                                    <materialDesign:Card Grid.Column="0" Margin="0,0,20,0">
-                                        <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
-                                            <ListView ItemsSource="{Binding ListPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem1, Mode=TwoWay}">
-                                                <ListView.View>
-                                                    <GridView>
-                                                        <GridView.ColumnHeaderContainerStyle>
-                                                            <Style>
-                                                                <Setter Property="Control.Padding" Value="10" />
-                                                            </Style>
-                                                        </GridView.ColumnHeaderContainerStyle>
-                                                        <GridViewColumn Header="Số phòng" Width="Auto" DisplayMemberBinding="{Binding SOPHONG}"></GridViewColumn>
-                                                        <GridViewColumn Header="Mã loại" Width="Auto" DisplayMemberBinding="{Binding MALOAI}"></GridViewColumn>
-                                                        <GridViewColumn Header="Tầng" Width="Auto" DisplayMemberBinding="{Binding TANG}"></GridViewColumn>
-                                                        <GridViewColumn Header="Tình trạng" Width="Auto" DisplayMemberBinding="{Binding TINHTRANG}"></GridViewColumn>
-                                                    </GridView>
-                                                </ListView.View>
-                                            </ListView>
-                                        </ScrollViewer>
-                                    </materialDesign:Card>
-
-                                    <materialDesign:Card Grid.Column="1" Margin="0,0,20,0">
-                                        <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
-                                            <ListView ItemsSource="{Binding LoaiPhong,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
-                                                <ListView.View>
-                                                    <GridView>
-                                                        <GridView.ColumnHeaderContainerStyle>
-                                                            <Style>
-                                                                <Setter Property="Control.Padding" Value="10" />
-                                                            </Style>
-                                                        </GridView.ColumnHeaderContainerStyle>
-                                                        <GridViewColumn Header="Mã loại" Width="Auto" DisplayMemberBinding="{Binding MALOAI}"></GridViewColumn>
-                                                        <GridViewColumn Header="SL giường" Width="Auto" DisplayMemberBinding="{Binding SLGIUONG}"></GridViewColumn>
-                                                        <GridViewColumn Header="Loại giường" Width="Auto" DisplayMemberBinding="{Binding LOAIGIUONG}"></GridViewColumn>
-                                                        <GridViewColumn Header="Giá" Width="Auto" DisplayMemberBinding="{Binding GIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
-                                                        <GridViewColumn Header="Người tối đa" Width="Auto" DisplayMemberBinding="{Binding NGUOITOIDA}"></GridViewColumn>
-                                                        <GridViewColumn Header="Diện tích" Width="Auto" DisplayMemberBinding="{Binding DIENTICH, StringFormat={}{0:N1} m^2}"></GridViewColumn>
-                                                    </GridView>
-                                                </ListView.View>
-                                            </ListView>
-                                        </ScrollViewer>
-                                    </materialDesign:Card>
-
-                                </Grid>
-
-                            </Grid>
-
-                            <Grid Grid.Row="2" Margin="0,0,0,30">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <Grid Grid.Column="0">
+                                <Grid Grid.Row="1">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                         <Button
                                             Command="{Binding DatDichVuCommand}"
@@ -742,7 +743,48 @@
                                         </Button>
                                     </StackPanel>
                                 </Grid>
-                                <Grid Grid.Column="1">
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <materialDesign:Card Grid.Row="0" Margin="20,20,20,0">
+                                    <WrapPanel>
+                                        <TextBox Text="{Binding SLGIUONG,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Số lượng giường" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                        <TextBox Text="{Binding LOAIGIUONG,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Loại giường" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                        <TextBox Text="{Binding GIA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Giá" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                        <TextBox Text="{Binding NGUOITOIDA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Người tối đa" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                        <TextBox Text="{Binding DIENTICH,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Diện tích" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                    </WrapPanel>
+                                </materialDesign:Card>
+
+                                <materialDesign:Card Grid.Row="1" Margin="20">
+                                    <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
+                                        <ListView ItemsSource="{Binding LoaiPhong,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridView.ColumnHeaderContainerStyle>
+                                                        <Style>
+                                                            <Setter Property="Control.Padding" Value="10" />
+                                                        </Style>
+                                                    </GridView.ColumnHeaderContainerStyle>
+                                                    <GridViewColumn Header="Mã loại" Width="Auto" DisplayMemberBinding="{Binding MALOAI}"></GridViewColumn>
+                                                    <GridViewColumn Header="SL giường" Width="Auto" DisplayMemberBinding="{Binding SLGIUONG}"></GridViewColumn>
+                                                    <GridViewColumn Header="Loại giường" Width="Auto" DisplayMemberBinding="{Binding LOAIGIUONG}"></GridViewColumn>
+                                                    <GridViewColumn Header="Giá" Width="Auto" DisplayMemberBinding="{Binding GIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
+                                                    <GridViewColumn Header="Người tối đa" Width="Auto" DisplayMemberBinding="{Binding NGUOITOIDA}"></GridViewColumn>
+                                                    <GridViewColumn Header="Diện tích" Width="Auto" DisplayMemberBinding="{Binding DIENTICH, StringFormat={}{0:N1} m^2}"></GridViewColumn>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                    </ScrollViewer>
+                                </materialDesign:Card>
+
+                                <Grid Grid.Row="2">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
 
@@ -771,7 +813,6 @@
                                         </Button>
                                     </StackPanel>
                                 </Grid>
-
                             </Grid>
                         </Grid>
                     </TabItem>
@@ -784,14 +825,69 @@
                                 <TextBlock Margin="5,10,30,10" Text="Đặt phòng" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                             </StackPanel>
                         </TabItem.Header>
-
                         <Grid>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition Height="auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <materialDesign:Card Grid.Row="0" Margin="30">
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Trạng thái" FontSize="25" Margin="30,30,30,0"></TextBlock>
+                            </Grid>
+
+                            <Grid Grid.Row="1">
+                                <Separator Margin="30,10,30,30" BorderThickness="4,0,4,0"></Separator>
+                            </Grid>
+
+                            <Grid Grid.Row="2">
+                                <StackPanel Orientation="Horizontal" Margin="40,0,40,0">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding SortAllCommand}">
+                                            <materialDesign:PackIcon Kind="Play"/>
+                                        </Button>
+
+                                        <TextBlock Text ="Tất cả" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="40,0,0,0">
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding SortBookedCommand}">
+                                            <materialDesign:PackIcon Kind="Play"/>
+                                        </Button>
+
+                                        <TextBlock Text ="Đợi nhận phòng" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="40,0,0,0">
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding SortCheckInCommand}">
+                                            <materialDesign:PackIcon Kind="Play"/>
+                                        </Button>
+
+                                        <TextBlock Text ="Đã nhận phòng" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="40,0,0,0">
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding SortOutOfDateCommand}">
+                                            <materialDesign:PackIcon Kind="Play"/>
+                                        </Button>
+
+                                        <TextBlock Text ="Quá hạn nhận phòng" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="40,0,0,0">
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding SortOutOfOrderCommand}">
+                                            <materialDesign:PackIcon Kind="Play"/>
+                                        </Button>
+
+                                        <TextBlock Text ="Không còn sử dụng" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+
+                            <materialDesign:Card Grid.Row="3" Margin="30">
                                 <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
                                     <ListView ItemsSource="{Binding PDP1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                         <ListView.View>
@@ -811,21 +907,11 @@
                                                 <GridViewColumn Header="Mã phiếu dịch vụ" Width="Auto" DisplayMemberBinding="{Binding MAPDV}"></GridViewColumn>
                                             </GridView>
                                         </ListView.View>
-                                        <!--<ListView.ItemContainerStyle>
-                                            <Style TargetType="ListViewItem">
-                                                <Style.Triggers>
-                                                     --><!--Sử dụng DataTrigger để kiểm tra giá trị TRANGTHAI và đặt IsEnabled thành false--><!-- 
-                                                    <DataTrigger Binding="{Binding TRANGTHAI}" Value="Không còn sử dụng">
-                                                        <Setter Property="IsEnabled" Value="False"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </ListView.ItemContainerStyle>-->
                                     </ListView>
                                 </ScrollViewer>
                             </materialDesign:Card>
 
-                            <Grid Grid.Row="1" Margin="0,0,0,30">
+                            <Grid Grid.Row="4" Margin="0,0,0,30">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button
                                         Command="{Binding DatPhongCommand}"
@@ -877,8 +963,10 @@
                                 </StackPanel>
                             </Grid>
                         </Grid>
+
                     </TabItem>
 
+                    <!--ThongKe-->
                     <!--ThongKe-->
                     <TabItem Height="70" Margin="0,-1230,0,10" DataContext="{StaticResource DoanhThuVM}">
                         <TabItem.Header>
@@ -891,7 +979,7 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
                                 <RowDefinition ></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
@@ -928,14 +1016,59 @@
                                     </ComboBox>
                                 </Grid>
                             </Grid>
-                            <Grid Grid.Row="1">
-                                <Chart:CartesianChart>
-                                    
-                                </Chart:CartesianChart>
+                            <Grid Grid.Row="1" >
+                                <materialDesign:Card>
+                                    <WrapPanel HorizontalAlignment="Left">
+                                        <Label FontSize="20" Content="Tổng doanh thu:"></Label>
+                                        <TextBlock Text="{Binding TongDoanhThu}" Width="200" HorizontalAlignment="Center" FontSize="20"/>
+                                    </WrapPanel>
+                                </materialDesign:Card>
+
                             </Grid>
                             <Grid Grid.Row="2">
-                                <Label Content="Tổng doamnh thu:"></Label>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <materialDesign:Card>
+                                        <Chart:PieChart 
+                                    LegendLocation="Bottom" 
+                                    FontSize="25"
+                                    Hoverable="False" 
+                                    DataTooltip="{x:Null}"                                     
+                                    Width="500"
+                                    Height="500">
+                                            <Chart:PieChart.Series>
+                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="Standard" Values="{Binding DoanhThuValues[0]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
+                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="Deluxe" Values="{Binding DoanhThuValues[1]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
+                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="Premium" Values="{Binding DoanhThuValues[2]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
+                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="La Opera" Values="{Binding DoanhThuValues[3]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
+                                            </Chart:PieChart.Series>
+                                        </Chart:PieChart>
+                                    </materialDesign:Card>
+                                </Grid>
+
+                                <Grid Grid.Column="1">
+                                    <materialDesign:Card>
+                                        <Chart:PieChart 
+                                    LegendLocation="Bottom" 
+                                    FontSize="25"
+                                    Hoverable="False" 
+                                    DataTooltip="{x:Null}"                                     
+                                    Width="500"
+                                    Height="500">
+                                            <Chart:PieChart.Series>
+                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="Doanh thu phòng" Values="{Binding DoanhThuValues2[0]}" DataLabels="True" LabelPoint="{Binding PointLabel2}" />
+                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="Doanh thu dịch vụ" Values="{Binding DoanhThuValues2[1]}" DataLabels="True" LabelPoint="{Binding PointLabel2}" />
+                                            </Chart:PieChart.Series>
+                                        </Chart:PieChart>
+                                    </materialDesign:Card>
+
+                                </Grid>
+
                             </Grid>
+
                         </Grid>
                     </TabItem>
                 </TabControl>

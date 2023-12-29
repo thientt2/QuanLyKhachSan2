@@ -44,6 +44,8 @@ namespace QLKhachSan.ViewModel
 
         private string _NewImagePath;
         public string NewImagePath { get { return _NewImagePath; } set { _NewImagePath = value; OnPropertyChanged(); } }
+        private int? _IDPHANQUYEN;
+        public int? IDPHANQUYEN { get { return _IDPHANQUYEN; } set { _IDPHANQUYEN = value; OnPropertyChanged(); } }
 
         public bool IsLoaded = false;
         public ICommand LoadedWindowCommand { get; set; }
@@ -69,6 +71,7 @@ namespace QLKhachSan.ViewModel
                 {
                     ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
                     MANV = loginVM.MANV;
+                    IDPHANQUYEN = loginVM.IDPHANQUYEN;
                     var info = DataProvider.Ins.DB.NHANVIENs.FirstOrDefault(x => x.MANV == MANV);
                     MMANV = MANV;
                     TENNV = info.TENNV;

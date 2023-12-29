@@ -44,12 +44,46 @@ namespace QLKhachSan.ViewModel
                 }
             }
         }
+        //private KHACHHANG _SelectedItem;
+        //public KHACHHANG SelectedItem
+        //{
+        //    get
+        //    {
+        //        if (IsSearching)
+        //        {
+        //            return _collectionView?.CurrentItem as KHACHHANG;
+        //        }
+        //        else
+        //        {
+        //            return _SelectedItem;
+        //        }
+        //    }
+        //    set
+        //    {
+        //        _SelectedItem = value;
+        //        OnPropertyChanged();
+
+        //        if (SelectedItem != null)
+        //        {
+        //            MAKH = SelectedItem.MAKH;
+        //            TENKH = SelectedItem.TENKH;
+        //            DIACHI = SelectedItem.DIACHI;
+        //            GIOITINH = SelectedItem.GIOITINH;
+        //            SDT = SelectedItem.SDT;
+        //            EMAIL = SelectedItem.EMAIL;
+        //            SOCCCD = SelectedItem.SOCCCD;
+        //            QUOCTICH = SelectedItem.QUOCTICH;
+        //            NGSINH = SelectedItem.NGSINH;
+        //        }
+        //    }
+        //}
+
         private string _MAKH;
         public string MAKH { get { return _MAKH; } set { _MAKH = value; OnPropertyChanged(); } }
         private string _TENKH;
-        public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); if(IsSearching) ApplySearchFilter(); } }
+        public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); if(IsSearching) CollectionView.Refresh(); } }
         private string _GIOITINH;
-        public string GIOITINH { get { return _GIOITINH; } set { _GIOITINH = value; OnPropertyChanged(); } }
+        public string GIOITINH { get { return _GIOITINH; } set { _GIOITINH = value; OnPropertyChanged(); if(IsSearching) CollectionView.Refresh(); } }
         private DateTime? _NGSINH;
         public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
         private string _DIACHI;
@@ -69,17 +103,6 @@ namespace QLKhachSan.ViewModel
         public ICommand CancelCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
-        private string _searchText;
-        public string SearchText
-        {
-            get { return _searchText; }
-            set
-            {
-                _searchText = value;
-                OnPropertyChanged();
-                ApplySearchFilter();
-            }
-        }
 
         private ICollectionView _collectionView;
         public ICollectionView CollectionView
@@ -88,32 +111,18 @@ namespace QLKhachSan.ViewModel
             set { _collectionView = value; OnPropertyChanged(); }
         }
 
-
-        private void ApplySearchFilter()
-        {
-            //IsSearching = true;
-            CollectionView.Refresh();
-            //IsSearching = false;
-        }
-
         private bool Filter(object item)
         {
-            if (string.IsNullOrEmpty(TENKH))
+            string searchText = string.Empty;
+            string searchText1 = string.Empty;
+            if (string.IsNullOrEmpty(TENKH) && string.IsNullOrEmpty(GIOITINH))
                 return true;
-
-            var khachHang = (KHACHHANG)item;
-            string searchText = TENKH.ToLowerInvariant();
-
-            //return khachHang.MAKH.ToLowerInvariant().Contains(searchText)
-            //    || khachHang.TENKH.ToLowerInvariant().Contains(searchText)
-            //    || khachHang.GIOITINH.ToLowerInvariant().Contains(searchText)
-            //    || khachHang.NGSINH?.ToString("dd/MM/yyyy").Contains(searchText) == true
-            //    || khachHang.DIACHI.ToLowerInvariant().Contains(searchText)
-            //    || khachHang.SDT.ToLowerInvariant().Contains(searchText)
-            //    || khachHang.EMAIL.ToLowerInvariant().Contains(searchText)
-            //    || khachHang.SOCCCD.ToLowerInvariant().Contains(searchText)
-            //    || khachHang.QUOCTICH.ToLowerInvariant().Contains(searchText);
-            return khachHang.TENKH.ToLowerInvariant().Contains(searchText);
+            var kh = (KHACHHANG)item;
+            if (TENKH != null)
+                searchText = TENKH.ToLowerInvariant();
+            if (GIOITINH != null)
+                searchText1 = GIOITINH.ToLowerInvariant();
+            return kh.TENKH.ToLowerInvariant().Contains(searchText) && kh.GIOITINH.ToLowerInvariant().Contains(searchText1);
         }
 
         private bool _isSearching;
@@ -127,19 +136,24 @@ namespace QLKhachSan.ViewModel
             }
         }
 
-
         public KhachHangViewModel()
         {
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             CollectionView = CollectionViewSource.GetDefaultView(ListKH);
             CollectionView.Filter = Filter;
+            //if (SelectedItem != null)
+            //    IsSearching = false;
             AddCommand = new RelayCommand<object>((p) => 
             {
+                if (IsSearching)
+                    return false;
                 //if (string.IsNullOrEmpty(MAKH))
                 //    return false;
                 // điều kiện không được để trống 
-                var TenKHlist = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MAKH == MAKH);
-                if (TenKHlist == null || TenKHlist.Count() != 0)
+                //var TenKHlist = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MAKH == MAKH);
+                //if (TenKHlist == null || TenKHlist.Count() != 0)
+                //    return false;
+                if (TENKH == null || GIOITINH == null || NGSINH == null || DIACHI == null || SDT == null || QUOCTICH == null)
                     return false;
                 return true;
             }, (p) =>
@@ -155,11 +169,12 @@ namespace QLKhachSan.ViewModel
             });
             EditCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(MAKH) || SelectedItem==null)
+                if (SelectedItem==null)
                     return false;
-                var MaKHlist = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MAKH == SelectedItem.MAKH);
-                if (MaKHlist == null || MaKHlist.Count() == 0)
-                    return false;
+
+                //var MaKHlist = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MAKH == SelectedItem.MAKH);
+                //if (MaKHlist == null || MaKHlist.Count() == 0)
+                //    return false;
                 return true;
             }, (p) =>
             {
@@ -174,8 +189,8 @@ namespace QLKhachSan.ViewModel
                 khachhang.DIACHI = DIACHI;
                 DataProvider.Ins.DB.SaveChanges();
 
-                SelectedItem.MAKH = MAKH;
                 MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {
@@ -184,7 +199,9 @@ namespace QLKhachSan.ViewModel
             {
                 TENKH = GIOITINH = SDT = EMAIL = SOCCCD = QUOCTICH = DIACHI = string.Empty;
                 NGSINH = null;
-                SelectedItem = null;
+                if (SelectedItem != null)
+                    SelectedItem = null;
+                //ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             });
             DeleteCommand = new RelayCommand<object>((p) =>
             {
@@ -202,18 +219,27 @@ namespace QLKhachSan.ViewModel
                     MessageBox.Show("Xóa khách hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 SelectedItem = null;
+                ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             });
             ToggleSearchCommand = new RelayCommand<object>((p) =>
             {
                 return true;
             }, (p) =>
             {
+                TENKH = GIOITINH = SDT = EMAIL = SOCCCD = QUOCTICH = DIACHI = string.Empty;
+                NGSINH = null;
                 IsSearching = !IsSearching;
                 if (!IsSearching)
                 {
-                    // Nếu đang tắt tìm kiếm, làm sạch văn bản tìm kiếm
-                    SearchText = string.Empty;
+                    TENKH = GIOITINH = SDT = EMAIL = SOCCCD = QUOCTICH = DIACHI = string.Empty;
+                    NGSINH = null;
                 }
+                //if(IsSearching)
+                //{
+                //    ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
+                //    CollectionView = CollectionViewSource.GetDefaultView(ListKH);
+                //    CollectionView.Filter = Filter;
+                //}    
             });
         }
         
