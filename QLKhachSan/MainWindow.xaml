@@ -36,7 +36,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <uc:ControlBarUC ></uc:ControlBarUC>
+            <uc:ControlBarUC x:Name="ucControlBar" HeaderText="Quản lý khách sạn" />
         </Grid>
 
         <Grid Grid.Row="1">

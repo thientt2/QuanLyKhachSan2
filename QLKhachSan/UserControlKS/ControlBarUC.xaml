@@ -22,6 +22,8 @@
                 Mode="Inverted"
                 Padding="16">
             <DockPanel>
+                <TextBlock x:Name="HeaderTextBlock" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="23" Margin="20,0,0,0" Text="{Binding HeaderText, RelativeSource={RelativeSource AncestorType={x:Type local:ControlBarUC}}}" />
+
                 <StackPanel HorizontalAlignment="Right"  Background="Transparent" Orientation="Horizontal">
                     <Button        
                         Command="{Binding MinimizeWindowCommand}"

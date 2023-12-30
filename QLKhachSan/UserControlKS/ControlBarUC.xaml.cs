@@ -22,6 +22,18 @@ namespace QLKhachSan.UserControlKS
     /// </summary>
     public partial class ControlBarUC : UserControl
     {
+        public static readonly DependencyProperty HeaderTextProperty = DependencyProperty.Register(
+        "HeaderText",
+        typeof(string),
+        typeof(ControlBarUC),
+        new PropertyMetadata(string.Empty));
+
+        public string HeaderText
+        {
+            get { return (string)GetValue(HeaderTextProperty); }
+            set { SetValue(HeaderTextProperty, value); }
+        }
+
         public ControlBarViewModel Viewmodel { get; set; }
         public ControlBarUC()
         {

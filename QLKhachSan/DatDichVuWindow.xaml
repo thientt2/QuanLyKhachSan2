@@ -29,7 +29,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <uc:ControlBarUC></uc:ControlBarUC>
+            <uc:ControlBarUC x:Name="ucControlBar" HeaderText="Phiếu dịch vụ" />
         </Grid>
 
         <Grid Grid.Row="1">
