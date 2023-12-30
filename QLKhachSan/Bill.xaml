@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <uc:ControlBarUC></uc:ControlBarUC>
+            <uc:ControlBarUC x:Name="ucControlBar" HeaderText="Hóa Đơn Thanh Toán" />
         </Grid>
 
         <materialDesign:Card Grid.Row="1" Margin="20,20,20,0">

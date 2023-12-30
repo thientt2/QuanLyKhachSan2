@@ -143,6 +143,11 @@ namespace QLKhachSan.ViewModel
             CollectionView.Filter = Filter;
             //if (SelectedItem != null)
             //    IsSearching = false;
+            if (CollectionView != null && SelectedItem != null)
+            {
+                CollectionView.MoveCurrentTo(SelectedItem);
+                CollectionView.Refresh();
+            }
             AddCommand = new RelayCommand<object>((p) => 
             {
                 if (IsSearching)

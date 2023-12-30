@@ -36,7 +36,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <uc:ControlBarUC x:Name="ucControlBar" HeaderText="Quản lý khách sạn" />
+            <uc:ControlBarUC x:Name="ucControlBar" HeaderText="Quản Lý Khách Sạn" />
         </Grid>
 
         <Grid Grid.Row="1">
@@ -822,7 +822,7 @@
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
                                 <materialDesign:PackIcon Kind="CalendarPlusOutline" Foreground="White" Margin="0,0,30,0"  Height="40" Width="50" VerticalAlignment="Center"/>
-                                <TextBlock Margin="5,10,30,10" Text="Đặt phòng" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
+                                <TextBlock Margin="5,10,30,10" Text="Đặt Phòng" Foreground="White" FontSize="18" VerticalAlignment="Bottom" />
                             </StackPanel>
                         </TabItem.Header>
                         <Grid>
@@ -967,7 +967,6 @@
                     </TabItem>
 
                     <!--ThongKe-->
-                    <!--ThongKe-->
                     <TabItem Height="70" Margin="0,-1230,0,10" DataContext="{StaticResource DoanhThuVM}">
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal" Width="190">
@@ -980,51 +979,83 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="530"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
                                 <RowDefinition ></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <ComboBox       x:Name="txtNam"
+                                <Grid Grid.Column="0">
+                                    <StackPanel>
+                                        <TextBlock Margin="30,10,30,0" Text="Chọn năm:" FontSize="18"></TextBlock>
+                                        <ComboBox       x:Name="txtNam"
                                             Margin="30,10,30,10"
                                             HorizontalAlignment="Left" 
                                             Width="245" Height="60" FontSize="20"
                                             SelectedValue="{Binding Nam}"
                                             ItemsSource="{Binding LNam}"
                                             Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="SelectionChanged">
-                                            <i:InvokeCommandAction Command="{Binding ShowCommand1}" CommandParameter="{Binding ElementName=txtNam}"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </ComboBox>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SelectionChanged">
+                                                    <i:InvokeCommandAction Command="{Binding ShowCommand1}" CommandParameter="{Binding ElementName=txtNam}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
                                 <Grid Grid.Column="1">
-                                    <ComboBox       x:Name="txtThang"
-                                            Margin="30,10,30,10"
-                                            HorizontalAlignment="Left" 
-                                            Width="245" Height="60" FontSize="20"
-                                            SelectedValue="{Binding Thang}"
-                                            ItemsSource="{Binding LThang}"
-                                            Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding ShowCommand2}" CommandParameter="{Binding ElementName=txtThang}"/>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </ComboBox>
+                                    <StackPanel>
+                                        <TextBlock Margin="30,10,30,0" Text="Chọn tháng:" FontSize="18"></TextBlock>
+                                        <ComboBox       x:Name="txtThang"
+                                                Margin="30,10,30,10"
+                                                HorizontalAlignment="Left" 
+                                                Width="245" Height="60" FontSize="20"
+                                                SelectedValue="{Binding Thang}"
+                                                ItemsSource="{Binding LThang}"
+                                                Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SelectionChanged">
+                                                    <i:InvokeCommandAction Command="{Binding ShowCommand2}" CommandParameter="{Binding ElementName=txtThang}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="2">
+                                    <StackPanel>
+                                        <TextBlock Margin="30,10,30,0" Text="Tổng doanh thu:" FontSize="18"></TextBlock>
+                                        <TextBox Text="{Binding TongDoanhThu, StringFormat={}{0:N0} VND, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" Name="tongdoanhthu"/>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <StackPanel>
+                                        <TextBlock Margin="30,10,30,0" Text="Số lượt thuê phòng:" FontSize="18"></TextBlock>
+                                        <TextBox Text="{Binding SoLuotThue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" Name="soluotthuephong"/>
+                                    </StackPanel>
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="1" >
-                                <materialDesign:Card>
-                                    <WrapPanel HorizontalAlignment="Left">
-                                        <Label FontSize="20" Content="Tổng doanh thu:"></Label>
-                                        <TextBlock Text="{Binding TongDoanhThu}" Width="200" HorizontalAlignment="Center" FontSize="20"/>
-                                    </WrapPanel>
-                                </materialDesign:Card>
-
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <TextBlock Margin="10,10,0,0" Foreground="DarkGreen" HorizontalAlignment="Center" FontSize="30">
+                                    <Run Text="DOANH THU THEO LOẠI PHÒNG"></Run>
+                                    </TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <TextBlock Margin="10,10,0,0" Foreground="DarkGreen" HorizontalAlignment="Center" FontSize="30">
+                                    <Run Text="DOANH THU PHÒNG - DỊCH VỤ"></Run>
+                                    </TextBlock>
+                                </Grid>
                             </Grid>
+                            
                             <Grid Grid.Row="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -1035,15 +1066,15 @@
                                         <Chart:PieChart 
                                     LegendLocation="Bottom" 
                                     FontSize="25"
-                                    Hoverable="False" 
-                                    DataTooltip="{x:Null}"                                     
+                                    DataTooltip="{x:Null}"     
+                                    Margin="75,20,75,0"
                                     Width="500"
                                     Height="500">
                                             <Chart:PieChart.Series>
-                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="Standard" Values="{Binding DoanhThuValues[0]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
-                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="Deluxe" Values="{Binding DoanhThuValues[1]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
-                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="Premium" Values="{Binding DoanhThuValues[2]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
-                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="La Opera" Values="{Binding DoanhThuValues[3]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
+                                                <Chart:PieSeries Foreground="Black" FontSize="20" Title="Standard" Values="{Binding DoanhThuValues[0]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
+                                                <Chart:PieSeries Foreground="Black" FontSize="20" Title="Deluxe" Values="{Binding DoanhThuValues[1]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
+                                                <Chart:PieSeries Foreground="Black" FontSize="20" Title="Premium" Values="{Binding DoanhThuValues[2]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
+                                                <Chart:PieSeries Foreground="Black" FontSize="20" Title="La Opera" Values="{Binding DoanhThuValues[3]}" DataLabels="True" LabelPoint="{Binding PointLabel}" />
                                             </Chart:PieChart.Series>
                                         </Chart:PieChart>
                                     </materialDesign:Card>
@@ -1054,21 +1085,82 @@
                                         <Chart:PieChart 
                                     LegendLocation="Bottom" 
                                     FontSize="25"
-                                    Hoverable="False" 
-                                    DataTooltip="{x:Null}"                                     
+                                    DataTooltip="{x:Null}"     
+                                    Margin="75,20,75,0"
                                     Width="500"
                                     Height="500">
                                             <Chart:PieChart.Series>
-                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="Doanh thu phòng" Values="{Binding DoanhThuValues2[0]}" DataLabels="True" LabelPoint="{Binding PointLabel2}" />
-                                                <Chart:PieSeries Foreground="Black" FontSize="15" Title="Doanh thu dịch vụ" Values="{Binding DoanhThuValues2[1]}" DataLabels="True" LabelPoint="{Binding PointLabel2}" />
+                                                <Chart:PieSeries Foreground="Black" FontSize="20" Title="Doanh thu phòng" Values="{Binding DoanhThuValues2[0]}" DataLabels="True" LabelPoint="{Binding PointLabel2}" />
+                                                <Chart:PieSeries Foreground="Black" FontSize="20" Title="Doanh thu dịch vụ" Values="{Binding DoanhThuValues2[1]}" DataLabels="True" LabelPoint="{Binding PointLabel2}" />
                                             </Chart:PieChart.Series>
                                         </Chart:PieChart>
                                     </materialDesign:Card>
-
                                 </Grid>
-
                             </Grid>
 
+                            <Grid Grid.Row="3" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="330"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <StackPanel Margin="80,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                        <TextBlock Margin="10,10,0,0" Foreground="Black" HorizontalAlignment="Center" FontSize="22">
+                                            <Run Text="Standard: " ></Run>
+                                            <Run Text="{Binding DoanhThuS, StringFormat={}{0:N0},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></Run>   
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <StackPanel Margin="20,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                        <TextBlock Margin="10,10,0,0" Foreground="Black" HorizontalAlignment="Center" FontSize="22">
+                                            <Run Text="Deluxe: " ></Run>
+                                            <Run Text="{Binding DoanhThuD, StringFormat={}{0:N0},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></Run>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="2">
+                                    <StackPanel Margin="-20,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                        <TextBlock Margin="10,10,0,0" Foreground="Black" HorizontalAlignment="Center" FontSize="22">
+                                            <Run Text="Doanh thu phòng: " ></Run>
+                                            <Run Text="{Binding DoanhThuPhong,StringFormat={}{0:N0},UpdateSourceTrigger =PropertyChanged,Mode=TwoWay}" ></Run>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+
+                            <Grid Grid.Row="4" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="330"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <StackPanel Margin="80,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                        <TextBlock Margin="10,10,0,0" Foreground="Black" HorizontalAlignment="Center" FontSize="22">
+                                            <Run Text="Premium: " ></Run>
+                                            <Run Text="{Binding DoanhThuP, StringFormat={}{0:N0},UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></Run>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <StackPanel Margin="20,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                        <TextBlock Margin="10,10,0,0" Foreground="Black" HorizontalAlignment="Center" FontSize="22">
+                                            <Run Text="La Opera: " ></Run>
+                                            <Run Text="{Binding DoanhThuLA, StringFormat={}{0:N0}, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></Run>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="2">
+                                    <StackPanel Margin="-20,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                        <TextBlock Margin="10,10,0,0" Foreground="Black" HorizontalAlignment="Center" FontSize="22">
+                                            <Run Text="Doanh thu dịch vụ: " ></Run>
+                                            <Run Text="{Binding DoanhThuDV, StringFormat={}{0:N0}, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></Run>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
                         </Grid>
                     </TabItem>
                 </TabControl>
@@ -1247,7 +1339,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="AccountCircle" Height="50" Width="60"/>
-                                <TextBlock Text="Thông tin"   Foreground="White" FontSize="23"  Width="140" Margin="20,0,0,0" VerticalAlignment="Center" ></TextBlock>
+                                <TextBlock Text="Thông Tin"   Foreground="White" FontSize="23"  Width="140" Margin="20,0,0,0" VerticalAlignment="Center" ></TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </Button.ContentTemplate>

@@ -26,6 +26,16 @@ namespace QLKhachSan.ViewModel
         public List<int> LThang { get { return _LThang; } set { _LThang = value; OnPropertyChanged(); } }
         private int _Thang;
         public int Thang { get { return _Thang; } set { _Thang = value; OnPropertyChanged(); } }
+        private int _SoLuotThue;
+        public int SoLuotThue
+        {
+            get { return _SoLuotThue; }
+            set
+            {
+                _SoLuotThue = value;
+                OnPropertyChanged();
+            }
+        }
         private double _TongDoanhThu;
         public double TongDoanhThu
         {
@@ -33,8 +43,6 @@ namespace QLKhachSan.ViewModel
             set
             {
                 _TongDoanhThu = value;
-                //DoanhThuValues2[0].Clear();
-                //DoanhThuValues2[0].Add(value);
                 OnPropertyChanged();
             }
         }
@@ -123,7 +131,6 @@ namespace QLKhachSan.ViewModel
         public ICommand ShowCommand1 { get; set; }
         public ICommand ShowCommand2 { get; set; }
         public ICommand Chart_DataClickCommand { get; set; }
-        private int year;
         private string[] maloai = { "Standard", "Deluxe", "Premium", "La Opera" };
 
         private PieSeries _selectedSeries;
@@ -194,36 +201,54 @@ namespace QLKhachSan.ViewModel
                         }
                     }
                     LThang.Sort();
-                    //DoanhThuS = 0;
-                    //DoanhThuP = 0;
-                    //DoanhThuD = 0;
-                    //DoanhThuLA = 0;
-                    //for (int i = 0; i < maloai.Length; i++)
-                    //{
-                    //    double sum = 0;
-                    //    foreach (var hd in ListHD)
-                    //    {
-                    //        if (hd.NGLAPHD.Value.Year == selectedNam && hd.LOAI == maloai[i])
-                    //        {
-                    //            sum += (double)hd.THANHTIEN;
-                    //        }
-                    //    }
-                    //    switch (maloai[i])
-                    //    {
-                    //        case "Standard":
-                    //            DoanhThuS = sum;
-                    //            break;
-                    //        case "Deluxe":
-                    //            DoanhThuD = sum;
-                    //            break;
-                    //        case "Premium":
-                    //            DoanhThuP = sum;
-                    //            break;
-                    //        case "La Opera":
-                    //            DoanhThuLA = sum;
-                    //            break;
-                    //    }
-                    //}
+                    DoanhThuS = 0;
+                    DoanhThuP = 0;
+                    DoanhThuD = 0;
+                    DoanhThuLA = 0;
+                    DoanhThuPhong = 0;
+                    DoanhThuDV = 0;
+                    double sum1 = 0;
+                    SoLuotThue = 0;
+                    for (int i = 0; i < maloai.Length; i++)
+                    {
+                        double sum = 0;
+                        foreach (var hd in ListHD)
+                        {
+                            if (hd.NGLAPHD.Value.Year == Nam && hd.LOAI == maloai[i])
+                            {
+                                sum += (double)hd.THANHTIEN;
+                                SoLuotThue++;
+                            }
+                        }
+                        sum1 += sum;
+                        switch (maloai[i])
+                        {
+                            case "Standard":
+                                DoanhThuS = sum;
+                                break;
+                            case "Deluxe":
+                                DoanhThuD = sum;
+                                break;
+                            case "Premium":
+                                DoanhThuP = sum;
+                                break;
+                            case "La Opera":
+                                DoanhThuLA = sum;
+                                break;
+                        }
+                    }
+                    foreach (var pdv in ListPDV)
+                    {
+                        foreach (var pdp in ListPDP)
+                        {
+                            if (pdv.MAPDP == pdp.MAPDP && pdp.NGTRA.Value.Year == Nam)
+                            {
+                                DoanhThuDV += (double)pdv.TONGTIEN;
+                            }
+                        }
+                    }
+                    DoanhThuPhong = sum1 - DoanhThuDV;
+                    TongDoanhThu = sum1;
                 }
             });
             ShowCommand2 = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
@@ -237,6 +262,7 @@ namespace QLKhachSan.ViewModel
                     DoanhThuPhong = 0;
                     DoanhThuDV = 0;
                     double sum1 = 0;
+                    SoLuotThue = 0;
                     for (int i = 0; i < maloai.Length; i++)
                     {
                         double sum = 0;
@@ -245,6 +271,7 @@ namespace QLKhachSan.ViewModel
                             if (hd.NGLAPHD.Value.Year == Nam && hd.NGLAPHD.Value.Month == Thang && hd.LOAI == maloai[i])
                             {
                                 sum += (double)hd.THANHTIEN;
+                                SoLuotThue++;
                             }
                         }
                         sum1 += sum;
@@ -307,7 +334,7 @@ namespace QLKhachSan.ViewModel
                     roomType = "La Opera";
                     doanhThu = DoanhThuLA;
                 }
-                return string.Format("{0} ({1:P}) - {2:C}", doanhThu, chartPoint.Participation, roomType);
+                return string.Format("{0:P}", chartPoint.Participation);
             };
             PointLabel2 = chartPoint =>
             {
@@ -326,7 +353,7 @@ namespace QLKhachSan.ViewModel
                     roomType = "Doanh thu dịch vụ";
                     giatri = DoanhThuDV;
                 }
-                return string.Format("{0} ({1:P}) - {2:C}", giatri, chartPoint.Participation, roomType);
+                return string.Format("{0:P}", chartPoint.Participation);
             };
 
             Chart_DataClickCommand = new RelayCommand<ChartPoint>((p) => { return true; }, (p) =>
