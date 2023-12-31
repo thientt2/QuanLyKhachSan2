@@ -273,11 +273,11 @@
                         <Grid >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition></RowDefinition>
+                                <RowDefinition ></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <materialDesign:Card Grid.Row="0" Margin="30,30,30,0">
+                            <materialDesign:Card Grid.Row="0" Margin="30,20,30,0">
                                 <WrapPanel>
                                     <!--<TextBox x:Name="txtMAKH"  Text="{Binding MAKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mã khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />-->
                                     <TextBox x:Name="txtTENKH" Text="{Binding TENKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên khách hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
@@ -287,11 +287,11 @@
                                     <TextBox x:Name="txtEMAILKH" Text="{Binding EMAIL,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                     <TextBox x:Name="txtSOCCCD" Text="{Binding SOCCCD,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="CCCD" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                     <TextBox x:Name="txtQUOCTICH" Text="{Binding QUOCTICH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Quốc tịch" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                    <DatePicker x:Name="txtNGSINHKH"  SelectedDate="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, StringFormat='dd/MM/yyyy' }" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Ngày sinh" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                    <DatePicker x:Name="txtNGSINHKH"  SelectedDate="{Binding NGSINH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, StringFormat=dd/MM/yyyy }" Margin="40,10,30,10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Ngày sinh" materialDesign:TextFieldAssist.HasClearButton="True" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                                 </WrapPanel>
                             </materialDesign:Card>
 
-                            <materialDesign:Card Grid.Row="1" Margin="30">
+                            <materialDesign:Card Grid.Row="1" Margin="30,30,30,0">
                                 <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
                                     <ListView ItemsSource="{Binding ListKH, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                         <ListView.View>
@@ -316,13 +316,13 @@
                                 </ScrollViewer>
                             </materialDesign:Card>
 
-                            <Grid Grid.Row="2" Margin="0,0,0,30">
+                            <Grid Grid.Row="2" Margin="0,10,0,15">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <TextBlock Margin="30, 40, 0, 30" FontSize="25"><Run Text="Chế độ tìm kiếm: "/> 
                                     </TextBlock>
                                     <ToggleButton
-                                        Width ="90"
-                                        Margin="10, 30, 300, 30"                 
+                                        Width ="60"
+                                        Margin="10, 40, 300, 30"                 
                                         Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}"
                                         ToolTip="MaterialDesignSwitchSecondaryToggleButton"
                                         Command="{Binding ToggleSearchCommand}"/>
@@ -391,11 +391,11 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition></RowDefinition>
+                                <RowDefinition ></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
+                            <materialDesign:Card Grid.Row="0" Margin="30,20,30,0">
                                 <WrapPanel>
                                     <WrapPanel.Style>
                                         <Style TargetType="WrapPanel">
@@ -419,7 +419,7 @@
                                 </WrapPanel>
                             </materialDesign:Card>
 
-                            <materialDesign:Card Grid.Row="1" Margin="30">
+                            <materialDesign:Card Grid.Row="1" Margin="30,30,30,0">
                                 <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
                                     <ListView ItemsSource="{Binding ListNV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                         <ListView.View>
@@ -445,7 +445,7 @@
                                 </ScrollViewer>
                             </materialDesign:Card>
 
-                            <Grid Grid.Row="2" Margin="0,0,0,30">
+                            <Grid Grid.Row="2" Margin="0,10,0,15">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button
                                         Command="{Binding AddCommand}"
@@ -547,7 +547,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Grid Grid.Column="0">
-                                <materialDesign:Card Margin="20">
+                                <materialDesign:Card Margin="30,20,30,30">
                                     <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
                                         <ListView ItemsSource="{Binding ListCTPDV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                             <ListView.View>
@@ -576,16 +576,16 @@
                                         <RowDefinition Height="Auto"></RowDefinition>
                                     </Grid.RowDefinitions>
 
-                                    <materialDesign:Card Grid.Row="0" Margin="30,10,30,0">
+                                    <materialDesign:Card Grid.Row="0" Margin="20,20,30,0">
                                         <WrapPanel>
                                             <TextBox x:Name="txtTENDV" Text="{Binding TENDV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên dịch vụ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                             <TextBox x:Name="txtDONGIA" Text="{Binding DONGIA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Đơn giá" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                         </WrapPanel>
                                     </materialDesign:Card>
 
-                                    <Grid Grid.Row="1" Margin="30">
+                                    <Grid Grid.Row="1" Margin="20,30,30,30">
                                         <Grid>
-                                            <materialDesign:Card Margin="0,0,20,0">
+                                            <materialDesign:Card Margin="0,0,0,0">
                                                 <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
                                                     <ListView ItemsSource="{Binding ListDV,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                                         <ListView.View>
@@ -607,7 +607,7 @@
 
                                     </Grid>
 
-                                    <Grid Grid.Row="2" Margin="0,0,0,30">
+                                    <Grid Grid.Row="2" Margin="0,0,0,15">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                             <Button
                                                 Command="{Binding AddCommand}"
@@ -684,7 +684,7 @@
                                     <RowDefinition Height="auto"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <materialDesign:Card Grid.Row="0" Margin="20">
+                                <materialDesign:Card Grid.Row="0" Margin="30,20,30,0">
                                     <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
                                         <ListView ItemsSource="{Binding ListPhong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem1, Mode=TwoWay}">
                                             <ListView.View>
@@ -704,7 +704,7 @@
                                     </ScrollViewer>
                                 </materialDesign:Card>
 
-                                <Grid Grid.Row="1">
+                                <Grid Grid.Row="1" Margin="0,10,0,15">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                         <Button
                                             Command="{Binding DatDichVuCommand}"
@@ -752,7 +752,7 @@
                                     <RowDefinition Height="auto"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <materialDesign:Card Grid.Row="0" Margin="20,20,20,0">
+                                <materialDesign:Card Grid.Row="0" Margin="20,20,30,0">
                                     <WrapPanel>
                                         <TextBox Text="{Binding SLGIUONG,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Số lượng giường" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                                         <TextBox Text="{Binding LOAIGIUONG,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10" FontSize="15" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Loại giường" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
@@ -762,7 +762,7 @@
                                     </WrapPanel>
                                 </materialDesign:Card>
 
-                                <materialDesign:Card Grid.Row="1" Margin="20">
+                                <materialDesign:Card Grid.Row="1" Margin="20,20,30,0">
                                     <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
                                         <ListView ItemsSource="{Binding LoaiPhong,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                                             <ListView.View>
@@ -784,10 +784,8 @@
                                     </ScrollViewer>
                                 </materialDesign:Card>
 
-                                <Grid Grid.Row="2">
+                                <Grid Grid.Row="2" Margin="0,10,0,15">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-
-
                                         <Button
                                             Command="{Binding EditCommand}"
                                             Background="Yellow"
@@ -804,7 +802,7 @@
                                             Command="{Binding CancelCommand}"
                                             Background="LightCoral"
                                             Foreground="Black"
-                                            Margin="30, 30, 50, 30"
+                                            Margin="30, 30, 30, 30"
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Width="100"
                                             Height="40"
@@ -911,7 +909,7 @@
                                 </ScrollViewer>
                             </materialDesign:Card>
 
-                            <Grid Grid.Row="4" Margin="0,0,0,30">
+                            <Grid Grid.Row="4" Margin="0,0,0,15">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button
                                         Command="{Binding DatPhongCommand}"

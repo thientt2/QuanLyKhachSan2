@@ -44,58 +44,25 @@ namespace QLKhachSan.ViewModel
                 }
             }
         }
-        //private KHACHHANG _SelectedItem;
-        //public KHACHHANG SelectedItem
-        //{
-        //    get
-        //    {
-        //        if (IsSearching)
-        //        {
-        //            return _collectionView?.CurrentItem as KHACHHANG;
-        //        }
-        //        else
-        //        {
-        //            return _SelectedItem;
-        //        }
-        //    }
-        //    set
-        //    {
-        //        _SelectedItem = value;
-        //        OnPropertyChanged();
-
-        //        if (SelectedItem != null)
-        //        {
-        //            MAKH = SelectedItem.MAKH;
-        //            TENKH = SelectedItem.TENKH;
-        //            DIACHI = SelectedItem.DIACHI;
-        //            GIOITINH = SelectedItem.GIOITINH;
-        //            SDT = SelectedItem.SDT;
-        //            EMAIL = SelectedItem.EMAIL;
-        //            SOCCCD = SelectedItem.SOCCCD;
-        //            QUOCTICH = SelectedItem.QUOCTICH;
-        //            NGSINH = SelectedItem.NGSINH;
-        //        }
-        //    }
-        //}
 
         private string _MAKH;
         public string MAKH { get { return _MAKH; } set { _MAKH = value; OnPropertyChanged(); } }
         private string _TENKH;
-        public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); if(IsSearching) CollectionView.Refresh(); } }
+        public string TENKH { get { return _TENKH; } set { _TENKH = value; OnPropertyChanged(); if(IsSearching && SelectedItem == null) CollectionView.Refresh(); } }
         private string _GIOITINH;
-        public string GIOITINH { get { return _GIOITINH; } set { _GIOITINH = value; OnPropertyChanged(); if(IsSearching) CollectionView.Refresh(); } }
+        public string GIOITINH { get { return _GIOITINH; } set { _GIOITINH = value; OnPropertyChanged(); if(IsSearching && SelectedItem == null) CollectionView.Refresh(); } }
         private DateTime? _NGSINH;
-        public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); } }
+        public DateTime? NGSINH { get { return _NGSINH; } set { _NGSINH = value; OnPropertyChanged(); if (IsSearching && SelectedItem == null) CollectionView.Refresh(); } }
         private string _DIACHI;
-        public string DIACHI { get { return _DIACHI; } set { _DIACHI = value; OnPropertyChanged(); } }
+        public string DIACHI { get { return _DIACHI; } set { _DIACHI = value; OnPropertyChanged(); if (IsSearching && SelectedItem == null) CollectionView.Refresh(); } }
         private string _SDT;
-        public string SDT { get { return _SDT; } set { _SDT = value; OnPropertyChanged(); } }
+        public string SDT { get { return _SDT; } set { _SDT = value; OnPropertyChanged(); if (IsSearching && SelectedItem == null) CollectionView.Refresh(); } }
         private string _EMAIL;
-        public string EMAIL { get { return _EMAIL; } set { _EMAIL = value; OnPropertyChanged(); } }
+        public string EMAIL { get { return _EMAIL; } set { _EMAIL = value; OnPropertyChanged(); if (IsSearching && SelectedItem == null) CollectionView.Refresh(); } }
         private string _SOCCCD;
-        public string SOCCCD { get { return _SOCCCD; } set { _SOCCCD = value; OnPropertyChanged(); } }
+        public string SOCCCD { get { return _SOCCCD; } set { _SOCCCD = value; OnPropertyChanged(); if (IsSearching && SelectedItem == null) CollectionView.Refresh(); } }
         private string _QUOCTICH;
-        public string QUOCTICH { get { return _QUOCTICH; } set { _QUOCTICH = value; OnPropertyChanged(); } }
+        public string QUOCTICH { get { return _QUOCTICH; } set { _QUOCTICH = value; OnPropertyChanged(); if (IsSearching && SelectedItem == null) CollectionView.Refresh(); } }
 
         public ICommand ToggleSearchCommand { get; set; }
         public ICommand AddCommand { get; set; }
@@ -115,14 +82,31 @@ namespace QLKhachSan.ViewModel
         {
             string searchText = string.Empty;
             string searchText1 = string.Empty;
-            if (string.IsNullOrEmpty(TENKH) && string.IsNullOrEmpty(GIOITINH))
+            string searchText2 = string.Empty;
+            string searchText3 = string.Empty;
+            string searchText4 = string.Empty;
+            string searchText5 = string.Empty;
+            if (string.IsNullOrEmpty(TENKH) && string.IsNullOrEmpty(GIOITINH) && string.IsNullOrEmpty(QUOCTICH) && string.IsNullOrEmpty(NGSINH.ToString()) && string.IsNullOrEmpty(DIACHI) && string.IsNullOrEmpty(SDT))
                 return true;
             var kh = (KHACHHANG)item;
             if (TENKH != null)
                 searchText = TENKH.ToLowerInvariant();
             if (GIOITINH != null)
                 searchText1 = GIOITINH.ToLowerInvariant();
-            return kh.TENKH.ToLowerInvariant().Contains(searchText) && kh.GIOITINH.ToLowerInvariant().Contains(searchText1);
+            if (QUOCTICH != null)
+                searchText2 = QUOCTICH.ToLowerInvariant();
+            if (NGSINH != null)
+                searchText3 = NGSINH.ToString();
+            if (DIACHI != null)
+                searchText4 = DIACHI.ToLowerInvariant();
+            if (SDT != null)
+                searchText5 = SDT.ToLowerInvariant(); ;
+            return kh.TENKH.ToLowerInvariant().Contains(searchText) 
+                && kh.GIOITINH.ToLowerInvariant().Contains(searchText1) 
+                && kh.QUOCTICH.ToLowerInvariant().Contains(searchText2) 
+                && kh.NGSINH.ToString().Contains(searchText3)
+                && kh.DIACHI.ToLowerInvariant().Contains(searchText4)
+                && kh.SDT.ToLowerInvariant().Contains(searchText5);
         }
 
         private bool _isSearching;
@@ -141,8 +125,6 @@ namespace QLKhachSan.ViewModel
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             CollectionView = CollectionViewSource.GetDefaultView(ListKH);
             CollectionView.Filter = Filter;
-            //if (SelectedItem != null)
-            //    IsSearching = false;
             if (CollectionView != null && SelectedItem != null)
             {
                 CollectionView.MoveCurrentTo(SelectedItem);
@@ -176,10 +158,6 @@ namespace QLKhachSan.ViewModel
             {
                 if (SelectedItem==null)
                     return false;
-
-                //var MaKHlist = DataProvider.Ins.DB.KHACHHANGs.Where(x => x.MAKH == SelectedItem.MAKH);
-                //if (MaKHlist == null || MaKHlist.Count() == 0)
-                //    return false;
                 return true;
             }, (p) =>
             {
@@ -193,9 +171,10 @@ namespace QLKhachSan.ViewModel
                 khachhang.NGSINH = NGSINH;
                 khachhang.DIACHI = DIACHI;
                 DataProvider.Ins.DB.SaveChanges();
-
+                TENKH = GIOITINH = SDT = EMAIL = SOCCCD = QUOCTICH = DIACHI = string.Empty;
+                NGSINH = null;
                 MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
+                SelectedItem = null;
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {
@@ -206,25 +185,23 @@ namespace QLKhachSan.ViewModel
                 NGSINH = null;
                 if (SelectedItem != null)
                     SelectedItem = null;
-                //ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             });
             DeleteCommand = new RelayCommand<object>((p) =>
             {
                 return SelectedItem != null;
             }, (p) =>
             {
-                TENKH = GIOITINH = SDT = EMAIL = SOCCCD = QUOCTICH = DIACHI = string.Empty;
-                NGSINH = null;
                 MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
                 if (result == MessageBoxResult.OK)
                 {
+                    TENKH = GIOITINH = SDT = EMAIL = SOCCCD = QUOCTICH = DIACHI = string.Empty;
+                    NGSINH = null;
                     DataProvider.Ins.DB.KHACHHANGs.Remove(SelectedItem);
                     DataProvider.Ins.DB.SaveChanges();
                     ListKH.Remove(SelectedItem);
                     MessageBox.Show("Xóa khách hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 SelectedItem = null;
-                ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             });
             ToggleSearchCommand = new RelayCommand<object>((p) =>
             {
@@ -233,18 +210,8 @@ namespace QLKhachSan.ViewModel
             {
                 TENKH = GIOITINH = SDT = EMAIL = SOCCCD = QUOCTICH = DIACHI = string.Empty;
                 NGSINH = null;
+                SelectedItem = null;
                 IsSearching = !IsSearching;
-                if (!IsSearching)
-                {
-                    TENKH = GIOITINH = SDT = EMAIL = SOCCCD = QUOCTICH = DIACHI = string.Empty;
-                    NGSINH = null;
-                }
-                //if(IsSearching)
-                //{
-                //    ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
-                //    CollectionView = CollectionViewSource.GetDefaultView(ListKH);
-                //    CollectionView.Filter = Filter;
-                //}    
             });
         }
         
