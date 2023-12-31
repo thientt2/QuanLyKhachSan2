@@ -9,7 +9,7 @@
 
 
     <Grid Margin="50">
-        <materialDesign:Card Foreground="Black" Padding="0" Width="200">
+        <materialDesign:Card Foreground="Black" Padding="0" Width="210" Height="150">
             <materialDesign:Card.Style>
                 <Style TargetType="materialDesign:Card">
                     <Setter Property="Background" Value="LightGreen"/>
@@ -30,9 +30,9 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="20" Text="{Binding SOPHONG,StringFormat='P. {0}', UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="16 16 16 4"/>
+                <TextBlock Grid.Row="0" FontSize="23" Text="{Binding SOPHONG,StringFormat='P. {0}', UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0 16 16 0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <Separator Grid.Row="1" Style="{StaticResource MaterialDesignDarkSeparator}" />
-                <TextBlock Grid.Row="2" FontSize="20" Text="{Binding MALOAI, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="16 0 16 8" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                <TextBlock Grid.Row="2" FontSize="23" Text="{Binding MALOAI, StringFormat='Phòng {0}', UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10,16,16,0" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
             </Grid>
         </materialDesign:Card>
     </Grid>

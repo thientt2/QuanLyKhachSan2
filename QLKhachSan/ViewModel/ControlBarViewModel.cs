@@ -16,6 +16,7 @@ namespace QLKhachSan.ViewModel
         public ICommand MaximizeWindowCommand { get; set; }
         public ICommand MinimizeWindowCommand { get; set; }
         public ICommand MouseMoveWindowCommand { get; set; }
+        private Rect previousWindowRect;
         #endregion
 
         public ControlBarViewModel()
@@ -35,12 +36,20 @@ namespace QLKhachSan.ViewModel
                 if (w != null)
                 {
                     if (w.WindowState != WindowState.Maximized)
+                    {
+                        // Lưu trạng thái kích thước và vị trí trước khi maximize
+                        previousWindowRect = new Rect(w.Left, w.Top, w.Width, w.Height);
+
+                        // Set cửa sổ thành trạng thái Maximized
                         w.WindowState = WindowState.Maximized;
+                    }
                     else
+                    {
+                        // Khôi phục lại trạng thái kích thước và vị trí từ trước khi maximize
                         w.WindowState = WindowState.Normal;
+                    }
                 }
-            }
-            );
+            });
             MinimizeWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) => {
                 FrameworkElement window = GetWindowParent(p);
                 var w = window as Window;
