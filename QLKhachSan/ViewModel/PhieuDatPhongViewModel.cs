@@ -183,13 +183,20 @@ namespace QLKhachSan.ViewModel
             ContinueCommand = new RelayCommand<object>((p) =>
             {
                 MAPDP = MAPDP1;
-                TENKH = TENKH1;
-                MANV = MANV1;
-                MALOAI = MALOAI1;
-                SOPHONG = SOPHONG1;
-                NGDAT = NGDAT1;
-                NGNHAN = NGNHAN1;
-                NGTRA = NGTRA1;
+                if(TENKH1 != null)
+                    TENKH = TENKH1;
+                if (MANV1 != null)
+                    MANV = MANV1;
+                if (TENKH1 != null)
+                    MALOAI = MALOAI1;
+                if (SOPHONG1 != null)
+                    SOPHONG = SOPHONG1;
+                if (NGDAT1 != null)
+                    NGDAT = NGDAT1;
+                if (NGNHAN1 != null)
+                    NGNHAN = NGNHAN1;
+                if (NGTRA1 != null)
+                    NGTRA = NGTRA1;
                 int maxCode = ListPDP.Max(dp => int.Parse(dp.MAPDP.Substring(2)));
                 string nextCode = $"DP{maxCode + 1:000}";
                 if (MAPDP1 == nextCode)

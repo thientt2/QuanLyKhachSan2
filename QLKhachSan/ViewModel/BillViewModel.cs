@@ -188,11 +188,13 @@ namespace QLKhachSan.ViewModel
                 LOAI = MALOAI1;
                 GIA = loaiphong.GIA;
                 NGNHAN = pdp.NGNHAN;
+                NGTRA = pdp.NGTRA;
                 MAPDV = pdv.MAPDV;
 
-                TimeSpan? KhoangCach = NGTRA - NGNHAN;
-                if (KhoangCach.HasValue)
-                    SONGAY = KhoangCach.Value.Days;
+                SONGAY = (int)(NGTRA - NGNHAN).Value.Days;
+                //TimeSpan? KhoangCach = NGTRA - NGNHAN;
+                //if (KhoangCach.HasValue)
+                //    SONGAY = KhoangCach.Value.Days;
                 TIENPHONG = GIA * SONGAY;
                 TONGTIEN = pdv.TONGTIEN;
                 THANHTIEN = TIENPHONG + TONGTIEN;

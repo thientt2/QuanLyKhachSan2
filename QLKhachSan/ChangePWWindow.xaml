@@ -1,0 +1,92 @@
+﻿<Window x:Class="QLKhachSan.ChangePWWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLKhachSan"
+        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:uc="clr-namespace:QLKhachSan.UserControlKS"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        BorderThickness="2"
+        BorderBrush="Aqua"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Name="changePWWindow"
+        Closing="Window_Closing"
+        DataContext="{StaticResource ChangePWVM}"
+        WindowStartupLocation="CenterScreen"
+        
+        Height="520" Width="550">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC x:Name="ucControlBar" HeaderText="Đổi Mật Khẩu" />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <StackPanel Margin="30">
+                <TextBlock Text="Nhập mật khẩu cũ:" Margin="40,10,10,10" FontSize="20"/>
+
+                <TextBox                                
+                    Height="60"    
+                    Margin="40,0,40,0"
+                    VerticalAlignment="Bottom"    
+                    materialDesign:HintAssist.Hint="Mật khẩu cũ"    
+                    AcceptsReturn="True"    
+                    FontSize="20"
+                    Text="{Binding OldPassword}"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"    
+                    TextWrapping="Wrap"    
+                    VerticalScrollBarVisibility="Auto" />
+
+
+                <TextBlock Text="Nhập mật khẩu mới:" Margin="40,10,10,10" FontSize="20"/>
+
+                <TextBox                                
+                    Height="60"    
+                    Margin="40,0,40,0"
+                    VerticalAlignment="Bottom"    
+                    materialDesign:HintAssist.Hint="Mật khẩu mới"    
+                    AcceptsReturn="True"    
+                    FontSize="20"
+                    Text="{Binding NewPassword}"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"    
+                    TextWrapping="Wrap"    
+                    VerticalScrollBarVisibility="Auto" />
+
+                <TextBlock Text="Nhập lại mật khẩu mới:" Margin="40,10,10,10" FontSize="20"/>
+
+                <TextBox                                
+                    Height="60"    
+                    Margin="40,0,40,0"
+                    VerticalAlignment="Bottom"    
+                    materialDesign:HintAssist.Hint="Xác nhận mật khẩu"    
+                    AcceptsReturn="True"    
+                    FontSize="20"
+                    Text="{Binding ConfirmPassword}"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"    
+                    TextWrapping="Wrap"    
+                    VerticalScrollBarVisibility="Auto" />
+
+                <Button Content="Xác nhận" 
+                    IsDefault="True"
+                    Command="{Binding ConfirmCommand}"
+                    CommandParameter="{Binding ElementName=changePWWindow}"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}" 
+                    Width="130" Height="40" HorizontalAlignment="Right" Margin="30"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

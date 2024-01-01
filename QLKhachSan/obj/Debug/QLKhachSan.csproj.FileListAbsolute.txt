@@ -343,3 +343,5 @@ C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\bin\Debug\System.Numerics
 C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\bin\Debug\System.ValueTuple.xml
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\ChangePWWindow.g.cs
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\ChangePWWindow.baml

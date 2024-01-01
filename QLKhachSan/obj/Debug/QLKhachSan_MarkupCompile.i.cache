@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\obj\Debug\
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\
 QLKhachSan
 none
 false
 DEBUG;TRACE
-C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\App.xaml
-8563890490
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\App.xaml
+9204306069
 8832014688
-49-72559361
-541197827284
-Bill.xaml;DatDichVuWindow.xaml;DatPhongWindow.xaml;LoginWindow.xaml;MainWindow.xaml;ResourceXAML\MainResource.xaml;UserControlKS\ControlBarUC.xaml;UserControlKS\RoomUC.xaml;
+51-1831477649
+54602140298
+Bill.xaml;ChangePWWindow.xaml;DatDichVuWindow.xaml;DatPhongWindow.xaml;LoginWindow.xaml;MainWindow.xaml;ResourceXAML\MainResource.xaml;UserControlKS\ControlBarUC.xaml;UserControlKS\RoomUC.xaml;
 
-False
+True
 

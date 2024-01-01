@@ -14,6 +14,10 @@ namespace QLKhachSan.ViewModel
 {
     class LoginViewModel : BasicViewModel
     {
+        private int _ID;
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        private string _MATKHAU;
+        public string MATKHAU { get { return _MATKHAU; } set { _MATKHAU = value; OnPropertyChanged(); } }
 
         public bool IsLogin { get; set; }
         private string _username;
@@ -49,6 +53,8 @@ namespace QLKhachSan.ViewModel
                 IsLogin = true;
                 IDPHANQUYEN = loggedInUser.IDPHANQUYEN;
                 MANV = loggedInUser.MANV;
+                ID = loggedInUser.ID;
+                MATKHAU = loggedInUser.MATKHAU;
                 p.Close();
             }
             else

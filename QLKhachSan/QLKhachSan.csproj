@@ -171,6 +171,9 @@
     <Compile Include="Bill.xaml.cs">
       <DependentUpon>Bill.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangePWWindow.xaml.cs">
+      <DependentUpon>ChangePWWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DatDichVuWindow.xaml.cs">
       <DependentUpon>DatDichVuWindow.xaml</DependentUpon>
     </Compile>
@@ -279,6 +282,7 @@
     </Compile>
     <Compile Include="ViewModel\BasicViewModel.cs" />
     <Compile Include="ViewModel\BillViewModel.cs" />
+    <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\DatPhongViewModel.cs" />
     <Compile Include="ViewModel\DichVuViewModel.cs" />
@@ -292,6 +296,10 @@
     <Compile Include="ViewModel\PhongViewModel.cs" />
     <Compile Include="ViewModel\TrangChuViewModel.cs" />
     <Page Include="Bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangePWWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

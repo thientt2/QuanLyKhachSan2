@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 using static QLKhachSan.ViewModel.BasicViewModel;
 
 namespace QLKhachSan.ViewModel
@@ -47,11 +48,17 @@ namespace QLKhachSan.ViewModel
         private int? _IDPHANQUYEN;
         public int? IDPHANQUYEN { get { return _IDPHANQUYEN; } set { _IDPHANQUYEN = value; OnPropertyChanged(); } }
 
+        private int _ID;
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        private string _MATKHAU;
+        public string MATKHAU { get { return _MATKHAU; } set { _MATKHAU = value; OnPropertyChanged(); } }
+
         public bool IsLoaded = false;
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand DatPhongCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
         public ICommand ChangeImagePathCommand { get; set; }
+        public ICommand ChangePWCommand { get; set; }
 
 
         public MainViewModel()
@@ -72,6 +79,8 @@ namespace QLKhachSan.ViewModel
                     ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
                     MANV = loginVM.MANV;
                     IDPHANQUYEN = loginVM.IDPHANQUYEN;
+                    ID = loginVM.ID;
+                    MATKHAU = loginVM.MATKHAU;
                     var info = DataProvider.Ins.DB.NHANVIENs.FirstOrDefault(x => x.MANV == MANV);
                     MMANV = MANV;
                     TENNV = info.TENNV;
@@ -98,6 +107,16 @@ namespace QLKhachSan.ViewModel
                 else p.Close();
             }
         );
+            ChangePWCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+
+                ChangePWWindow wd = new ChangePWWindow();
+                var addVM = wd.DataContext as ChangePasswordViewModel;
+                addVM.IID = ID;
+                addVM.MMATKHAU = MATKHAU;
+                addVM.IID = ID;
+                wd.ShowDialog();
+            });
             LogOutCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LogOut(); });
             ChangeImagePathCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ChangeImagePath(); });
 

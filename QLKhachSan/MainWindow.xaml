@@ -1299,19 +1299,34 @@
                         </Grid>
 
                         <Grid Grid.Row="11">
-                            <Button
-                                x:Name="LogOut"
-                                Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=SortAll}"
-                                Background="LightGray"
-                                Foreground="Black"
-                                Margin="40"
-                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Width="120"
-                                Height="40"
-                                HorizontalAlignment="Right"
-                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                Content="_Đăng xuất">
-                            </Button>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                                <Button
+                                    x:Name="ChangePW"
+                                    Command="{Binding ChangePWCommand}" CommandParameter="{Binding ElementName=ChangePW}"
+                                    Background="LightGray"
+                                    Foreground="Black"
+                                    Margin="40,0,0,0"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="120"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Đổi mật khẩu">            
+                                </Button>
+
+                                <Button
+                                    x:Name="LogOut"
+                                    Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=LogOut}"
+                                    Background="LightGray"
+                                    Foreground="Black"
+                                    Margin="40"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Width="120"
+                                    Height="40"
+                                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                    Content="_Đăng xuất">
+                                </Button>
+                            </StackPanel>
                         </Grid>
 
                         <Button
