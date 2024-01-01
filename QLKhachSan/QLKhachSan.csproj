@@ -181,35 +181,35 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\CHITIETDICHVU.cs">
-      <DependentUpon>QLKS_HT.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DANGNHAP.cs">
-      <DependentUpon>QLKS_HT.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\DICHVU.cs">
-      <DependentUpon>QLKS_HT.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\HOADON.cs">
-      <DependentUpon>QLKS_HT.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\KHACHHANG.cs">
-      <DependentUpon>QLKS_HT.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\LOAIPHONG.cs">
-      <DependentUpon>QLKS_HT.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\NHANVIEN.cs">
-      <DependentUpon>QLKS_HT.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PHIEUDATPHONG.cs">
-      <DependentUpon>QLKS_HT.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PHIEUDICHVU.cs">
-      <DependentUpon>QLKS_HT.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PHONG.cs">
-      <DependentUpon>QLKS_HT.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\QLKS_3T.Context.cs">
       <AutoGen>True</AutoGen>
@@ -256,20 +256,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLKS_NHT.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\QLKS_TT.Context.cs">
+    <Compile Include="Model\QLKS_TTT.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLKS_TT.Context.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\QLKS_TT.cs">
+    <Compile Include="Model\QLKS_TTT.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLKS_TT.tt</DependentUpon>
+      <DependentUpon>QLKS_TTT.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\QLKS_TT.Designer.cs">
+    <Compile Include="Model\QLKS_TTT.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLKS_TT.edmx</DependentUpon>
+      <DependentUpon>QLKS_TTT.edmx</DependentUpon>
     </Compile>
     <Compile Include="UserControlKS\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
@@ -371,12 +371,12 @@
     <None Include="Model\QLKS_NHT.edmx.diagram">
       <DependentUpon>QLKS_NHT.edmx</DependentUpon>
     </None>
-    <EntityDeploy Include="Model\QLKS_TT.edmx">
+    <EntityDeploy Include="Model\QLKS_TTT.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QLKS_TT.Designer.cs</LastGenOutput>
+      <LastGenOutput>QLKS_TTT.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\QLKS_TT.edmx.diagram">
-      <DependentUpon>QLKS_TT.edmx</DependentUpon>
+    <None Include="Model\QLKS_TTT.edmx.diagram">
+      <DependentUpon>QLKS_TTT.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -414,15 +414,15 @@
       <DependentUpon>QLKS_HT.edmx</DependentUpon>
       <LastGenOutput>QLKS_HT.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\QLKS_TT.Context.tt">
+    <Content Include="Model\QLKS_TTT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLKS_TT.edmx</DependentUpon>
-      <LastGenOutput>QLKS_TT.Context.cs</LastGenOutput>
+      <DependentUpon>QLKS_TTT.edmx</DependentUpon>
+      <LastGenOutput>QLKS_TTT.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\QLKS_TT.tt">
+    <Content Include="Model\QLKS_TTT.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLKS_TT.edmx</DependentUpon>
-      <LastGenOutput>QLKS_TT.cs</LastGenOutput>
+      <DependentUpon>QLKS_TTT.edmx</DependentUpon>
+      <LastGenOutput>QLKS_TTT.cs</LastGenOutput>
     </Content>
     <Resource Include="Images\LightGreen.png" />
     <Resource Include="Images\Red.png" />

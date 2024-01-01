@@ -13,10 +13,10 @@ namespace QLKhachSan.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QLKS_TT : DbContext
+    public partial class QLKS_TTT : DbContext
     {
-        public QLKS_TT()
-            : base("name=QLKS_TT")
+        public QLKS_TTT()
+            : base("name=QLKS_TTT")
         {
         }
     

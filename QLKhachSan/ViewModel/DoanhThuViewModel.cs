@@ -369,7 +369,7 @@ namespace QLKhachSan.ViewModel
             });
 
         }
-        //private void TinhDoanhThu()
+        
     }
 
 }
