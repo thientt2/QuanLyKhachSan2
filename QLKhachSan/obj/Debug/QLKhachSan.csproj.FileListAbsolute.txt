@@ -345,3 +345,5 @@ C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\bin\Debug\System.Threadin
 C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\bin\Debug\System.ValueTuple.xml
 C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\ChangePWWindow.g.cs
 C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\ChangePWWindow.baml
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\bin\Debug\BouncyCastle.Crypto.xml

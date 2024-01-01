@@ -139,15 +139,15 @@
                                 <Run Text="{Binding TENKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
                             </TextBlock>
 
-                            <TextBlock FontSize="20" Margin="-65,20,0,0">
+                            <TextBlock FontSize="20" Margin="-70,20,0,0">
                                 <Run Text="{Binding SOCCCD,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
                             </TextBlock>
 
-                            <TextBlock FontSize="20" Margin="-65,20,0,0">
+                            <TextBlock FontSize="20" Margin="-70,20,0,0">
                                 <Run Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
                             </TextBlock>
 
-                            <TextBlock FontSize="20" Margin="-65,20,0,0">
+                            <TextBlock FontSize="20" Margin="-70,20,0,0">
                                 <Run Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
                             </TextBlock>
                         </StackPanel>

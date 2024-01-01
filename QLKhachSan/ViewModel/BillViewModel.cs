@@ -144,7 +144,7 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                XuatPDF();
+                //XuatPDF();
                 var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = LOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
                 DataProvider.Ins.DB.HOADONs.Add(hd);
                 DataProvider.Ins.DB.SaveChanges();
@@ -175,8 +175,9 @@ namespace QLKhachSan.ViewModel
             string nextCode = $"HD{maxCode + 1:000}";
             MAHD = nextCode;
 
-            if (pdp != null && loaiphong != null && pdv != null)
+            if (pdp != null && loaiphong != null)
             {
+                TONGTIEN = 0;
                 MAPDP = pdp.MAPDP;
                 NGLAPHD = DateTime.Now;
                 TENNV = pdp.NHANVIEN.TENNV;
@@ -189,14 +190,19 @@ namespace QLKhachSan.ViewModel
                 GIA = loaiphong.GIA;
                 NGNHAN = pdp.NGNHAN;
                 NGTRA = pdp.NGTRA;
-                MAPDV = pdv.MAPDV;
+                if(pdv != null)
+                {
+                    MAPDV = pdv.MAPDV;
+                    TONGTIEN = pdv.TONGTIEN;
+                }    
+
+                
 
                 SONGAY = (int)(NGTRA - NGNHAN).Value.Days;
                 //TimeSpan? KhoangCach = NGTRA - NGNHAN;
                 //if (KhoangCach.HasValue)
                 //    SONGAY = KhoangCach.Value.Days;
                 TIENPHONG = GIA * SONGAY;
-                TONGTIEN = pdv.TONGTIEN;
                 THANHTIEN = TIENPHONG + TONGTIEN;
                 ListCTPDV1 = new ObservableCollection<CTPDV1>();
                 //hiển thị thông qua binding TENDV?
@@ -220,25 +226,25 @@ namespace QLKhachSan.ViewModel
             }
         }
 
-        private void XuatPDF()
-        {
-            string ThuMuc = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string DuongDan = Path.Combine(ThuMuc, $"Hóa Đơn {MAHD}.pdf");
-            using (FileStream fs = new FileStream(DuongDan, FileMode.Create))
-            {
-                PdfWriter writer = new PdfWriter(fs);
-                using (PdfDocument pdf = new PdfDocument(writer))
-                {
-                    iText.Layout.Document document = new iText.Layout.Document(pdf);
-                    document.Add(new iText.Layout.Element.Paragraph($"Thông tin hóa đơn: {MAHD}"));
-                    document.Add(new iText.Layout.Element.Paragraph($"Khách hàng: {TENKH}"));
-                    document.Add(new iText.Layout.Element.Paragraph($"Phòng: {SOPHONG}"));
-                    document.Add(new iText.Layout.Element.Paragraph($"Ngày nhận phòng: {NGNHAN}"));
-                    document.Add(new iText.Layout.Element.Paragraph($"Ngày trả phòng: {NGTRA}"));
-                    document.Add(new iText.Layout.Element.Paragraph($"Tổng cộng: {THANHTIEN}"));
-                    document.Close();
-                }
-            }
-        }
+        //private void XuatPDF()
+        //{
+        //    string ThuMuc = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        //    string DuongDan = Path.Combine(ThuMuc, $"Hóa Đơn {MAHD}.pdf");
+        //    using (FileStream fs = new FileStream(DuongDan, FileMode.Create))
+        //    {
+        //        PdfWriter writer = new PdfWriter(fs);
+        //        using (PdfDocument pdf = new PdfDocument(writer))
+        //        {
+        //            iText.Layout.Document document = new iText.Layout.Document(pdf);
+        //            document.Add(new iText.Layout.Element.Paragraph($"Thông tin hóa đơn: {MAHD}"));
+        //            document.Add(new iText.Layout.Element.Paragraph($"Khách hàng: {TENKH}"));
+        //            document.Add(new iText.Layout.Element.Paragraph($"Phòng: {SOPHONG}"));
+        //            document.Add(new iText.Layout.Element.Paragraph($"Ngày nhận phòng: {NGNHAN}"));
+        //            document.Add(new iText.Layout.Element.Paragraph($"Ngày trả phòng: {NGTRA}"));
+        //            document.Add(new iText.Layout.Element.Paragraph($"Tổng cộng: {THANHTIEN}"));
+        //            document.Close();
+        //        }
+        //    }
+        //}
     }
 }

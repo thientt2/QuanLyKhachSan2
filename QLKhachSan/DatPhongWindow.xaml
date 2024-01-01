@@ -310,7 +310,7 @@
                                 Content="_Đặt">
                             </Button>
 
-                            <Button
+                            <!--<Button
                                 Command="{Binding ContinueCommand}"
                                 Background="Yellow"
                                 Foreground="Black"
@@ -321,7 +321,7 @@
                                 Height="50"
                                 ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                 Content="_Gia hạn">
-                            </Button>
+                            </Button>-->
                             <Button
                                 Command="{Binding CancelCommand}"
                                 Background="Red"

@@ -918,8 +918,33 @@
                             </materialDesign:Card>
 
                             <Grid Grid.Row="4" Margin="0,0,0,15">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" Margin="0,0,-20,0">
+                                    <StackPanel>
+                                        <TextBlock Margin="40,5,30,0" Text="Ngày trả phòng:" FontSize="15"></TextBlock>
+                                        <DatePicker SelectedDate="{Binding NGTRA,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,5,30,5" Width="170" Height="50" FontSize="16.5" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Column="2">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button
+                                        Command="{Binding EditCommand}"
+                                        Background="Yellow"
+                                        Foreground="Black"
+                                        Margin="30,30,200,30"
+                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                        Width="100"
+                                        Height="40"
+                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        Content="_Gia hạn">
+                                        </Button>
+
+                                        <Button
                                         Command="{Binding DatPhongCommand}"
                                         Background="Green"
                                         Foreground="Black"
@@ -929,9 +954,9 @@
                                         Height="40"
                                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                         Content="_Đặt phòng">
-                                    </Button>
+                                        </Button>
 
-                                    <Button
+                                        <Button
                                         Command="{Binding NhanPhongCommand}"
                                         Background="Orange"
                                         Foreground="Black"
@@ -941,21 +966,9 @@
                                         Height="40"
                                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                         Content="_Nhận phòng">
-                                    </Button>
+                                        </Button>
 
-                                    <Button
-                                        Command="{Binding EditCommand}"
-                                        Background="Yellow"
-                                        Foreground="Black"
-                                        Margin="30"
-                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Width="100"
-                                        Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Content="_Gia hạn">
-                                    </Button>
-
-                                    <Button
+                                        <Button
                                         Command="{Binding DeleteCommand}"
                                         Background="Red"
                                         Foreground="Black"
@@ -965,8 +978,10 @@
                                         Height="40"
                                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                         Content="_Xóa">
-                                    </Button>
-                                </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                                
                             </Grid>
                         </Grid>
 
