@@ -73,10 +73,29 @@ namespace QLKhachSan.ViewModel
         private DateTime? _NGTRA;
         public DateTime? NGTRA { get { return _NGTRA; } set { _NGTRA = value; OnPropertyChanged(); } }
 
+        //Gia hạn
+        private string _MAPDP1;
+        public string MAPDP1 { get { return _MAPDP1; } set { _MAPDP1 = value; OnPropertyChanged(); } }
+        private string _TENKH1;
+        public string TENKH1 { get { return _TENKH1; } set { _TENKH1 = value; OnPropertyChanged(); } }
+        private string _MANV1;
+        public string MANV1 { get { return _MANV1; } set { _MANV1 = value; OnPropertyChanged(); } }
+        private DateTime? _NGDAT1;
+        public DateTime? NGDAT1 { get { return _NGDAT1; } set { _NGDAT1 = value; OnPropertyChanged(); } }
+        private DateTime? _NGNHAN1;
+        public DateTime? NGNHAN1 { get { return _NGNHAN1; } set { _NGNHAN1 = value; OnPropertyChanged(); } }
+        private DateTime? _NGTRA1;
+        public DateTime? NGTRA1 { get { return _NGTRA1; } set { _NGTRA1 = value; OnPropertyChanged(); } }
+        private string _MALOAI1;
+        public string MALOAI1 { get { return _MALOAI1; } set { _MALOAI1 = value; OnPropertyChanged(); } }
+        private string _SOPHONG1;
+        public string SOPHONG1 { get { return _SOPHONG1; } set { _SOPHONG1 = value; OnPropertyChanged(); } }
+
         //
         public ICommand AddCommand { get; set; }
         public ICommand ShowCommand { get; set; }
         public ICommand ShowCommand1 { get; set; }
+        public ICommand ContinueCommand { get; set; }
         public ICommand CancelCommand { get; set; } 
 
         public PhieuDatPhongViewModel()
@@ -122,12 +141,8 @@ namespace QLKhachSan.ViewModel
 
             AddCommand = new RelayCommand<object>((p) =>
             {
-                //if (string.IsNullOrEmpty(MAPDP))
-                //    return false;
-                int maxCode = ListPDP.Max(dp => int.Parse(dp.MAPDP.Substring(2)));
-                MAPDP = $"DP{maxCode + 1:000}";
-                var TenPDPlist = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == MAPDP);
-                if (TenPDPlist == null || TenPDPlist.Count() != 0)
+                MAPDP = MAPDP1;
+                if (TENKH == null || MANV == null || MAPDP == null || MALOAI == null || SOPHONG == null || NGDAT == null || NGNHAN == null || NGTRA == null)
                     return false;
                 return true;
             }, (p) =>
@@ -153,6 +168,40 @@ namespace QLKhachSan.ViewModel
                 }
                 DataProvider.Ins.DB.SaveChanges();
                 ListPDP.Add(pdp);
+                MessageBox.Show("Đặt phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = MANV = SDT = "";
+                NGSINH = null;
+                SOPHONG = null;
+                NGDAT = NGNHAN = NGTRA = null;
+                FrameworkElement window = p as FrameworkElement;
+                var w = window as Window;
+                if (w != null)
+                {
+                    w.Close();
+                }
+            });
+            ContinueCommand = new RelayCommand<object>((p) =>
+            {
+                MAPDP = MAPDP1;
+                TENKH = TENKH1;
+                MANV = MANV1;
+                MALOAI = MALOAI1;
+                SOPHONG = SOPHONG1;
+                NGDAT = NGDAT1;
+                NGNHAN = NGNHAN1;
+                NGTRA = NGTRA1;
+                int maxCode = ListPDP.Max(dp => int.Parse(dp.MAPDP.Substring(2)));
+                string nextCode = $"DP{maxCode + 1:000}";
+                if (MAPDP1 == nextCode)
+                    return false;
+                return true;
+            }, (p) =>
+            {
+
+                var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == MAPDP).SingleOrDefault();
+                pdp.NGTRA = NGTRA;
+                DataProvider.Ins.DB.SaveChanges();
+                MessageBox.Show("Gia hạn trả phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = MANV = SDT = "";
                 NGSINH = null;
                 SOPHONG = null;
@@ -166,6 +215,11 @@ namespace QLKhachSan.ViewModel
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {
+                MAPDP = MAPDP1;
+                int maxCode = ListPDP.Max(dp => int.Parse(dp.MAPDP.Substring(2)));
+                string nextCode = $"DP{maxCode + 1:000}";
+                if (MAPDP1 != nextCode)
+                    return false;
                 return true;
             }, (p) =>
             {

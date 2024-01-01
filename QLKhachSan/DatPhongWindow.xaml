@@ -311,6 +311,18 @@
                             </Button>
 
                             <Button
+                                Command="{Binding ContinueCommand}"
+                                Background="Yellow"
+                                Foreground="Black"
+                                Margin="20"
+                                FontSize="20"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                Width="120"
+                                Height="50"
+                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                Content="_Gia hạn">
+                            </Button>
+                            <Button
                                 Command="{Binding CancelCommand}"
                                 Background="Red"
                                 Foreground="Black"

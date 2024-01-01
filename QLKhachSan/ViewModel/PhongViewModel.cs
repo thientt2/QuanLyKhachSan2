@@ -170,6 +170,8 @@ namespace QLKhachSan.ViewModel
             );
             EditCommand = new RelayCommand<object>((p) =>
             {
+                if (SelectedItem == null)
+                    return false;
                 return true;
             }, (p) =>
             {
@@ -186,6 +188,8 @@ namespace QLKhachSan.ViewModel
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {
+                if (LOAIGIUONG == null && SLGIUONG == null && NGUOITOIDA == null && GIA == null && DIENTICH == null && SelectedItem == null && SelectedItem1 == null)
+                    return false;
                 return true;
             }, (p) =>
             {

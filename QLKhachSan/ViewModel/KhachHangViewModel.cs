@@ -150,8 +150,9 @@ namespace QLKhachSan.ViewModel
                 var khachhang = new KHACHHANG() { MAKH = nextCode, TENKH = TENKH, GIOITINH = GIOITINH, SDT = SDT, EMAIL = EMAIL, SOCCCD = SOCCCD, QUOCTICH = QUOCTICH, NGSINH = NGSINH, DIACHI = DIACHI };
                 DataProvider.Ins.DB.KHACHHANGs.Add(khachhang);
                 DataProvider.Ins.DB.SaveChanges();
-
                 ListKH.Add(khachhang);
+                TENKH = GIOITINH = SDT = EMAIL = SOCCCD = QUOCTICH = DIACHI = string.Empty;
+                NGSINH = null;
                 MessageBox.Show("Thêm khách hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             });
             EditCommand = new RelayCommand<object>((p) =>
@@ -178,6 +179,8 @@ namespace QLKhachSan.ViewModel
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {
+                if (TENKH == null && GIOITINH == null && NGSINH == null && DIACHI == null && SDT == null && QUOCTICH == null && EMAIL == null && SOCCCD == null && SelectedItem == null)
+                    return false;
                 return true;
             }, (p) =>
             {

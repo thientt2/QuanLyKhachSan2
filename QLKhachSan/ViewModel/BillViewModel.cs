@@ -15,6 +15,9 @@ using System.Windows.Documents;
 using System.Windows.Markup;
 using System.Printing;
 using System.Windows.Xps.Packaging;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
 
 
 namespace QLKhachSan.ViewModel
@@ -141,19 +144,11 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                //PrintDialog printDialog = new PrintDialog();
-
-                //if (printDialog.ShowDialog() == true)
-                //{
-                //    // Thực hiện công việc in tại đây
-                //    PrintDocument(printDialog.PrintQueue);
-                //}
+                XuatPDF();
                 var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = LOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
                 DataProvider.Ins.DB.HOADONs.Add(hd);
                 DataProvider.Ins.DB.SaveChanges();
-                MessageBox.Show("Bill printed successfully!");
-                
-
+                MessageBox.Show("Xuất file PDF và in hóa đơn thành công!");             
             });
             CloseCommand = new RelayCommand<object>((p) =>
             {
@@ -169,7 +164,6 @@ namespace QLKhachSan.ViewModel
                 }
             });
         }
-
 
         public void Init()
         {
@@ -224,39 +218,25 @@ namespace QLKhachSan.ViewModel
             }
         }
 
-        //private void PrintDocument(PrintQueue printQueue)
-        //{
-        //    var printCapabilities = printQueue.GetPrintCapabilities();
-
-        //    // Bây giờ bạn có thể sử dụng printCapabilities để lấy thông tin in ấn
-        //    double pageWidth = printCapabilities.PageImageableArea.ExtentWidth;
-        //    double pageHeight = printCapabilities.PageImageableArea.ExtentHeight;
-
-        //    // Tạo một FixedDocument để chứa nội dung cần in
-        //    FixedDocument fixedDoc = new FixedDocument();
-
-        //    // Tạo trang mới
-        //    FixedPage page1 = new FixedPage();
-        //    page1.Width = pageWidth;
-        //    page1.Height = pageHeight;
-
-        //    // Thêm nội dung vào trang
-        //    TextBlock textBlock = new TextBlock();
-        //    textBlock.Text = "Hello, this is a sample printed page.";
-        //    page1.Children.Add(textBlock);
-
-        //    // Thêm trang vào tài liệu
-        //    PageContent page1Content = new PageContent();
-        //    ((IAddChild)page1Content).AddChild(page1);
-        //    fixedDoc.Pages.Add(page1Content);
-
-        //    XpsDocumentWriter xpsWriter = PrintQueue.CreateXpsDocumentWriter(printQueue);
-
-        //    // Thực hiện việc in vào tài liệu XPS
-        //    // ...
-
-        //    // Gọi Dispose khi bạn đã hoàn thành công việc in
-        //    xpsWriter.Dispose();
-        //}
+        private void XuatPDF()
+        {
+            string ThuMuc = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string DuongDan = Path.Combine(ThuMuc, $"Hóa Đơn {MAHD}.pdf");
+            using (FileStream fs = new FileStream(DuongDan, FileMode.Create))
+            {
+                PdfWriter writer = new PdfWriter(fs);
+                using (PdfDocument pdf = new PdfDocument(writer))
+                {
+                    iText.Layout.Document document = new iText.Layout.Document(pdf);
+                    document.Add(new iText.Layout.Element.Paragraph($"Thông tin hóa đơn: {MAHD}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Khách hàng: {TENKH}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Phòng: {SOPHONG}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Ngày nhận phòng: {NGNHAN}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Ngày trả phòng: {NGTRA}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Tổng cộng: {THANHTIEN}"));
+                    document.Close();
+                }
+            }
+        }
     }
 }

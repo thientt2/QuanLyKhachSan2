@@ -64,8 +64,11 @@ namespace QLKhachSan.ViewModel
             {
                 //if (string.IsNullOrEmpty(MADV))
                 //    return false;
-                var TenDVlist = DataProvider.Ins.DB.DICHVUs.Where(x => x.MADV == MADV);
-                if (TenDVlist == null || TenDVlist.Count() != 0)
+                //var TenDVlist = DataProvider.Ins.DB.DICHVUs.Where(x => x.MADV == MADV);
+                //if (TenDVlist == null || TenDVlist.Count() != 0)
+                //    return false;
+                //return true;
+                if (TENDV == null || DONGIA == null)
                     return false;
                 return true;
             }, (p) =>
@@ -75,8 +78,9 @@ namespace QLKhachSan.ViewModel
                 var dichvu = new DICHVU() { MADV = nextCode, TENDV = TENDV, DONGIA = DONGIA, };
                 DataProvider.Ins.DB.DICHVUs.Add(dichvu);
                 DataProvider.Ins.DB.SaveChanges();
-
                 ListDV.Add(dichvu);
+                TENDV = string.Empty;
+                DONGIA = null;
                 MessageBox.Show("Thêm dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             });
             EditCommand = new RelayCommand<object>((p) =>
@@ -93,12 +97,14 @@ namespace QLKhachSan.ViewModel
                 dichvu.TENDV = TENDV;
                 dichvu.DONGIA = DONGIA;
                 DataProvider.Ins.DB.SaveChanges();
-
-                SelectedItem.MADV = MADV;
+                TENDV = string.Empty;
+                DONGIA = null;
                 MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {
+                if (TENDV == null && DONGIA == null && SelectedItem == null)
+                    return false;
                 return true;
             }, (p) =>
             {
@@ -111,11 +117,11 @@ namespace QLKhachSan.ViewModel
                 return SelectedItem != null;
             }, (p) =>
             {
-                TENDV = string.Empty;
-                DONGIA = null;
                 MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
                 if(result == MessageBoxResult.OK)
                 {
+                    TENDV = string.Empty;
+                    DONGIA = null;
                     DataProvider.Ins.DB.DICHVUs.Remove(SelectedItem);
                     DataProvider.Ins.DB.SaveChanges();
                     ListDV.Remove(SelectedItem);
