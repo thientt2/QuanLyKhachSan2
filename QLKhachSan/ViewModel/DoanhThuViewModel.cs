@@ -184,7 +184,10 @@ namespace QLKhachSan.ViewModel
                 }
             }
             LNam.Sort();
-            ShowCommand1 = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
+            ShowCommand1 = new RelayCommand<ComboBox>((p) => 
+            {
+                return true; 
+            }, (p) =>
             {
                 if (p != null && p.SelectedItem != null)
                 {

@@ -143,23 +143,20 @@ namespace QLKhachSan.ViewModel
             SoPhong = new List<string>();
             foreach (var dv in ListDV)
                 TenDV.Add(dv.TENDV);
-            foreach (var phong in ListPhong)
-            {
-                if (phong.TINHTRANG == "Đang được sử dụng")
-                    SoPhong.Add(phong.SOPHONG);
-            }
             for (int i = 1; i <= 30; i++)
                 ListNumber.Add(i);
             DatDichVuCommand = new RelayCommand<object>((p) => 
             {
-                //in hóa đơn rồi thì không hiện nữa
-                //if (SelectedItem1 == null)
-                //    return false;
-                //if (SelectedItem1.TINHTRANG != "Đang được sử dụng")
-                //    return false;
                 return true; 
             }, (p) =>
             {
+                ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
+                SoPhong = new List<string>();
+                foreach (var phong in ListPhong)
+                {
+                    if (phong.TINHTRANG == "Đang được sử dụng")
+                        SoPhong.Add(phong.SOPHONG);
+                }
                 DatDichVuWindow wd = new DatDichVuWindow();
                 var addVM = wd.DataContext as PhieuDatDichVuViewModel;
                 addVM.TTENDV = TenDV;
@@ -230,6 +227,8 @@ namespace QLKhachSan.ViewModel
             {
                 var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.SOPHONG == SelectedItem1.SOPHONG).SingleOrDefault();
                 phong.TINHTRANG = "Trống";
+                phong.MAPDP = null;
+                DataProvider.Ins.DB.SaveChanges();
                 MessageBox.Show($"Thanh toán phòng {SelectedItem1.SOPHONG} thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             );

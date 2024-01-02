@@ -226,7 +226,7 @@ namespace QLKhachSan.ViewModel
             });
             DeleteCommand = new RelayCommand<object>((p) =>
             {
-                if (SelectedItem == null || SelectedItem.TRANGTHAI != "Quá hạn nhận phòng" || SelectedItem.TRANGTHAI != "Không còn sử dụng")
+                if (SelectedItem == null || SelectedItem.TRANGTHAI == "Đã nhận phòng" || SelectedItem.TRANGTHAI == "Đợi nhận phòng")
                     return false;
                 return true;
             }, (p) =>

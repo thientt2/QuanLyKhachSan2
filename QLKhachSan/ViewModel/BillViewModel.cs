@@ -144,7 +144,7 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                //XuatPDF();
+                XuatPDF();
                 var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = LOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
                 DataProvider.Ins.DB.HOADONs.Add(hd);
                 DataProvider.Ins.DB.SaveChanges();
@@ -226,25 +226,27 @@ namespace QLKhachSan.ViewModel
             }
         }
 
-        //private void XuatPDF()
-        //{
-        //    string ThuMuc = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        //    string DuongDan = Path.Combine(ThuMuc, $"Hóa Đơn {MAHD}.pdf");
-        //    using (FileStream fs = new FileStream(DuongDan, FileMode.Create))
-        //    {
-        //        PdfWriter writer = new PdfWriter(fs);
-        //        using (PdfDocument pdf = new PdfDocument(writer))
-        //        {
-        //            iText.Layout.Document document = new iText.Layout.Document(pdf);
-        //            document.Add(new iText.Layout.Element.Paragraph($"Thông tin hóa đơn: {MAHD}"));
-        //            document.Add(new iText.Layout.Element.Paragraph($"Khách hàng: {TENKH}"));
-        //            document.Add(new iText.Layout.Element.Paragraph($"Phòng: {SOPHONG}"));
-        //            document.Add(new iText.Layout.Element.Paragraph($"Ngày nhận phòng: {NGNHAN}"));
-        //            document.Add(new iText.Layout.Element.Paragraph($"Ngày trả phòng: {NGTRA}"));
-        //            document.Add(new iText.Layout.Element.Paragraph($"Tổng cộng: {THANHTIEN}"));
-        //            document.Close();
-        //        }
-        //    }
-        //}
+        private void XuatPDF()
+        {
+            string ThuMuc = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string DuongDan = Path.Combine(ThuMuc, $"Hóa Đơn {MAHD}.pdf");
+            using (FileStream fs = new FileStream(DuongDan, FileMode.Create))
+            {
+                PdfWriter writer = new PdfWriter(fs);
+                using (PdfDocument pdf = new PdfDocument(writer))
+                {
+                    iText.Layout.Document document = new iText.Layout.Document(pdf);
+                    document.Add(new iText.Layout.Element.Paragraph($"Thông tin hóa đơn: {MAHD}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Khách hàng: {TENKH}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Phòng: {SOPHONG}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Ngày nhận phòng: {NGNHAN}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Ngày trả phòng: {NGTRA}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Tổng cộng: {THANHTIEN}"));
+                    document.Close();
+                }
+            }
+        }
+
+
     }
 }

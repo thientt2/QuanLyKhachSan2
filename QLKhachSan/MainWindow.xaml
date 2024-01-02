@@ -853,7 +853,7 @@
 
                                     <StackPanel Orientation="Horizontal">
                                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding SortAllCommand}">
-                                            <materialDesign:PackIcon Kind="Play"/>
+                                            <materialDesign:PackIcon Kind="Magnify" />
                                         </Button>
 
                                         <TextBlock Text ="Tất cả" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
@@ -861,7 +861,7 @@
 
                                     <StackPanel Orientation="Horizontal" Margin="40,0,0,0">
                                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding SortBookedCommand}">
-                                            <materialDesign:PackIcon Kind="Play"/>
+                                            <materialDesign:PackIcon Kind="Magnify" />
                                         </Button>
 
                                         <TextBlock Text ="Đợi nhận phòng" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
@@ -869,7 +869,7 @@
 
                                     <StackPanel Orientation="Horizontal" Margin="40,0,0,0">
                                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding SortCheckInCommand}">
-                                            <materialDesign:PackIcon Kind="Play"/>
+                                            <materialDesign:PackIcon Kind="Magnify"/>
                                         </Button>
 
                                         <TextBlock Text ="Đã nhận phòng" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
@@ -877,7 +877,7 @@
 
                                     <StackPanel Orientation="Horizontal" Margin="40,0,0,0">
                                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding SortOutOfDateCommand}">
-                                            <materialDesign:PackIcon Kind="Play"/>
+                                            <materialDesign:PackIcon Kind="Magnify"/>
                                         </Button>
 
                                         <TextBlock Text ="Quá hạn nhận phòng" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
@@ -885,7 +885,7 @@
 
                                     <StackPanel Orientation="Horizontal" Margin="40,0,0,0">
                                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding SortOutOfOrderCommand}">
-                                            <materialDesign:PackIcon Kind="Play"/>
+                                            <materialDesign:PackIcon Kind="Magnify"/>
                                         </Button>
 
                                         <TextBlock Text ="Không còn sử dụng" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"></TextBlock>
