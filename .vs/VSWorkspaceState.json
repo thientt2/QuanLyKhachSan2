@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\QLKhachSan"
+    "\\QLKhachSan",
+    "\\QLKhachSan\\ViewModel"
   ],
-  "SelectedNode": "\\QLKhachSan\\MainWindow.xaml",
+  "SelectedNode": "\\QLKhachSan\\ViewModel\\TrangChuViewModel.cs",
   "PreviewInSolutionExplorer": false
 }

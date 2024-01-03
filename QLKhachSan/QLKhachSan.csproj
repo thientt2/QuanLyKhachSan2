@@ -183,6 +183,9 @@
     <Compile Include="DatPhongWindow.xaml.cs">
       <DependentUpon>DatPhongWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InfoWindow.xaml.cs">
+      <DependentUpon>InfoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -290,6 +293,7 @@
     <Compile Include="ViewModel\DatPhongViewModel.cs" />
     <Compile Include="ViewModel\DichVuViewModel.cs" />
     <Compile Include="ViewModel\DoanhThuViewModel.cs" />
+    <Compile Include="ViewModel\InfoViewModel.cs" />
     <Compile Include="ViewModel\KhachHangViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -311,6 +315,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DatPhongWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

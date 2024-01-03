@@ -168,6 +168,8 @@ namespace QLKhachSan.ViewModel
                     TimeSpan newTime = new TimeSpan(18, 0, 0);
                     NGNHAN = NGNHAN.Value.Date.Add(newTime);
                     NGTRA = NGTRA.Value.Date.Add(newTime);
+                    if (NGNHAN >= NGTRA)
+                        throw new Exception("Ngày trả phải lớn hơn ngày nhận");
                     var pdp = new PHIEUDATPHONG() { MAPDP = MAPDP, MAKH = MAKH, MANV = MANV, NGDAT = NGDAT, NGNHAN = NGNHAN, NGTRA = NGTRA };
                     DataProvider.Ins.DB.PHIEUDATPHONGs.Add(pdp);
                     foreach (var phong in ListPhong)
@@ -218,6 +220,7 @@ namespace QLKhachSan.ViewModel
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    NGTRA = null;
                 }
             });
             CancelCommand = new RelayCommand<object>((p) =>

@@ -14,4 +14,5 @@
     <viewmodel:BillViewModel x:Key="BillVM"></viewmodel:BillViewModel>
     <viewmodel:DoanhThuViewModel x:Key="DoanhThuVM"></viewmodel:DoanhThuViewModel>
     <viewmodel:ChangePasswordViewModel x:Key="ChangePWVM"></viewmodel:ChangePasswordViewModel>
+    <viewmodel:InfoViewModel x:Key="InfoVM"></viewmodel:InfoViewModel>
 </ResourceDictionary>

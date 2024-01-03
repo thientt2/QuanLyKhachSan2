@@ -31,11 +31,11 @@ namespace QLKhachSan.Model
         //    DB = new LA_OPERA_HOTELEntities1();
         //}
         ////TangThanhThien
-        public QLKS_TTT DB { get; set; }
+        public QLKS_HT DB { get; set; }
 
         private DataProvider()
         {
-            DB = new QLKS_TTT();
+            DB = new QLKS_HT();
         }
     }
 }

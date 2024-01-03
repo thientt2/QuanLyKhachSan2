@@ -29,10 +29,20 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" FontSize="23" Text="{Binding SOPHONG,StringFormat='P. {0}', UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0 16 16 0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <Separator Grid.Row="1" Style="{StaticResource MaterialDesignDarkSeparator}" />
-                <TextBlock Grid.Row="2" FontSize="23" Text="{Binding MALOAI, StringFormat='Phòng {0}', UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10,16,16,0" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                <TextBlock Grid.Row="2" FontSize="23" Text="{Binding MALOAI, StringFormat='Phòng {0}', UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10,10,16,0" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}"/>
+                <Grid Grid.Row="3">
+                    <Button
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignIconForegroundButton}"
+                        Click="ShowSOPHONGButtonClick"
+                        ToolTip="Thông tin phòng">
+                        <materialDesign:PackIcon Kind="HomeCity" />
+                    </Button>
+                </Grid>
             </Grid>
         </materialDesign:Card>
     </Grid>
