@@ -105,6 +105,9 @@ namespace QLKhachSan.ViewModel
                             ImagePath = "Images/TT.jpg";
                         }
                         p.Show();
+                        DatPhongWindow wd = new DatPhongWindow();
+                        var addVM = wd.DataContext as PhieuDatPhongViewModel;
+                        addVM.MANV = MANV;
                     }
                     else p.Close();
                 }

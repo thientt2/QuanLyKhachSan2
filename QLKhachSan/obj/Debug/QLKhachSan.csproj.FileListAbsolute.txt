@@ -409,3 +409,5 @@ C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\Change
 C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\ChangePWWindow.baml
 C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\InfoWindow.g.cs
 C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\InfoWindow.baml
+C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\obj\Debug\InfoWindow.g.cs
+C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\obj\Debug\InfoWindow.baml

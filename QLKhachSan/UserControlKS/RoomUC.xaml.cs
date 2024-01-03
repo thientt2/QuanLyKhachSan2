@@ -25,7 +25,22 @@ namespace QLKhachSan.UserControlKS
                     {
                         InfoWindow wd = new InfoWindow
                         {
-                            DataContext = new InfoViewModel { MAPDP = phong.MAPDP, NGDAT = phong.PHIEUDATPHONG.NGDAT, NGNHAN = phong.PHIEUDATPHONG.NGNHAN, NGTRA = phong.PHIEUDATPHONG.NGTRA, TENKH = phong.PHIEUDATPHONG.KHACHHANG.TENKH }
+                            DataContext = new InfoViewModel
+                            {
+                                MAPDP = phong.MAPDP,
+                                NGDAT = phong.PHIEUDATPHONG.NGDAT,
+                                NGNHAN = phong.PHIEUDATPHONG.NGNHAN,
+                                NGTRA = phong.PHIEUDATPHONG.NGTRA,
+                                TENKH = phong.PHIEUDATPHONG.KHACHHANG.TENKH,
+                                GIOITINH = phong.PHIEUDATPHONG.KHACHHANG.GIOITINH,
+                                SDT= phong.PHIEUDATPHONG.KHACHHANG.SDT,
+                                QUOCTICH= phong.PHIEUDATPHONG.KHACHHANG.QUOCTICH,
+                                SOCCCD= phong.PHIEUDATPHONG.KHACHHANG.SOCCCD,
+                                NGSINH= phong.PHIEUDATPHONG.KHACHHANG.NGSINH,
+                                EMAIL= phong.PHIEUDATPHONG.KHACHHANG.EMAIL,
+                                DIACHI= phong.PHIEUDATPHONG.KHACHHANG.DIACHI
+
+                            }
                         };
                         wd.ShowDialog();
                     }  
@@ -35,7 +50,6 @@ namespace QLKhachSan.UserControlKS
                     }    
                     //if (phong.MAPDP != null)
                     //{
-                    //    MessageBox.Show($"SOPHONG: {phong.PHIEUDATPHONG.KHACHHANG.TENKH}", "Thông tin phòng", MessageBoxButton.OK, MessageBoxImage.Information);
                     //}
                     //else
                     //{
