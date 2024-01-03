@@ -19,6 +19,7 @@
         BorderBrush="Aqua"
         ResizeMode="NoResize"
         WindowStyle="None"
+        Name="BillW"
         DataContext="{StaticResource BillVM}"
         WindowStartupLocation="CenterScreen"
          Height="850" Width="1050">
@@ -258,12 +259,13 @@
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Width="100"
                             Height="40"
-                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                            ToolTip="In"
                             Content="_In">
                 </Button>
 
                 <Button
                             Command="{Binding CloseCommand}"
+                            CommandParameter="{Binding ElementName=BillW}"
                             Background="DarkGray"
                             Foreground="Black"
                             Margin="20,20,40,20"
@@ -271,7 +273,7 @@
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Width="100"
                             Height="40"
-                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                            ToolTip="Đóng"
                             Content="_Đóng">
                 </Button>
 

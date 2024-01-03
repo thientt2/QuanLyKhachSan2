@@ -145,6 +145,8 @@ namespace QLKhachSan.ViewModel
         private DateTime? _NGTRA;
         public DateTime? NGTRA { get { return _NGTRA; } set { _NGTRA = value; OnPropertyChanged(); } }
 
+        private ObservableCollection<HOADON> _HoaDon;
+        public ObservableCollection<HOADON> HoaDon { get { return _HoaDon; } set { _HoaDon = value; OnPropertyChanged(); } }
 
         public ICommand DatPhongCommand { get; set; }
         public ICommand NhanPhongCommand { get; set; }
@@ -163,6 +165,7 @@ namespace QLKhachSan.ViewModel
             OriginalPDP1 = new ObservableCollection<PDP1>();
             ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
             ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
+            HoaDon = new ObservableCollection<HOADON>(DataProvider.Ins.DB.HOADONs);
             //Khách hàng
             ListKH = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
             TenKH = new List<string>();
@@ -190,7 +193,7 @@ namespace QLKhachSan.ViewModel
             );
             NhanPhongCommand = new RelayCommand<object>((p) => 
             {
-                if (SelectedItem == null || SelectedItem.TRANGTHAI != "Đợi nhận phòng")
+                if (SelectedItem == null || SelectedItem.TRANGTHAI != "Đợi nhận phòng" || SelectedItem.NGNHAN.Value.Date != DateTime.Now.Date || DateTime.Now.Hour < 12)
                     return false;
                 return true; 
             }, (p) =>
@@ -203,7 +206,12 @@ namespace QLKhachSan.ViewModel
                             pdp1.TRANGTHAI = "Đã nhận phòng";
                     }
                 }
-
+                var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
+                int hour = DateTime.Now.Hour;
+                int minute = DateTime.Now.Minute;
+                int second = DateTime.Now.Second;
+                TimeSpan newTime = new TimeSpan(hour, minute, second);
+                pdp.NGNHAN = NGNHAN.Value.Date.Add(newTime);
                 var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
                 phong.TINHTRANG = "Đang được sử dụng";
                 DataProvider.Ins.DB.SaveChanges();
@@ -292,6 +300,7 @@ namespace QLKhachSan.ViewModel
             OriginalPDP1 = new ObservableCollection<PDP1>();
             ListPDP = new ObservableCollection<PHIEUDATPHONG>(DataProvider.Ins.DB.PHIEUDATPHONGs);
             ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
+            HoaDon = new ObservableCollection<HOADON>(DataProvider.Ins.DB.HOADONs);
             foreach (var pdp in ListPDP)
             {
                 PDP1.Add(new PDP1 { MAPDP = pdp.MAPDP, MAKH = pdp.MAKH, MANV = pdp.MANV, NGDAT = pdp.NGDAT, NGNHAN = pdp.NGNHAN, NGTRA = pdp.NGTRA, TRANGTHAI = "Đợi nhận phòng", MAPDV = null });
@@ -322,38 +331,36 @@ namespace QLKhachSan.ViewModel
             foreach (var pdp1 in OriginalPDP1)
             {
                 if (pdp1.NGNHAN < DateTime.Now && pdp1.TRANGTHAI == "Đợi nhận phòng")
-                {
                     pdp1.TRANGTHAI = "Quá hạn nhận phòng";
-                    if(pdp1.NGTRA < DateTime.Now)
-                        pdp1.TRANGTHAI = "Không còn sử dụng";
-                }    
+
+
+                var hd = DataProvider.Ins.DB.HOADONs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
+                if (hd != null)
+                    pdp1.TRANGTHAI = "Không còn sử dụng";
 
                 var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
                 if (phong != null)
                 {
                     if (phong.TINHTRANG == "Đang được sử dụng")
-                    {
                         pdp1.TRANGTHAI = "Đã nhận phòng";
-                    }
-                }    
+                }
             }
 
             foreach (var pdp1 in PDP1)
             {
                 if (pdp1.NGNHAN < DateTime.Now && pdp1.TRANGTHAI == "Đợi nhận phòng")
-                {
                     pdp1.TRANGTHAI = "Quá hạn nhận phòng";
-                    if (pdp1.NGTRA < DateTime.Now)
-                        pdp1.TRANGTHAI = "Không còn sử dụng";
-                }
+
+
+                var hd = DataProvider.Ins.DB.HOADONs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
+                if (hd != null)
+                    pdp1.TRANGTHAI = "Không còn sử dụng";
 
                 var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
                 if (phong != null)
                 {
                     if (phong.TINHTRANG == "Đang được sử dụng")
-                    {
                         pdp1.TRANGTHAI = "Đã nhận phòng";
-                    }
                 }
             }
         }

@@ -324,7 +324,7 @@
                                         Width ="60"
                                         Margin="10, 40, 300, 30"                 
                                         Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}"
-                                        ToolTip="MaterialDesignSwitchSecondaryToggleButton"
+                                        ToolTip="Chế độ tìm kiếm"
                                         Command="{Binding ToggleSearchCommand}"/>
                                     <Button
                                         Command="{Binding AddCommand}"
@@ -334,7 +334,7 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Thêm"
                                         Content="_Thêm">
                                     </Button>
 
@@ -346,7 +346,7 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Chỉnh sửa"
                                         Content="_Chỉnh sửa">
 
                                     </Button>
@@ -359,7 +359,7 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Hủy"
                                         Content="_Hủy">
                                     </Button>
 
@@ -371,7 +371,7 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Xóa"
                                         Content="_Xóa">
                                     </Button>
                                 </StackPanel>
@@ -447,14 +447,24 @@
 
                             <Grid Grid.Row="2" Margin="0,10,0,15">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding DataContext.IDPHANQUYEN, ElementName=mainWindow}" Value="2">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
                                     <TextBlock Margin="30, 40, 0, 30" FontSize="25"><Run Text="Chế độ tìm kiếm: "/>
                                     </TextBlock>
                                     <ToggleButton
                                         Width ="60"
                                         Margin="10, 40, 300, 30"                 
                                         Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}"
-                                        ToolTip="MaterialDesignSwitchSecondaryToggleButton"
+                                        ToolTip="Chế độ tìm kiếm"
                                         Command="{Binding ToggleSearchCommand}"/>
+
                                     <Button
                                         Command="{Binding AddCommand}"
                                         Background="Green"
@@ -462,17 +472,8 @@
                                         Margin="30"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Thêm"
                                         Content="_Thêm">
-                                        <Button.Style>
-                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding DataContext.IDPHANQUYEN, ElementName=mainWindow}" Value="2">
-                                                        <Setter Property="Visibility" Value="Collapsed" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
                                     </Button>
 
                                     <Button
@@ -482,17 +483,8 @@
                                         Margin="30"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Chỉnh sửa"
                                         Content="_Chỉnh sửa">
-                                        <Button.Style>
-                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding DataContext.IDPHANQUYEN, ElementName=mainWindow}" Value="2">
-                                                        <Setter Property="Visibility" Value="Collapsed" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
                                     </Button>
 
                                     <Button
@@ -502,17 +494,8 @@
                                         Margin="30"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Hủy"
                                         Content="_Hủy" >
-                                        <Button.Style>
-                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding DataContext.IDPHANQUYEN, ElementName=mainWindow}" Value="2">
-                                                        <Setter Property="Visibility" Value="Collapsed" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
                                     </Button>
 
                                     <Button
@@ -522,17 +505,8 @@
                                         Margin="30"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Xóa"
                                         Content="_Xóa">
-                                        <Button.Style>
-                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding DataContext.IDPHANQUYEN, ElementName=mainWindow}" Value="2">
-                                                        <Setter Property="Visibility" Value="Collapsed" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
                                     </Button>
                                 </StackPanel>
                             </Grid>
@@ -706,6 +680,7 @@
                                                     <GridViewColumn Header="Mã loại" Width="Auto" DisplayMemberBinding="{Binding MALOAI}"></GridViewColumn>
                                                     <GridViewColumn Header="Tầng" Width="Auto" DisplayMemberBinding="{Binding TANG}"></GridViewColumn>
                                                     <GridViewColumn Header="Tình trạng" Width="Auto" DisplayMemberBinding="{Binding TINHTRANG}"></GridViewColumn>
+                                                    <GridViewColumn Header="Mã phiếu đặt phòng" Width="Auto" DisplayMemberBinding="{Binding MAPDP}"></GridViewColumn>
                                                 </GridView>
                                             </ListView.View>
                                         </ListView>
@@ -722,7 +697,7 @@
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Width="110"
                                             Height="40"
-                                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                            ToolTip="Đặt dịch vụ"
                                             Content="_Đặt dịch vụ">
                                         </Button>
 
@@ -734,8 +709,8 @@
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Width="110"
                                             Height="40"
-                                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                            Content="_In hóa đơn">
+                                            ToolTip="Hóa đơn"
+                                            Content="_Hóa đơn">
                                         </Button>
 
                                         <Button
@@ -746,7 +721,7 @@
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Width="110"
                                             Height="40"
-                                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                            ToolTip="Thanh toán"
                                             Content="_Thanh toán">
                                         </Button>
                                     </StackPanel>
@@ -802,7 +777,7 @@
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Width="100"
                                             Height="40"
-                                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                            ToolTip="Chỉnh sửa"
                                             Content="_Chỉnh sửa">
                                         </Button>
 
@@ -814,7 +789,7 @@
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Width="100"
                                             Height="40"
-                                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                            ToolTip="Hủy"
                                             Content="_Hủy">
                                         </Button>
                                     </StackPanel>
@@ -906,7 +881,7 @@
                                                 <GridViewColumn Header="Mã phiếu đặt phòng" Width="Auto" DisplayMemberBinding="{Binding MAPDP}"></GridViewColumn>
                                                 <GridViewColumn Header="Mã khách hàng" Width="Auto" DisplayMemberBinding="{Binding MAKH}"></GridViewColumn>
                                                 <GridViewColumn Header="Mã nhân viên" Width="Auto" DisplayMemberBinding="{Binding MANV}"></GridViewColumn>
-                                                <GridViewColumn Header="Ngày đặt phòng" Width="Auto" DisplayMemberBinding="{Binding NGDAT,StringFormat=dd/MM/yyyy HH:mm:ss}"></GridViewColumn>
+                                                <GridViewColumn Header="Ngày đặt phòng" Width="Auto" DisplayMemberBinding="{Binding NGDAT,StringFormat=dd/MM/yyyy}"></GridViewColumn>
                                                 <GridViewColumn Header="Ngày nhận phòng" Width="Auto" DisplayMemberBinding="{Binding NGNHAN,StringFormat=dd/MM/yyyy HH:mm:ss}"></GridViewColumn>
                                                 <GridViewColumn Header="Ngày trả phòng" Width="Auto" DisplayMemberBinding="{Binding NGTRA, StringFormat=dd/MM/yyyy HH:mm:ss}"></GridViewColumn>
                                                 <GridViewColumn Header="Trạng thái" Width="Auto" DisplayMemberBinding="{Binding TRANGTHAI}"></GridViewColumn>
@@ -940,7 +915,7 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Gia hạn"
                                         Content="_Gia hạn">
                                         </Button>
 
@@ -952,7 +927,7 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Đặt phòng"
                                         Content="_Đặt phòng">
                                         </Button>
 
@@ -964,7 +939,7 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="110"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Nhận phòng"
                                         Content="_Nhận phòng">
                                         </Button>
 
@@ -976,7 +951,7 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                        ToolTip="Xóa"
                                         Content="_Xóa">
                                         </Button>
                                     </StackPanel>

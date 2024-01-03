@@ -306,7 +306,7 @@
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                 Width="120"
                                 Height="50"
-                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                ToolTip="Đặt"
                                 Content="_Đặt">
                             </Button>
 
@@ -331,7 +331,7 @@
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                 Width="120"
                                 Height="50"
-                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                                ToolTip="Hủy"
                                 Content="_Hủy">
                             </Button>
                         </StackPanel>

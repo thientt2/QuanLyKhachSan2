@@ -153,7 +153,7 @@
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Width="120"
                             Height="50"
-                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                            ToolTip="Thêm"
                             Content="_Thêm">
                         </Button>
 
@@ -166,7 +166,7 @@
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Width="120"
                             Height="50"
-                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                            ToolTip="Hủy"
                             Content="_Hủy">
                         </Button>
 
@@ -179,7 +179,7 @@
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Width="120"
                             Height="50"
-                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                            ToolTip="Xóa"
                             Content="_Xóa">
                         </Button>
                         

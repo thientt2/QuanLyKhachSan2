@@ -141,13 +141,28 @@ namespace QLKhachSan.ViewModel
 
             PrintCommand = new RelayCommand<object>((p) =>
             {
+                if (NGTRA != null)
+                {
+                    if (NGTRA.Value.Date != DateTime.Now.Date)
+                        return false;
+                }    
                 return true;
             }, (p) =>
             {
                 XuatPDF();
-                var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = LOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
-                DataProvider.Ins.DB.HOADONs.Add(hd);
-                DataProvider.Ins.DB.SaveChanges();
+                var hd1 = DataProvider.Ins.DB.HOADONs.Where(x => x.MAHD == MAHD).SingleOrDefault();
+                if(hd1 != null)
+                {
+                    hd1.THANHTIEN = THANHTIEN;
+                    hd1.NGLAPHD = DateTime.Now;
+                    DataProvider.Ins.DB.SaveChanges();
+                }
+                else
+                {
+                    var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = LOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
+                    DataProvider.Ins.DB.HOADONs.Add(hd);
+                    DataProvider.Ins.DB.SaveChanges();
+                }
                 MessageBox.Show("Xuất file PDF và in hóa đơn thành công!");             
             });
             CloseCommand = new RelayCommand<object>((p) =>
@@ -198,7 +213,7 @@ namespace QLKhachSan.ViewModel
 
                 
 
-                SONGAY = (int)(NGTRA - NGNHAN).Value.Days;
+                SONGAY = (int)(NGTRA - NGNHAN).Value.Days + 1;
                 //TimeSpan? KhoangCach = NGTRA - NGNHAN;
                 //if (KhoangCach.HasValue)
                 //    SONGAY = KhoangCach.Value.Days;
