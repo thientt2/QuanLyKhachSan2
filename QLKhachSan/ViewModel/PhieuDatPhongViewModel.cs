@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,37 +90,65 @@ namespace QLKhachSan.ViewModel
 
             ShowCommand = new RelayCommand<TextBox>((p) => { return true; }, (p) =>
             {
-                foreach (var kh in ListKH)
+                try
                 {
-                    if (kh.TENKH == TENKH)
+                    foreach (var kh in ListKH)
                     {
-                        MAKH = kh.MAKH.ToString();
-                        GIOITINH = kh.GIOITINH.ToString();
-                        if(kh.SOCCCD != null)
-                            SOCCCD = kh.SOCCCD.ToString();
-                        QUOCTICH = kh.QUOCTICH.ToString();
-                        DIACHI = kh.DIACHI.ToString();
-                        if (kh.EMAIL!= null) 
-                            EMAIL = kh.EMAIL.ToString();
-                        SDT = kh.SDT.ToString();
-                        NGSINH = kh.NGSINH;
+                        if (kh.TENKH == TENKH)
+                        {
+                            MAKH = kh.MAKH.ToString();
+                            GIOITINH = kh.GIOITINH.ToString();
+                            if (kh.SOCCCD != null)
+                                SOCCCD = kh.SOCCCD.ToString();
+                            QUOCTICH = kh.QUOCTICH.ToString();
+                            DIACHI = kh.DIACHI.ToString();
+                            if (kh.EMAIL != null)
+                                EMAIL = kh.EMAIL.ToString();
+                            SDT = kh.SDT.ToString();
+                            NGSINH = kh.NGSINH;
+                        }
                     }
+                }                
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
 
 
             ShowCommand1 = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
             {
-                SoPhong = new List<string>();
-
-                foreach (var phong in ListPhong)
+                try
                 {
-                    if (phong.MALOAI == MALOAI && phong.TINHTRANG == "Trống")
+                    SoPhong = new List<string>();
+
+                    foreach (var phong in ListPhong)
                     {
-                        SoPhong.Add(phong.SOPHONG);
+                        if (phong.MALOAI == MALOAI && phong.TINHTRANG == "Trống")
+                        {
+                            SoPhong.Add(phong.SOPHONG);
+                        }
+                    }
+                    SSOPHONG = SoPhong;
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                 }
-                SSOPHONG = SoPhong;
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
 
 
@@ -133,40 +163,61 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                TimeSpan newTime = new TimeSpan(18, 0, 0);
-                NGNHAN = NGNHAN.Value.Date.Add(newTime);
-                NGTRA = NGTRA.Value.Date.Add(newTime);
-                var pdp = new PHIEUDATPHONG() { MAPDP = MAPDP, MAKH = MAKH, MANV = MANV, NGDAT = NGDAT, NGNHAN = NGNHAN, NGTRA = NGTRA };
-                DataProvider.Ins.DB.PHIEUDATPHONGs.Add(pdp);
-                foreach (var phong in ListPhong)
+                try
                 {
-                    if (phong.SOPHONG == SOPHONG && phong.TINHTRANG == "Trống")
+                    TimeSpan newTime = new TimeSpan(18, 0, 0);
+                    NGNHAN = NGNHAN.Value.Date.Add(newTime);
+                    NGTRA = NGTRA.Value.Date.Add(newTime);
+                    var pdp = new PHIEUDATPHONG() { MAPDP = MAPDP, MAKH = MAKH, MANV = MANV, NGDAT = NGDAT, NGNHAN = NGNHAN, NGTRA = NGTRA };
+                    DataProvider.Ins.DB.PHIEUDATPHONGs.Add(pdp);
+                    foreach (var phong in ListPhong)
                     {
-                        phong.TINHTRANG = "Đã đặt";
-                        phong.MAPDP = MAPDP;
-                        break;
+                        if (phong.SOPHONG == SOPHONG && phong.TINHTRANG == "Trống")
+                        {
+                            phong.TINHTRANG = "Đã đặt";
+                            phong.MAPDP = MAPDP;
+                            break;
+                        }
+                    }
+                    foreach (var phong in ListPhong)
+                    {
+                        if (phong.SOPHONG == SOPHONG)
+                        {
+                            MAPDP = phong.MAPDP;
+                            break;
+                        }
+                    }
+                    //ListPDP.Add(pdp);
+                    DataProvider.Ins.DB.SaveChanges();
+                    MessageBox.Show("Đặt phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = MANV = SDT = "";
+                    NGSINH = null;
+                    SOPHONG = null;
+                    NGDAT = NGNHAN = NGTRA = null;
+                    FrameworkElement window = p as FrameworkElement;
+                    var w = window as Window;
+                    if (w != null)
+                    {
+                        w.Close();
                     }
                 }
-                foreach (var phong in ListPhong)
+                catch (DbEntityValidationException ex)
                 {
-                    if (phong.SOPHONG == SOPHONG)
+                    foreach (var validationErrors in ex.EntityValidationErrors)
                     {
-                        MAPDP = phong.MAPDP;
-                        break;
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                 }
-                //ListPDP.Add(pdp);
-                DataProvider.Ins.DB.SaveChanges();
-                MessageBox.Show("Đặt phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = MANV = SDT = "";
-                NGSINH = null;
-                SOPHONG = null;
-                NGDAT = NGNHAN = NGTRA = null;
-                FrameworkElement window = p as FrameworkElement;
-                var w = window as Window;
-                if (w != null)
+                catch (DbUpdateException ex)
                 {
-                    w.Close();
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
             CancelCommand = new RelayCommand<object>((p) =>
@@ -176,10 +227,17 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MANV = "";
-                MAKH = SDT = SOPHONG = null;
-                NGSINH = null;
-                NGDAT = NGNHAN = NGTRA = null;
+                try
+                {
+                    TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MANV = "";
+                    MAKH = SDT = SOPHONG = null;
+                    NGSINH = null;
+                    NGDAT = NGNHAN = NGTRA = null;
+                }                
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
         }
     }

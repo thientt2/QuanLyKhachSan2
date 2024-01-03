@@ -12,6 +12,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Documents;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace QLKhachSan.ViewModel
 {
@@ -40,7 +42,30 @@ namespace QLKhachSan.ViewModel
 
         public ChangePasswordViewModel()
         {
-            ConfirmCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { ChangePW(p); });
+            ConfirmCommand = new RelayCommand<Window>((p) => { return true; }, (p) => {
+                try
+                {
+                    ChangePW(p);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            });
             ListDN = new ObservableCollection<DANGNHAP>(DataProvider.Ins.DB.DANGNHAPs);
         }
 

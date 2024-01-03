@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -133,39 +135,60 @@ namespace QLKhachSan.ViewModel
 
             ShowCommand1 = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
             {
-                ListCTPDV1 = new ObservableCollection<CTPDV1>();
-                if(SOPHONG != null)
+                try
                 {
-                    selectedRoom = SOPHONG;
-                    var pdp = ListPhong.FirstOrDefault(phong => phong.SOPHONG == selectedRoom);
-                    MAPDP = pdp.MAPDP;
-                    var phieuDichVu = ListPDV.FirstOrDefault(pdv => pdv.MAPDP == MAPDP);
-                    if (phieuDichVu == null)
+                    ListCTPDV1 = new ObservableCollection<CTPDV1>();
+                    if (SOPHONG != null)
                     {
-                        int maxCode = ListPDV.Max(dv => int.Parse(dv.MAPDV.Substring(2)));
-                        string nextCode = $"PH{maxCode + 1:000}";
-                        MAPDV = nextCode;
-                        New = 1;
-                    }
-                    else
-                        MAPDV = phieuDichVu.MAPDV.ToString();
-                }
-                ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
-                foreach (var ctpdv in ListCTPDV)
-                {
-                    if (ctpdv.MAPDV == MAPDV)
-                        ListCTPDV1.Add(new CTPDV1 { MAPDV = ctpdv.MAPDV, MADV = ctpdv.MADV, SLDV = ctpdv.SLDV, GIA = ctpdv.GIA, TENDV = null });
-                }
-                foreach (var ctpdv1 in ListCTPDV1)
-                {
-                    foreach (var dv in ListDV)
-                    {
-                        if (dv.MADV == ctpdv1.MADV)
+                        selectedRoom = SOPHONG;
+                        var pdp = ListPhong.FirstOrDefault(phong => phong.SOPHONG == selectedRoom);
+                        MAPDP = pdp.MAPDP;
+                        var phieuDichVu = ListPDV.FirstOrDefault(pdv => pdv.MAPDP == MAPDP);
+                        if (phieuDichVu == null)
                         {
-                            ctpdv1.TENDV = dv.TENDV;
-                            break;
+                            int maxCode = ListPDV.Max(dv => int.Parse(dv.MAPDV.Substring(2)));
+                            string nextCode = $"PH{maxCode + 1:000}";
+                            MAPDV = nextCode;
+                            New = 1;
+                        }
+                        else
+                            MAPDV = phieuDichVu.MAPDV.ToString();
+                    }
+                    ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
+                    foreach (var ctpdv in ListCTPDV)
+                    {
+                        if (ctpdv.MAPDV == MAPDV)
+                            ListCTPDV1.Add(new CTPDV1 { MAPDV = ctpdv.MAPDV, MADV = ctpdv.MADV, SLDV = ctpdv.SLDV, GIA = ctpdv.GIA, TENDV = null });
+                    }
+                    foreach (var ctpdv1 in ListCTPDV1)
+                    {
+                        foreach (var dv in ListDV)
+                        {
+                            if (dv.MADV == ctpdv1.MADV)
+                            {
+                                ctpdv1.TENDV = dv.TENDV;
+                                break;
+                            }
                         }
                     }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
 
@@ -174,101 +197,49 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                decimal? sum = 0;
-                foreach (var dv in ListDV)
+                try
                 {
-                    if (dv.MADV == MADV)
-                        sum = dv.DONGIA * SLDV;
-                }
+                    decimal? sum = 0;
+                    foreach (var dv in ListDV)
+                    {
+                        if (dv.MADV == MADV)
+                            sum = dv.DONGIA * SLDV;
+                    }
 
-                foreach (var ctpdv in ListCTPDV)
-                {                 
-                    if (ctpdv.MAPDV == MAPDV && ctpdv.MADV == MADV)
+                    foreach (var ctpdv in ListCTPDV)
                     {
-                        var ctpdv3 = DataProvider.Ins.DB.CHITIETDICHVUs.Where(x => x.MAPDV == MAPDV && x.MADV == MADV).SingleOrDefault();
-                        ctpdv3.MAPDV = MAPDV;
-                        ctpdv3.MADV = MADV;
-                        ctpdv3.SLDV += SLDV;
-                        ctpdv3.GIA += sum;
+                        if (ctpdv.MAPDV == MAPDV && ctpdv.MADV == MADV)
+                        {
+                            var ctpdv3 = DataProvider.Ins.DB.CHITIETDICHVUs.Where(x => x.MAPDV == MAPDV && x.MADV == MADV).SingleOrDefault();
+                            ctpdv3.MAPDV = MAPDV;
+                            ctpdv3.MADV = MADV;
+                            ctpdv3.SLDV += SLDV;
+                            ctpdv3.GIA += sum;
+                            DataProvider.Ins.DB.SaveChanges();
+                            same = 1;
+                        }
+                    }
+                    if (New == 1)
+                    {
+                        var pdv = new PHIEUDICHVU() { MAPDV = MAPDV, MAPDP = MAPDP, TONGTIEN = null };
+                        DataProvider.Ins.DB.PHIEUDICHVUs.Add(pdv);
                         DataProvider.Ins.DB.SaveChanges();
-                        same = 1;
+                        New = 0;
                     }
-                }
-                if (New == 1)
-                {
-                    var pdv = new PHIEUDICHVU() { MAPDV = MAPDV, MAPDP = MAPDP, TONGTIEN = null };
-                    DataProvider.Ins.DB.PHIEUDICHVUs.Add(pdv);
-                    DataProvider.Ins.DB.SaveChanges();
-                    New = 0;
-                }
-                ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
-                if (same == 0)
-                {
-                    var ctpdv4 = new CHITIETDICHVU() { MAPDV = MAPDV, MADV = MADV, SLDV = SLDV, GIA = sum };
-                    DataProvider.Ins.DB.CHITIETDICHVUs.Add(ctpdv4);
-                    DataProvider.Ins.DB.SaveChanges();
-                }
-                ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
-                foreach (var ctpdv in ListCTPDV)
-                {
-                    if (ctpdv.MAPDV == MAPDV)
+                    ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
+                    if (same == 0)
                     {
-                        tongtien += ctpdv.GIA;
-                    }
-                }
-                foreach (var pdv in ListPDV)
-                {
-                    if (pdv.MAPDV == MAPDV)
-                    {
-                        pdv.TONGTIEN = tongtien;
-                        DataProvider.Ins.DB.SaveChanges();
-                    }
-                }
-                tongtien = 0;
-
-                ListCTPDV1.Add(new CTPDV1 { MAPDV = MAPDV, MADV = MADV, SLDV = SLDV, GIA = sum, TENDV = TENDV });
-                MessageBox.Show("Thêm đơn mua dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            });
-            CancelCommand = new RelayCommand<object>((p) =>
-            {
-                return true;
-            }, (p) =>
-            {
-                MADV = MAPDV = "";
-                TENDV = SOPHONG = null;
-                SLDV = 1;
-            });
-            DeleteCommand = new RelayCommand<object>((p) =>
-            {
-                return SelectedItem != null;
-            }, (p) =>
-            {
-                MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-                if (result == MessageBoxResult.OK)
-                {                   
-                    if (count == 2)
-                    {
-                        var ctpdv3 = DataProvider.Ins.DB.CHITIETDICHVUs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();
-                        ctpdv3.MAPDV = SelectedItem.MAPDV;
-                        ctpdv3.MADV = SelectedItem.MADV;
-                        ctpdv3.SLDV -= SelectedItem.SLDV;
-                        ctpdv3.GIA -= SelectedItem.GIA;
-                        DataProvider.Ins.DB.SaveChanges();
-                    }
-                    else
-                    {
-                        var ctpdv4 = DataProvider.Ins.DB.CHITIETDICHVUs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();
-                        DataProvider.Ins.DB.CHITIETDICHVUs.Remove(ctpdv4);
+                        var ctpdv4 = new CHITIETDICHVU() { MAPDV = MAPDV, MADV = MADV, SLDV = SLDV, GIA = sum };
+                        DataProvider.Ins.DB.CHITIETDICHVUs.Add(ctpdv4);
                         DataProvider.Ins.DB.SaveChanges();
                     }
                     ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
-                    ListCTPDV1.Remove(SelectedItem);
-                    foreach (var ctpdv in ListCTPDV1)
+                    foreach (var ctpdv in ListCTPDV)
                     {
-                        tongtien += ctpdv.GIA;
-                        if (ctpdv.MADV == MADV)
-                            count++;
+                        if (ctpdv.MAPDV == MAPDV)
+                        {
+                            tongtien += ctpdv.GIA;
+                        }
                     }
                     foreach (var pdv in ListPDV)
                     {
@@ -279,8 +250,108 @@ namespace QLKhachSan.ViewModel
                         }
                     }
                     tongtien = 0;
-                    count = 0;
-                    MessageBox.Show("Xóa đơn mua dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    ListCTPDV1.Add(new CTPDV1 { MAPDV = MAPDV, MADV = MADV, SLDV = SLDV, GIA = sum, TENDV = TENDV });
+                    MessageBox.Show("Thêm đơn mua dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            });
+            CancelCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                try
+                {
+                    MADV = MAPDV = "";
+                    TENDV = SOPHONG = null;
+                    SLDV = 1;
+                }                
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            });
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                return SelectedItem != null;
+            }, (p) =>
+            {
+                try
+                {
+                    MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        if (count == 2)
+                        {
+                            var ctpdv3 = DataProvider.Ins.DB.CHITIETDICHVUs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();
+                            ctpdv3.MAPDV = SelectedItem.MAPDV;
+                            ctpdv3.MADV = SelectedItem.MADV;
+                            ctpdv3.SLDV -= SelectedItem.SLDV;
+                            ctpdv3.GIA -= SelectedItem.GIA;
+                            DataProvider.Ins.DB.SaveChanges();
+                        }
+                        else
+                        {
+                            var ctpdv4 = DataProvider.Ins.DB.CHITIETDICHVUs.Where(x => x.MADV == SelectedItem.MADV && x.MAPDV == SelectedItem.MAPDV).SingleOrDefault();
+                            DataProvider.Ins.DB.CHITIETDICHVUs.Remove(ctpdv4);
+                            DataProvider.Ins.DB.SaveChanges();
+                        }
+                        ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
+                        ListCTPDV1.Remove(SelectedItem);
+                        foreach (var ctpdv in ListCTPDV1)
+                        {
+                            tongtien += ctpdv.GIA;
+                            if (ctpdv.MADV == MADV)
+                                count++;
+                        }
+                        foreach (var pdv in ListPDV)
+                        {
+                            if (pdv.MAPDV == MAPDV)
+                            {
+                                pdv.TONGTIEN = tongtien;
+                                DataProvider.Ins.DB.SaveChanges();
+                            }
+                        }
+                        tongtien = 0;
+                        count = 0;
+                        MessageBox.Show("Xóa đơn mua dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
         }

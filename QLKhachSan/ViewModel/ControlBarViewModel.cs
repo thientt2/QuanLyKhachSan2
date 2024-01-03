@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,55 +24,82 @@ namespace QLKhachSan.ViewModel
         public ControlBarViewModel()
         {
             CloseWindowCommand = new RelayCommand<UserControl>((p) => { return p == null? false : true; }, (p) => {
-                FrameworkElement window=GetWindowParent(p);
-                var w = window as Window;
-                if(w != null)
+                try
                 {
-                    w.Close();
+                    FrameworkElement window = GetWindowParent(p);
+                    var w = window as Window;
+                    if (w != null)
+                    {
+                        w.Close();
+                    }
+                }                
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             );
             MaximizeWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) => {
-                FrameworkElement window = GetWindowParent(p);
-                var w = window as Window;
-                if (w != null)
+                try
                 {
-                    if (w.WindowState != WindowState.Maximized)
+                    FrameworkElement window = GetWindowParent(p);
+                    var w = window as Window;
+                    if (w != null)
                     {
-                        // Lưu trạng thái kích thước và vị trí trước khi maximize
-                        previousWindowRect = new Rect(w.Left, w.Top, w.Width, w.Height);
+                        if (w.WindowState != WindowState.Maximized)
+                        {
+                            // Lưu trạng thái kích thước và vị trí trước khi maximize
+                            previousWindowRect = new Rect(w.Left, w.Top, w.Width, w.Height);
 
-                        // Set cửa sổ thành trạng thái Maximized
-                        w.WindowState = WindowState.Maximized;
+                            // Set cửa sổ thành trạng thái Maximized
+                            w.WindowState = WindowState.Maximized;
+                        }
+                        else
+                        {
+                            // Khôi phục lại trạng thái kích thước và vị trí từ trước khi maximize
+                            w.WindowState = WindowState.Normal;
+                        }
                     }
-                    else
-                    {
-                        // Khôi phục lại trạng thái kích thước và vị trí từ trước khi maximize
-                        w.WindowState = WindowState.Normal;
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
             MinimizeWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) => {
-                FrameworkElement window = GetWindowParent(p);
-                var w = window as Window;
-                if (w != null)
+                try
                 {
-                    if (w.WindowState != WindowState.Minimized)
-                        w.WindowState = WindowState.Minimized;
-                    else
-                        w.WindowState = WindowState.Maximized;
+                    FrameworkElement window = GetWindowParent(p);
+                    var w = window as Window;
+                    if (w != null)
+                    {
+                        if (w.WindowState != WindowState.Minimized)
+                            w.WindowState = WindowState.Minimized;
+                        else
+                            w.WindowState = WindowState.Maximized;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             );
             MouseMoveWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) => {
-                FrameworkElement window = GetWindowParent(p);
-                var w = window as Window;
-                if (w != null)
+                try
                 {
-                    w.DragMove(); 
+                    FrameworkElement window = GetWindowParent(p);
+                    var w = window as Window;
+                    if (w != null)
+                    {
+                        w.DragMove();
+                    }
                 }
-            }
-            );
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            });
         }
         FrameworkElement GetWindowParent(UserControl p)
         {

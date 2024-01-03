@@ -18,7 +18,8 @@ using System.Windows.Xps.Packaging;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
-
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace QLKhachSan.ViewModel
 {
@@ -149,21 +150,42 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                XuatPDF();
-                var hd1 = DataProvider.Ins.DB.HOADONs.Where(x => x.MAHD == MAHD).SingleOrDefault();
-                if(hd1 != null)
+                try
                 {
-                    hd1.THANHTIEN = THANHTIEN;
-                    hd1.NGLAPHD = DateTime.Now;
-                    DataProvider.Ins.DB.SaveChanges();
+                    XuatPDF();
+                    var hd1 = DataProvider.Ins.DB.HOADONs.Where(x => x.MAHD == MAHD).SingleOrDefault();
+                    if (hd1 != null)
+                    {
+                        hd1.THANHTIEN = THANHTIEN;
+                        hd1.NGLAPHD = DateTime.Now;
+                        DataProvider.Ins.DB.SaveChanges();
+                    }
+                    else
+                    {
+                        var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = LOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
+                        DataProvider.Ins.DB.HOADONs.Add(hd);
+                        DataProvider.Ins.DB.SaveChanges();
+                    }
+                    MessageBox.Show("Xuất file PDF và in hóa đơn thành công!");
                 }
-                else
+                catch (DbEntityValidationException ex)
                 {
-                    var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = LOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
-                    DataProvider.Ins.DB.HOADONs.Add(hd);
-                    DataProvider.Ins.DB.SaveChanges();
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
                 }
-                MessageBox.Show("Xuất file PDF và in hóa đơn thành công!");             
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             CloseCommand = new RelayCommand<object>((p) =>
             {
@@ -171,11 +193,18 @@ namespace QLKhachSan.ViewModel
             }, (p) =>
             {
                 // tất cả null
-                FrameworkElement window = p as FrameworkElement;
-                var w = window as Window;
-                if (w != null)
+                try
                 {
-                    w.Close();
+                    FrameworkElement window = p as FrameworkElement;
+                    var w = window as Window;
+                    if (w != null)
+                    {
+                        w.Close();
+                    }
+                }                
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
         }

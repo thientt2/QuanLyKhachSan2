@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -150,19 +152,40 @@ namespace QLKhachSan.ViewModel
                 return true; 
             }, (p) =>
             {
-                ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
-                SoPhong = new List<string>();
-                foreach (var phong in ListPhong)
+                try
                 {
-                    if (phong.TINHTRANG == "Đang được sử dụng")
-                        SoPhong.Add(phong.SOPHONG);
+                    ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
+                    SoPhong = new List<string>();
+                    foreach (var phong in ListPhong)
+                    {
+                        if (phong.TINHTRANG == "Đang được sử dụng")
+                            SoPhong.Add(phong.SOPHONG);
+                    }
+                    DatDichVuWindow wd = new DatDichVuWindow();
+                    var addVM = wd.DataContext as PhieuDatDichVuViewModel;
+                    addVM.TTENDV = TenDV;
+                    addVM.SSOPHONG = SoPhong;
+                    addVM.LISTNUMBER = ListNumber;
+                    wd.ShowDialog();
                 }
-                DatDichVuWindow wd = new DatDichVuWindow();
-                var addVM = wd.DataContext as PhieuDatDichVuViewModel;
-                addVM.TTENDV = TenDV;
-                addVM.SSOPHONG = SoPhong;
-                addVM.LISTNUMBER = ListNumber;
-                wd.ShowDialog();
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             );
             EditCommand = new RelayCommand<object>((p) =>
@@ -172,16 +195,37 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                var loaiphong = DataProvider.Ins.DB.LOAIPHONGs.Where(x => x.MALOAI == SelectedItem.MALOAI).SingleOrDefault();
-                loaiphong.SLGIUONG = SLGIUONG;
-                loaiphong.LOAIGIUONG = LOAIGIUONG;
-                loaiphong.GIA = GIA;
-                loaiphong.NGUOITOIDA = NGUOITOIDA;
-                loaiphong.DIENTICH = DIENTICH;
-                DataProvider.Ins.DB.SaveChanges();
+                try
+                {
+                    var loaiphong = DataProvider.Ins.DB.LOAIPHONGs.Where(x => x.MALOAI == SelectedItem.MALOAI).SingleOrDefault();
+                    loaiphong.SLGIUONG = SLGIUONG;
+                    loaiphong.LOAIGIUONG = LOAIGIUONG;
+                    loaiphong.GIA = GIA;
+                    loaiphong.NGUOITOIDA = NGUOITOIDA;
+                    loaiphong.DIENTICH = DIENTICH;
+                    DataProvider.Ins.DB.SaveChanges();
 
-                SelectedItem.MALOAI = MALOAI;
-                MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    SelectedItem.MALOAI = MALOAI;
+                    MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {
@@ -190,12 +234,19 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                MALOAI = LOAIGIUONG = string.Empty;
-                SLGIUONG = NGUOITOIDA = null;
-                GIA = null;
-                DIENTICH = null;
-                SelectedItem = null;
-                SelectedItem1 = null;
+                try
+                {
+                    MALOAI = LOAIGIUONG = string.Empty;
+                    SLGIUONG = NGUOITOIDA = null;
+                    GIA = null;
+                    DIENTICH = null;
+                    SelectedItem = null;
+                    SelectedItem1 = null;
+                }                
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             InHoaDonCommand = new RelayCommand<object>((p) => 
             {
@@ -206,14 +257,35 @@ namespace QLKhachSan.ViewModel
                 return true; 
             }, (p) =>
             {
-                HoaDon = new ObservableCollection<HOADON>(DataProvider.Ins.DB.HOADONs);
-                var wd = new Bill();
-                var addVM = wd.DataContext as BillViewModel;
-                addVM.SOPHONG1 = SelectedItem1.SOPHONG;
-                addVM.MALOAI1 = SelectedItem1.MALOAI;
-                addVM.MAPDP1 = SelectedItem1.MAPDP;
-                addVM.Init();
-                wd.ShowDialog();
+                try
+                {
+                    HoaDon = new ObservableCollection<HOADON>(DataProvider.Ins.DB.HOADONs);
+                    var wd = new Bill();
+                    var addVM = wd.DataContext as BillViewModel;
+                    addVM.SOPHONG1 = SelectedItem1.SOPHONG;
+                    addVM.MALOAI1 = SelectedItem1.MALOAI;
+                    addVM.MAPDP1 = SelectedItem1.MAPDP;
+                    addVM.Init();
+                    wd.ShowDialog();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             );
             ThanhToanCommand = new RelayCommand<object>((p) => 
@@ -225,11 +297,32 @@ namespace QLKhachSan.ViewModel
                 return true; 
             }, (p) =>
             {
-                var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.SOPHONG == SelectedItem1.SOPHONG).SingleOrDefault();
-                phong.TINHTRANG = "Trống";
-                phong.MAPDP = null;
-                DataProvider.Ins.DB.SaveChanges();
-                MessageBox.Show($"Thanh toán phòng {SelectedItem1.SOPHONG} thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                try
+                {
+                    var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.SOPHONG == SelectedItem1.SOPHONG).SingleOrDefault();
+                    phong.TINHTRANG = "Trống";
+                    phong.MAPDP = null;
+                    DataProvider.Ins.DB.SaveChanges();
+                    MessageBox.Show($"Thanh toán phòng {SelectedItem1.SOPHONG} thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             );
         }

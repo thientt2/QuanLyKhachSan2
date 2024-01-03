@@ -12,6 +12,8 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using LiveCharts.Wpf.Charts.Base;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace QLKhachSan.ViewModel
 {
@@ -189,124 +191,166 @@ namespace QLKhachSan.ViewModel
                 return true; 
             }, (p) =>
             {
-                if (p != null && p.SelectedItem != null)
+                try
                 {
-                    LThang = new List<int>();
-                    foreach (var hd in ListHD)
+                    if (p != null && p.SelectedItem != null)
                     {
-                        if (hd.NGLAPHD.Value.Year == Nam)
-                        {
-                            int thang = hd.NGLAPHD.Value.Month;
-                            if (!LThang.Contains(thang))
-                            {
-                                LThang.Add(thang);
-                            }
-                        }
-                    }
-                    LThang.Sort();
-                    DoanhThuS = 0;
-                    DoanhThuP = 0;
-                    DoanhThuD = 0;
-                    DoanhThuLA = 0;
-                    DoanhThuPhong = 0;
-                    DoanhThuDV = 0;
-                    double sum1 = 0;
-                    SoLuotThue = 0;
-                    for (int i = 0; i < maloai.Length; i++)
-                    {
-                        double sum = 0;
+                        LThang = new List<int>();
                         foreach (var hd in ListHD)
                         {
-                            if (hd.NGLAPHD.Value.Year == Nam && hd.LOAI == maloai[i])
+                            if (hd.NGLAPHD.Value.Year == Nam)
                             {
-                                sum += (double)hd.THANHTIEN;
-                                SoLuotThue++;
+                                int thang = hd.NGLAPHD.Value.Month;
+                                if (!LThang.Contains(thang))
+                                {
+                                    LThang.Add(thang);
+                                }
                             }
                         }
-                        sum1 += sum;
-                        switch (maloai[i])
+                        LThang.Sort();
+                        DoanhThuS = 0;
+                        DoanhThuP = 0;
+                        DoanhThuD = 0;
+                        DoanhThuLA = 0;
+                        DoanhThuPhong = 0;
+                        DoanhThuDV = 0;
+                        double sum1 = 0;
+                        SoLuotThue = 0;
+                        for (int i = 0; i < maloai.Length; i++)
                         {
-                            case "Standard":
-                                DoanhThuS = sum;
-                                break;
-                            case "Deluxe":
-                                DoanhThuD = sum;
-                                break;
-                            case "Premium":
-                                DoanhThuP = sum;
-                                break;
-                            case "La Opera":
-                                DoanhThuLA = sum;
-                                break;
+                            double sum = 0;
+                            foreach (var hd in ListHD)
+                            {
+                                if (hd.NGLAPHD.Value.Year == Nam && hd.LOAI == maloai[i])
+                                {
+                                    sum += (double)hd.THANHTIEN;
+                                    SoLuotThue++;
+                                }
+                            }
+                            sum1 += sum;
+                            switch (maloai[i])
+                            {
+                                case "Standard":
+                                    DoanhThuS = sum;
+                                    break;
+                                case "Deluxe":
+                                    DoanhThuD = sum;
+                                    break;
+                                case "Premium":
+                                    DoanhThuP = sum;
+                                    break;
+                                case "La Opera":
+                                    DoanhThuLA = sum;
+                                    break;
+                            }
                         }
+                        foreach (var pdv in ListPDV)
+                        {
+                            foreach (var pdp in ListPDP)
+                            {
+                                if (pdv.MAPDP == pdp.MAPDP && pdp.NGTRA.Value.Year == Nam)
+                                {
+                                    DoanhThuDV += (double)pdv.TONGTIEN;
+                                }
+                            }
+                        }
+                        DoanhThuPhong = sum1 - DoanhThuDV;
+                        TongDoanhThu = sum1;
                     }
-                    foreach (var pdv in ListPDV)
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
                     {
-                        foreach (var pdp in ListPDP)
+                        foreach (var validationError in validationErrors.ValidationErrors)
                         {
-                            if (pdv.MAPDP == pdp.MAPDP && pdp.NGTRA.Value.Year == Nam)
-                            {
-                                DoanhThuDV += (double)pdv.TONGTIEN;
-                            }
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
-                    DoanhThuPhong = sum1 - DoanhThuDV;
-                    TongDoanhThu = sum1;
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
             ShowCommand2 = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
             {
-                if (p != null && p.SelectedItem != null)
+                try
                 {
-                    DoanhThuS = 0;
-                    DoanhThuP = 0;
-                    DoanhThuD = 0;
-                    DoanhThuLA = 0;
-                    DoanhThuPhong = 0;
-                    DoanhThuDV = 0;
-                    double sum1 = 0;
-                    SoLuotThue = 0;
-                    for (int i = 0; i < maloai.Length; i++)
+                    if (p != null && p.SelectedItem != null)
                     {
-                        double sum = 0;
-                        foreach (var hd in ListHD)
+                        DoanhThuS = 0;
+                        DoanhThuP = 0;
+                        DoanhThuD = 0;
+                        DoanhThuLA = 0;
+                        DoanhThuPhong = 0;
+                        DoanhThuDV = 0;
+                        double sum1 = 0;
+                        SoLuotThue = 0;
+                        for (int i = 0; i < maloai.Length; i++)
                         {
-                            if (hd.NGLAPHD.Value.Year == Nam && hd.NGLAPHD.Value.Month == Thang && hd.LOAI == maloai[i])
+                            double sum = 0;
+                            foreach (var hd in ListHD)
                             {
-                                sum += (double)hd.THANHTIEN;
-                                SoLuotThue++;
+                                if (hd.NGLAPHD.Value.Year == Nam && hd.NGLAPHD.Value.Month == Thang && hd.LOAI == maloai[i])
+                                {
+                                    sum += (double)hd.THANHTIEN;
+                                    SoLuotThue++;
+                                }
+                            }
+                            sum1 += sum;
+                            switch (maloai[i])
+                            {
+                                case "Standard":
+                                    DoanhThuS = sum;
+                                    break;
+                                case "Deluxe":
+                                    DoanhThuD = sum;
+                                    break;
+                                case "Premium":
+                                    DoanhThuP = sum;
+                                    break;
+                                case "La Opera":
+                                    DoanhThuLA = sum;
+                                    break;
                             }
                         }
-                        sum1 += sum;
-                        switch (maloai[i])
+                        foreach (var pdv in ListPDV)
                         {
-                            case "Standard":
-                                DoanhThuS = sum;
-                                break;
-                            case "Deluxe":
-                                DoanhThuD = sum;
-                                break;
-                            case "Premium":
-                                DoanhThuP = sum;
-                                break;
-                            case "La Opera":
-                                DoanhThuLA = sum;
-                                break;
-                        }
-                    }
-                    foreach (var pdv in ListPDV)
-                    {
-                        foreach (var pdp in ListPDP)
-                        {
-                            if (pdv.MAPDP == pdp.MAPDP && pdp.NGTRA.Value.Year == Nam && pdp.NGTRA.Value.Month == Thang)
+                            foreach (var pdp in ListPDP)
                             {
-                                DoanhThuDV += (double)pdv.TONGTIEN;
+                                if (pdv.MAPDP == pdp.MAPDP && pdp.NGTRA.Value.Year == Nam && pdp.NGTRA.Value.Month == Thang)
+                                {
+                                    DoanhThuDV += (double)pdv.TONGTIEN;
+                                }
                             }
                         }
-                    }
-                    DoanhThuPhong = sum1 - DoanhThuDV;
-                    TongDoanhThu = sum1;
+                        DoanhThuPhong = sum1 - DoanhThuDV;
+                        TongDoanhThu = sum1;
 
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
 

@@ -9,6 +9,8 @@ using static QLKhachSan.ViewModel.BasicViewModel;
 using System.Windows.Input;
 using System.Windows.Documents;
 using System.Windows;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace QLKhachSan.ViewModel
 {
@@ -73,15 +75,36 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                int maxCode = ListDV.Max(dv => int.Parse(dv.MADV.Substring(2)));
-                string nextCode = $"DV{maxCode + 1:000}";
-                var dichvu = new DICHVU() { MADV = nextCode, TENDV = TENDV, DONGIA = DONGIA, };
-                DataProvider.Ins.DB.DICHVUs.Add(dichvu);
-                DataProvider.Ins.DB.SaveChanges();
-                ListDV.Add(dichvu);
-                TENDV = string.Empty;
-                DONGIA = null;
-                MessageBox.Show("Thêm dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                try
+                {
+                    int maxCode = ListDV.Max(dv => int.Parse(dv.MADV.Substring(2)));
+                    string nextCode = $"DV{maxCode + 1:000}";
+                    var dichvu = new DICHVU() { MADV = nextCode, TENDV = TENDV, DONGIA = DONGIA, };
+                    DataProvider.Ins.DB.DICHVUs.Add(dichvu);
+                    DataProvider.Ins.DB.SaveChanges();
+                    ListDV.Add(dichvu);
+                    TENDV = string.Empty;
+                    DONGIA = null;
+                    MessageBox.Show("Thêm dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             EditCommand = new RelayCommand<object>((p) =>
             {
@@ -93,13 +116,34 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                var dichvu = DataProvider.Ins.DB.DICHVUs.Where(x => x.MADV == SelectedItem.MADV).SingleOrDefault();
-                dichvu.TENDV = TENDV;
-                dichvu.DONGIA = DONGIA;
-                DataProvider.Ins.DB.SaveChanges();
-                TENDV = string.Empty;
-                DONGIA = null;
-                MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                try
+                {
+                    var dichvu = DataProvider.Ins.DB.DICHVUs.Where(x => x.MADV == SelectedItem.MADV).SingleOrDefault();
+                    dichvu.TENDV = TENDV;
+                    dichvu.DONGIA = DONGIA;
+                    DataProvider.Ins.DB.SaveChanges();
+                    TENDV = string.Empty;
+                    DONGIA = null;
+                    MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {
@@ -108,26 +152,68 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                TENDV = string.Empty;
-                DONGIA = null;
-                SelectedItem = null;
+                try
+                {
+                    TENDV = string.Empty;
+                    DONGIA = null;
+                    SelectedItem = null;
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             DeleteCommand = new RelayCommand<object>((p) =>
             {
                 return SelectedItem != null;
             }, (p) =>
             {
-                MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-                if(result == MessageBoxResult.OK)
+                try
                 {
-                    TENDV = string.Empty;
-                    DONGIA = null;
-                    DataProvider.Ins.DB.DICHVUs.Remove(SelectedItem);
-                    DataProvider.Ins.DB.SaveChanges();
-                    ListDV.Remove(SelectedItem);
-                    MessageBox.Show("Xóa dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        TENDV = string.Empty;
+                        DONGIA = null;
+                        DataProvider.Ins.DB.DICHVUs.Remove(SelectedItem);
+                        DataProvider.Ins.DB.SaveChanges();
+                        ListDV.Remove(SelectedItem);
+                        MessageBox.Show("Xóa dịch vụ thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    SelectedItem = null;
                 }
-                SelectedItem = null;
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
         }
     }

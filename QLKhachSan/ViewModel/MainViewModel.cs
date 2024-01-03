@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -65,47 +67,67 @@ namespace QLKhachSan.ViewModel
         {
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-                IsLoaded = true;
-                if (p == null)
-                    return;
-                p.Hide();
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
-                if (loginWindow.DataContext == null)
-                    return;
-                var loginVM = loginWindow.DataContext as LoginViewModel;
-                if (loginVM.IsLogin)
-                {
-                    ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
-                    MANV = loginVM.MANV;
-                    IDPHANQUYEN = loginVM.IDPHANQUYEN;
-                    ID = loginVM.ID;
-                    MATKHAU = loginVM.MATKHAU;
-                    var info = DataProvider.Ins.DB.NHANVIENs.FirstOrDefault(x => x.MANV == MANV);
-                    MMANV = MANV;
-                    TENNV = info.TENNV;
-                    GIOITINH = info.GIOITINH;
-                    SDT = info.SDT;
-                    DIACHI = info.DIACHI;
-                    NGSINH = info.NGSINH;
-                    EMAIL = info.EMAIL;
-                    VITRILAMVIEC = info.VITRILAMVIEC;
-                    if (TENNV == "Nguyễn Hữu Trường")
+                try { IsLoaded = true;
+                    if (p == null)
+                        return;
+                    p.Hide();
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.ShowDialog();
+                    if (loginWindow.DataContext == null)
+                        return;
+                    var loginVM = loginWindow.DataContext as LoginViewModel;
+                    if (loginVM.IsLogin)
                     {
-                        ImagePath = "Images/HT.jpg";
+                        ListNV = new ObservableCollection<NHANVIEN>(DataProvider.Ins.DB.NHANVIENs);
+                        MANV = loginVM.MANV;
+                        IDPHANQUYEN = loginVM.IDPHANQUYEN;
+                        ID = loginVM.ID;
+                        MATKHAU = loginVM.MATKHAU;
+                        var info = DataProvider.Ins.DB.NHANVIENs.FirstOrDefault(x => x.MANV == MANV);
+                        MMANV = MANV;
+                        TENNV = info.TENNV;
+                        GIOITINH = info.GIOITINH;
+                        SDT = info.SDT;
+                        DIACHI = info.DIACHI;
+                        NGSINH = info.NGSINH;
+                        EMAIL = info.EMAIL;
+                        VITRILAMVIEC = info.VITRILAMVIEC;
+                        if (TENNV == "Nguyễn Hữu Trường")
+                        {
+                            ImagePath = "Images/HT.jpg";
+                        }
+                        if (TENNV == "Trần Trung Thông")
+                        {
+                            ImagePath = "Images/3T.jpg";
+                        }
+                        if (TENNV == "Tăng Thanh Thiện")
+                        {
+                            ImagePath = "Images/TT.jpg";
+                        }
+                        p.Show();
                     }
-                    if (TENNV == "Trần Trung Thông")
-                    {
-                        ImagePath = "Images/3T.jpg";
-                    }
-                    if (TENNV == "Tăng Thanh Thiện")
-                    {
-                        ImagePath = "Images/TT.jpg";
-                    }
-                    p.Show();
+                    else p.Close();
                 }
-                else p.Close();
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
+
         );
             ChangePWCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
@@ -117,8 +139,54 @@ namespace QLKhachSan.ViewModel
                 addVM.IID = ID;
                 wd.ShowDialog();
             });
-            LogOutCommand = new RelayCommand<object>((p) => { return true; }, (p) => { LogOut(); });
-            ChangeImagePathCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ChangeImagePath(); });
+            LogOutCommand = new RelayCommand<object>((p) => { return true; }, (p) => { try
+                {
+                    LogOut();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            });
+            ChangeImagePathCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                try
+                {
+                    ChangeImagePath();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            });
 
         }
 

@@ -1,8 +1,12 @@
 ﻿using QLKhachSan.Model;
 using QLKhachSan.UserControlKS;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static QLKhachSan.ViewModel.BasicViewModel;
@@ -92,182 +96,266 @@ namespace QLKhachSan.ViewModel
 
             SortUsingCommand = new RelayCommand<Button>((p) => { return true; }, (p) =>
             {
-                MyStackPanel1.Clear();
-                MyStackPanel2.Clear();
-                MyStackPanel3.Clear();
-                MyStackPanel4.Clear();
-                MyStackPanel5.Clear();
-                MyStackPanel6.Clear();
-                MyStackPanel7.Clear();
-                foreach (var phong in ListPhong)
+                try
                 {
-                    if (phong.TINHTRANG == "Đang được sử dụng")
+                    MyStackPanel1.Clear();
+                    MyStackPanel2.Clear();
+                    MyStackPanel3.Clear();
+                    MyStackPanel4.Clear();
+                    MyStackPanel5.Clear();
+                    MyStackPanel6.Clear();
+                    MyStackPanel7.Clear();
+                    foreach (var phong in ListPhong)
                     {
-                        int? floorNumber = phong.TANG;
-                        RoomUC room = new RoomUC { DataContext = phong };
-
-                        switch (floorNumber)
+                        if (phong.TINHTRANG == "Đang được sử dụng")
                         {
-                            case 1:
-                                MyStackPanel1.Add(room);
-                                break;
-                            case 2:
-                                MyStackPanel2.Add(room);
-                                break;
-                            case 3:
-                                MyStackPanel3.Add(room);
-                                break;
-                            case 4:
-                                MyStackPanel4.Add(room);
-                                break;
-                            case 5:
-                                MyStackPanel5.Add(room);
-                                break;
-                            case 6:
-                                MyStackPanel6.Add(room);
-                                break;
-                            case 7:
-                                MyStackPanel7.Add(room);
-                                break;
-                            default:
-                                break;
+                            int? floorNumber = phong.TANG;
+                            RoomUC room = new RoomUC { DataContext = phong };
+
+                            switch (floorNumber)
+                            {
+                                case 1:
+                                    MyStackPanel1.Add(room);
+                                    break;
+                                case 2:
+                                    MyStackPanel2.Add(room);
+                                    break;
+                                case 3:
+                                    MyStackPanel3.Add(room);
+                                    break;
+                                case 4:
+                                    MyStackPanel4.Add(room);
+                                    break;
+                                case 5:
+                                    MyStackPanel5.Add(room);
+                                    break;
+                                case 6:
+                                    MyStackPanel6.Add(room);
+                                    break;
+                                case 7:
+                                    MyStackPanel7.Add(room);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
 
             SortAllCommand = new RelayCommand<Button>((p) => { return true; }, (p) =>
             {
-                MyStackPanel1.Clear();
-                MyStackPanel2.Clear();
-                MyStackPanel3.Clear();
-                MyStackPanel4.Clear();
-                MyStackPanel5.Clear();
-                MyStackPanel6.Clear();
-                MyStackPanel7.Clear();
-                foreach (var phong in ListPhong)
+                try
                 {
-                    int? floorNumber = phong.TANG;
-                    RoomUC room = new RoomUC { DataContext = phong };
-
-                    switch (floorNumber)
+                    MyStackPanel1.Clear();
+                    MyStackPanel2.Clear();
+                    MyStackPanel3.Clear();
+                    MyStackPanel4.Clear();
+                    MyStackPanel5.Clear();
+                    MyStackPanel6.Clear();
+                    MyStackPanel7.Clear();
+                    foreach (var phong in ListPhong)
                     {
-                        case 1:
-                            MyStackPanel1.Add(room);
-                            break;
-                        case 2:
-                            MyStackPanel2.Add(room);
-                            break;
-                        case 3:
-                            MyStackPanel3.Add(room);
-                            break;
-                        case 4:
-                            MyStackPanel4.Add(room);
-                            break;
-                        case 5:
-                            MyStackPanel5.Add(room);
-                            break;
-                        case 6:
-                            MyStackPanel6.Add(room);
-                            break;
-                        case 7:
-                            MyStackPanel7.Add(room);
-                            break;
-                        default:
-                            break;
+                        int? floorNumber = phong.TANG;
+                        RoomUC room = new RoomUC { DataContext = phong };
+
+                        switch (floorNumber)
+                        {
+                            case 1:
+                                MyStackPanel1.Add(room);
+                                break;
+                            case 2:
+                                MyStackPanel2.Add(room);
+                                break;
+                            case 3:
+                                MyStackPanel3.Add(room);
+                                break;
+                            case 4:
+                                MyStackPanel4.Add(room);
+                                break;
+                            case 5:
+                                MyStackPanel5.Add(room);
+                                break;
+                            case 6:
+                                MyStackPanel6.Add(room);
+                                break;
+                            case 7:
+                                MyStackPanel7.Add(room);
+                                break;
+                            default:
+                                break;
+                        }
                     }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
 
             SortEmptyCommand = new RelayCommand<Button>((p) => { return true; }, (p) =>
             {
-                MyStackPanel1.Clear();
-                MyStackPanel2.Clear();
-                MyStackPanel3.Clear();
-                MyStackPanel4.Clear();
-                MyStackPanel5.Clear();
-                MyStackPanel6.Clear();
-                MyStackPanel7.Clear();
-                foreach (var phong in ListPhong)
+                try
                 {
-                    if (phong.TINHTRANG == "Trống")
+                    MyStackPanel1.Clear();
+                    MyStackPanel2.Clear();
+                    MyStackPanel3.Clear();
+                    MyStackPanel4.Clear();
+                    MyStackPanel5.Clear();
+                    MyStackPanel6.Clear();
+                    MyStackPanel7.Clear();
+                    foreach (var phong in ListPhong)
                     {
-                        int? floorNumber = phong.TANG;
-                        RoomUC room = new RoomUC { DataContext = phong };
-
-                        switch (floorNumber)
+                        if (phong.TINHTRANG == "Trống")
                         {
-                            case 1:
-                                MyStackPanel1.Add(room);
-                                break;
-                            case 2:
-                                MyStackPanel2.Add(room);
-                                break;
-                            case 3:
-                                MyStackPanel3.Add(room);
-                                break;
-                            case 4:
-                                MyStackPanel4.Add(room);
-                                break;
-                            case 5:
-                                MyStackPanel5.Add(room);
-                                break;
-                            case 6:
-                                MyStackPanel6.Add(room);
-                                break;
-                            case 7:
-                                MyStackPanel7.Add(room);
-                                break;
-                            default:
-                                break;
+                            int? floorNumber = phong.TANG;
+                            RoomUC room = new RoomUC { DataContext = phong };
+
+                            switch (floorNumber)
+                            {
+                                case 1:
+                                    MyStackPanel1.Add(room);
+                                    break;
+                                case 2:
+                                    MyStackPanel2.Add(room);
+                                    break;
+                                case 3:
+                                    MyStackPanel3.Add(room);
+                                    break;
+                                case 4:
+                                    MyStackPanel4.Add(room);
+                                    break;
+                                case 5:
+                                    MyStackPanel5.Add(room);
+                                    break;
+                                case 6:
+                                    MyStackPanel6.Add(room);
+                                    break;
+                                case 7:
+                                    MyStackPanel7.Add(room);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
 
             SortBookedCommand = new RelayCommand<Button>((p) => { return true; }, (p) =>
             {
-                MyStackPanel1.Clear();
-                MyStackPanel2.Clear();
-                MyStackPanel3.Clear();
-                MyStackPanel4.Clear();
-                MyStackPanel5.Clear();
-                MyStackPanel6.Clear();
-                MyStackPanel7.Clear();
-                foreach (var phong in ListPhong)
+                try
                 {
-                    if (phong.TINHTRANG == "Đã đặt")
+                    MyStackPanel1.Clear();
+                    MyStackPanel2.Clear();
+                    MyStackPanel3.Clear();
+                    MyStackPanel4.Clear();
+                    MyStackPanel5.Clear();
+                    MyStackPanel6.Clear();
+                    MyStackPanel7.Clear();
+                    foreach (var phong in ListPhong)
                     {
-                        int? floorNumber = phong.TANG;
-                        RoomUC room = new RoomUC { DataContext = phong };
-
-                        switch (floorNumber)
+                        if (phong.TINHTRANG == "Đã đặt")
                         {
-                            case 1:
-                                MyStackPanel1.Add(room);
-                                break;
-                            case 2:
-                                MyStackPanel2.Add(room);
-                                break;
-                            case 3:
-                                MyStackPanel3.Add(room);
-                                break;
-                            case 4:
-                                MyStackPanel4.Add(room);
-                                break;
-                            case 5:
-                                MyStackPanel5.Add(room);
-                                break;
-                            case 6:
-                                MyStackPanel6.Add(room);
-                                break;
-                            case 7:
-                                MyStackPanel7.Add(room);
-                                break;
-                            default:
-                                break;
+                            int? floorNumber = phong.TANG;
+                            RoomUC room = new RoomUC { DataContext = phong };
+
+                            switch (floorNumber)
+                            {
+                                case 1:
+                                    MyStackPanel1.Add(room);
+                                    break;
+                                case 2:
+                                    MyStackPanel2.Add(room);
+                                    break;
+                                case 3:
+                                    MyStackPanel3.Add(room);
+                                    break;
+                                case 4:
+                                    MyStackPanel4.Add(room);
+                                    break;
+                                case 5:
+                                    MyStackPanel5.Add(room);
+                                    break;
+                                case 6:
+                                    MyStackPanel6.Add(room);
+                                    break;
+                                case 7:
+                                    MyStackPanel7.Add(room);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
         }

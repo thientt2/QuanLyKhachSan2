@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -183,12 +185,33 @@ namespace QLKhachSan.ViewModel
             //có ngày trả => Không còn sử dụng
             DatPhongCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                DatPhongWindow wd = new DatPhongWindow();
-                var addVM = wd.DataContext as PhieuDatPhongViewModel;
-                addVM.MMALOAI = MaLoai;
-                wd.ShowDialog();
-                DataProvider.Ins.DB.SaveChanges();
-                CapNhat();
+                try
+                {
+                    DatPhongWindow wd = new DatPhongWindow();
+                    var addVM = wd.DataContext as PhieuDatPhongViewModel;
+                    addVM.MMALOAI = MaLoai;
+                    wd.ShowDialog();
+                    DataProvider.Ins.DB.SaveChanges();
+                    CapNhat();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             );
             NhanPhongCommand = new RelayCommand<object>((p) => 
@@ -198,24 +221,45 @@ namespace QLKhachSan.ViewModel
                 return true; 
             }, (p) =>
             {
-                foreach (var pdp1 in PDP1)
+                try
                 {
-                    if (pdp1.MAPDP == SelectedItem.MAPDP)
+                    foreach (var pdp1 in PDP1)
                     {
-                        if (SelectedItem.TRANGTHAI == "Đợi nhận phòng")
-                            pdp1.TRANGTHAI = "Đã nhận phòng";
+                        if (pdp1.MAPDP == SelectedItem.MAPDP)
+                        {
+                            if (SelectedItem.TRANGTHAI == "Đợi nhận phòng")
+                                pdp1.TRANGTHAI = "Đã nhận phòng";
+                        }
+                    }
+                    var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
+                    int hour = DateTime.Now.Hour;
+                    int minute = DateTime.Now.Minute;
+                    int second = DateTime.Now.Second;
+                    TimeSpan newTime = new TimeSpan(hour, minute, second);
+                    pdp.NGNHAN = NGNHAN.Value.Date.Add(newTime);
+                    var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
+                    phong.TINHTRANG = "Đang được sử dụng";
+                    DataProvider.Ins.DB.SaveChanges();
+                    CapNhat();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                 }
-                var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
-                int hour = DateTime.Now.Hour;
-                int minute = DateTime.Now.Minute;
-                int second = DateTime.Now.Second;
-                TimeSpan newTime = new TimeSpan(hour, minute, second);
-                pdp.NGNHAN = NGNHAN.Value.Date.Add(newTime);
-                var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
-                phong.TINHTRANG = "Đang được sử dụng";
-                DataProvider.Ins.DB.SaveChanges();
-                CapNhat();
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             );
             EditCommand = new RelayCommand<object>((p) =>
@@ -225,12 +269,33 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
-                pdp.NGTRA = NGTRA;
-                DataProvider.Ins.DB.SaveChanges();
-                MessageBox.Show("Gia hạn trả phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                NGTRA = null;
-                CapNhat();
+                try
+                {
+                    var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
+                    pdp.NGTRA = NGTRA;
+                    DataProvider.Ins.DB.SaveChanges();
+                    MessageBox.Show("Gia hạn trả phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    NGTRA = null;
+                    CapNhat();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             DeleteCommand = new RelayCommand<object>((p) =>
             {
@@ -239,58 +304,183 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-                if (result == MessageBoxResult.OK)
+                try
                 {
-                    var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
-                    DataProvider.Ins.DB.PHIEUDATPHONGs.Remove(pdp);
-                    DataProvider.Ins.DB.SaveChanges();
-                    MessageBox.Show("Xóa phiếu đặt phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == SelectedItem.MAPDP).SingleOrDefault();
+                        DataProvider.Ins.DB.PHIEUDATPHONGs.Remove(pdp);
+                        DataProvider.Ins.DB.SaveChanges();
+                        MessageBox.Show("Xóa phiếu đặt phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    CapNhat();
                 }
-                CapNhat();
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             SortAllCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                PDP1.Clear();
-                foreach (var item in OriginalPDP1)
+                try
                 {
-                    PDP1.Add(item);
+                    PDP1.Clear();
+                    foreach (var item in OriginalPDP1)
+                    {
+                        PDP1.Add(item);
+                    }
                 }
-
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             SortCheckInCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                PDP1.Clear();
-                foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Đã nhận phòng"))
+                try
                 {
-                    PDP1.Add(item);
+                    PDP1.Clear();
+                    foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Đã nhận phòng"))
+                    {
+                        PDP1.Add(item);
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
 
             SortBookedCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                PDP1.Clear();
-                foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Đợi nhận phòng"))
+                try
                 {
-                    PDP1.Add(item);
+                    PDP1.Clear();
+                    foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Đợi nhận phòng"))
+                    {
+                        PDP1.Add(item);
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
 
             SortOutOfDateCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                PDP1.Clear();
-                foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Quá hạn nhận phòng"))
+                try
                 {
-                    PDP1.Add(item);
+                    PDP1.Clear();
+                    foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Quá hạn nhận phòng"))
+                    {
+                        PDP1.Add(item);
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
 
             SortOutOfOrderCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                PDP1.Clear();
-                foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Không còn sử dụng"))
+                try
                 {
-                    PDP1.Add(item);
+                    PDP1.Clear();
+                    foreach (var item in OriginalPDP1.Where(item => item.TRANGTHAI == "Không còn sử dụng"))
+                    {
+                        PDP1.Add(item);
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
         }

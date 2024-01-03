@@ -12,6 +12,8 @@ using System.Windows;
 using System.Windows.Documents;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace QLKhachSan.ViewModel
 {
@@ -135,16 +137,37 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                int maxCode = ListNV.Max(nv => int.Parse(nv.MANV.Substring(2)));
-                string nextCode = $"NV{maxCode + 1:000}";
-                var nhanvien = new NHANVIEN() { MANV = nextCode, TENNV = TENNV, GIOITINH = GIOITINH, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRILAMVIEC = VITRILAMVIEC, NGSINH = NGSINH, NGVL = NGVL, DIACHI = DIACHI };
-                DataProvider.Ins.DB.NHANVIENs.Add(nhanvien);
-                DataProvider.Ins.DB.SaveChanges();
-                ListNV.Add(nhanvien);
-                MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
-                LUONG = null;
-                NGVL = NGSINH = null;
-                MessageBox.Show("Thêm nhân viên thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                try
+                {
+                    int maxCode = ListNV.Max(nv => int.Parse(nv.MANV.Substring(2)));
+                    string nextCode = $"NV{maxCode + 1:000}";
+                    var nhanvien = new NHANVIEN() { MANV = nextCode, TENNV = TENNV, GIOITINH = GIOITINH, SDT = SDT, EMAIL = EMAIL, LUONG = LUONG, VITRILAMVIEC = VITRILAMVIEC, NGSINH = NGSINH, NGVL = NGVL, DIACHI = DIACHI };
+                    DataProvider.Ins.DB.NHANVIENs.Add(nhanvien);
+                    DataProvider.Ins.DB.SaveChanges();
+                    ListNV.Add(nhanvien);
+                    MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
+                    LUONG = null;
+                    NGVL = NGSINH = null;
+                    MessageBox.Show("Thêm nhân viên thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             EditCommand = new RelayCommand<object>((p) =>
             {
@@ -153,22 +176,43 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                var nhanvien = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == SelectedItem.MANV).SingleOrDefault();
-                nhanvien.TENNV = TENNV;
-                nhanvien.GIOITINH = GIOITINH;
-                nhanvien.SDT = SDT;
-                nhanvien.EMAIL = EMAIL;
-                nhanvien.LUONG = LUONG;
-                nhanvien.VITRILAMVIEC = VITRILAMVIEC;
-                nhanvien.NGSINH = NGSINH;
-                nhanvien.NGVL = NGVL;
-                nhanvien.DIACHI = DIACHI;
-                DataProvider.Ins.DB.SaveChanges();
-                MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
-                LUONG = null;
-                NGVL = NGSINH = null;
-                MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                SelectedItem = null;
+                try
+                {
+                    var nhanvien = DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == SelectedItem.MANV).SingleOrDefault();
+                    nhanvien.TENNV = TENNV;
+                    nhanvien.GIOITINH = GIOITINH;
+                    nhanvien.SDT = SDT;
+                    nhanvien.EMAIL = EMAIL;
+                    nhanvien.LUONG = LUONG;
+                    nhanvien.VITRILAMVIEC = VITRILAMVIEC;
+                    nhanvien.NGSINH = NGSINH;
+                    nhanvien.NGVL = NGVL;
+                    nhanvien.DIACHI = DIACHI;
+                    DataProvider.Ins.DB.SaveChanges();
+                    MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
+                    LUONG = null;
+                    NGVL = NGSINH = null;
+                    MessageBox.Show("Sửa thông tin thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    SelectedItem = null;
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {
@@ -177,40 +221,75 @@ namespace QLKhachSan.ViewModel
                 return true;
             }, (p) =>
             {
-                MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
-                LUONG = null;
-                NGVL = NGSINH = null;
-                if (SelectedItem != null)
-                    SelectedItem = null;
+                try
+                {
+                    MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
+                    LUONG = null;
+                    NGVL = NGSINH = null;
+                    if (SelectedItem != null)
+                        SelectedItem = null;
+                }                
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             DeleteCommand = new RelayCommand<object>((p) =>
             {
                 return SelectedItem != null;
             }, (p) =>
-            {               
-                MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-                if (result == MessageBoxResult.OK)
+            {
+                try
                 {
-                    MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
-                    LUONG = null;
-                    NGVL = NGSINH = null;
-                    DataProvider.Ins.DB.NHANVIENs.Remove(SelectedItem);
-                    DataProvider.Ins.DB.SaveChanges();
-                    ListNV.Remove(SelectedItem);
-                    MessageBox.Show("Xóa nhân viên thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
+                        LUONG = null;
+                        NGVL = NGSINH = null;
+                        DataProvider.Ins.DB.NHANVIENs.Remove(SelectedItem);
+                        DataProvider.Ins.DB.SaveChanges();
+                        ListNV.Remove(SelectedItem);
+                        MessageBox.Show("Xóa nhân viên thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    SelectedItem = null;
                 }
-                SelectedItem = null;
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
             ToggleSearchCommand = new RelayCommand<object>((p) =>
             {
                 return true;
             }, (p) =>
             {
-                MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
-                LUONG = null;
-                NGVL = NGSINH = null;
-                SelectedItem = null;
-                IsSearching = !IsSearching;
+                try
+                {
+                    MANV = TENNV = GIOITINH = SDT = EMAIL = VITRILAMVIEC = DIACHI = string.Empty;
+                    LUONG = null;
+                    NGVL = NGSINH = null;
+                    SelectedItem = null;
+                    IsSearching = !IsSearching;
+                }                
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             });
         }
     }
