@@ -300,6 +300,8 @@ namespace QLKhachSan.ViewModel
                 try
                 {
                     var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.SOPHONG == SelectedItem1.SOPHONG).SingleOrDefault();
+                    var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == SelectedItem1.MAPDP).SingleOrDefault();
+                    pdp.NGTRA = DateTime.Now;
                     phong.TINHTRANG = "Trống";
                     phong.MAPDP = null;
                     DataProvider.Ins.DB.SaveChanges();

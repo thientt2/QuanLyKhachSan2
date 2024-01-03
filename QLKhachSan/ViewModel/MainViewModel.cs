@@ -108,6 +108,9 @@ namespace QLKhachSan.ViewModel
                         DatPhongWindow wd = new DatPhongWindow();
                         var addVM = wd.DataContext as PhieuDatPhongViewModel;
                         addVM.MANV = MANV;
+                        Bill wd1 = new Bill();
+                        var addVM1 = wd1.DataContext as BillViewModel;
+                        addVM1.MANV = MANV;
                     }
                     else p.Close();
                 }

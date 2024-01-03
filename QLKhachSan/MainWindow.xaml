@@ -954,6 +954,15 @@
                                         ToolTip="Xóa"
                                         Content="_Xóa">
                                         </Button>
+
+                                        <Button
+                                        Margin="-60,-130,0,0"
+                                        Command="{Binding UpdateCommand}"    
+                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                        ToolTip="Reload">
+                                            <materialDesign:PackIcon Kind="Reload" />
+                                        </Button>
                                     </StackPanel>
                                 </Grid>
                                 

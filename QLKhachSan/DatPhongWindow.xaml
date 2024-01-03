@@ -185,7 +185,7 @@
                                     <Grid Grid.Column="0">
                                         <StackPanel>
                                             <TextBlock Margin="30,10,30,0" Text="Mã nhân viên:" FontSize="15"></TextBlock>
-                                            <TextBox Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                            <TextBox Text="{Binding MANV,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                         </StackPanel>
                                     </Grid>
 

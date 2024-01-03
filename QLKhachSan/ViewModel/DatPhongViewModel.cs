@@ -154,6 +154,7 @@ namespace QLKhachSan.ViewModel
         public ICommand NhanPhongCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand UpdateCommand { get; set; }
         public ICommand SortAllCommand { get; set; }
         public ICommand SortCheckInCommand { get; set; }
         public ICommand SortBookedCommand { get; set; }
@@ -216,7 +217,9 @@ namespace QLKhachSan.ViewModel
             );
             NhanPhongCommand = new RelayCommand<object>((p) => 
             {
-                if (SelectedItem == null || SelectedItem.TRANGTHAI != "Đợi nhận phòng" || SelectedItem.NGNHAN.Value.Date != DateTime.Now.Date || DateTime.Now.Hour < 12)
+                if (SelectedItem == null || SelectedItem.TRANGTHAI != "Đợi nhận phòng" || DateTime.Now.Hour < 12)
+                    return false;
+                if (SelectedItem.NGDAT == SelectedItem.NGTRA && SelectedItem.NGNHAN.Value.Date != DateTime.Now.Date)
                     return false;
                 return true; 
             }, (p) =>
@@ -483,6 +486,13 @@ namespace QLKhachSan.ViewModel
                     MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
+            UpdateCommand = new RelayCommand<object>((p) =>
+            {
+                return true;
+            }, (p) =>
+            {
+                CapNhat();
+            });
         }
         public void CapNhat()
         {
@@ -520,9 +530,8 @@ namespace QLKhachSan.ViewModel
             }
             foreach (var pdp1 in OriginalPDP1)
             {
-                if (pdp1.NGNHAN < DateTime.Now && pdp1.TRANGTHAI == "Đợi nhận phòng")
+                if (pdp1.NGNHAN < DateTime.Now && pdp1.TRANGTHAI == "Đợi nhận phòng" && pdp1.NGNHAN != pdp1.NGDAT)
                     pdp1.TRANGTHAI = "Quá hạn nhận phòng";
-
 
                 var hd = DataProvider.Ins.DB.HOADONs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
                 if (hd != null)
@@ -538,9 +547,8 @@ namespace QLKhachSan.ViewModel
 
             foreach (var pdp1 in PDP1)
             {
-                if (pdp1.NGNHAN < DateTime.Now && pdp1.TRANGTHAI == "Đợi nhận phòng")
+                if (pdp1.NGNHAN < DateTime.Now && pdp1.TRANGTHAI == "Đợi nhận phòng" && pdp1.NGNHAN != pdp1.NGDAT)
                     pdp1.TRANGTHAI = "Quá hạn nhận phòng";
-
 
                 var hd = DataProvider.Ins.DB.HOADONs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
                 if (hd != null)

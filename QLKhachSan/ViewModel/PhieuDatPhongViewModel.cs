@@ -1,5 +1,6 @@
 ﻿using QLKhachSan.Model;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity.Infrastructure;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace QLKhachSan.ViewModel
 {
@@ -80,7 +82,7 @@ namespace QLKhachSan.ViewModel
         public ICommand AddCommand { get; set; }
         public ICommand ShowCommand { get; set; }
         public ICommand ShowCommand1 { get; set; }
-        public ICommand CancelCommand { get; set; } 
+        public ICommand CancelCommand { get; set; }
 
         public PhieuDatPhongViewModel()
         {
@@ -165,11 +167,17 @@ namespace QLKhachSan.ViewModel
             {
                 try
                 {
-                    TimeSpan newTime = new TimeSpan(18, 0, 0);
-                    NGNHAN = NGNHAN.Value.Date.Add(newTime);
-                    NGTRA = NGTRA.Value.Date.Add(newTime);
+                    if(NGDAT != NGNHAN)
+                    {
+                        TimeSpan newTime = new TimeSpan(18, 0, 0);
+                        NGNHAN = NGNHAN.Value.Date.Add(newTime);    
+                    }
+                    TimeSpan newTime1 = new TimeSpan(12, 0, 0);
+                    NGTRA = NGTRA.Value.Date.Add(newTime1);
                     if (NGNHAN >= NGTRA)
-                        throw new Exception("Ngày trả phải lớn hơn ngày nhận");
+                        throw new Exception("Ngày trả phải lớn hơn ngày nhận.");
+                    if (NGDAT > NGNHAN)
+                        throw new Exception("Ngày đặt phải nhỏ hơn ngày nhận.");
                     var pdp = new PHIEUDATPHONG() { MAPDP = MAPDP, MAKH = MAKH, MANV = MANV, NGDAT = NGDAT, NGNHAN = NGNHAN, NGTRA = NGTRA };
                     DataProvider.Ins.DB.PHIEUDATPHONGs.Add(pdp);
                     foreach (var phong in ListPhong)
@@ -192,7 +200,7 @@ namespace QLKhachSan.ViewModel
                     //ListPDP.Add(pdp);
                     DataProvider.Ins.DB.SaveChanges();
                     MessageBox.Show("Đặt phòng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                    TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = MANV = SDT = "";
+                    TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MAKH = SDT = "";
                     NGSINH = null;
                     SOPHONG = null;
                     NGDAT = NGNHAN = NGTRA = null;
@@ -220,19 +228,22 @@ namespace QLKhachSan.ViewModel
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    NGNHAN = null;
+                    NGDAT = null;
                     NGTRA = null;
+
                 }
             });
             CancelCommand = new RelayCommand<object>((p) =>
             {
-                if (TENKH != null || MANV != null || MALOAI != null || SOPHONG != null || NGDAT != null || NGNHAN != null || NGTRA != null)
+                if (TENKH == null && MANV == null && MALOAI == null && SOPHONG == null && NGDAT == null && NGNHAN == null && NGTRA == null)
                     return false;
                 return true;
             }, (p) =>
             {
                 try
                 {
-                    TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = MANV = "";
+                    TENKH = GIOITINH = SOCCCD = QUOCTICH = DIACHI = EMAIL = MALOAI = "";
                     MAKH = SDT = SOPHONG = null;
                     NGSINH = null;
                     NGDAT = NGNHAN = NGTRA = null;
@@ -241,7 +252,7 @@ namespace QLKhachSan.ViewModel
                 {
                     MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-            });
+            });        
         }
     }
 }

@@ -167,6 +167,12 @@ namespace QLKhachSan.ViewModel
                         DataProvider.Ins.DB.SaveChanges();
                     }
                     MessageBox.Show("Xuất file PDF và in hóa đơn thành công!");
+                    FrameworkElement window = p as FrameworkElement;
+                    var w = window as Window;
+                    if (w != null)
+                    {
+                        w.Close();
+                    }
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -240,14 +246,15 @@ namespace QLKhachSan.ViewModel
                     TONGTIEN = pdv.TONGTIEN;
                 }    
 
-                
-
-                SONGAY = (int)(NGTRA - NGNHAN).Value.Days + 1;
+                SONGAY = (int)(NGLAPHD - NGNHAN).Value.Days + 1;
+                if (NGLAPHD.Value.Hour > 12 && NGLAPHD.Value.Hour < NGNHAN.Value.Hour)
+                    SONGAY++;
                 //TimeSpan? KhoangCach = NGTRA - NGNHAN;
                 //if (KhoangCach.HasValue)
                 //    SONGAY = KhoangCach.Value.Days;
                 TIENPHONG = GIA * SONGAY;
                 THANHTIEN = TIENPHONG + TONGTIEN;
+                ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
                 ListCTPDV1 = new ObservableCollection<CTPDV1>();
                 //hiển thị thông qua binding TENDV?
                 //hiển thị thông qua bảng kết

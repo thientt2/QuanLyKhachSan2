@@ -411,3 +411,5 @@ C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\InfoWi
 C:\Users\truon\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\InfoWindow.baml
 C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\obj\Debug\InfoWindow.g.cs
 C:\Users\Thien\Source\Repos\QuanLyKhachSan2\QLKhachSan\obj\Debug\InfoWindow.baml
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\InfoWindow.g.cs
+C:\Users\TRUNG THONG\Source\Repos\thientt2\QuanLyKhachSan2\QLKhachSan\obj\Debug\InfoWindow.baml
