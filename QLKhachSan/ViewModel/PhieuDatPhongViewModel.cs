@@ -167,7 +167,8 @@ namespace QLKhachSan.ViewModel
             {
                 try
                 {
-                    if(NGDAT != NGNHAN)
+                    
+                    if (NGDAT != NGNHAN)
                     {
                         TimeSpan newTime = new TimeSpan(18, 0, 0);
                         NGNHAN = NGNHAN.Value.Date.Add(newTime);    

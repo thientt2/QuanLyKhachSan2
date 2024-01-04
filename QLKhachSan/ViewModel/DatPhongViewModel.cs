@@ -191,6 +191,7 @@ namespace QLKhachSan.ViewModel
                     DatPhongWindow wd = new DatPhongWindow();
                     var addVM = wd.DataContext as PhieuDatPhongViewModel;
                     addVM.MMALOAI = MaLoai;
+                    addVM.ListPDP = ListPDP;
                     wd.ShowDialog();
                     DataProvider.Ins.DB.SaveChanges();
                     CapNhat();
@@ -221,7 +222,7 @@ namespace QLKhachSan.ViewModel
                     return false;
                 if (SelectedItem.NGDAT == SelectedItem.NGTRA && SelectedItem.NGNHAN.Value.Date != DateTime.Now.Date)
                     return false;
-                return true; 
+                return true;
             }, (p) =>
             {
                 try
@@ -530,8 +531,19 @@ namespace QLKhachSan.ViewModel
             }
             foreach (var pdp1 in OriginalPDP1)
             {
+
                 if (pdp1.NGNHAN < DateTime.Now && pdp1.TRANGTHAI == "Đợi nhận phòng" && pdp1.NGNHAN != pdp1.NGDAT)
+                {
                     pdp1.TRANGTHAI = "Quá hạn nhận phòng";
+                    var p = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
+                    if(p!= null)
+                    {
+                        p.TINHTRANG = "Trống";
+                        p.MAPDP = null;
+                        DataProvider.Ins.DB.SaveChanges();
+                    }    
+                    
+                }
 
                 var hd = DataProvider.Ins.DB.HOADONs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
                 if (hd != null)
@@ -548,7 +560,16 @@ namespace QLKhachSan.ViewModel
             foreach (var pdp1 in PDP1)
             {
                 if (pdp1.NGNHAN < DateTime.Now && pdp1.TRANGTHAI == "Đợi nhận phòng" && pdp1.NGNHAN != pdp1.NGDAT)
+                {
                     pdp1.TRANGTHAI = "Quá hạn nhận phòng";
+                    var p = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
+                    if (p != null)
+                    {
+                        p.TINHTRANG = "Trống";
+                        p.MAPDP = null;
+                        DataProvider.Ins.DB.SaveChanges();
+                    }
+                }
 
                 var hd = DataProvider.Ins.DB.HOADONs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
                 if (hd != null)

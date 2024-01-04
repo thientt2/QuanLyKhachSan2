@@ -139,6 +139,7 @@ namespace QLKhachSan.ViewModel
             ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
             HoaDon = new ObservableCollection<HOADON>(DataProvider.Ins.DB.HOADONs);
             Init();
+            MANV = MANV;
 
             PrintCommand = new RelayCommand<object>((p) =>
             {
@@ -155,14 +156,21 @@ namespace QLKhachSan.ViewModel
                     XuatPDF();
                     var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = LOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
                     DataProvider.Ins.DB.HOADONs.Add(hd);
+                    var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.SOPHONG == SOPHONG1).SingleOrDefault();
+                    var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == MAPDP1).SingleOrDefault();
+                    pdp.NGTRA = DateTime.Now;
+                    phong.TINHTRANG = "Trống";
+                    phong.MAPDP = null;                    
                     DataProvider.Ins.DB.SaveChanges();
                     MessageBox.Show("Xuất file PDF và in hóa đơn thành công!");
+                    MessageBox.Show($"Thanh toán phòng {SOPHONG1} thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                     FrameworkElement window = p as FrameworkElement;
                     var w = window as Window;
                     if (w != null)
                     {
                         w.Close();
                     }
+
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -190,17 +198,17 @@ namespace QLKhachSan.ViewModel
             var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == MAPDP1).SingleOrDefault();
             var loaiphong = DataProvider.Ins.DB.LOAIPHONGs.Where(x => x.MALOAI == MALOAI1).SingleOrDefault();
             var pdv = DataProvider.Ins.DB.PHIEUDICHVUs.Where(x => x.MAPDP == MAPDP1).SingleOrDefault();
-
+            var nv= DataProvider.Ins.DB.NHANVIENs.Where(x => x.MANV == MANV).SingleOrDefault();
             int maxCode = HoaDon.Max(hd => int.Parse(hd.MAHD.Substring(2)));
             string nextCode = $"HD{maxCode + 1:000}";
             MAHD = nextCode;
 
-            if (pdp != null && loaiphong != null)
+            if (pdp != null && loaiphong != null&&nv!=null)
             {
                 TONGTIEN = 0;
                 MAPDP = pdp.MAPDP;
                 NGLAPHD = DateTime.Now;
-                TENNV = pdp.NHANVIEN.TENNV;
+                TENNV = nv.TENNV;
                 TENKH = pdp.KHACHHANG.TENKH;
                 SOCCCD = pdp.KHACHHANG.SOCCCD;
                 SDT = pdp.KHACHHANG.SDT;

@@ -265,15 +265,10 @@ namespace QLKhachSan.ViewModel
                     addVM.SOPHONG1 = SelectedItem1.SOPHONG;
                     addVM.MALOAI1 = SelectedItem1.MALOAI;
                     addVM.MAPDP1 = SelectedItem1.MAPDP;
+
                     addVM.Init();
                     wd.ShowDialog();
-                    var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.SOPHONG == SelectedItem1.SOPHONG).SingleOrDefault();
-                    var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == SelectedItem1.MAPDP).SingleOrDefault();
-                    pdp.NGTRA = DateTime.Now;
-                    phong.TINHTRANG = "Trống";
-                    phong.MAPDP = null;
-                    DataProvider.Ins.DB.SaveChanges();
-                    MessageBox.Show($"Thanh toán phòng {SelectedItem1.SOPHONG} thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
                 }
                 catch (DbEntityValidationException ex)
                 {
