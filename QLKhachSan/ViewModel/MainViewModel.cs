@@ -3,6 +3,7 @@ using QLKhachSan.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
@@ -14,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Threading;
 using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 using static QLKhachSan.ViewModel.BasicViewModel;
 
@@ -22,6 +24,41 @@ namespace QLKhachSan.ViewModel
 
     public class MainViewModel : BasicViewModel
     {
+        private string _currentTime;
+
+        public string CurrentTime
+        {
+            get { return _currentTime; }
+            set
+            {
+                if (_currentTime != value)
+                {
+                    _currentTime = value;
+                    OnPropertyChanged(nameof(CurrentTime));
+                }
+            }
+        }
+
+        private DispatcherTimer timer;
+
+        private void InitializeTimer()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            UpdateClock();
+        }
+
+        private void UpdateClock()
+        {
+            CurrentTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+        }
+
         private ObservableCollection<NHANVIEN> _ListNV;
         public ObservableCollection<NHANVIEN> ListNV { get { return _ListNV; } set { _ListNV = value; OnPropertyChanged(); } }
         private string _MANV;
@@ -65,6 +102,7 @@ namespace QLKhachSan.ViewModel
 
         public MainViewModel()
         {
+            InitializeTimer();
             LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 try { IsLoaded = true;

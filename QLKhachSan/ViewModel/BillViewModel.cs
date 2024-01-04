@@ -153,19 +153,9 @@ namespace QLKhachSan.ViewModel
                 try
                 {
                     XuatPDF();
-                    var hd1 = DataProvider.Ins.DB.HOADONs.Where(x => x.MAHD == MAHD).SingleOrDefault();
-                    if (hd1 != null)
-                    {
-                        hd1.THANHTIEN = THANHTIEN;
-                        hd1.NGLAPHD = DateTime.Now;
-                        DataProvider.Ins.DB.SaveChanges();
-                    }
-                    else
-                    {
-                        var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = LOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
-                        DataProvider.Ins.DB.HOADONs.Add(hd);
-                        DataProvider.Ins.DB.SaveChanges();
-                    }
+                    var hd = new HOADON { MAHD = MAHD, MAPDP = MAPDP, LOAI = LOAI, NGLAPHD = NGLAPHD, THANHTIEN = THANHTIEN };
+                    DataProvider.Ins.DB.HOADONs.Add(hd);
+                    DataProvider.Ins.DB.SaveChanges();
                     MessageBox.Show("Xuất file PDF và in hóa đơn thành công!");
                     FrameworkElement window = p as FrameworkElement;
                     var w = window as Window;
@@ -188,26 +178,6 @@ namespace QLKhachSan.ViewModel
                 {
                     MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            });
-            CloseCommand = new RelayCommand<object>((p) =>
-            {
-                return true;
-            }, (p) =>
-            {
-                // tất cả null
-                try
-                {
-                    FrameworkElement window = p as FrameworkElement;
-                    var w = window as Window;
-                    if (w != null)
-                    {
-                        w.Close();
-                    }
-                }                
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);

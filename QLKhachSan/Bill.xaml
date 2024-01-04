@@ -22,263 +22,243 @@
         Name="BillW"
         DataContext="{StaticResource BillVM}"
         WindowStartupLocation="CenterScreen"
-         Height="850" Width="1050">
+         Height="770" Width="1050">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="700"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
+        <Grid Panel.ZIndex="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <uc:ControlBarUC x:Name="ucControlBar" HeaderText="Hóa Đơn Thanh Toán" />
-        </Grid>
-
-        <materialDesign:Card Grid.Row="1" Margin="20,20,20,0">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid Grid.Column="0">
-                        <Image Source="Images/Bill.png" Stretch="UniformToFill"/>
-                    </Grid>
-
-                    <Grid Grid.Column="1">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Margin="10, 20, 0, 0" FontSize="30" Text="La Opera Hotel" FontFamily="Time New Roman" FontWeight="Bold" Foreground="DarkGreen"></TextBlock>
-                            <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
-                                <materialDesign:PackIcon Kind="ArrowRightDropCircle" VerticalAlignment="Center"/>
-                                <TextBlock Text="Address: La Opera Hotel, 01 Ngo Van Nam, District 1, Ho Chi Minh City." FontSize="20" Margin="10,0,0,0"></TextBlock>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
-                                <materialDesign:PackIcon Kind="ArrowRightDropCircle" VerticalAlignment="Center"/>
-                                <TextBlock Text="Phone: 028.39150505" FontSize="20" Margin="10,0,0,0"></TextBlock>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
-                                <materialDesign:PackIcon Kind="ArrowRightDropCircle" VerticalAlignment="Center"/>
-                                <TextBlock Text="Website: https://www.laoperasghotel.com" FontSize="20" Margin="10,0,0,0"></TextBlock>
-                            </StackPanel>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-
-                <Grid Grid.Row="1">
-                    <TextBlock Text="HÓA ĐƠN THANH TOÁN" HorizontalAlignment="Center" FontSize="40" Foreground="DarkGreen" Margin="0,0,0,0"></TextBlock>
-                </Grid>
-
-                <Grid Grid.Row="2">
-                    <StackPanel Margin="30,20,30,0" Orientation="Horizontal">
-                        <TextBlock FontSize="20">
-                            <Run Text="Mã hóa đơn: "/>
-                            <Run Text="{Binding MAHD,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                        </TextBlock>
-
-                        <TextBlock FontSize="20" Margin="80,0,0,0">
-                            <Run Text="Nhân viên nhập: "/>
-                            <Run Text="{Binding TENNV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/> 
-                        </TextBlock>
-
-                        <TextBlock FontSize="20" Margin="80,0,0,0">
-                            <Run Text="Ngày lập:"/>
-                            <Run Text="{Binding NGLAPHD,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=dd/MM/yyyy HH:mm:ss}"/> 
-                        </TextBlock>
-                    </StackPanel>
-                </Grid>
-
-                <Grid Grid.Row="3">
-                    <Separator Margin="20,20,20,10" ></Separator>
-                </Grid>
-
-                <Grid Grid.Row="4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid Grid.Column="0">
-                        <StackPanel Width ="150" Orientation="Vertical" Margin="0,10,0,0">
-                            <TextBlock FontSize="20">
-                                <Run Text="Tên khách hàng: "/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="CCCD: "/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="SĐT: "/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="Địa chỉ: "/>
-                            </TextBlock>
-                        </StackPanel>
-                    </Grid>
-
-                    <Grid Grid.Column="1">
-                        <StackPanel Orientation="Vertical" Margin="-40,10,10,0">
-                            <TextBlock FontSize="20">
-                                <Run Text="{Binding TENKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="-70,20,0,0">
-                                <Run Text="{Binding SOCCCD,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="-70,20,0,0">
-                                <Run Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="-70,20,0,0">
-                                <Run Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                            </TextBlock>
-                        </StackPanel>
-                    </Grid>
-
-                    <Grid Grid.Column="2">
-                        <StackPanel Orientation="Vertical" Margin="50,10,30,0">
-                            <TextBlock FontSize="20">
-                                <Run Text="Số phòng: "/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="Loại phòng: "/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="Đơn giá: "/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="Số ngày ở: "/>
-                            </TextBlock>
-                        </StackPanel>
-                    </Grid>
-
-                    <Grid Grid.Column="3">
-                        <StackPanel Orientation="Vertical" Margin="-80,10,40,0">
-                            <TextBlock FontSize="20">
-                                <Run Text="{Binding SOPHONG,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="{Binding LOAI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="{Binding GIA,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat={}{0:N0} VND}"/>
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="{Binding SONGAY,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                            </TextBlock>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-
-                <Grid Grid.Row="5">
-                    <Separator Margin="20,20,20,10" ></Separator>
-                </Grid>
-
-                <Grid Grid.Row="6">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <materialDesign:Card Height ="150" Grid.Column="0" Margin="30,10,20,20">
-                        <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
-                            <ListView ItemsSource="{Binding ListCTPDV1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" RenderTransformOrigin="0.5,0.49">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridView.ColumnHeaderContainerStyle>
-                                            <Style>
-                                                <Setter Property="Control.Padding" Value="10" />
-                                            </Style>
-                                        </GridView.ColumnHeaderContainerStyle>
-                                        <GridViewColumn Header="Tên dịch vụ" Width="200" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
-                                        <GridViewColumn Header="Số lượng" Width="Auto" DisplayMemberBinding="{Binding SLDV}"></GridViewColumn>
-                                        <GridViewColumn Header="Tổng tiền" Width="150" DisplayMemberBinding="{Binding GIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </ScrollViewer>
-                    </materialDesign:Card>
-
-                    <Grid Grid.Column="1">
-                        <StackPanel Orientation="Vertical" Margin="60,10,10,0">
-                            <TextBlock FontSize="20">
-                                <Run Text="Tiền phòng:   "/>
-                                <Run Text="{Binding TIENPHONG,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, StringFormat={}{0:N0} VND}"/> 
-                            </TextBlock>
-
-                            <TextBlock FontSize="20" Margin="0,20,0,0">
-                                <Run Text="Tiền dịch vụ:  "/>
-                                <Run Text="{Binding TONGTIEN,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, StringFormat={}{0:N0} VND}"/> 
-                            </TextBlock>
-
-                            <Separator Margin="0,20,0,10" ></Separator>
-
-                            <TextBlock FontSize="20" Margin="0,10,0,0">
-                                <Run Text="Thành tiền:    "/>
-                                <Run Text="{Binding THANHTIEN,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, StringFormat={}{0:N0} VND}"/> 
-                            </TextBlock>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
+            <Grid Grid.Row="0">
+                <uc:ControlBarUC x:Name="ucControlBar" HeaderText="Hóa Đơn Thanh Toán" />
             </Grid>
-        </materialDesign:Card>
 
-        <Grid Grid.Row="2">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button
-                            Command="{Binding PrintCommand}"
-                            Background="LightCoral"
-                            Foreground="Black"
-                            Margin="20,20,50,20"
-                            FontSize="20"
-                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            Width="100"
-                            Height="40"
-                            ToolTip="In"
-                            Content="_In">
-                </Button>
+            <materialDesign:Card Grid.Row="1" Margin="20,20,20,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
 
-                <Button
-                            Command="{Binding CloseCommand}"
-                            CommandParameter="{Binding ElementName=BillW}"
-                            Background="DarkGray"
-                            Foreground="Black"
-                            Margin="20,20,40,20"
-                            FontSize="20"
-                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            Width="100"
-                            Height="40"
-                            ToolTip="Đóng"
-                            Content="_Đóng">
-                </Button>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Image Source="Images/Bill.png" Stretch="UniformToFill"/>
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Margin="10, 20, 0, 0" FontSize="30" Text="La Opera Hotel" FontFamily="Time New Roman" FontWeight="Bold" Foreground="DarkGreen"></TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                                    <materialDesign:PackIcon Kind="ArrowRightDropCircle" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Address: La Opera Hotel, 01 Ngo Van Nam, District 1, Ho Chi Minh City." FontSize="20" Margin="10,0,0,0"></TextBlock>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                                    <materialDesign:PackIcon Kind="ArrowRightDropCircle" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Phone: 028.39150505" FontSize="20" Margin="10,0,0,0"></TextBlock>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                                    <materialDesign:PackIcon Kind="ArrowRightDropCircle" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Website: https://www.laoperasghotel.com" FontSize="20" Margin="10,0,0,0"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <TextBlock Text="HÓA ĐƠN THANH TOÁN" HorizontalAlignment="Center" FontSize="40" Foreground="DarkGreen" Margin="0,0,0,0"></TextBlock>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <StackPanel Margin="30,20,30,0" Orientation="Horizontal">
+                            <TextBlock FontSize="20">
+                        <Run Text="Mã hóa đơn: "/>
+                        <Run Text="{Binding MAHD,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                            </TextBlock>
+
+                            <TextBlock FontSize="20" Margin="80,0,0,0">
+                        <Run Text="Nhân viên nhập: "/>
+                        <Run Text="{Binding TENNV,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                            </TextBlock>
+
+                            <TextBlock FontSize="20" Margin="80,0,0,0">
+                        <Run Text="Ngày lập:"/>
+                        <Run Text="{Binding NGLAPHD,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat=dd/MM/yyyy HH:mm:ss}"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Separator Margin="20,20,20,10" ></Separator>
+                    </Grid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <StackPanel Width ="150" Orientation="Vertical" Margin="0,10,0,0">
+                                <TextBlock FontSize="20">
+                            <Run Text="Tên khách hàng: "/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="0,20,0,0">
+                            <Run Text="CCCD: "/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="0,20,0,0">
+                            <Run Text="SĐT: "/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="0,20,0,0">
+                            <Run Text="Địa chỉ: "/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <StackPanel Orientation="Vertical" Margin="-40,10,10,0">
+                                <TextBlock FontSize="20">
+                            <Run Text="{Binding TENKH,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="-70,20,0,0">
+                            <Run Text="{Binding SOCCCD,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="-70,20,0,0">
+                            <Run Text="{Binding SDT,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="-70,20,0,0">
+                            <Run Text="{Binding DIACHI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Column="2">
+                            <StackPanel Orientation="Vertical" Margin="50,10,30,0">
+                                <TextBlock FontSize="20">
+                            <Run Text="Số phòng: "/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="0,20,0,0">
+                            <Run Text="Loại phòng: "/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="0,20,0,0">
+                            <Run Text="Đơn giá: "/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="0,20,0,0">
+                            <Run Text="Số ngày ở: "/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Column="3">
+                            <StackPanel Orientation="Vertical" Margin="-80,10,40,0">
+                                <TextBlock FontSize="20">
+                            <Run Text="{Binding SOPHONG,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="0,20,0,0">
+                            <Run Text="{Binding LOAI,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="0,20,0,0">
+                            <Run Text="{Binding GIA,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,StringFormat={}{0:N0} VND}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="0,20,0,0">
+                            <Run Text="{Binding SONGAY,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="5">
+                        <Separator Margin="20,20,20,10" ></Separator>
+                    </Grid>
+
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <materialDesign:Card Height ="150" Grid.Column="0" Margin="30,10,20,20">
+                            <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="auto">
+                                <ListView ItemsSource="{Binding ListCTPDV1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" RenderTransformOrigin="0.5,0.49">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridView.ColumnHeaderContainerStyle>
+                                                <Style>
+                                                    <Setter Property="Control.Padding" Value="10" />
+                                                </Style>
+                                            </GridView.ColumnHeaderContainerStyle>
+                                            <GridViewColumn Header="Tên dịch vụ" Width="200" DisplayMemberBinding="{Binding TENDV}"></GridViewColumn>
+                                            <GridViewColumn Header="Số lượng" Width="Auto" DisplayMemberBinding="{Binding SLDV}"></GridViewColumn>
+                                            <GridViewColumn Header="Tổng tiền" Width="150" DisplayMemberBinding="{Binding GIA, StringFormat={}{0:N0} VND}"></GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </ScrollViewer>
+                        </materialDesign:Card>
+
+                        <Grid Grid.Column="1">
+                            <StackPanel Orientation="Vertical" Margin="60,10,10,0">
+                                <TextBlock FontSize="20">
+                            <Run Text="Tiền phòng:   "/>
+                            <Run Text="{Binding TIENPHONG,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, StringFormat={}{0:N0} VND}"/>
+                                </TextBlock>
+
+                                <TextBlock FontSize="20" Margin="0,20,0,0">
+                            <Run Text="Tiền dịch vụ:  "/>
+                            <Run Text="{Binding TONGTIEN,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, StringFormat={}{0:N0} VND}"/>
+                                </TextBlock>
+
+                                <Separator Margin="0,20,0,10" ></Separator>
+
+                                <TextBlock FontSize="20" Margin="0,10,0,0">
+                            <Run Text="Thành tiền:    "/>
+                            <Run Text="{Binding THANHTIEN,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay, StringFormat={}{0:N0} VND}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
 
 
-            </StackPanel>
         </Grid>
+        <Button
+            Margin="0,80,20,0"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Right"
+            Panel.ZIndex="2"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Command="{Binding PrintCommand}"
+            Style="{StaticResource MaterialDesignIconForegroundButton}" Height="50" Width="50">
+            <materialDesign:PackIcon Kind="PrinterOutline" Width="50" Height="50" VerticalAlignment="Center" />
+        </Button>
     </Grid>
 </Window>

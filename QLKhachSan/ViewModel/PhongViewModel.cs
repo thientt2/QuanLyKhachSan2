@@ -248,7 +248,7 @@ namespace QLKhachSan.ViewModel
                     MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
-            InHoaDonCommand = new RelayCommand<object>((p) => 
+            ThanhToanCommand = new RelayCommand<object>((p) => 
             {
                 if (SelectedItem1 == null)
                     return false;
@@ -267,38 +267,6 @@ namespace QLKhachSan.ViewModel
                     addVM.MAPDP1 = SelectedItem1.MAPDP;
                     addVM.Init();
                     wd.ShowDialog();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var validationErrors in ex.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            MessageBox.Show($"Lỗi: {validationError.ErrorMessage}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    }
-                }
-                catch (DbUpdateException ex)
-                {
-                    MessageBox.Show($"Lỗi cập nhật cơ sở dữ liệu: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            );
-            ThanhToanCommand = new RelayCommand<object>((p) => 
-            {
-                if (SelectedItem1 == null)
-                    return false;
-                if (SelectedItem1.TINHTRANG != "Đang được sử dụng")
-                    return false;
-                return true; 
-            }, (p) =>
-            {
-                try
-                {
                     var phong = DataProvider.Ins.DB.PHONGs.Where(x => x.SOPHONG == SelectedItem1.SOPHONG).SingleOrDefault();
                     var pdp = DataProvider.Ins.DB.PHIEUDATPHONGs.Where(x => x.MAPDP == SelectedItem1.MAPDP).SingleOrDefault();
                     pdp.NGTRA = DateTime.Now;

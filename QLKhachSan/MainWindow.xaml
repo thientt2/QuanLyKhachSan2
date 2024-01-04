@@ -122,7 +122,6 @@
                                              Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                              Width="80"
                                              Height="40"
-                                             ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                              Content="_Tất cả">
                                         </Button>
 
@@ -135,7 +134,6 @@
                                              Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                              Width="120"
                                              Height="40"
-                                             ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                              Content="_Phòng trống">
                                         </Button>
 
@@ -148,7 +146,6 @@
                                              Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                              Width="170"
                                              Height="40"
-                                             ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                              Content="_Phòng đang sử dụng">
                                         </Button>
 
@@ -161,7 +158,6 @@
                                              Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                              Width="170"
                                              Height="40"
-                                             ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                              Content="_Phòng đã được đặt">
                                         </Button>
                                     </StackPanel>
@@ -334,7 +330,6 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Thêm"
                                         Content="_Thêm">
                                     </Button>
 
@@ -346,7 +341,6 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Chỉnh sửa"
                                         Content="_Chỉnh sửa">
 
                                     </Button>
@@ -359,7 +353,6 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Hủy"
                                         Content="_Hủy">
                                     </Button>
 
@@ -371,7 +364,6 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Xóa"
                                         Content="_Xóa">
                                     </Button>
                                 </StackPanel>
@@ -462,7 +454,6 @@
                                         Width ="60"
                                         Margin="10, 40, 300, 30"                 
                                         Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}"
-                                        ToolTip="Chế độ tìm kiếm"
                                         Command="{Binding ToggleSearchCommand}"/>
 
                                     <Button
@@ -472,7 +463,6 @@
                                         Margin="30"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Thêm"
                                         Content="_Thêm">
                                     </Button>
 
@@ -483,7 +473,6 @@
                                         Margin="30"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Chỉnh sửa"
                                         Content="_Chỉnh sửa">
                                     </Button>
 
@@ -494,7 +483,6 @@
                                         Margin="30"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Hủy"
                                         Content="_Hủy" >
                                     </Button>
 
@@ -505,7 +493,6 @@
                                         Margin="30"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Xóa"
                                         Content="_Xóa">
                                     </Button>
                                 </StackPanel>
@@ -599,7 +586,6 @@
                                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                                 Width="100"
                                                 Height="40"
-                                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                                 Content="_Thêm">
                                             </Button>
 
@@ -611,7 +597,6 @@
                                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                                 Width="100"
                                                 Height="40"
-                                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                                 Content="_Chỉnh sửa">           
                                             </Button>
 
@@ -623,7 +608,6 @@
                                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                                 Width="100"
                                                 Height="40"
-                                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                                 Content="_Hủy">         
                                             </Button>
 
@@ -635,7 +619,6 @@
                                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                                 Width="100"
                                                 Height="40"
-                                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                                 Content="_Xóa">     
                                             </Button>
                                         </StackPanel>
@@ -697,31 +680,17 @@
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Width="110"
                                             Height="40"
-                                            ToolTip="Đặt dịch vụ"
                                             Content="_Đặt dịch vụ">
                                         </Button>
 
                                         <Button
-                                            Command="{Binding InHoaDonCommand}"
+                                            Command="{Binding ThanhToanCommand}"
                                             Background="LightBlue"
                                             Foreground="Black"
                                             Margin="30"
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Width="110"
                                             Height="40"
-                                            ToolTip="Hóa đơn"
-                                            Content="_Hóa đơn">
-                                        </Button>
-
-                                        <Button
-                                            Command="{Binding ThanhToanCommand}"
-                                            Background="Green"
-                                            Foreground="Black"
-                                            Margin="30"
-                                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                            Width="110"
-                                            Height="40"
-                                            ToolTip="Thanh toán"
                                             Content="_Thanh toán">
                                         </Button>
                                     </StackPanel>
@@ -777,7 +746,6 @@
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Width="100"
                                             Height="40"
-                                            ToolTip="Chỉnh sửa"
                                             Content="_Chỉnh sửa">
                                         </Button>
 
@@ -789,7 +757,6 @@
                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                             Width="100"
                                             Height="40"
-                                            ToolTip="Hủy"
                                             Content="_Hủy">
                                         </Button>
                                     </StackPanel>
@@ -915,7 +882,6 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Gia hạn"
                                         Content="_Gia hạn">
                                         </Button>
 
@@ -927,7 +893,6 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Đặt phòng"
                                         Content="_Đặt phòng">
                                         </Button>
 
@@ -939,7 +904,6 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="110"
                                         Height="40"
-                                        ToolTip="Nhận phòng"
                                         Content="_Nhận phòng">
                                         </Button>
 
@@ -951,7 +915,6 @@
                                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Width="100"
                                         Height="40"
-                                        ToolTip="Xóa"
                                         Content="_Xóa">
                                         </Button>
 
@@ -959,8 +922,7 @@
                                         Margin="-60,-130,0,0"
                                         Command="{Binding UpdateCommand}"    
                                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                                        ToolTip="Reload">
+                                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
                                             <materialDesign:PackIcon Kind="Reload" />
                                         </Button>
                                     </StackPanel>
@@ -1207,6 +1169,7 @@
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
 
@@ -1237,7 +1200,7 @@
                         </Grid>
 
                         <Grid Grid.Row="4">
-                            <StackPanel Margin="70,30,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                            <StackPanel Margin="70,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Account" Height="20"/>
                                 <TextBlock Margin="10,0,0,0" HorizontalAlignment="Center" FontSize="20">
                                     <Run  Text="Họ và tên:  "></Run>
@@ -1298,6 +1261,16 @@
                         </Grid>
 
                         <Grid Grid.Row="11">
+                            <StackPanel Margin="70,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Clock" Height="20"/>
+                                <TextBlock x:Name="txtClock" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">
+                                    <Run Text=" "></Run>
+                                    <Run Text="{Binding CurrentTime, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="12">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                                 <Button
@@ -1305,7 +1278,7 @@
                                     Command="{Binding ChangePWCommand}" CommandParameter="{Binding ElementName=ChangePW}"
                                     Background="LightGray"
                                     Foreground="Black"
-                                    Margin="40,0,0,0"
+                                    Margin="40,0,0,30"
                                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                     Width="120"
                                     Height="40"
@@ -1318,7 +1291,7 @@
                                     Command="{Binding LogOutCommand}" CommandParameter="{Binding ElementName=LogOut}"
                                     Background="LightGray"
                                     Foreground="Black"
-                                    Margin="40"
+                                    Margin="40,0,40,30"
                                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                     Width="120"
                                     Height="40"
