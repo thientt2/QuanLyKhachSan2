@@ -35,6 +35,16 @@ namespace QLKhachSan.ViewModel
             }
         }
 
+        private int _Date;
+
+        public int Date
+        {
+            get { return _Date; }
+            set
+            {
+                _Date = value;
+            }
+        }
 
         private DispatcherTimer timer;
 
@@ -54,8 +64,8 @@ namespace QLKhachSan.ViewModel
 
         private void UpdateRemainingTime()
         {
-            RemainingTime = NGTRA - DateTime.Now;
 
+            RemainingTime = NGTRA - DateTime.Now;           
             // Kiểm tra nếu thời gian còn lại là âm (đã kết thúc)
             if (RemainingTime?.TotalSeconds <= 0)
             {

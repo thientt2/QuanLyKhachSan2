@@ -265,12 +265,16 @@ namespace QLKhachSan.ViewModel
                 using (PdfDocument pdf = new PdfDocument(writer))
                 {
                     iText.Layout.Document document = new iText.Layout.Document(pdf);
-                    document.Add(new iText.Layout.Element.Paragraph($"Thông tin hóa đơn: {MAHD}"));
-                    document.Add(new iText.Layout.Element.Paragraph($"Khách hàng: {TENKH}"));
-                    document.Add(new iText.Layout.Element.Paragraph($"Phòng: {SOPHONG}"));
-                    document.Add(new iText.Layout.Element.Paragraph($"Ngày nhận phòng: {NGNHAN}"));
-                    document.Add(new iText.Layout.Element.Paragraph($"Ngày trả phòng: {NGTRA}"));
-                    document.Add(new iText.Layout.Element.Paragraph($"Tổng cộng: {THANHTIEN}"));
+                    document.Add(new iText.Layout.Element.Paragraph("------------------------------------------------------------------"));
+                    document.Add(new iText.Layout.Element.Paragraph("                                              "));
+                    document.Add(new iText.Layout.Element.Paragraph($"        Bill Code: {MAHD}                     "));
+                    document.Add(new iText.Layout.Element.Paragraph($"        Guest: {TENKH}                   "));
+                    document.Add(new iText.Layout.Element.Paragraph($"        Room: {SOPHONG}                      "));
+                    document.Add(new iText.Layout.Element.Paragraph($"        Check-in date: {NGNHAN}               "));
+                    document.Add(new iText.Layout.Element.Paragraph($"        Check-out date: {NGTRA}               "));
+                    document.Add(new iText.Layout.Element.Paragraph($"        Total: {THANHTIEN}                    "));
+                    document.Add(new iText.Layout.Element.Paragraph($"                                              "));
+                    document.Add(new iText.Layout.Element.Paragraph("------------------------------------------------------------------"));
                     document.Close();
                 }
             }

@@ -536,13 +536,13 @@ namespace QLKhachSan.ViewModel
                 {
                     pdp1.TRANGTHAI = "Quá hạn nhận phòng";
                     var p = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
-                    if(p!= null)
+                    if (p != null && p.TINHTRANG == "Đã đặt")
                     {
                         p.TINHTRANG = "Trống";
                         p.MAPDP = null;
                         DataProvider.Ins.DB.SaveChanges();
-                    }    
-                    
+                    }
+
                 }
 
                 var hd = DataProvider.Ins.DB.HOADONs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
@@ -563,7 +563,7 @@ namespace QLKhachSan.ViewModel
                 {
                     pdp1.TRANGTHAI = "Quá hạn nhận phòng";
                     var p = DataProvider.Ins.DB.PHONGs.Where(x => x.MAPDP == pdp1.MAPDP).SingleOrDefault();
-                    if (p != null)
+                    if (p != null&&p.TINHTRANG=="Đã đặt")
                     {
                         p.TINHTRANG = "Trống";
                         p.MAPDP = null;

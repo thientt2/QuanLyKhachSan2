@@ -31,6 +31,7 @@ namespace QLKhachSan.UserControlKS
                                 NGDAT = phong.PHIEUDATPHONG.NGDAT,
                                 NGNHAN = phong.PHIEUDATPHONG.NGNHAN,
                                 NGTRA = phong.PHIEUDATPHONG.NGTRA,
+                                Date= (phong.PHIEUDATPHONG.NGTRA-DateTime.Now).Value.Days,
                                 TENKH = phong.PHIEUDATPHONG.KHACHHANG.TENKH,
                                 GIOITINH = phong.PHIEUDATPHONG.KHACHHANG.GIOITINH,
                                 SDT= phong.PHIEUDATPHONG.KHACHHANG.SDT,
