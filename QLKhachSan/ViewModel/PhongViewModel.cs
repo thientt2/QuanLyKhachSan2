@@ -149,22 +149,19 @@ namespace QLKhachSan.ViewModel
                 ListNumber.Add(i);
             DatDichVuCommand = new RelayCommand<object>((p) => 
             {
-                return true; 
+                if (SelectedItem1 == null)
+                    return false;
+                if (SelectedItem1.TINHTRANG != "Đang được sử dụng")
+                    return false;
+                return true;
             }, (p) =>
             {
                 try
                 {
-                    ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
-                    SoPhong = new List<string>();
-                    foreach (var phong in ListPhong)
-                    {
-                        if (phong.TINHTRANG == "Đang được sử dụng")
-                            SoPhong.Add(phong.SOPHONG);
-                    }
                     DatDichVuWindow wd = new DatDichVuWindow();
                     var addVM = wd.DataContext as PhieuDatDichVuViewModel;
                     addVM.TTENDV = TenDV;
-                    addVM.SSOPHONG = SoPhong;
+                    addVM.SOPHONG = SOPHONG;
                     addVM.LISTNUMBER = ListNumber;
                     wd.ShowDialog();
                 }

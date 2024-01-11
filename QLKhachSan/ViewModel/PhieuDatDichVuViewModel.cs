@@ -111,12 +111,10 @@ namespace QLKhachSan.ViewModel
 
         public PhieuDatDichVuViewModel()
         {
-            string selectedRoom = null;
             ListDV = new ObservableCollection<DICHVU>(DataProvider.Ins.DB.DICHVUs);
             ListPDV = new ObservableCollection<PHIEUDICHVU>(DataProvider.Ins.DB.PHIEUDICHVUs);
             ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
             ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
-            SSOPHONG = new List<string>();
             ListNumber = new List<int?>();
             SLDV = 1;
             int same = 0;
@@ -133,27 +131,24 @@ namespace QLKhachSan.ViewModel
                 }
             });
 
-            ShowCommand1 = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
+            ShowCommand1 = new RelayCommand<TextBox>((p) => { return true; }, (p) =>
             {
                 try
                 {
                     ListCTPDV1 = new ObservableCollection<CTPDV1>();
-                    if (SOPHONG != null)
+                    ListPhong = new ObservableCollection<PHONG>(DataProvider.Ins.DB.PHONGs);
+                    var pdp = ListPhong.FirstOrDefault(phong => phong.SOPHONG == SOPHONG);
+                    MAPDP = pdp.MAPDP;
+                    var phieuDichVu = ListPDV.FirstOrDefault(pdv => pdv.MAPDP == MAPDP);
+                    if (phieuDichVu == null)
                     {
-                        selectedRoom = SOPHONG;
-                        var pdp = ListPhong.FirstOrDefault(phong => phong.SOPHONG == selectedRoom);
-                        MAPDP = pdp.MAPDP;
-                        var phieuDichVu = ListPDV.FirstOrDefault(pdv => pdv.MAPDP == MAPDP);
-                        if (phieuDichVu == null)
-                        {
-                            int maxCode = ListPDV.Max(dv => int.Parse(dv.MAPDV.Substring(2)));
-                            string nextCode = $"PH{maxCode + 1:000}";
-                            MAPDV = nextCode;
-                            New = 1;
-                        }
-                        else
-                            MAPDV = phieuDichVu.MAPDV.ToString();
+                        int maxCode = ListPDV.Max(dv => int.Parse(dv.MAPDV.Substring(2)));
+                        string nextCode = $"PH{maxCode + 1:000}";
+                        MAPDV = nextCode;
+                        New = 1;
                     }
+                    else
+                        MAPDV = phieuDichVu.MAPDV.ToString();
                     ListCTPDV = new ObservableCollection<CHITIETDICHVU>(DataProvider.Ins.DB.CHITIETDICHVUs);
                     foreach (var ctpdv in ListCTPDV)
                     {
@@ -281,7 +276,7 @@ namespace QLKhachSan.ViewModel
                 try
                 {
                     MADV = MAPDV = "";
-                    TENDV = SOPHONG = null;
+                    TENDV = null;
                     SLDV = 1;
                 }                
                 catch (Exception ex)

@@ -70,7 +70,7 @@
                 <Grid Grid.Row="0">
                     <StackPanel>
                         <TextBlock Margin="30,30,30,0" Text="Số phòng:" FontSize="15"></TextBlock>
-                        <ComboBox
+                        <!--<ComboBox
                         x:Name="SoPhong"
                         Margin="30,10,30,10"
                         HorizontalAlignment="Left" 
@@ -83,7 +83,14 @@
                                     <i:InvokeCommandAction Command="{Binding ShowCommand1}" CommandParameter="{Binding ElementName=SoPhong}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                        </ComboBox>
+                        </ComboBox>-->
+                        <TextBox x:Name="SoPhong" Text="{Binding SOPHONG,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,10,30,10" HorizontalAlignment="Left" Width="245" Height="60" FontSize="20" Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction Command="{Binding ShowCommand1}" CommandParameter="{Binding ElementName=SoPhong}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
                     </StackPanel>
                 </Grid>
 
